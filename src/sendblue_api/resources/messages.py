@@ -91,11 +91,9 @@ class MessagesResource(SyncAPIResource):
         is_outbound: Literal["true", "false"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         message_type: Literal["message", "group"] | NotGiven = NOT_GIVEN,
-        number: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         order_by: Literal["createdAt", "updatedAt", "sentAt"] | NotGiven = NOT_GIVEN,
         order_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        sendblue_number: str | NotGiven = NOT_GIVEN,
         sent_at_gte: Union[str, datetime] | NotGiven = NOT_GIVEN,
         sent_at_lte: Union[str, datetime] | NotGiven = NOT_GIVEN,
         service: Literal["iMessage", "SMS"] | NotGiven = NOT_GIVEN,
@@ -144,15 +142,11 @@ class MessagesResource(SyncAPIResource):
 
           message_type: Filter by message type
 
-          number: Filter by any phone number (from or to)
-
           offset: Number of messages to skip
 
           order_by: Field to order messages by
 
           order_direction: Sort order
-
-          sendblue_number: Filter by Sendblue phone number
 
           sent_at_gte: Filter messages sent after this date (ISO 8601 format)
 
@@ -195,11 +189,9 @@ class MessagesResource(SyncAPIResource):
                         "is_outbound": is_outbound,
                         "limit": limit,
                         "message_type": message_type,
-                        "number": number,
                         "offset": offset,
                         "order_by": order_by,
                         "order_direction": order_direction,
-                        "sendblue_number": sendblue_number,
                         "sent_at_gte": sent_at_gte,
                         "sent_at_lte": sent_at_lte,
                         "service": service,
@@ -395,11 +387,9 @@ class AsyncMessagesResource(AsyncAPIResource):
         is_outbound: Literal["true", "false"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         message_type: Literal["message", "group"] | NotGiven = NOT_GIVEN,
-        number: str | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         order_by: Literal["createdAt", "updatedAt", "sentAt"] | NotGiven = NOT_GIVEN,
         order_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        sendblue_number: str | NotGiven = NOT_GIVEN,
         sent_at_gte: Union[str, datetime] | NotGiven = NOT_GIVEN,
         sent_at_lte: Union[str, datetime] | NotGiven = NOT_GIVEN,
         service: Literal["iMessage", "SMS"] | NotGiven = NOT_GIVEN,
@@ -448,15 +438,11 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           message_type: Filter by message type
 
-          number: Filter by any phone number (from or to)
-
           offset: Number of messages to skip
 
           order_by: Field to order messages by
 
           order_direction: Sort order
-
-          sendblue_number: Filter by Sendblue phone number
 
           sent_at_gte: Filter messages sent after this date (ISO 8601 format)
 
@@ -499,11 +485,9 @@ class AsyncMessagesResource(AsyncAPIResource):
                         "is_outbound": is_outbound,
                         "limit": limit,
                         "message_type": message_type,
-                        "number": number,
                         "offset": offset,
                         "order_by": order_by,
                         "order_direction": order_direction,
-                        "sendblue_number": sendblue_number,
                         "sent_at_gte": sent_at_gte,
                         "sent_at_lte": sent_at_lte,
                         "service": service,
