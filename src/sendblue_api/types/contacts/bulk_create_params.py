@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 from typing_extensions import Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = ["BulkCreateParams", "Contact"]
@@ -23,4 +24,4 @@ class Contact(TypedDict, total=False):
 
     last_name: Annotated[str, PropertyInfo(alias="lastName")]
 
-    tags: List[str]
+    tags: SequenceNotStr[str]

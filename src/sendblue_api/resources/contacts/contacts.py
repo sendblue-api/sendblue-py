@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal
 
 import httpx
@@ -16,7 +15,7 @@ from .bulk import (
     AsyncBulkResourceWithStreamingResponse,
 )
 from ...types import contact_list_params, contact_create_params, contact_update_params, contact_verify_params
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -76,7 +75,7 @@ class ContactsResource(SyncAPIResource):
         body_phone_number_2: str | NotGiven = NOT_GIVEN,
         body_sendblue_number_1: str | NotGiven = NOT_GIVEN,
         body_sendblue_number_2: str | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         update_if_exists: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -191,7 +190,7 @@ class ContactsResource(SyncAPIResource):
         first_name: str | NotGiven = NOT_GIVEN,
         last_name: str | NotGiven = NOT_GIVEN,
         sendblue_number: str | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -419,7 +418,7 @@ class AsyncContactsResource(AsyncAPIResource):
         body_phone_number_2: str | NotGiven = NOT_GIVEN,
         body_sendblue_number_1: str | NotGiven = NOT_GIVEN,
         body_sendblue_number_2: str | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         update_if_exists: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -534,7 +533,7 @@ class AsyncContactsResource(AsyncAPIResource):
         first_name: str | NotGiven = NOT_GIVEN,
         last_name: str | NotGiven = NOT_GIVEN,
         sendblue_number: str | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
