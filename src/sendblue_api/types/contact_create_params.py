@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
 __all__ = ["ContactCreateParams"]
@@ -44,7 +44,7 @@ class ContactCreateParams(TypedDict, total=False):
     body_sendblue_number_2: Annotated[str, PropertyInfo(alias="sendblueNumber")]
     """Associated Sendblue phone number (alternative)"""
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """Tags for the contact"""
 
     update_if_exists: bool

@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["GroupSendMessageParams"]
 
@@ -25,5 +26,5 @@ class GroupSendMessageParams(TypedDict, total=False):
     media_url: str
     """URL of media file to send"""
 
-    numbers: List[str]
+    numbers: SequenceNotStr[str]
     """Array of recipient phone numbers in E.164 format"""
