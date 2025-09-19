@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import group_modify_params, group_send_message_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -55,7 +55,7 @@ class GroupsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GroupModifyResponse:
         """
         Add or manage participants in a group chat (beta feature)
@@ -96,15 +96,15 @@ class GroupsResource(SyncAPIResource):
         *,
         content: str,
         from_number: str,
-        group_id: str | NotGiven = NOT_GIVEN,
-        media_url: str | NotGiven = NOT_GIVEN,
-        numbers: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        group_id: str | Omit = omit,
+        media_url: str | Omit = omit,
+        numbers: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageResponse:
         """
         Send a message to a group of recipients (beta feature)
@@ -180,7 +180,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GroupModifyResponse:
         """
         Add or manage participants in a group chat (beta feature)
@@ -221,15 +221,15 @@ class AsyncGroupsResource(AsyncAPIResource):
         *,
         content: str,
         from_number: str,
-        group_id: str | NotGiven = NOT_GIVEN,
-        media_url: str | NotGiven = NOT_GIVEN,
-        numbers: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        group_id: str | Omit = omit,
+        media_url: str | Omit = omit,
+        numbers: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageResponse:
         """
         Send a message to a group of recipients (beta feature)

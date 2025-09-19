@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import message_list_params, message_send_params, message_get_status_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -56,7 +56,7 @@ class MessagesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageRetrieveResponse:
         """
         Retrieve details of a specific message by its ID
@@ -83,20 +83,20 @@ class MessagesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_email: str | NotGiven = NOT_GIVEN,
-        created_at_gte: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        created_at_lte: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        from_number: str | NotGiven = NOT_GIVEN,
-        group_id: str | NotGiven = NOT_GIVEN,
-        is_outbound: Literal["true", "false"] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        message_type: Literal["message", "group"] | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: Literal["createdAt", "updatedAt", "sentAt"] | NotGiven = NOT_GIVEN,
-        order_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        sent_at_gte: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        sent_at_lte: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        service: Literal["iMessage", "SMS"] | NotGiven = NOT_GIVEN,
+        account_email: str | Omit = omit,
+        created_at_gte: Union[str, datetime] | Omit = omit,
+        created_at_lte: Union[str, datetime] | Omit = omit,
+        from_number: str | Omit = omit,
+        group_id: str | Omit = omit,
+        is_outbound: Literal["true", "false"] | Omit = omit,
+        limit: int | Omit = omit,
+        message_type: Literal["message", "group"] | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: Literal["createdAt", "updatedAt", "sentAt"] | Omit = omit,
+        order_direction: Literal["asc", "desc"] | Omit = omit,
+        sent_at_gte: Union[str, datetime] | Omit = omit,
+        sent_at_lte: Union[str, datetime] | Omit = omit,
+        service: Literal["iMessage", "SMS"] | Omit = omit,
         status: Literal[
             "REGISTERED",
             "PENDING",
@@ -109,17 +109,17 @@ class MessagesResource(SyncAPIResource):
             "ACCEPTED",
             "SUCCESS",
         ]
-        | NotGiven = NOT_GIVEN,
-        to_number: str | NotGiven = NOT_GIVEN,
-        updated_at_gte: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        updated_at_lte: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        worker_id: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        to_number: str | Omit = omit,
+        updated_at_gte: Union[str, datetime] | Omit = omit,
+        updated_at_lte: Union[str, datetime] | Omit = omit,
+        worker_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageListResponse:
         """
         Retrieve a list of messages for the authenticated account with comprehensive
@@ -216,7 +216,7 @@ class MessagesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageResponse:
         """Retrieve the current status of a message using its message handle.
 
@@ -252,7 +252,7 @@ class MessagesResource(SyncAPIResource):
         content: str,
         from_number: str,
         number: str,
-        media_url: str | NotGiven = NOT_GIVEN,
+        media_url: str | Omit = omit,
         send_style: Literal[
             "celebration",
             "shooting_star",
@@ -268,14 +268,14 @@ class MessagesResource(SyncAPIResource):
             "loud",
             "slam",
         ]
-        | NotGiven = NOT_GIVEN,
-        status_callback: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        status_callback: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageResponse:
         """
         Send an iMessage, SMS, or MMS to a single recipient
@@ -352,7 +352,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageRetrieveResponse:
         """
         Retrieve details of a specific message by its ID
@@ -379,20 +379,20 @@ class AsyncMessagesResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_email: str | NotGiven = NOT_GIVEN,
-        created_at_gte: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        created_at_lte: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        from_number: str | NotGiven = NOT_GIVEN,
-        group_id: str | NotGiven = NOT_GIVEN,
-        is_outbound: Literal["true", "false"] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        message_type: Literal["message", "group"] | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: Literal["createdAt", "updatedAt", "sentAt"] | NotGiven = NOT_GIVEN,
-        order_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        sent_at_gte: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        sent_at_lte: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        service: Literal["iMessage", "SMS"] | NotGiven = NOT_GIVEN,
+        account_email: str | Omit = omit,
+        created_at_gte: Union[str, datetime] | Omit = omit,
+        created_at_lte: Union[str, datetime] | Omit = omit,
+        from_number: str | Omit = omit,
+        group_id: str | Omit = omit,
+        is_outbound: Literal["true", "false"] | Omit = omit,
+        limit: int | Omit = omit,
+        message_type: Literal["message", "group"] | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: Literal["createdAt", "updatedAt", "sentAt"] | Omit = omit,
+        order_direction: Literal["asc", "desc"] | Omit = omit,
+        sent_at_gte: Union[str, datetime] | Omit = omit,
+        sent_at_lte: Union[str, datetime] | Omit = omit,
+        service: Literal["iMessage", "SMS"] | Omit = omit,
         status: Literal[
             "REGISTERED",
             "PENDING",
@@ -405,17 +405,17 @@ class AsyncMessagesResource(AsyncAPIResource):
             "ACCEPTED",
             "SUCCESS",
         ]
-        | NotGiven = NOT_GIVEN,
-        to_number: str | NotGiven = NOT_GIVEN,
-        updated_at_gte: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        updated_at_lte: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        worker_id: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        to_number: str | Omit = omit,
+        updated_at_gte: Union[str, datetime] | Omit = omit,
+        updated_at_lte: Union[str, datetime] | Omit = omit,
+        worker_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageListResponse:
         """
         Retrieve a list of messages for the authenticated account with comprehensive
@@ -512,7 +512,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageResponse:
         """Retrieve the current status of a message using its message handle.
 
@@ -548,7 +548,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         content: str,
         from_number: str,
         number: str,
-        media_url: str | NotGiven = NOT_GIVEN,
+        media_url: str | Omit = omit,
         send_style: Literal[
             "celebration",
             "shooting_star",
@@ -564,14 +564,14 @@ class AsyncMessagesResource(AsyncAPIResource):
             "loud",
             "slam",
         ]
-        | NotGiven = NOT_GIVEN,
-        status_callback: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        status_callback: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageResponse:
         """
         Send an iMessage, SMS, or MMS to a single recipient
