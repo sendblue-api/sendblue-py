@@ -89,7 +89,7 @@ Methods:
 - <code title="post /api/v2/contacts">client.contacts.<a href="./src/sendblue_api/resources/contacts/contacts.py">create</a>(\*\*<a href="src/sendblue_api/types/contact_create_params.py">params</a>) -> <a href="./src/sendblue_api/types/contact_create_response.py">ContactCreateResponse</a></code>
 - <code title="get /api/v2/contacts/{phone_number}">client.contacts.<a href="./src/sendblue_api/resources/contacts/contacts.py">retrieve</a>(phone_number) -> <a href="./src/sendblue_api/types/contact_retrieve_response.py">ContactRetrieveResponse</a></code>
 - <code title="put /api/v2/contacts/{phone_number}">client.contacts.<a href="./src/sendblue_api/resources/contacts/contacts.py">update</a>(phone_number, \*\*<a href="src/sendblue_api/types/contact_update_params.py">params</a>) -> <a href="./src/sendblue_api/types/contact_update_response.py">ContactUpdateResponse</a></code>
-- <code title="get /api/v2/contacts">client.contacts.<a href="./src/sendblue_api/resources/contacts/contacts.py">list</a>(\*\*<a href="src/sendblue_api/types/contact_list_params.py">params</a>) -> <a href="./src/sendblue_api/types/contact_list_response.py">ContactListResponse</a></code>
+- <code title="get /api/v2/contacts">client.contacts.<a href="./src/sendblue_api/resources/contacts/contacts.py">list</a>() -> <a href="./src/sendblue_api/types/contact_list_response.py">ContactListResponse</a></code>
 - <code title="delete /api/v2/contacts/{phone_number}">client.contacts.<a href="./src/sendblue_api/resources/contacts/contacts.py">delete</a>(phone_number) -> <a href="./src/sendblue_api/types/contact_delete_response.py">ContactDeleteResponse</a></code>
 - <code title="get /api/v2/contacts/count">client.contacts.<a href="./src/sendblue_api/resources/contacts/contacts.py">count</a>() -> <a href="./src/sendblue_api/types/contact_count_response.py">ContactCountResponse</a></code>
 - <code title="post /api/v2/contacts/verify">client.contacts.<a href="./src/sendblue_api/resources/contacts/contacts.py">verify</a>(\*\*<a href="src/sendblue_api/types/contact_verify_params.py">params</a>) -> <a href="./src/sendblue_api/types/contact_verify_response.py">ContactVerifyResponse</a></code>
@@ -106,3 +106,24 @@ Methods:
 
 - <code title="post /api/v2/contacts/bulk">client.contacts.bulk.<a href="./src/sendblue_api/resources/contacts/bulk.py">create</a>(\*\*<a href="src/sendblue_api/types/contacts/bulk_create_params.py">params</a>) -> <a href="./src/sendblue_api/types/contacts/bulk_create_response.py">BulkCreateResponse</a></code>
 - <code title="delete /api/v2/contacts">client.contacts.bulk.<a href="./src/sendblue_api/resources/contacts/bulk.py">delete</a>(\*\*<a href="src/sendblue_api/types/contacts/bulk_delete_params.py">params</a>) -> <a href="./src/sendblue_api/types/contacts/bulk_delete_response.py">BulkDeleteResponse</a></code>
+
+# Webhooks
+
+Types:
+
+```python
+from sendblue_api.types import (
+    WebhookConfiguration,
+    WebhookCreateResponse,
+    WebhookUpdateResponse,
+    WebhookListResponse,
+    WebhookDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /api/v2/account/webhooks">client.webhooks.<a href="./src/sendblue_api/resources/webhooks.py">create</a>(\*\*<a href="src/sendblue_api/types/webhook_create_params.py">params</a>) -> <a href="./src/sendblue_api/types/webhook_create_response.py">WebhookCreateResponse</a></code>
+- <code title="put /api/v2/account/webhooks">client.webhooks.<a href="./src/sendblue_api/resources/webhooks.py">update</a>(\*\*<a href="src/sendblue_api/types/webhook_update_params.py">params</a>) -> <a href="./src/sendblue_api/types/webhook_update_response.py">WebhookUpdateResponse</a></code>
+- <code title="get /api/v2/account/webhooks">client.webhooks.<a href="./src/sendblue_api/resources/webhooks.py">list</a>() -> <a href="./src/sendblue_api/types/webhook_list_response.py">WebhookListResponse</a></code>
+- <code title="delete /api/v2/account/webhooks">client.webhooks.<a href="./src/sendblue_api/resources/webhooks.py">delete</a>(\*\*<a href="src/sendblue_api/types/webhook_delete_params.py">params</a>) -> <a href="./src/sendblue_api/types/webhook_delete_response.py">WebhookDeleteResponse</a></code>

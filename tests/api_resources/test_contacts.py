@@ -185,19 +185,6 @@ class TestContacts:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_list_with_all_params(self, client: SendblueAPI) -> None:
-        contact = client.contacts.list(
-            cid="cid",
-            limit=0,
-            offset=0,
-            order_by="order_by",
-            order_direction="asc",
-            phone_number="phone_number",
-        )
-        assert_matches_type(ContactListResponse, contact, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
     def test_raw_response_list(self, client: SendblueAPI) -> None:
         response = client.contacts.with_raw_response.list()
 
@@ -484,19 +471,6 @@ class TestAsyncContacts:
     @parametrize
     async def test_method_list(self, async_client: AsyncSendblueAPI) -> None:
         contact = await async_client.contacts.list()
-        assert_matches_type(ContactListResponse, contact, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncSendblueAPI) -> None:
-        contact = await async_client.contacts.list(
-            cid="cid",
-            limit=0,
-            offset=0,
-            order_by="order_by",
-            order_direction="asc",
-            phone_number="phone_number",
-        )
         assert_matches_type(ContactListResponse, contact, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
