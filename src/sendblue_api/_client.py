@@ -21,7 +21,7 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import groups, lookups, messages, media_objects, typing_indicators
+from .resources import groups, lookups, messages, webhooks, media_objects, typing_indicators
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError, SendblueAPIError
 from ._base_client import (
@@ -50,6 +50,7 @@ class SendblueAPI(SyncAPIClient):
     lookups: lookups.LookupsResource
     typing_indicators: typing_indicators.TypingIndicatorsResource
     contacts: contacts.ContactsResource
+    webhooks: webhooks.WebhooksResource
     with_raw_response: SendblueAPIWithRawResponse
     with_streaming_response: SendblueAPIWithStreamedResponse
 
@@ -125,6 +126,7 @@ class SendblueAPI(SyncAPIClient):
         self.lookups = lookups.LookupsResource(self)
         self.typing_indicators = typing_indicators.TypingIndicatorsResource(self)
         self.contacts = contacts.ContactsResource(self)
+        self.webhooks = webhooks.WebhooksResource(self)
         self.with_raw_response = SendblueAPIWithRawResponse(self)
         self.with_streaming_response = SendblueAPIWithStreamedResponse(self)
 
@@ -251,6 +253,7 @@ class AsyncSendblueAPI(AsyncAPIClient):
     lookups: lookups.AsyncLookupsResource
     typing_indicators: typing_indicators.AsyncTypingIndicatorsResource
     contacts: contacts.AsyncContactsResource
+    webhooks: webhooks.AsyncWebhooksResource
     with_raw_response: AsyncSendblueAPIWithRawResponse
     with_streaming_response: AsyncSendblueAPIWithStreamedResponse
 
@@ -326,6 +329,7 @@ class AsyncSendblueAPI(AsyncAPIClient):
         self.lookups = lookups.AsyncLookupsResource(self)
         self.typing_indicators = typing_indicators.AsyncTypingIndicatorsResource(self)
         self.contacts = contacts.AsyncContactsResource(self)
+        self.webhooks = webhooks.AsyncWebhooksResource(self)
         self.with_raw_response = AsyncSendblueAPIWithRawResponse(self)
         self.with_streaming_response = AsyncSendblueAPIWithStreamedResponse(self)
 
@@ -453,6 +457,7 @@ class SendblueAPIWithRawResponse:
         self.lookups = lookups.LookupsResourceWithRawResponse(client.lookups)
         self.typing_indicators = typing_indicators.TypingIndicatorsResourceWithRawResponse(client.typing_indicators)
         self.contacts = contacts.ContactsResourceWithRawResponse(client.contacts)
+        self.webhooks = webhooks.WebhooksResourceWithRawResponse(client.webhooks)
 
 
 class AsyncSendblueAPIWithRawResponse:
@@ -465,6 +470,7 @@ class AsyncSendblueAPIWithRawResponse:
             client.typing_indicators
         )
         self.contacts = contacts.AsyncContactsResourceWithRawResponse(client.contacts)
+        self.webhooks = webhooks.AsyncWebhooksResourceWithRawResponse(client.webhooks)
 
 
 class SendblueAPIWithStreamedResponse:
@@ -477,6 +483,7 @@ class SendblueAPIWithStreamedResponse:
             client.typing_indicators
         )
         self.contacts = contacts.ContactsResourceWithStreamingResponse(client.contacts)
+        self.webhooks = webhooks.WebhooksResourceWithStreamingResponse(client.webhooks)
 
 
 class AsyncSendblueAPIWithStreamedResponse:
@@ -489,6 +496,7 @@ class AsyncSendblueAPIWithStreamedResponse:
             client.typing_indicators
         )
         self.contacts = contacts.AsyncContactsResourceWithStreamingResponse(client.contacts)
+        self.webhooks = webhooks.AsyncWebhooksResourceWithStreamingResponse(client.webhooks)
 
 
 Client = SendblueAPI

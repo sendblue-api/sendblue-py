@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal
-
 import httpx
 
 from .bulk import (
@@ -14,7 +12,7 @@ from .bulk import (
     BulkResourceWithStreamingResponse,
     AsyncBulkResourceWithStreamingResponse,
 )
-from ...types import contact_list_params, contact_create_params, contact_update_params, contact_verify_params
+from ...types import contact_create_params, contact_update_params, contact_verify_params
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
@@ -234,12 +232,6 @@ class ContactsResource(SyncAPIResource):
     def list(
         self,
         *,
-        cid: str | Omit = omit,
-        limit: int | Omit = omit,
-        offset: int | Omit = omit,
-        order_by: str | Omit = omit,
-        order_direction: Literal["asc", "desc"] | Omit = omit,
-        phone_number: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -247,48 +239,11 @@ class ContactsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactListResponse:
-        """
-        Retrieve a list of contacts for the authenticated account
-
-        Args:
-          cid: Filter by contact ID
-
-          limit: Maximum number of contacts to return
-
-          offset: Number of contacts to skip
-
-          order_by: Field to sort by
-
-          order_direction: Sort direction
-
-          phone_number: Filter by phone number
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
+        """Retrieve a list of contacts for the authenticated account"""
         return self._get(
             "/api/v2/contacts",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "cid": cid,
-                        "limit": limit,
-                        "offset": offset,
-                        "order_by": order_by,
-                        "order_direction": order_direction,
-                        "phone_number": phone_number,
-                    },
-                    contact_list_params.ContactListParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ContactListResponse,
         )
@@ -577,12 +532,6 @@ class AsyncContactsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        cid: str | Omit = omit,
-        limit: int | Omit = omit,
-        offset: int | Omit = omit,
-        order_by: str | Omit = omit,
-        order_direction: Literal["asc", "desc"] | Omit = omit,
-        phone_number: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -590,48 +539,11 @@ class AsyncContactsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactListResponse:
-        """
-        Retrieve a list of contacts for the authenticated account
-
-        Args:
-          cid: Filter by contact ID
-
-          limit: Maximum number of contacts to return
-
-          offset: Number of contacts to skip
-
-          order_by: Field to sort by
-
-          order_direction: Sort direction
-
-          phone_number: Filter by phone number
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
+        """Retrieve a list of contacts for the authenticated account"""
         return await self._get(
             "/api/v2/contacts",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "cid": cid,
-                        "limit": limit,
-                        "offset": offset,
-                        "order_by": order_by,
-                        "order_direction": order_direction,
-                        "phone_number": phone_number,
-                    },
-                    contact_list_params.ContactListParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ContactListResponse,
         )
