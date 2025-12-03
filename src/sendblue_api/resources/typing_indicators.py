@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..types import typing_indicator_send_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Query, Headers, NotGiven, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -28,7 +28,7 @@ class TypingIndicatorsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/sendblue-api-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/sendblue-api/sendblue-py#accessing-raw-response-data-eg-headers
         """
         return TypingIndicatorsResourceWithRawResponse(self)
 
@@ -37,7 +37,7 @@ class TypingIndicatorsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/sendblue-api-python#with_streaming_response
+        For more information, see https://www.github.com/sendblue-api/sendblue-py#with_streaming_response
         """
         return TypingIndicatorsResourceWithStreamingResponse(self)
 
@@ -50,7 +50,7 @@ class TypingIndicatorsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TypingIndicatorSendResponse:
         """Send an indication that you are typing to a user.
 
@@ -86,7 +86,7 @@ class AsyncTypingIndicatorsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/sendblue-api-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/sendblue-api/sendblue-py#accessing-raw-response-data-eg-headers
         """
         return AsyncTypingIndicatorsResourceWithRawResponse(self)
 
@@ -95,7 +95,7 @@ class AsyncTypingIndicatorsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/sendblue-api-python#with_streaming_response
+        For more information, see https://www.github.com/sendblue-api/sendblue-py#with_streaming_response
         """
         return AsyncTypingIndicatorsResourceWithStreamingResponse(self)
 
@@ -108,7 +108,7 @@ class AsyncTypingIndicatorsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TypingIndicatorSendResponse:
         """Send an indication that you are typing to a user.
 

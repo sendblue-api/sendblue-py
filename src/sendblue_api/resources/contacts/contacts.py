@@ -2,9 +2,6 @@
 
 from __future__ import annotations
 
-from typing import List
-from typing_extensions import Literal
-
 import httpx
 
 from .bulk import (
@@ -15,8 +12,8 @@ from .bulk import (
     BulkResourceWithStreamingResponse,
     AsyncBulkResourceWithStreamingResponse,
 )
-from ...types import contact_list_params, contact_create_params, contact_update_params, contact_verify_params
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...types import contact_create_params, contact_update_params, contact_verify_params
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -49,7 +46,7 @@ class ContactsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/sendblue-api-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/sendblue-api/sendblue-py#accessing-raw-response-data-eg-headers
         """
         return ContactsResourceWithRawResponse(self)
 
@@ -58,7 +55,7 @@ class ContactsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/sendblue-api-python#with_streaming_response
+        For more information, see https://www.github.com/sendblue-api/sendblue-py#with_streaming_response
         """
         return ContactsResourceWithStreamingResponse(self)
 
@@ -66,24 +63,24 @@ class ContactsResource(SyncAPIResource):
         self,
         *,
         number: str,
-        body_assigned_to_email_1: str | NotGiven = NOT_GIVEN,
-        body_assigned_to_email_2: str | NotGiven = NOT_GIVEN,
-        body_first_name_1: str | NotGiven = NOT_GIVEN,
-        body_first_name_2: str | NotGiven = NOT_GIVEN,
-        body_last_name_1: str | NotGiven = NOT_GIVEN,
-        body_last_name_2: str | NotGiven = NOT_GIVEN,
-        body_phone_number_1: str | NotGiven = NOT_GIVEN,
-        body_phone_number_2: str | NotGiven = NOT_GIVEN,
-        body_sendblue_number_1: str | NotGiven = NOT_GIVEN,
-        body_sendblue_number_2: str | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
-        update_if_exists: bool | NotGiven = NOT_GIVEN,
+        body_assigned_to_email_1: str | Omit = omit,
+        body_assigned_to_email_2: str | Omit = omit,
+        body_first_name_1: str | Omit = omit,
+        body_first_name_2: str | Omit = omit,
+        body_last_name_1: str | Omit = omit,
+        body_last_name_2: str | Omit = omit,
+        body_phone_number_1: str | Omit = omit,
+        body_phone_number_2: str | Omit = omit,
+        body_sendblue_number_1: str | Omit = omit,
+        body_sendblue_number_2: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        update_if_exists: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactCreateResponse:
         """
         Create a new contact or update existing if update_if_exists is true
@@ -158,7 +155,7 @@ class ContactsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactRetrieveResponse:
         """
         Retrieve a specific contact by phone number
@@ -186,18 +183,18 @@ class ContactsResource(SyncAPIResource):
         self,
         phone_number: str,
         *,
-        assigned_to_email: str | NotGiven = NOT_GIVEN,
-        company_name: str | NotGiven = NOT_GIVEN,
-        first_name: str | NotGiven = NOT_GIVEN,
-        last_name: str | NotGiven = NOT_GIVEN,
-        sendblue_number: str | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        assigned_to_email: str | Omit = omit,
+        company_name: str | Omit = omit,
+        first_name: str | Omit = omit,
+        last_name: str | Omit = omit,
+        sendblue_number: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactUpdateResponse:
         """
         Update an existing contact
@@ -235,61 +232,18 @@ class ContactsResource(SyncAPIResource):
     def list(
         self,
         *,
-        cid: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        order_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        phone_number: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactListResponse:
-        """
-        Retrieve a list of contacts for the authenticated account
-
-        Args:
-          cid: Filter by contact ID
-
-          limit: Maximum number of contacts to return
-
-          offset: Number of contacts to skip
-
-          order_by: Field to sort by
-
-          order_direction: Sort direction
-
-          phone_number: Filter by phone number
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
+        """Retrieve a list of contacts for the authenticated account"""
         return self._get(
             "/api/v2/contacts",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "cid": cid,
-                        "limit": limit,
-                        "offset": offset,
-                        "order_by": order_by,
-                        "order_direction": order_direction,
-                        "phone_number": phone_number,
-                    },
-                    contact_list_params.ContactListParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ContactListResponse,
         )
@@ -303,7 +257,7 @@ class ContactsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactDeleteResponse:
         """
         Delete a specific contact
@@ -335,7 +289,7 @@ class ContactsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactCountResponse:
         """Get the total number of contacts"""
         return self._get(
@@ -355,7 +309,7 @@ class ContactsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactVerifyResponse:
         """
         Send a verification message to a contact
@@ -392,7 +346,7 @@ class AsyncContactsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/sendblue-api-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/sendblue-api/sendblue-py#accessing-raw-response-data-eg-headers
         """
         return AsyncContactsResourceWithRawResponse(self)
 
@@ -401,7 +355,7 @@ class AsyncContactsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/sendblue-api-python#with_streaming_response
+        For more information, see https://www.github.com/sendblue-api/sendblue-py#with_streaming_response
         """
         return AsyncContactsResourceWithStreamingResponse(self)
 
@@ -409,24 +363,24 @@ class AsyncContactsResource(AsyncAPIResource):
         self,
         *,
         number: str,
-        body_assigned_to_email_1: str | NotGiven = NOT_GIVEN,
-        body_assigned_to_email_2: str | NotGiven = NOT_GIVEN,
-        body_first_name_1: str | NotGiven = NOT_GIVEN,
-        body_first_name_2: str | NotGiven = NOT_GIVEN,
-        body_last_name_1: str | NotGiven = NOT_GIVEN,
-        body_last_name_2: str | NotGiven = NOT_GIVEN,
-        body_phone_number_1: str | NotGiven = NOT_GIVEN,
-        body_phone_number_2: str | NotGiven = NOT_GIVEN,
-        body_sendblue_number_1: str | NotGiven = NOT_GIVEN,
-        body_sendblue_number_2: str | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
-        update_if_exists: bool | NotGiven = NOT_GIVEN,
+        body_assigned_to_email_1: str | Omit = omit,
+        body_assigned_to_email_2: str | Omit = omit,
+        body_first_name_1: str | Omit = omit,
+        body_first_name_2: str | Omit = omit,
+        body_last_name_1: str | Omit = omit,
+        body_last_name_2: str | Omit = omit,
+        body_phone_number_1: str | Omit = omit,
+        body_phone_number_2: str | Omit = omit,
+        body_sendblue_number_1: str | Omit = omit,
+        body_sendblue_number_2: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        update_if_exists: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactCreateResponse:
         """
         Create a new contact or update existing if update_if_exists is true
@@ -501,7 +455,7 @@ class AsyncContactsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactRetrieveResponse:
         """
         Retrieve a specific contact by phone number
@@ -529,18 +483,18 @@ class AsyncContactsResource(AsyncAPIResource):
         self,
         phone_number: str,
         *,
-        assigned_to_email: str | NotGiven = NOT_GIVEN,
-        company_name: str | NotGiven = NOT_GIVEN,
-        first_name: str | NotGiven = NOT_GIVEN,
-        last_name: str | NotGiven = NOT_GIVEN,
-        sendblue_number: str | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        assigned_to_email: str | Omit = omit,
+        company_name: str | Omit = omit,
+        first_name: str | Omit = omit,
+        last_name: str | Omit = omit,
+        sendblue_number: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactUpdateResponse:
         """
         Update an existing contact
@@ -578,61 +532,18 @@ class AsyncContactsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        cid: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        order_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        phone_number: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactListResponse:
-        """
-        Retrieve a list of contacts for the authenticated account
-
-        Args:
-          cid: Filter by contact ID
-
-          limit: Maximum number of contacts to return
-
-          offset: Number of contacts to skip
-
-          order_by: Field to sort by
-
-          order_direction: Sort direction
-
-          phone_number: Filter by phone number
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
+        """Retrieve a list of contacts for the authenticated account"""
         return await self._get(
             "/api/v2/contacts",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "cid": cid,
-                        "limit": limit,
-                        "offset": offset,
-                        "order_by": order_by,
-                        "order_direction": order_direction,
-                        "phone_number": phone_number,
-                    },
-                    contact_list_params.ContactListParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ContactListResponse,
         )
@@ -646,7 +557,7 @@ class AsyncContactsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactDeleteResponse:
         """
         Delete a specific contact
@@ -678,7 +589,7 @@ class AsyncContactsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactCountResponse:
         """Get the total number of contacts"""
         return await self._get(
@@ -698,7 +609,7 @@ class AsyncContactsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactVerifyResponse:
         """
         Send a verification message to a contact

@@ -2,13 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal
 
 import httpx
 
 from ..types import group_modify_params, group_send_message_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -32,7 +31,7 @@ class GroupsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/sendblue-api-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/sendblue-api/sendblue-py#accessing-raw-response-data-eg-headers
         """
         return GroupsResourceWithRawResponse(self)
 
@@ -41,7 +40,7 @@ class GroupsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/sendblue-api-python#with_streaming_response
+        For more information, see https://www.github.com/sendblue-api/sendblue-py#with_streaming_response
         """
         return GroupsResourceWithStreamingResponse(self)
 
@@ -56,7 +55,7 @@ class GroupsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GroupModifyResponse:
         """
         Add or manage participants in a group chat (beta feature)
@@ -97,15 +96,15 @@ class GroupsResource(SyncAPIResource):
         *,
         content: str,
         from_number: str,
-        group_id: str | NotGiven = NOT_GIVEN,
-        media_url: str | NotGiven = NOT_GIVEN,
-        numbers: List[str] | NotGiven = NOT_GIVEN,
+        group_id: str | Omit = omit,
+        media_url: str | Omit = omit,
+        numbers: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageResponse:
         """
         Send a message to a group of recipients (beta feature)
@@ -157,7 +156,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/sendblue-api-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/sendblue-api/sendblue-py#accessing-raw-response-data-eg-headers
         """
         return AsyncGroupsResourceWithRawResponse(self)
 
@@ -166,7 +165,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/sendblue-api-python#with_streaming_response
+        For more information, see https://www.github.com/sendblue-api/sendblue-py#with_streaming_response
         """
         return AsyncGroupsResourceWithStreamingResponse(self)
 
@@ -181,7 +180,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GroupModifyResponse:
         """
         Add or manage participants in a group chat (beta feature)
@@ -222,15 +221,15 @@ class AsyncGroupsResource(AsyncAPIResource):
         *,
         content: str,
         from_number: str,
-        group_id: str | NotGiven = NOT_GIVEN,
-        media_url: str | NotGiven = NOT_GIVEN,
-        numbers: List[str] | NotGiven = NOT_GIVEN,
+        group_id: str | Omit = omit,
+        media_url: str | Omit = omit,
+        numbers: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageResponse:
         """
         Send a message to a group of recipients (beta feature)

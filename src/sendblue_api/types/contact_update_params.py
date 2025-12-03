@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
 __all__ = ["ContactUpdateParams"]
@@ -21,4 +21,4 @@ class ContactUpdateParams(TypedDict, total=False):
 
     sendblue_number: Annotated[str, PropertyInfo(alias="sendblueNumber")]
 
-    tags: List[str]
+    tags: SequenceNotStr[str]

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Union, Mapping
+from typing import Any, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -11,17 +11,17 @@ import httpx
 from . import _exceptions
 from ._qs import Querystring
 from ._types import (
-    NOT_GIVEN,
     Omit,
     Timeout,
     NotGiven,
     Transport,
     ProxiesTypes,
     RequestOptions,
+    not_given,
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import groups, lookups, messages, media_objects, typing_indicators
+from .resources import groups, lookups, messages, webhooks, media_objects, typing_indicators
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError, SendblueAPIError
 from ._base_client import (
@@ -50,6 +50,7 @@ class SendblueAPI(SyncAPIClient):
     lookups: lookups.LookupsResource
     typing_indicators: typing_indicators.TypingIndicatorsResource
     contacts: contacts.ContactsResource
+    webhooks: webhooks.WebhooksResource
     with_raw_response: SendblueAPIWithRawResponse
     with_streaming_response: SendblueAPIWithStreamedResponse
 
@@ -63,7 +64,7 @@ class SendblueAPI(SyncAPIClient):
         api_key: str | None = None,
         api_secret: str | None = None,
         base_url: str | httpx.URL | None = None,
-        timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
+        timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
@@ -125,6 +126,7 @@ class SendblueAPI(SyncAPIClient):
         self.lookups = lookups.LookupsResource(self)
         self.typing_indicators = typing_indicators.TypingIndicatorsResource(self)
         self.contacts = contacts.ContactsResource(self)
+        self.webhooks = webhooks.WebhooksResource(self)
         self.with_raw_response = SendblueAPIWithRawResponse(self)
         self.with_streaming_response = SendblueAPIWithStreamedResponse(self)
 
@@ -163,9 +165,9 @@ class SendblueAPI(SyncAPIClient):
         api_key: str | None = None,
         api_secret: str | None = None,
         base_url: str | httpx.URL | None = None,
-        timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.Client | None = None,
-        max_retries: int | NotGiven = NOT_GIVEN,
+        max_retries: int | NotGiven = not_given,
         default_headers: Mapping[str, str] | None = None,
         set_default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
@@ -251,6 +253,7 @@ class AsyncSendblueAPI(AsyncAPIClient):
     lookups: lookups.AsyncLookupsResource
     typing_indicators: typing_indicators.AsyncTypingIndicatorsResource
     contacts: contacts.AsyncContactsResource
+    webhooks: webhooks.AsyncWebhooksResource
     with_raw_response: AsyncSendblueAPIWithRawResponse
     with_streaming_response: AsyncSendblueAPIWithStreamedResponse
 
@@ -264,7 +267,7 @@ class AsyncSendblueAPI(AsyncAPIClient):
         api_key: str | None = None,
         api_secret: str | None = None,
         base_url: str | httpx.URL | None = None,
-        timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
+        timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
@@ -326,6 +329,7 @@ class AsyncSendblueAPI(AsyncAPIClient):
         self.lookups = lookups.AsyncLookupsResource(self)
         self.typing_indicators = typing_indicators.AsyncTypingIndicatorsResource(self)
         self.contacts = contacts.AsyncContactsResource(self)
+        self.webhooks = webhooks.AsyncWebhooksResource(self)
         self.with_raw_response = AsyncSendblueAPIWithRawResponse(self)
         self.with_streaming_response = AsyncSendblueAPIWithStreamedResponse(self)
 
@@ -364,9 +368,9 @@ class AsyncSendblueAPI(AsyncAPIClient):
         api_key: str | None = None,
         api_secret: str | None = None,
         base_url: str | httpx.URL | None = None,
-        timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.AsyncClient | None = None,
-        max_retries: int | NotGiven = NOT_GIVEN,
+        max_retries: int | NotGiven = not_given,
         default_headers: Mapping[str, str] | None = None,
         set_default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
@@ -453,6 +457,7 @@ class SendblueAPIWithRawResponse:
         self.lookups = lookups.LookupsResourceWithRawResponse(client.lookups)
         self.typing_indicators = typing_indicators.TypingIndicatorsResourceWithRawResponse(client.typing_indicators)
         self.contacts = contacts.ContactsResourceWithRawResponse(client.contacts)
+        self.webhooks = webhooks.WebhooksResourceWithRawResponse(client.webhooks)
 
 
 class AsyncSendblueAPIWithRawResponse:
@@ -465,6 +470,7 @@ class AsyncSendblueAPIWithRawResponse:
             client.typing_indicators
         )
         self.contacts = contacts.AsyncContactsResourceWithRawResponse(client.contacts)
+        self.webhooks = webhooks.AsyncWebhooksResourceWithRawResponse(client.webhooks)
 
 
 class SendblueAPIWithStreamedResponse:
@@ -477,6 +483,7 @@ class SendblueAPIWithStreamedResponse:
             client.typing_indicators
         )
         self.contacts = contacts.ContactsResourceWithStreamingResponse(client.contacts)
+        self.webhooks = webhooks.WebhooksResourceWithStreamingResponse(client.webhooks)
 
 
 class AsyncSendblueAPIWithStreamedResponse:
@@ -489,6 +496,7 @@ class AsyncSendblueAPIWithStreamedResponse:
             client.typing_indicators
         )
         self.contacts = contacts.AsyncContactsResourceWithStreamingResponse(client.contacts)
+        self.webhooks = webhooks.AsyncWebhooksResourceWithStreamingResponse(client.webhooks)
 
 
 Client = SendblueAPI

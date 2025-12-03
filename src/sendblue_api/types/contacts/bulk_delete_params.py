@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["BulkDeleteParams"]
 
 
 class BulkDeleteParams(TypedDict, total=False):
-    contact_ids: Required[List[str]]
+    contact_ids: Required[SequenceNotStr[str]]
     """Array of phone numbers in E.164 format to delete"""

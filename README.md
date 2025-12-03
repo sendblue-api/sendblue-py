@@ -1,9 +1,9 @@
 # Sendblue API Python API library
 
 <!-- prettier-ignore -->
-[![PyPI version](https://img.shields.io/pypi/v/sendblue_api.svg?label=pypi%20(stable))](https://pypi.org/project/sendblue_api/)
+[![PyPI version](https://img.shields.io/pypi/v/sendblue.svg?label=pypi%20(stable))](https://pypi.org/project/sendblue/)
 
-The Sendblue API Python library provides convenient access to the Sendblue API REST API from any Python 3.8+
+The Sendblue API Python library provides convenient access to the Sendblue API REST API from any Python 3.9+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -16,12 +16,9 @@ The REST API documentation can be found on [docs.sendblue.com](https://docs.send
 ## Installation
 
 ```sh
-# install from this staging repo
-pip install git+ssh://git@github.com/stainless-sdks/sendblue-api-python.git
+# install from PyPI
+pip install sendblue
 ```
-
-> [!NOTE]
-> Once this package is [published to PyPI](https://www.stainless.com/docs/guides/publish), this will become: `pip install sendblue_api`
 
 ## Usage
 
@@ -85,8 +82,8 @@ By default, the async client uses `httpx` for HTTP requests. However, for improv
 You can enable this by installing `aiohttp`:
 
 ```sh
-# install from this staging repo
-pip install 'sendblue_api[aiohttp] @ git+ssh://git@github.com/stainless-sdks/sendblue-api-python.git'
+# install from PyPI
+pip install sendblue[aiohttp]
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
@@ -122,6 +119,32 @@ Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typ
 - Converting to a dictionary, `model.to_dict()`
 
 Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
+
+## Nested params
+
+Nested parameters are dictionaries, typed using `TypedDict`, for example:
+
+```python
+from sendblue_api import SendblueAPI
+
+client = SendblueAPI()
+
+webhook = client.webhooks.update(
+    webhooks={
+        "call_log": ["https://example.com/call-webhook"],
+        "contact_created": ["https://example.com/contact-webhook"],
+        "global_secret": "my-global-secret",
+        "receive": [
+            "https://example.com/webhook1",
+            {
+                "url": "https://example.com/webhook2",
+                "secret": "webhook-secret",
+            },
+        ],
+    },
+)
+print(webhook.webhooks)
+```
 
 ## Handling errors
 
@@ -269,9 +292,9 @@ message = response.parse()  # get the object that `messages.send()` would have r
 print(message.account_email)
 ```
 
-These methods return an [`APIResponse`](https://github.com/stainless-sdks/sendblue-api-python/tree/main/src/sendblue_api/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/sendblue-api/sendblue-py/tree/main/src/sendblue_api/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/sendblue-api-python/tree/main/src/sendblue_api/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/sendblue-api/sendblue-py/tree/main/src/sendblue_api/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -379,7 +402,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/sendblue-api-python/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/sendblue-api/sendblue-py/issues) with questions, bugs, or suggestions.
 
 ### Determining the installed version
 
@@ -394,7 +417,7 @@ print(sendblue_api.__version__)
 
 ## Requirements
 
-Python 3.8 or higher.
+Python 3.9 or higher.
 
 ## Contributing
 
