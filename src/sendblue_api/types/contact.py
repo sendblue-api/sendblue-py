@@ -34,6 +34,3 @@ class Contact(BaseModel):
 
     tags: Optional[List[str]] = None
     """Tags associated with the contact"""
-
-    verified: Optional[bool] = None
-    """Whether the contact is verified"""

@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.1.0 (2025-12-08)
+
+Full Changelog: [v1.0.0...v1.1.0](https://github.com/sendblue-api/sendblue-py/compare/v1.0.0...v1.1.0)
+
+### Features
+
+* **api/v2/contact:** removed verified field in response example ([e6e1834](https://github.com/sendblue-api/sendblue-py/commit/e6e183450d07d749dfbc0dd00b67c4285a22da62))
+
+
+### Bug Fixes
+
+* **types:** allow pyright to infer TypedDict types within SequenceNotStr ([4251181](https://github.com/sendblue-api/sendblue-py/commit/4251181fafd406823a552e5ea04e6395dc19c7c9))
+
+
+### Chores
+
+* **docs:** use environment variables for authentication in code snippets ([15d84c5](https://github.com/sendblue-api/sendblue-py/commit/15d84c56f76ff864ac3744459f82c03f971a422d))
+* **internal:** codegen related update ([de6ec9a](https://github.com/sendblue-api/sendblue-py/commit/de6ec9a2eae57d1acfe1f1c790281caede948eb1))
+* update lockfile ([39f8a3d](https://github.com/sendblue-api/sendblue-py/commit/39f8a3d403fc62a8b6d80ac14769f9a823f3f9c6))
+
 ## 1.0.0 (2025-11-14)
 
 Full Changelog: [v0.0.1...v1.0.0](https://github.com/sendblue-api/sendblue-py/compare/v0.0.1...v1.0.0)

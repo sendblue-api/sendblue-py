@@ -89,6 +89,7 @@ pip install sendblue[aiohttp]
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
+import os
 import asyncio
 from sendblue_api import DefaultAioHttpClient
 from sendblue_api import AsyncSendblueAPI
@@ -96,8 +97,10 @@ from sendblue_api import AsyncSendblueAPI
 
 async def main() -> None:
     async with AsyncSendblueAPI(
-        api_key="My API Key",
-        api_secret="My API Secret",
+        api_key=os.environ.get("SENDBLUE_API_API_KEY"),  # This is the default and can be omitted
+        api_secret=os.environ.get(
+            "SENDBLUE_API_API_SECRET"
+        ),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
         message_response = await client.messages.send(
