@@ -82,7 +82,7 @@ class WebhooksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/api/v2/account/webhooks",
+            "/api/account/webhooks",
             body=maybe_transform(
                 {
                     "webhooks": webhooks,
@@ -123,7 +123,7 @@ class WebhooksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            "/api/v2/account/webhooks",
+            "/api/account/webhooks",
             body=maybe_transform({"webhooks": webhooks}, webhook_update_params.WebhookUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -143,7 +143,7 @@ class WebhooksResource(SyncAPIResource):
     ) -> WebhookListResponse:
         """Get all webhooks configured for your account."""
         return self._get(
-            "/api/v2/account/webhooks",
+            "/api/account/webhooks",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -180,7 +180,7 @@ class WebhooksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._delete(
-            "/api/v2/account/webhooks",
+            "/api/account/webhooks",
             body=maybe_transform(
                 {
                     "webhooks": webhooks,
@@ -250,7 +250,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/api/v2/account/webhooks",
+            "/api/account/webhooks",
             body=await async_maybe_transform(
                 {
                     "webhooks": webhooks,
@@ -291,7 +291,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            "/api/v2/account/webhooks",
+            "/api/account/webhooks",
             body=await async_maybe_transform({"webhooks": webhooks}, webhook_update_params.WebhookUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -311,7 +311,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
     ) -> WebhookListResponse:
         """Get all webhooks configured for your account."""
         return await self._get(
-            "/api/v2/account/webhooks",
+            "/api/account/webhooks",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -348,7 +348,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._delete(
-            "/api/v2/account/webhooks",
+            "/api/account/webhooks",
             body=await async_maybe_transform(
                 {
                     "webhooks": webhooks,
