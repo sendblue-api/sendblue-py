@@ -112,5 +112,18 @@ Methods:
 Types:
 
 ```python
-from sendblue_api.types import WebhookConfiguration
+from sendblue_api.types import (
+    WebhookConfiguration,
+    WebhookCreateResponse,
+    WebhookUpdateResponse,
+    WebhookListResponse,
+    WebhookDeleteResponse,
+)
 ```
+
+Methods:
+
+- <code title="post /api/account/webhooks">client.webhooks.<a href="./src/sendblue_api/resources/webhooks.py">create</a>(\*\*<a href="src/sendblue_api/types/webhook_create_params.py">params</a>) -> <a href="./src/sendblue_api/types/webhook_create_response.py">WebhookCreateResponse</a></code>
+- <code title="put /api/account/webhooks">client.webhooks.<a href="./src/sendblue_api/resources/webhooks.py">update</a>(\*\*<a href="src/sendblue_api/types/webhook_update_params.py">params</a>) -> <a href="./src/sendblue_api/types/webhook_update_response.py">WebhookUpdateResponse</a></code>
+- <code title="get /api/account/webhooks">client.webhooks.<a href="./src/sendblue_api/resources/webhooks.py">list</a>() -> <a href="./src/sendblue_api/types/webhook_list_response.py">WebhookListResponse</a></code>
+- <code title="delete /api/account/webhooks">client.webhooks.<a href="./src/sendblue_api/resources/webhooks.py">delete</a>(\*\*<a href="src/sendblue_api/types/webhook_delete_params.py">params</a>) -> <a href="./src/sendblue_api/types/webhook_delete_response.py">WebhookDeleteResponse</a></code>
