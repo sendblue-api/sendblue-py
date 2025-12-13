@@ -7,27 +7,20 @@ from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
+from .webhook_configuration_param import WebhookConfigurationParam
 
-__all__ = ["WebhookCreateParams", "Webhook", "WebhookWebhookObject"]
+__all__ = ["WebhookCreateParams", "Webhook"]
 
 
 class WebhookCreateParams(TypedDict, total=False):
     webhooks: Required[SequenceNotStr[Webhook]]
-    """Array of webhook URLs or webhook objects to add"""
+    """Array of webhook URLs or webhook objects"""
 
     global_secret: Annotated[str, PropertyInfo(alias="globalSecret")]
-    """Optional global secret to apply to all webhooks"""
+    """Global secret for webhook signature verification"""
 
     type: Literal["receive", "call_log", "line_blocked", "line_assigned", "outbound", "contact_created"]
-    """Webhook type (default to 'receive')"""
+    """Type of webhook to add"""
 
 
-class WebhookWebhookObject(TypedDict, total=False):
-    url: Required[str]
-    """Webhook URL (HTTPS only)"""
-
-    secret: str
-    """Secret for webhook verification"""
-
-
-Webhook: TypeAlias = Union[str, WebhookWebhookObject]
+Webhook: TypeAlias = Union[str, WebhookConfigurationParam]

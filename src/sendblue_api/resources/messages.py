@@ -91,9 +91,11 @@ class MessagesResource(SyncAPIResource):
         is_outbound: Literal["true", "false"] | Omit = omit,
         limit: int | Omit = omit,
         message_type: Literal["message", "group"] | Omit = omit,
+        number: str | Omit = omit,
         offset: int | Omit = omit,
         order_by: Literal["createdAt", "updatedAt", "sentAt"] | Omit = omit,
         order_direction: Literal["asc", "desc"] | Omit = omit,
+        sendblue_number: str | Omit = omit,
         sent_at_gte: Union[str, datetime] | Omit = omit,
         sent_at_lte: Union[str, datetime] | Omit = omit,
         service: Literal["iMessage", "SMS"] | Omit = omit,
@@ -142,11 +144,15 @@ class MessagesResource(SyncAPIResource):
 
           message_type: Filter by message type
 
+          number: Filter by any phone number (from or to)
+
           offset: Number of messages to skip
 
           order_by: Field to order messages by
 
           order_direction: Sort order
+
+          sendblue_number: Filter by Sendblue phone number
 
           sent_at_gte: Filter messages sent after this date (ISO 8601 format)
 
@@ -189,9 +195,11 @@ class MessagesResource(SyncAPIResource):
                         "is_outbound": is_outbound,
                         "limit": limit,
                         "message_type": message_type,
+                        "number": number,
                         "offset": offset,
                         "order_by": order_by,
                         "order_direction": order_direction,
+                        "sendblue_number": sendblue_number,
                         "sent_at_gte": sent_at_gte,
                         "sent_at_lte": sent_at_lte,
                         "service": service,
@@ -387,9 +395,11 @@ class AsyncMessagesResource(AsyncAPIResource):
         is_outbound: Literal["true", "false"] | Omit = omit,
         limit: int | Omit = omit,
         message_type: Literal["message", "group"] | Omit = omit,
+        number: str | Omit = omit,
         offset: int | Omit = omit,
         order_by: Literal["createdAt", "updatedAt", "sentAt"] | Omit = omit,
         order_direction: Literal["asc", "desc"] | Omit = omit,
+        sendblue_number: str | Omit = omit,
         sent_at_gte: Union[str, datetime] | Omit = omit,
         sent_at_lte: Union[str, datetime] | Omit = omit,
         service: Literal["iMessage", "SMS"] | Omit = omit,
@@ -438,11 +448,15 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           message_type: Filter by message type
 
+          number: Filter by any phone number (from or to)
+
           offset: Number of messages to skip
 
           order_by: Field to order messages by
 
           order_direction: Sort order
+
+          sendblue_number: Filter by Sendblue phone number
 
           sent_at_gte: Filter messages sent after this date (ISO 8601 format)
 
@@ -485,9 +499,11 @@ class AsyncMessagesResource(AsyncAPIResource):
                         "is_outbound": is_outbound,
                         "limit": limit,
                         "message_type": message_type,
+                        "number": number,
                         "offset": offset,
                         "order_by": order_by,
                         "order_direction": order_direction,
+                        "sendblue_number": sendblue_number,
                         "sent_at_gte": sent_at_gte,
                         "sent_at_lte": sent_at_lte,
                         "service": service,

@@ -1,7 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
-from typing_extensions import Literal
 
 from .._models import BaseModel
 
@@ -9,6 +8,6 @@ __all__ = ["WebhookDeleteResponse"]
 
 
 class WebhookDeleteResponse(BaseModel):
-    status: Literal["OK", "ERROR"]
-
     message: Optional[str] = None
+
+    status: Optional[str] = None

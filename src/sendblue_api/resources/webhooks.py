@@ -22,7 +22,6 @@ from ..types.webhook_list_response import WebhookListResponse
 from ..types.webhook_create_response import WebhookCreateResponse
 from ..types.webhook_delete_response import WebhookDeleteResponse
 from ..types.webhook_update_response import WebhookUpdateResponse
-from ..types.webhook_configuration_param import WebhookConfigurationParam
 
 __all__ = ["WebhooksResource", "AsyncWebhooksResource"]
 
@@ -61,17 +60,16 @@ class WebhooksResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WebhookCreateResponse:
-        """Add new webhooks to your account.
+        """Add new webhooks to the account.
 
-        This endpoint appends webhooks to the existing
-        list.
+        Webhooks are appended to existing ones.
 
         Args:
-          webhooks: Array of webhook URLs or webhook objects to add
+          webhooks: Array of webhook URLs or webhook objects
 
-          global_secret: Optional global secret to apply to all webhooks
+          global_secret: Global secret for webhook signature verification
 
-          type: Webhook type (default to 'receive')
+          type: Type of webhook to add
 
           extra_headers: Send extra headers
 
@@ -82,7 +80,7 @@ class WebhooksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/api/v2/account/webhooks",
+            "/api/account/webhooks",
             body=maybe_transform(
                 {
                     "webhooks": webhooks,
@@ -100,7 +98,7 @@ class WebhooksResource(SyncAPIResource):
     def update(
         self,
         *,
-        webhooks: WebhookConfigurationParam,
+        webhooks: webhook_update_params.Webhooks,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -108,10 +106,9 @@ class WebhooksResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WebhookUpdateResponse:
-        """Replace all webhooks for your account.
+        """Replace all webhooks for the account.
 
-        This endpoint completely replaces the
-        existing webhook configuration.
+        This overwrites existing webhooks.
 
         Args:
           extra_headers: Send extra headers
@@ -123,7 +120,7 @@ class WebhooksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._put(
-            "/api/v2/account/webhooks",
+            "/api/account/webhooks",
             body=maybe_transform({"webhooks": webhooks}, webhook_update_params.WebhookUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -141,9 +138,9 @@ class WebhooksResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WebhookListResponse:
-        """Get all webhooks configured for your account."""
+        """Get all webhooks configured for the authenticated account"""
         return self._get(
-            "/api/v2/account/webhooks",
+            "/api/account/webhooks",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -164,12 +161,12 @@ class WebhooksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WebhookDeleteResponse:
         """
-        Delete specific webhooks from your account.
+        Delete specific webhooks from the account
 
         Args:
           webhooks: Array of webhook URLs to delete
 
-          type: Webhook type (default to 'receive')
+          type: Type of webhook to delete from
 
           extra_headers: Send extra headers
 
@@ -180,7 +177,7 @@ class WebhooksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._delete(
-            "/api/v2/account/webhooks",
+            "/api/account/webhooks",
             body=maybe_transform(
                 {
                     "webhooks": webhooks,
@@ -229,17 +226,16 @@ class AsyncWebhooksResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WebhookCreateResponse:
-        """Add new webhooks to your account.
+        """Add new webhooks to the account.
 
-        This endpoint appends webhooks to the existing
-        list.
+        Webhooks are appended to existing ones.
 
         Args:
-          webhooks: Array of webhook URLs or webhook objects to add
+          webhooks: Array of webhook URLs or webhook objects
 
-          global_secret: Optional global secret to apply to all webhooks
+          global_secret: Global secret for webhook signature verification
 
-          type: Webhook type (default to 'receive')
+          type: Type of webhook to add
 
           extra_headers: Send extra headers
 
@@ -250,7 +246,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/api/v2/account/webhooks",
+            "/api/account/webhooks",
             body=await async_maybe_transform(
                 {
                     "webhooks": webhooks,
@@ -268,7 +264,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        webhooks: WebhookConfigurationParam,
+        webhooks: webhook_update_params.Webhooks,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -276,10 +272,9 @@ class AsyncWebhooksResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WebhookUpdateResponse:
-        """Replace all webhooks for your account.
+        """Replace all webhooks for the account.
 
-        This endpoint completely replaces the
-        existing webhook configuration.
+        This overwrites existing webhooks.
 
         Args:
           extra_headers: Send extra headers
@@ -291,7 +286,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._put(
-            "/api/v2/account/webhooks",
+            "/api/account/webhooks",
             body=await async_maybe_transform({"webhooks": webhooks}, webhook_update_params.WebhookUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -309,9 +304,9 @@ class AsyncWebhooksResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WebhookListResponse:
-        """Get all webhooks configured for your account."""
+        """Get all webhooks configured for the authenticated account"""
         return await self._get(
-            "/api/v2/account/webhooks",
+            "/api/account/webhooks",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -332,12 +327,12 @@ class AsyncWebhooksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WebhookDeleteResponse:
         """
-        Delete specific webhooks from your account.
+        Delete specific webhooks from the account
 
         Args:
           webhooks: Array of webhook URLs to delete
 
-          type: Webhook type (default to 'receive')
+          type: Type of webhook to delete from
 
           extra_headers: Send extra headers
 
@@ -348,7 +343,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._delete(
-            "/api/v2/account/webhooks",
+            "/api/account/webhooks",
             body=await async_maybe_transform(
                 {
                     "webhooks": webhooks,

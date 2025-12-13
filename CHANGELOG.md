@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.0 (2025-12-13)
+
+Full Changelog: [v1.1.0...v1.2.0](https://github.com/sendblue-api/sendblue-py/compare/v1.1.0...v1.2.0)
+
+### Features
+
+* **api:** manual updates ([b91ec51](https://github.com/sendblue-api/sendblue-py/commit/b91ec519dfdeccdaae926f15cc3f93c5b89f4ddf))
+* **api:** manual updates ([1bf81de](https://github.com/sendblue-api/sendblue-py/commit/1bf81de4f7115baf2c7f89f6116d516b6f3f9e3f))
+* **api:** manual updates ([846ef56](https://github.com/sendblue-api/sendblue-py/commit/846ef563e03f81c314178113d2a4adf4053e81e5))
+* **api:** manual updates ([32c0d0e](https://github.com/sendblue-api/sendblue-py/commit/32c0d0e2471d621d7953646bfe9bc9e9a1e66764))
+
 ## 1.1.0 (2025-12-08)
 
 Full Changelog: [v1.0.0...v1.1.0](https://github.com/sendblue-api/sendblue-py/compare/v1.0.0...v1.1.0)

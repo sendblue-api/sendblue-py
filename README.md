@@ -133,18 +133,7 @@ from sendblue_api import SendblueAPI
 client = SendblueAPI()
 
 webhook = client.webhooks.update(
-    webhooks={
-        "call_log": ["https://example.com/call-webhook"],
-        "contact_created": ["https://example.com/contact-webhook"],
-        "global_secret": "my-global-secret",
-        "receive": [
-            "https://example.com/webhook1",
-            {
-                "url": "https://example.com/webhook2",
-                "secret": "webhook-secret",
-            },
-        ],
-    },
+    webhooks={},
 )
 print(webhook.webhooks)
 ```

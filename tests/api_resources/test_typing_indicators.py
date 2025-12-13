@@ -21,6 +21,7 @@ class TestTypingIndicators:
     @parametrize
     def test_method_send(self, client: SendblueAPI) -> None:
         typing_indicator = client.typing_indicators.send(
+            from_number="+16292925296",
             number="+19998887777",
         )
         assert_matches_type(TypingIndicatorSendResponse, typing_indicator, path=["response"])
@@ -29,6 +30,7 @@ class TestTypingIndicators:
     @parametrize
     def test_raw_response_send(self, client: SendblueAPI) -> None:
         response = client.typing_indicators.with_raw_response.send(
+            from_number="+16292925296",
             number="+19998887777",
         )
 
@@ -41,6 +43,7 @@ class TestTypingIndicators:
     @parametrize
     def test_streaming_response_send(self, client: SendblueAPI) -> None:
         with client.typing_indicators.with_streaming_response.send(
+            from_number="+16292925296",
             number="+19998887777",
         ) as response:
             assert not response.is_closed
@@ -61,6 +64,7 @@ class TestAsyncTypingIndicators:
     @parametrize
     async def test_method_send(self, async_client: AsyncSendblueAPI) -> None:
         typing_indicator = await async_client.typing_indicators.send(
+            from_number="+16292925296",
             number="+19998887777",
         )
         assert_matches_type(TypingIndicatorSendResponse, typing_indicator, path=["response"])
@@ -69,6 +73,7 @@ class TestAsyncTypingIndicators:
     @parametrize
     async def test_raw_response_send(self, async_client: AsyncSendblueAPI) -> None:
         response = await async_client.typing_indicators.with_raw_response.send(
+            from_number="+16292925296",
             number="+19998887777",
         )
 
@@ -81,6 +86,7 @@ class TestAsyncTypingIndicators:
     @parametrize
     async def test_streaming_response_send(self, async_client: AsyncSendblueAPI) -> None:
         async with async_client.typing_indicators.with_streaming_response.send(
+            from_number="+16292925296",
             number="+19998887777",
         ) as response:
             assert not response.is_closed

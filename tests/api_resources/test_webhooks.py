@@ -26,7 +26,7 @@ class TestWebhooks:
     @parametrize
     def test_method_create(self, client: SendblueAPI) -> None:
         webhook = client.webhooks.create(
-            webhooks=["https://example.com/new-webhook", {"url": "https://example.com/webhook-with-secret"}],
+            webhooks=["https://example.com"],
         )
         assert_matches_type(WebhookCreateResponse, webhook, path=["response"])
 
@@ -34,14 +34,8 @@ class TestWebhooks:
     @parametrize
     def test_method_create_with_all_params(self, client: SendblueAPI) -> None:
         webhook = client.webhooks.create(
-            webhooks=[
-                "https://example.com/new-webhook",
-                {
-                    "url": "https://example.com/webhook-with-secret",
-                    "secret": "my-webhook-secret",
-                },
-            ],
-            global_secret="optional-global-secret",
+            webhooks=["https://example.com"],
+            global_secret="globalSecret",
             type="receive",
         )
         assert_matches_type(WebhookCreateResponse, webhook, path=["response"])
@@ -50,7 +44,7 @@ class TestWebhooks:
     @parametrize
     def test_raw_response_create(self, client: SendblueAPI) -> None:
         response = client.webhooks.with_raw_response.create(
-            webhooks=["https://example.com/new-webhook", {"url": "https://example.com/webhook-with-secret"}],
+            webhooks=["https://example.com"],
         )
 
         assert response.is_closed is True
@@ -62,7 +56,7 @@ class TestWebhooks:
     @parametrize
     def test_streaming_response_create(self, client: SendblueAPI) -> None:
         with client.webhooks.with_streaming_response.create(
-            webhooks=["https://example.com/new-webhook", {"url": "https://example.com/webhook-with-secret"}],
+            webhooks=["https://example.com"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -85,20 +79,13 @@ class TestWebhooks:
     def test_method_update_with_all_params(self, client: SendblueAPI) -> None:
         webhook = client.webhooks.update(
             webhooks={
-                "call_log": ["https://example.com/call-webhook"],
-                "contact_created": ["https://example.com/contact-webhook"],
-                "global_secret": "my-global-secret",
-                "line_assigned": ["https://example.com/webhook"],
-                "line_blocked": ["https://example.com/webhook"],
-                "outbound": ["https://example.com/webhook"],
-                "receive": [
-                    "https://example.com/webhook1",
-                    {
-                        "url": "https://example.com/webhook2",
-                        "secret": "webhook-secret",
-                    },
-                ],
-                "secret": "secret",
+                "call_log": ["https://example.com"],
+                "contact_created": ["https://example.com"],
+                "global_secret": "whsec_global123",
+                "line_assigned": ["https://example.com"],
+                "line_blocked": ["https://example.com"],
+                "outbound": ["https://example.com"],
+                "receive": ["https://example.com"],
             },
         )
         assert_matches_type(WebhookUpdateResponse, webhook, path=["response"])
@@ -210,7 +197,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_method_create(self, async_client: AsyncSendblueAPI) -> None:
         webhook = await async_client.webhooks.create(
-            webhooks=["https://example.com/new-webhook", {"url": "https://example.com/webhook-with-secret"}],
+            webhooks=["https://example.com"],
         )
         assert_matches_type(WebhookCreateResponse, webhook, path=["response"])
 
@@ -218,14 +205,8 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncSendblueAPI) -> None:
         webhook = await async_client.webhooks.create(
-            webhooks=[
-                "https://example.com/new-webhook",
-                {
-                    "url": "https://example.com/webhook-with-secret",
-                    "secret": "my-webhook-secret",
-                },
-            ],
-            global_secret="optional-global-secret",
+            webhooks=["https://example.com"],
+            global_secret="globalSecret",
             type="receive",
         )
         assert_matches_type(WebhookCreateResponse, webhook, path=["response"])
@@ -234,7 +215,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncSendblueAPI) -> None:
         response = await async_client.webhooks.with_raw_response.create(
-            webhooks=["https://example.com/new-webhook", {"url": "https://example.com/webhook-with-secret"}],
+            webhooks=["https://example.com"],
         )
 
         assert response.is_closed is True
@@ -246,7 +227,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncSendblueAPI) -> None:
         async with async_client.webhooks.with_streaming_response.create(
-            webhooks=["https://example.com/new-webhook", {"url": "https://example.com/webhook-with-secret"}],
+            webhooks=["https://example.com"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -269,20 +250,13 @@ class TestAsyncWebhooks:
     async def test_method_update_with_all_params(self, async_client: AsyncSendblueAPI) -> None:
         webhook = await async_client.webhooks.update(
             webhooks={
-                "call_log": ["https://example.com/call-webhook"],
-                "contact_created": ["https://example.com/contact-webhook"],
-                "global_secret": "my-global-secret",
-                "line_assigned": ["https://example.com/webhook"],
-                "line_blocked": ["https://example.com/webhook"],
-                "outbound": ["https://example.com/webhook"],
-                "receive": [
-                    "https://example.com/webhook1",
-                    {
-                        "url": "https://example.com/webhook2",
-                        "secret": "webhook-secret",
-                    },
-                ],
-                "secret": "secret",
+                "call_log": ["https://example.com"],
+                "contact_created": ["https://example.com"],
+                "global_secret": "whsec_global123",
+                "line_assigned": ["https://example.com"],
+                "line_blocked": ["https://example.com"],
+                "outbound": ["https://example.com"],
+                "receive": ["https://example.com"],
             },
         )
         assert_matches_type(WebhookUpdateResponse, webhook, path=["response"])

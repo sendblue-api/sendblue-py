@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from .contact import Contact as Contact
 from .message_response import MessageResponse as MessageResponse
+from .contact_list_params import ContactListParams as ContactListParams
 from .group_modify_params import GroupModifyParams as GroupModifyParams
 from .message_list_params import MessageListParams as MessageListParams
 from .message_send_params import MessageSendParams as MessageSendParams
