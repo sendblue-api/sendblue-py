@@ -106,3 +106,11 @@ Methods:
 
 - <code title="post /api/v2/contacts/bulk">client.contacts.bulk.<a href="./src/sendblue_api/resources/contacts/bulk.py">create</a>(\*\*<a href="src/sendblue_api/types/contacts/bulk_create_params.py">params</a>) -> <a href="./src/sendblue_api/types/contacts/bulk_create_response.py">BulkCreateResponse</a></code>
 - <code title="delete /api/v2/contacts">client.contacts.bulk.<a href="./src/sendblue_api/resources/contacts/bulk.py">delete</a>(\*\*<a href="src/sendblue_api/types/contacts/bulk_delete_params.py">params</a>) -> <a href="./src/sendblue_api/types/contacts/bulk_delete_response.py">BulkDeleteResponse</a></code>
+
+# Webhooks
+
+Types:
+
+```python
+from sendblue_api.types import WebhookConfiguration
+```
