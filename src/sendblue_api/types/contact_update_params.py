@@ -11,14 +11,34 @@ __all__ = ["ContactUpdateParams"]
 
 
 class ContactUpdateParams(TypedDict, total=False):
-    assigned_to_email: Annotated[str, PropertyInfo(alias="assignedToEmail")]
+    body_assigned_to_email_1: Annotated[str, PropertyInfo(alias="assigned_to_email")]
+    """Email of assigned user (preferred)"""
 
-    company_name: Annotated[str, PropertyInfo(alias="companyName")]
+    body_assigned_to_email_2: Annotated[str, PropertyInfo(alias="assignedToEmail")]
+    """Deprecated, use assigned_to_email"""
 
-    first_name: Annotated[str, PropertyInfo(alias="firstName")]
+    body_company_name_1: Annotated[str, PropertyInfo(alias="company_name")]
+    """Company name (preferred)"""
 
-    last_name: Annotated[str, PropertyInfo(alias="lastName")]
+    body_company_name_2: Annotated[str, PropertyInfo(alias="companyName")]
+    """Deprecated, use company_name"""
 
-    sendblue_number: Annotated[str, PropertyInfo(alias="sendblueNumber")]
+    body_first_name_1: Annotated[str, PropertyInfo(alias="first_name")]
+    """Contact's first name (preferred)"""
+
+    body_first_name_2: Annotated[str, PropertyInfo(alias="firstName")]
+    """Deprecated, use first_name"""
+
+    body_last_name_1: Annotated[str, PropertyInfo(alias="last_name")]
+    """Contact's last name (preferred)"""
+
+    body_last_name_2: Annotated[str, PropertyInfo(alias="lastName")]
+    """Deprecated, use last_name"""
+
+    body_sendblue_number_1: Annotated[str, PropertyInfo(alias="sendblue_number")]
+    """Associated Sendblue phone number (preferred)"""
+
+    body_sendblue_number_2: Annotated[str, PropertyInfo(alias="sendblueNumber")]
+    """Deprecated, use sendblue_number"""
 
     tags: SequenceNotStr[str]

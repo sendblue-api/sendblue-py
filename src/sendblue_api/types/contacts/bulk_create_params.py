@@ -3,10 +3,9 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Required, TypedDict
 
 from ..._types import SequenceNotStr
-from ..._utils import PropertyInfo
 
 __all__ = ["BulkCreateParams", "Contact"]
 
@@ -17,11 +16,15 @@ class BulkCreateParams(TypedDict, total=False):
 
 class Contact(TypedDict, total=False):
     phone: Required[str]
+    """Phone number in E.164 format"""
 
-    company: str
+    company_name: str
+    """Company name"""
 
-    first_name: Annotated[str, PropertyInfo(alias="firstName")]
+    first_name: str
+    """Contact's first name"""
 
-    last_name: Annotated[str, PropertyInfo(alias="lastName")]
+    last_name: str
+    """Contact's last name"""
 
     tags: SequenceNotStr[str]
