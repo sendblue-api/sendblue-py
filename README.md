@@ -123,32 +123,6 @@ Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typ
 
 Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
 
-## Nested params
-
-Nested parameters are dictionaries, typed using `TypedDict`, for example:
-
-```python
-from sendblue_api import SendblueAPI
-
-client = SendblueAPI()
-
-webhook = client.webhooks.update(
-    webhooks={
-        "call_log": ["https://example.com/call-webhook"],
-        "contact_created": ["https://example.com/contact-webhook"],
-        "global_secret": "my-global-secret",
-        "receive": [
-            "https://example.com/webhook1",
-            {
-                "url": "https://example.com/webhook2",
-                "secret": "webhook-secret",
-            },
-        ],
-    },
-)
-print(webhook.webhooks)
-```
-
 ## Handling errors
 
 When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `sendblue_api.APIConnectionError` is raised.

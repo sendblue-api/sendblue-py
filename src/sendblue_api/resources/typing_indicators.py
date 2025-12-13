@@ -44,6 +44,7 @@ class TypingIndicatorsResource(SyncAPIResource):
     def send(
         self,
         *,
+        from_number: str,
         number: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -55,10 +56,12 @@ class TypingIndicatorsResource(SyncAPIResource):
         """Send an indication that you are typing to a user.
 
         This shows up as the animated
-        three dots on the recipient's device. Only available for existing chats and not
-        supported in group chats.
+        three dots on the recipient's device. Not supported in group chats.
 
         Args:
+          from_number: The Sendblue phone number you want to send the typing indicator from (E.164
+              format). This should be the number you use to send messages.
+
           number: The number you want to send a typing indicator to (E.164 format)
 
           extra_headers: Send extra headers
@@ -71,7 +74,13 @@ class TypingIndicatorsResource(SyncAPIResource):
         """
         return self._post(
             "/api/send-typing-indicator",
-            body=maybe_transform({"number": number}, typing_indicator_send_params.TypingIndicatorSendParams),
+            body=maybe_transform(
+                {
+                    "from_number": from_number,
+                    "number": number,
+                },
+                typing_indicator_send_params.TypingIndicatorSendParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -102,6 +111,7 @@ class AsyncTypingIndicatorsResource(AsyncAPIResource):
     async def send(
         self,
         *,
+        from_number: str,
         number: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -113,10 +123,12 @@ class AsyncTypingIndicatorsResource(AsyncAPIResource):
         """Send an indication that you are typing to a user.
 
         This shows up as the animated
-        three dots on the recipient's device. Only available for existing chats and not
-        supported in group chats.
+        three dots on the recipient's device. Not supported in group chats.
 
         Args:
+          from_number: The Sendblue phone number you want to send the typing indicator from (E.164
+              format). This should be the number you use to send messages.
+
           number: The number you want to send a typing indicator to (E.164 format)
 
           extra_headers: Send extra headers
@@ -130,7 +142,11 @@ class AsyncTypingIndicatorsResource(AsyncAPIResource):
         return await self._post(
             "/api/send-typing-indicator",
             body=await async_maybe_transform(
-                {"number": number}, typing_indicator_send_params.TypingIndicatorSendParams
+                {
+                    "from_number": from_number,
+                    "number": number,
+                },
+                typing_indicator_send_params.TypingIndicatorSendParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
 from .bulk import (
@@ -12,7 +14,7 @@ from .bulk import (
     BulkResourceWithStreamingResponse,
     AsyncBulkResourceWithStreamingResponse,
 )
-from ...types import contact_create_params, contact_update_params, contact_verify_params
+from ...types import contact_list_params, contact_create_params, contact_update_params, contact_verify_params
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
@@ -86,27 +88,27 @@ class ContactsResource(SyncAPIResource):
         Create a new contact or update existing if update_if_exists is true
 
         Args:
-          number: Contact's phone number in E.164 format
+          number: Contact's phone number in E.164 format (preferred)
 
-          body_assigned_to_email_1: Email of assigned user
+          body_assigned_to_email_1: Email of assigned user (preferred)
 
-          body_assigned_to_email_2: Email of assigned user (alternative)
+          body_assigned_to_email_2: Email of assigned user (deprecated, use assigned_to_email)
 
-          body_first_name_1: Contact's first name
+          body_first_name_1: Contact's first name (preferred)
 
-          body_first_name_2: Contact's first name (alternative)
+          body_first_name_2: Contact's first name (deprecated, use first_name)
 
-          body_last_name_1: Contact's last name
+          body_last_name_1: Contact's last name (preferred)
 
-          body_last_name_2: Contact's last name (alternative)
+          body_last_name_2: Contact's last name (deprecated, use last_name)
 
-          body_phone_number_1: Contact's phone number (alternative)
+          body_phone_number_1: Contact's phone number (deprecated, use number)
 
-          body_phone_number_2: Contact's phone number (alternative)
+          body_phone_number_2: Contact's phone number (deprecated, use number)
 
-          body_sendblue_number_1: Associated Sendblue phone number
+          body_sendblue_number_1: Associated Sendblue phone number to send with (preferred)
 
-          body_sendblue_number_2: Associated Sendblue phone number (alternative)
+          body_sendblue_number_2: Associated Sendblue phone number (deprecated, use sendblue_number)
 
           tags: Tags for the contact
 
@@ -183,11 +185,16 @@ class ContactsResource(SyncAPIResource):
         self,
         phone_number: str,
         *,
-        assigned_to_email: str | Omit = omit,
-        company_name: str | Omit = omit,
-        first_name: str | Omit = omit,
-        last_name: str | Omit = omit,
-        sendblue_number: str | Omit = omit,
+        body_assigned_to_email_1: str | Omit = omit,
+        body_assigned_to_email_2: str | Omit = omit,
+        body_company_name_1: str | Omit = omit,
+        body_company_name_2: str | Omit = omit,
+        body_first_name_1: str | Omit = omit,
+        body_first_name_2: str | Omit = omit,
+        body_last_name_1: str | Omit = omit,
+        body_last_name_2: str | Omit = omit,
+        body_sendblue_number_1: str | Omit = omit,
+        body_sendblue_number_2: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -200,6 +207,26 @@ class ContactsResource(SyncAPIResource):
         Update an existing contact
 
         Args:
+          body_assigned_to_email_1: Email of assigned user (preferred)
+
+          body_assigned_to_email_2: Deprecated, use assigned_to_email
+
+          body_company_name_1: Company name (preferred)
+
+          body_company_name_2: Deprecated, use company_name
+
+          body_first_name_1: Contact's first name (preferred)
+
+          body_first_name_2: Deprecated, use first_name
+
+          body_last_name_1: Contact's last name (preferred)
+
+          body_last_name_2: Deprecated, use last_name
+
+          body_sendblue_number_1: Associated Sendblue phone number (preferred)
+
+          body_sendblue_number_2: Deprecated, use sendblue_number
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -214,11 +241,16 @@ class ContactsResource(SyncAPIResource):
             f"/api/v2/contacts/{phone_number}",
             body=maybe_transform(
                 {
-                    "assigned_to_email": assigned_to_email,
-                    "company_name": company_name,
-                    "first_name": first_name,
-                    "last_name": last_name,
-                    "sendblue_number": sendblue_number,
+                    "body_assigned_to_email_1": body_assigned_to_email_1,
+                    "body_assigned_to_email_2": body_assigned_to_email_2,
+                    "body_company_name_1": body_company_name_1,
+                    "body_company_name_2": body_company_name_2,
+                    "body_first_name_1": body_first_name_1,
+                    "body_first_name_2": body_first_name_2,
+                    "body_last_name_1": body_last_name_1,
+                    "body_last_name_2": body_last_name_2,
+                    "body_sendblue_number_1": body_sendblue_number_1,
+                    "body_sendblue_number_2": body_sendblue_number_2,
                     "tags": tags,
                 },
                 contact_update_params.ContactUpdateParams,
@@ -232,6 +264,12 @@ class ContactsResource(SyncAPIResource):
     def list(
         self,
         *,
+        cid: str | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: str | Omit = omit,
+        order_direction: Literal["asc", "desc"] | Omit = omit,
+        phone_number: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -239,11 +277,48 @@ class ContactsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactListResponse:
-        """Retrieve a list of contacts for the authenticated account"""
+        """
+        Retrieve a list of contacts for the authenticated account
+
+        Args:
+          cid: Filter by contact ID
+
+          limit: Maximum number of contacts to return
+
+          offset: Number of contacts to skip
+
+          order_by: Field to sort by
+
+          order_direction: Sort direction
+
+          phone_number: Filter by phone number
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             "/api/v2/contacts",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "cid": cid,
+                        "limit": limit,
+                        "offset": offset,
+                        "order_by": order_by,
+                        "order_direction": order_direction,
+                        "phone_number": phone_number,
+                    },
+                    contact_list_params.ContactListParams,
+                ),
             ),
             cast_to=ContactListResponse,
         )
@@ -386,27 +461,27 @@ class AsyncContactsResource(AsyncAPIResource):
         Create a new contact or update existing if update_if_exists is true
 
         Args:
-          number: Contact's phone number in E.164 format
+          number: Contact's phone number in E.164 format (preferred)
 
-          body_assigned_to_email_1: Email of assigned user
+          body_assigned_to_email_1: Email of assigned user (preferred)
 
-          body_assigned_to_email_2: Email of assigned user (alternative)
+          body_assigned_to_email_2: Email of assigned user (deprecated, use assigned_to_email)
 
-          body_first_name_1: Contact's first name
+          body_first_name_1: Contact's first name (preferred)
 
-          body_first_name_2: Contact's first name (alternative)
+          body_first_name_2: Contact's first name (deprecated, use first_name)
 
-          body_last_name_1: Contact's last name
+          body_last_name_1: Contact's last name (preferred)
 
-          body_last_name_2: Contact's last name (alternative)
+          body_last_name_2: Contact's last name (deprecated, use last_name)
 
-          body_phone_number_1: Contact's phone number (alternative)
+          body_phone_number_1: Contact's phone number (deprecated, use number)
 
-          body_phone_number_2: Contact's phone number (alternative)
+          body_phone_number_2: Contact's phone number (deprecated, use number)
 
-          body_sendblue_number_1: Associated Sendblue phone number
+          body_sendblue_number_1: Associated Sendblue phone number to send with (preferred)
 
-          body_sendblue_number_2: Associated Sendblue phone number (alternative)
+          body_sendblue_number_2: Associated Sendblue phone number (deprecated, use sendblue_number)
 
           tags: Tags for the contact
 
@@ -483,11 +558,16 @@ class AsyncContactsResource(AsyncAPIResource):
         self,
         phone_number: str,
         *,
-        assigned_to_email: str | Omit = omit,
-        company_name: str | Omit = omit,
-        first_name: str | Omit = omit,
-        last_name: str | Omit = omit,
-        sendblue_number: str | Omit = omit,
+        body_assigned_to_email_1: str | Omit = omit,
+        body_assigned_to_email_2: str | Omit = omit,
+        body_company_name_1: str | Omit = omit,
+        body_company_name_2: str | Omit = omit,
+        body_first_name_1: str | Omit = omit,
+        body_first_name_2: str | Omit = omit,
+        body_last_name_1: str | Omit = omit,
+        body_last_name_2: str | Omit = omit,
+        body_sendblue_number_1: str | Omit = omit,
+        body_sendblue_number_2: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -500,6 +580,26 @@ class AsyncContactsResource(AsyncAPIResource):
         Update an existing contact
 
         Args:
+          body_assigned_to_email_1: Email of assigned user (preferred)
+
+          body_assigned_to_email_2: Deprecated, use assigned_to_email
+
+          body_company_name_1: Company name (preferred)
+
+          body_company_name_2: Deprecated, use company_name
+
+          body_first_name_1: Contact's first name (preferred)
+
+          body_first_name_2: Deprecated, use first_name
+
+          body_last_name_1: Contact's last name (preferred)
+
+          body_last_name_2: Deprecated, use last_name
+
+          body_sendblue_number_1: Associated Sendblue phone number (preferred)
+
+          body_sendblue_number_2: Deprecated, use sendblue_number
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -514,11 +614,16 @@ class AsyncContactsResource(AsyncAPIResource):
             f"/api/v2/contacts/{phone_number}",
             body=await async_maybe_transform(
                 {
-                    "assigned_to_email": assigned_to_email,
-                    "company_name": company_name,
-                    "first_name": first_name,
-                    "last_name": last_name,
-                    "sendblue_number": sendblue_number,
+                    "body_assigned_to_email_1": body_assigned_to_email_1,
+                    "body_assigned_to_email_2": body_assigned_to_email_2,
+                    "body_company_name_1": body_company_name_1,
+                    "body_company_name_2": body_company_name_2,
+                    "body_first_name_1": body_first_name_1,
+                    "body_first_name_2": body_first_name_2,
+                    "body_last_name_1": body_last_name_1,
+                    "body_last_name_2": body_last_name_2,
+                    "body_sendblue_number_1": body_sendblue_number_1,
+                    "body_sendblue_number_2": body_sendblue_number_2,
                     "tags": tags,
                 },
                 contact_update_params.ContactUpdateParams,
@@ -532,6 +637,12 @@ class AsyncContactsResource(AsyncAPIResource):
     async def list(
         self,
         *,
+        cid: str | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: str | Omit = omit,
+        order_direction: Literal["asc", "desc"] | Omit = omit,
+        phone_number: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -539,11 +650,48 @@ class AsyncContactsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactListResponse:
-        """Retrieve a list of contacts for the authenticated account"""
+        """
+        Retrieve a list of contacts for the authenticated account
+
+        Args:
+          cid: Filter by contact ID
+
+          limit: Maximum number of contacts to return
+
+          offset: Number of contacts to skip
+
+          order_by: Field to sort by
+
+          order_direction: Sort direction
+
+          phone_number: Filter by phone number
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             "/api/v2/contacts",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "cid": cid,
+                        "limit": limit,
+                        "offset": offset,
+                        "order_by": order_by,
+                        "order_direction": order_direction,
+                        "phone_number": phone_number,
+                    },
+                    contact_list_params.ContactListParams,
+                ),
             ),
             cast_to=ContactListResponse,
         )

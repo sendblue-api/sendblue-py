@@ -36,6 +36,9 @@ class MessageListParams(TypedDict, total=False):
     message_type: Literal["message", "group"]
     """Filter by message type"""
 
+    number: str
+    """Filter by any phone number (from or to)"""
+
     offset: int
     """Number of messages to skip"""
 
@@ -44,6 +47,9 @@ class MessageListParams(TypedDict, total=False):
 
     order_direction: Literal["asc", "desc"]
     """Sort order"""
+
+    sendblue_number: str
+    """Filter by Sendblue phone number"""
 
     sent_at_gte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Filter messages sent after this date (ISO 8601 format)"""
