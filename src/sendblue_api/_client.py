@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Mapping
+from typing import TYPE_CHECKING, Any, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -20,8 +20,8 @@ from ._types import (
     not_given,
 )
 from ._utils import is_given, get_async_library
+from ._compat import cached_property
 from ._version import __version__
-from .resources import groups, lookups, messages, webhooks, media_objects, typing_indicators
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError, SendblueAPIError
 from ._base_client import (
@@ -29,7 +29,16 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.contacts import contacts
+
+if TYPE_CHECKING:
+    from .resources import groups, lookups, contacts, messages, webhooks, media_objects, typing_indicators
+    from .resources.groups import GroupsResource, AsyncGroupsResource
+    from .resources.lookups import LookupsResource, AsyncLookupsResource
+    from .resources.messages import MessagesResource, AsyncMessagesResource
+    from .resources.webhooks import WebhooksResource, AsyncWebhooksResource
+    from .resources.media_objects import MediaObjectsResource, AsyncMediaObjectsResource
+    from .resources.contacts.contacts import ContactsResource, AsyncContactsResource
+    from .resources.typing_indicators import TypingIndicatorsResource, AsyncTypingIndicatorsResource
 
 __all__ = [
     "Timeout",
@@ -44,16 +53,6 @@ __all__ = [
 
 
 class SendblueAPI(SyncAPIClient):
-    messages: messages.MessagesResource
-    groups: groups.GroupsResource
-    media_objects: media_objects.MediaObjectsResource
-    lookups: lookups.LookupsResource
-    typing_indicators: typing_indicators.TypingIndicatorsResource
-    contacts: contacts.ContactsResource
-    webhooks: webhooks.WebhooksResource
-    with_raw_response: SendblueAPIWithRawResponse
-    with_streaming_response: SendblueAPIWithStreamedResponse
-
     # client options
     api_key: str
     api_secret: str
@@ -120,15 +119,55 @@ class SendblueAPI(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.messages = messages.MessagesResource(self)
-        self.groups = groups.GroupsResource(self)
-        self.media_objects = media_objects.MediaObjectsResource(self)
-        self.lookups = lookups.LookupsResource(self)
-        self.typing_indicators = typing_indicators.TypingIndicatorsResource(self)
-        self.contacts = contacts.ContactsResource(self)
-        self.webhooks = webhooks.WebhooksResource(self)
-        self.with_raw_response = SendblueAPIWithRawResponse(self)
-        self.with_streaming_response = SendblueAPIWithStreamedResponse(self)
+    @cached_property
+    def messages(self) -> MessagesResource:
+        from .resources.messages import MessagesResource
+
+        return MessagesResource(self)
+
+    @cached_property
+    def groups(self) -> GroupsResource:
+        from .resources.groups import GroupsResource
+
+        return GroupsResource(self)
+
+    @cached_property
+    def media_objects(self) -> MediaObjectsResource:
+        from .resources.media_objects import MediaObjectsResource
+
+        return MediaObjectsResource(self)
+
+    @cached_property
+    def lookups(self) -> LookupsResource:
+        from .resources.lookups import LookupsResource
+
+        return LookupsResource(self)
+
+    @cached_property
+    def typing_indicators(self) -> TypingIndicatorsResource:
+        from .resources.typing_indicators import TypingIndicatorsResource
+
+        return TypingIndicatorsResource(self)
+
+    @cached_property
+    def contacts(self) -> ContactsResource:
+        from .resources.contacts import ContactsResource
+
+        return ContactsResource(self)
+
+    @cached_property
+    def webhooks(self) -> WebhooksResource:
+        from .resources.webhooks import WebhooksResource
+
+        return WebhooksResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> SendblueAPIWithRawResponse:
+        return SendblueAPIWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> SendblueAPIWithStreamedResponse:
+        return SendblueAPIWithStreamedResponse(self)
 
     @property
     @override
@@ -247,16 +286,6 @@ class SendblueAPI(SyncAPIClient):
 
 
 class AsyncSendblueAPI(AsyncAPIClient):
-    messages: messages.AsyncMessagesResource
-    groups: groups.AsyncGroupsResource
-    media_objects: media_objects.AsyncMediaObjectsResource
-    lookups: lookups.AsyncLookupsResource
-    typing_indicators: typing_indicators.AsyncTypingIndicatorsResource
-    contacts: contacts.AsyncContactsResource
-    webhooks: webhooks.AsyncWebhooksResource
-    with_raw_response: AsyncSendblueAPIWithRawResponse
-    with_streaming_response: AsyncSendblueAPIWithStreamedResponse
-
     # client options
     api_key: str
     api_secret: str
@@ -323,15 +352,55 @@ class AsyncSendblueAPI(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.messages = messages.AsyncMessagesResource(self)
-        self.groups = groups.AsyncGroupsResource(self)
-        self.media_objects = media_objects.AsyncMediaObjectsResource(self)
-        self.lookups = lookups.AsyncLookupsResource(self)
-        self.typing_indicators = typing_indicators.AsyncTypingIndicatorsResource(self)
-        self.contacts = contacts.AsyncContactsResource(self)
-        self.webhooks = webhooks.AsyncWebhooksResource(self)
-        self.with_raw_response = AsyncSendblueAPIWithRawResponse(self)
-        self.with_streaming_response = AsyncSendblueAPIWithStreamedResponse(self)
+    @cached_property
+    def messages(self) -> AsyncMessagesResource:
+        from .resources.messages import AsyncMessagesResource
+
+        return AsyncMessagesResource(self)
+
+    @cached_property
+    def groups(self) -> AsyncGroupsResource:
+        from .resources.groups import AsyncGroupsResource
+
+        return AsyncGroupsResource(self)
+
+    @cached_property
+    def media_objects(self) -> AsyncMediaObjectsResource:
+        from .resources.media_objects import AsyncMediaObjectsResource
+
+        return AsyncMediaObjectsResource(self)
+
+    @cached_property
+    def lookups(self) -> AsyncLookupsResource:
+        from .resources.lookups import AsyncLookupsResource
+
+        return AsyncLookupsResource(self)
+
+    @cached_property
+    def typing_indicators(self) -> AsyncTypingIndicatorsResource:
+        from .resources.typing_indicators import AsyncTypingIndicatorsResource
+
+        return AsyncTypingIndicatorsResource(self)
+
+    @cached_property
+    def contacts(self) -> AsyncContactsResource:
+        from .resources.contacts import AsyncContactsResource
+
+        return AsyncContactsResource(self)
+
+    @cached_property
+    def webhooks(self) -> AsyncWebhooksResource:
+        from .resources.webhooks import AsyncWebhooksResource
+
+        return AsyncWebhooksResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncSendblueAPIWithRawResponse:
+        return AsyncSendblueAPIWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncSendblueAPIWithStreamedResponse:
+        return AsyncSendblueAPIWithStreamedResponse(self)
 
     @property
     @override
@@ -450,53 +519,199 @@ class AsyncSendblueAPI(AsyncAPIClient):
 
 
 class SendblueAPIWithRawResponse:
+    _client: SendblueAPI
+
     def __init__(self, client: SendblueAPI) -> None:
-        self.messages = messages.MessagesResourceWithRawResponse(client.messages)
-        self.groups = groups.GroupsResourceWithRawResponse(client.groups)
-        self.media_objects = media_objects.MediaObjectsResourceWithRawResponse(client.media_objects)
-        self.lookups = lookups.LookupsResourceWithRawResponse(client.lookups)
-        self.typing_indicators = typing_indicators.TypingIndicatorsResourceWithRawResponse(client.typing_indicators)
-        self.contacts = contacts.ContactsResourceWithRawResponse(client.contacts)
-        self.webhooks = webhooks.WebhooksResourceWithRawResponse(client.webhooks)
+        self._client = client
+
+    @cached_property
+    def messages(self) -> messages.MessagesResourceWithRawResponse:
+        from .resources.messages import MessagesResourceWithRawResponse
+
+        return MessagesResourceWithRawResponse(self._client.messages)
+
+    @cached_property
+    def groups(self) -> groups.GroupsResourceWithRawResponse:
+        from .resources.groups import GroupsResourceWithRawResponse
+
+        return GroupsResourceWithRawResponse(self._client.groups)
+
+    @cached_property
+    def media_objects(self) -> media_objects.MediaObjectsResourceWithRawResponse:
+        from .resources.media_objects import MediaObjectsResourceWithRawResponse
+
+        return MediaObjectsResourceWithRawResponse(self._client.media_objects)
+
+    @cached_property
+    def lookups(self) -> lookups.LookupsResourceWithRawResponse:
+        from .resources.lookups import LookupsResourceWithRawResponse
+
+        return LookupsResourceWithRawResponse(self._client.lookups)
+
+    @cached_property
+    def typing_indicators(self) -> typing_indicators.TypingIndicatorsResourceWithRawResponse:
+        from .resources.typing_indicators import TypingIndicatorsResourceWithRawResponse
+
+        return TypingIndicatorsResourceWithRawResponse(self._client.typing_indicators)
+
+    @cached_property
+    def contacts(self) -> contacts.ContactsResourceWithRawResponse:
+        from .resources.contacts import ContactsResourceWithRawResponse
+
+        return ContactsResourceWithRawResponse(self._client.contacts)
+
+    @cached_property
+    def webhooks(self) -> webhooks.WebhooksResourceWithRawResponse:
+        from .resources.webhooks import WebhooksResourceWithRawResponse
+
+        return WebhooksResourceWithRawResponse(self._client.webhooks)
 
 
 class AsyncSendblueAPIWithRawResponse:
+    _client: AsyncSendblueAPI
+
     def __init__(self, client: AsyncSendblueAPI) -> None:
-        self.messages = messages.AsyncMessagesResourceWithRawResponse(client.messages)
-        self.groups = groups.AsyncGroupsResourceWithRawResponse(client.groups)
-        self.media_objects = media_objects.AsyncMediaObjectsResourceWithRawResponse(client.media_objects)
-        self.lookups = lookups.AsyncLookupsResourceWithRawResponse(client.lookups)
-        self.typing_indicators = typing_indicators.AsyncTypingIndicatorsResourceWithRawResponse(
-            client.typing_indicators
-        )
-        self.contacts = contacts.AsyncContactsResourceWithRawResponse(client.contacts)
-        self.webhooks = webhooks.AsyncWebhooksResourceWithRawResponse(client.webhooks)
+        self._client = client
+
+    @cached_property
+    def messages(self) -> messages.AsyncMessagesResourceWithRawResponse:
+        from .resources.messages import AsyncMessagesResourceWithRawResponse
+
+        return AsyncMessagesResourceWithRawResponse(self._client.messages)
+
+    @cached_property
+    def groups(self) -> groups.AsyncGroupsResourceWithRawResponse:
+        from .resources.groups import AsyncGroupsResourceWithRawResponse
+
+        return AsyncGroupsResourceWithRawResponse(self._client.groups)
+
+    @cached_property
+    def media_objects(self) -> media_objects.AsyncMediaObjectsResourceWithRawResponse:
+        from .resources.media_objects import AsyncMediaObjectsResourceWithRawResponse
+
+        return AsyncMediaObjectsResourceWithRawResponse(self._client.media_objects)
+
+    @cached_property
+    def lookups(self) -> lookups.AsyncLookupsResourceWithRawResponse:
+        from .resources.lookups import AsyncLookupsResourceWithRawResponse
+
+        return AsyncLookupsResourceWithRawResponse(self._client.lookups)
+
+    @cached_property
+    def typing_indicators(self) -> typing_indicators.AsyncTypingIndicatorsResourceWithRawResponse:
+        from .resources.typing_indicators import AsyncTypingIndicatorsResourceWithRawResponse
+
+        return AsyncTypingIndicatorsResourceWithRawResponse(self._client.typing_indicators)
+
+    @cached_property
+    def contacts(self) -> contacts.AsyncContactsResourceWithRawResponse:
+        from .resources.contacts import AsyncContactsResourceWithRawResponse
+
+        return AsyncContactsResourceWithRawResponse(self._client.contacts)
+
+    @cached_property
+    def webhooks(self) -> webhooks.AsyncWebhooksResourceWithRawResponse:
+        from .resources.webhooks import AsyncWebhooksResourceWithRawResponse
+
+        return AsyncWebhooksResourceWithRawResponse(self._client.webhooks)
 
 
 class SendblueAPIWithStreamedResponse:
+    _client: SendblueAPI
+
     def __init__(self, client: SendblueAPI) -> None:
-        self.messages = messages.MessagesResourceWithStreamingResponse(client.messages)
-        self.groups = groups.GroupsResourceWithStreamingResponse(client.groups)
-        self.media_objects = media_objects.MediaObjectsResourceWithStreamingResponse(client.media_objects)
-        self.lookups = lookups.LookupsResourceWithStreamingResponse(client.lookups)
-        self.typing_indicators = typing_indicators.TypingIndicatorsResourceWithStreamingResponse(
-            client.typing_indicators
-        )
-        self.contacts = contacts.ContactsResourceWithStreamingResponse(client.contacts)
-        self.webhooks = webhooks.WebhooksResourceWithStreamingResponse(client.webhooks)
+        self._client = client
+
+    @cached_property
+    def messages(self) -> messages.MessagesResourceWithStreamingResponse:
+        from .resources.messages import MessagesResourceWithStreamingResponse
+
+        return MessagesResourceWithStreamingResponse(self._client.messages)
+
+    @cached_property
+    def groups(self) -> groups.GroupsResourceWithStreamingResponse:
+        from .resources.groups import GroupsResourceWithStreamingResponse
+
+        return GroupsResourceWithStreamingResponse(self._client.groups)
+
+    @cached_property
+    def media_objects(self) -> media_objects.MediaObjectsResourceWithStreamingResponse:
+        from .resources.media_objects import MediaObjectsResourceWithStreamingResponse
+
+        return MediaObjectsResourceWithStreamingResponse(self._client.media_objects)
+
+    @cached_property
+    def lookups(self) -> lookups.LookupsResourceWithStreamingResponse:
+        from .resources.lookups import LookupsResourceWithStreamingResponse
+
+        return LookupsResourceWithStreamingResponse(self._client.lookups)
+
+    @cached_property
+    def typing_indicators(self) -> typing_indicators.TypingIndicatorsResourceWithStreamingResponse:
+        from .resources.typing_indicators import TypingIndicatorsResourceWithStreamingResponse
+
+        return TypingIndicatorsResourceWithStreamingResponse(self._client.typing_indicators)
+
+    @cached_property
+    def contacts(self) -> contacts.ContactsResourceWithStreamingResponse:
+        from .resources.contacts import ContactsResourceWithStreamingResponse
+
+        return ContactsResourceWithStreamingResponse(self._client.contacts)
+
+    @cached_property
+    def webhooks(self) -> webhooks.WebhooksResourceWithStreamingResponse:
+        from .resources.webhooks import WebhooksResourceWithStreamingResponse
+
+        return WebhooksResourceWithStreamingResponse(self._client.webhooks)
 
 
 class AsyncSendblueAPIWithStreamedResponse:
+    _client: AsyncSendblueAPI
+
     def __init__(self, client: AsyncSendblueAPI) -> None:
-        self.messages = messages.AsyncMessagesResourceWithStreamingResponse(client.messages)
-        self.groups = groups.AsyncGroupsResourceWithStreamingResponse(client.groups)
-        self.media_objects = media_objects.AsyncMediaObjectsResourceWithStreamingResponse(client.media_objects)
-        self.lookups = lookups.AsyncLookupsResourceWithStreamingResponse(client.lookups)
-        self.typing_indicators = typing_indicators.AsyncTypingIndicatorsResourceWithStreamingResponse(
-            client.typing_indicators
-        )
-        self.contacts = contacts.AsyncContactsResourceWithStreamingResponse(client.contacts)
-        self.webhooks = webhooks.AsyncWebhooksResourceWithStreamingResponse(client.webhooks)
+        self._client = client
+
+    @cached_property
+    def messages(self) -> messages.AsyncMessagesResourceWithStreamingResponse:
+        from .resources.messages import AsyncMessagesResourceWithStreamingResponse
+
+        return AsyncMessagesResourceWithStreamingResponse(self._client.messages)
+
+    @cached_property
+    def groups(self) -> groups.AsyncGroupsResourceWithStreamingResponse:
+        from .resources.groups import AsyncGroupsResourceWithStreamingResponse
+
+        return AsyncGroupsResourceWithStreamingResponse(self._client.groups)
+
+    @cached_property
+    def media_objects(self) -> media_objects.AsyncMediaObjectsResourceWithStreamingResponse:
+        from .resources.media_objects import AsyncMediaObjectsResourceWithStreamingResponse
+
+        return AsyncMediaObjectsResourceWithStreamingResponse(self._client.media_objects)
+
+    @cached_property
+    def lookups(self) -> lookups.AsyncLookupsResourceWithStreamingResponse:
+        from .resources.lookups import AsyncLookupsResourceWithStreamingResponse
+
+        return AsyncLookupsResourceWithStreamingResponse(self._client.lookups)
+
+    @cached_property
+    def typing_indicators(self) -> typing_indicators.AsyncTypingIndicatorsResourceWithStreamingResponse:
+        from .resources.typing_indicators import AsyncTypingIndicatorsResourceWithStreamingResponse
+
+        return AsyncTypingIndicatorsResourceWithStreamingResponse(self._client.typing_indicators)
+
+    @cached_property
+    def contacts(self) -> contacts.AsyncContactsResourceWithStreamingResponse:
+        from .resources.contacts import AsyncContactsResourceWithStreamingResponse
+
+        return AsyncContactsResourceWithStreamingResponse(self._client.contacts)
+
+    @cached_property
+    def webhooks(self) -> webhooks.AsyncWebhooksResourceWithStreamingResponse:
+        from .resources.webhooks import AsyncWebhooksResourceWithStreamingResponse
+
+        return AsyncWebhooksResourceWithStreamingResponse(self._client.webhooks)
 
 
 Client = SendblueAPI
