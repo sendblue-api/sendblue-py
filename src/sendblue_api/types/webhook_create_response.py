@@ -11,14 +11,11 @@ from .webhook_configuration import WebhookConfiguration
 __all__ = [
     "WebhookCreateResponse",
     "Webhooks",
-    "WebhooksCallLog",
     "WebhooksLineAssigned",
     "WebhooksLineBlocked",
     "WebhooksOutbound",
     "WebhooksReceive",
 ]
-
-WebhooksCallLog: TypeAlias = Union[str, WebhookConfiguration]
 
 WebhooksLineAssigned: TypeAlias = Union[str, WebhookConfiguration]
 
@@ -30,12 +27,6 @@ WebhooksReceive: TypeAlias = Union[str, WebhookConfiguration]
 
 
 class Webhooks(BaseModel):
-    call_log: Optional[List[WebhooksCallLog]] = None
-    """Webhooks for call log events"""
-
-    contact_created: Optional[List[str]] = None
-    """Webhooks for contact created events"""
-
     global_secret: Optional[str] = FieldInfo(alias="globalSecret", default=None)
     """Global secret applied to all webhooks"""
 
