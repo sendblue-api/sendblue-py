@@ -12,7 +12,6 @@ from .webhook_configuration_param import WebhookConfigurationParam
 __all__ = [
     "WebhookUpdateParams",
     "Webhooks",
-    "WebhooksCallLog",
     "WebhooksLineAssigned",
     "WebhooksLineBlocked",
     "WebhooksOutbound",
@@ -24,8 +23,6 @@ class WebhookUpdateParams(TypedDict, total=False):
     webhooks: Required[Webhooks]
 
 
-WebhooksCallLog: TypeAlias = Union[str, WebhookConfigurationParam]
-
 WebhooksLineAssigned: TypeAlias = Union[str, WebhookConfigurationParam]
 
 WebhooksLineBlocked: TypeAlias = Union[str, WebhookConfigurationParam]
@@ -36,12 +33,6 @@ WebhooksReceive: TypeAlias = Union[str, WebhookConfigurationParam]
 
 
 class Webhooks(TypedDict, total=False):
-    call_log: SequenceNotStr[WebhooksCallLog]
-    """Webhooks for call log events"""
-
-    contact_created: SequenceNotStr[str]
-    """Webhooks for contact created events"""
-
     global_secret: Annotated[str, PropertyInfo(alias="globalSecret")]
     """Global secret applied to all webhooks"""
 
