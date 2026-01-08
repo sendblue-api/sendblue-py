@@ -51,8 +51,7 @@ class WebhooksResource(SyncAPIResource):
         *,
         webhooks: SequenceNotStr[webhook_create_params.Webhook],
         global_secret: str | Omit = omit,
-        type: Literal["receive", "call_log", "line_blocked", "line_assigned", "outbound", "contact_created"]
-        | Omit = omit,
+        type: Literal["receive", "line_blocked", "line_assigned", "outbound"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -151,8 +150,7 @@ class WebhooksResource(SyncAPIResource):
         self,
         *,
         webhooks: SequenceNotStr[str],
-        type: Literal["receive", "call_log", "line_blocked", "line_assigned", "outbound", "contact_created"]
-        | Omit = omit,
+        type: Literal["receive", "line_blocked", "line_assigned", "outbound"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -217,8 +215,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         *,
         webhooks: SequenceNotStr[webhook_create_params.Webhook],
         global_secret: str | Omit = omit,
-        type: Literal["receive", "call_log", "line_blocked", "line_assigned", "outbound", "contact_created"]
-        | Omit = omit,
+        type: Literal["receive", "line_blocked", "line_assigned", "outbound"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -317,8 +314,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         self,
         *,
         webhooks: SequenceNotStr[str],
-        type: Literal["receive", "call_log", "line_blocked", "line_assigned", "outbound", "contact_created"]
-        | Omit = omit,
+        type: Literal["receive", "line_blocked", "line_assigned", "outbound"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
