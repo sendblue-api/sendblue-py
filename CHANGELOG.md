@@ -1,5 +1,31 @@
 # Changelog
 
+## 1.3.0 (2026-01-08)
+
+Full Changelog: [v1.2.0...v1.3.0](https://github.com/sendblue-api/sendblue-py/compare/v1.2.0...v1.3.0)
+
+### Features
+
+* **api:** manual updates ([0d0c1eb](https://github.com/sendblue-api/sendblue-py/commit/0d0c1eb6c6421187bdf06c86a5c54b3ce25930aa))
+
+
+### Bug Fixes
+
+* use async_to_httpx_files in patch method ([e019921](https://github.com/sendblue-api/sendblue-py/commit/e019921b54c8f7aa443b3a7294c7b1c3566f429b))
+
+
+### Chores
+
+* **internal:** add `--fix` argument to lint script ([89a2517](https://github.com/sendblue-api/sendblue-py/commit/89a2517a8620993fd7761e6a0fe27d66195f5f75))
+* **internal:** add missing files argument to base client ([e8f8b46](https://github.com/sendblue-api/sendblue-py/commit/e8f8b46d06435ba29cbf6ea50283f55474c40c4b))
+* **internal:** codegen related update ([fb00d54](https://github.com/sendblue-api/sendblue-py/commit/fb00d54033787e43f77c9f30aa524604c9d989ab))
+* speedup initial import ([44d1f39](https://github.com/sendblue-api/sendblue-py/commit/44d1f3943f0d5c72c5ef9f923301a8a3b97552d4))
+
+
+### Documentation
+
+* prominently feature MCP server setup in root SDK readmes ([08e7ce4](https://github.com/sendblue-api/sendblue-py/commit/08e7ce46f1430a3ba68c4506ed3ab31df277f00a))
+
 ## 1.2.0 (2025-12-13)
 
 Full Changelog: [v1.1.0...v1.2.0](https://github.com/sendblue-api/sendblue-py/compare/v1.1.0...v1.2.0)
