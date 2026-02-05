@@ -90,7 +90,8 @@ class Data(BaseModel):
     sendblue_number: Optional[str] = None
     """Sendblue phone number used"""
 
-    service: Optional[Literal["iMessage", "SMS"]] = None
+    service: Optional[Literal["iMessage", "SMS", "RCS"]] = None
+    """The messaging service used"""
 
     status: Optional[
         Literal[

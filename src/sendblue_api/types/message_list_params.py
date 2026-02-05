@@ -28,13 +28,26 @@ class MessageListParams(TypedDict, total=False):
     """Filter by group ID"""
 
     is_outbound: Literal["true", "false"]
-    """Filter by message direction"""
+    """Filter by message direction.
+
+    Use `false` to get inbound messages (messages sent TO your Sendblue number).
+
+    **To get inbound messages for polling:** Use `is_outbound=false` combined with
+    `sendblue_number` or `to_number` set to your Sendblue phone number.
+
+    Note: Do NOT use `message_type=inbound` - that parameter only accepts `message`
+    or `group` values.
+    """
 
     limit: int
     """Maximum number of messages to return"""
 
     message_type: Literal["message", "group"]
-    """Filter by message type"""
+    """Filter by message type (1:1 vs group chat). Only accepts `message` or `group`.
+
+    **Common mistake:** This is NOT for filtering inbound vs outbound messages. Use
+    `is_outbound` parameter instead.
+    """
 
     number: str
     """Filter by any phone number (from or to)"""
@@ -57,7 +70,7 @@ class MessageListParams(TypedDict, total=False):
     sent_at_lte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Filter messages sent before this date (ISO 8601 format)"""
 
-    service: Literal["iMessage", "SMS"]
+    service: Literal["iMessage", "SMS", "RCS"]
     """Filter by service type"""
 
     status: Literal[

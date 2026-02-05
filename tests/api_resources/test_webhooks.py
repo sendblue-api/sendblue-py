@@ -79,11 +79,14 @@ class TestWebhooks:
     def test_method_update_with_all_params(self, client: SendblueAPI) -> None:
         webhook = client.webhooks.update(
             webhooks={
+                "call_log": ["https://example.com"],
+                "contact_created": ["https://example.com"],
                 "global_secret": "whsec_global123",
                 "line_assigned": ["https://example.com"],
                 "line_blocked": ["https://example.com"],
                 "outbound": ["https://example.com"],
                 "receive": ["https://example.com"],
+                "typing_indicator": ["https://example.com"],
             },
         )
         assert_matches_type(WebhookUpdateResponse, webhook, path=["response"])
@@ -248,11 +251,14 @@ class TestAsyncWebhooks:
     async def test_method_update_with_all_params(self, async_client: AsyncSendblueAPI) -> None:
         webhook = await async_client.webhooks.update(
             webhooks={
+                "call_log": ["https://example.com"],
+                "contact_created": ["https://example.com"],
                 "global_secret": "whsec_global123",
                 "line_assigned": ["https://example.com"],
                 "line_blocked": ["https://example.com"],
                 "outbound": ["https://example.com"],
                 "receive": ["https://example.com"],
+                "typing_indicator": ["https://example.com"],
             },
         )
         assert_matches_type(WebhookUpdateResponse, webhook, path=["response"])
