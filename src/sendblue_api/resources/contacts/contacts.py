@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Dict
 from typing_extensions import Literal
 
 import httpx
@@ -67,6 +68,7 @@ class ContactsResource(SyncAPIResource):
         number: str,
         body_assigned_to_email_1: str | Omit = omit,
         body_assigned_to_email_2: str | Omit = omit,
+        custom_variables: Dict[str, str] | Omit = omit,
         body_first_name_1: str | Omit = omit,
         body_first_name_2: str | Omit = omit,
         body_last_name_1: str | Omit = omit,
@@ -93,6 +95,9 @@ class ContactsResource(SyncAPIResource):
           body_assigned_to_email_1: Email of assigned user (preferred)
 
           body_assigned_to_email_2: Email of assigned user (deprecated, use assigned_to_email)
+
+          custom_variables: Custom key-value pairs. Keys are human-readable labels; new labels are
+              auto-created.
 
           body_first_name_1: Contact's first name (preferred)
 
@@ -129,6 +134,7 @@ class ContactsResource(SyncAPIResource):
                     "number": number,
                     "body_assigned_to_email_1": body_assigned_to_email_1,
                     "body_assigned_to_email_2": body_assigned_to_email_2,
+                    "custom_variables": custom_variables,
                     "body_first_name_1": body_first_name_1,
                     "body_first_name_2": body_first_name_2,
                     "body_last_name_1": body_last_name_1,
@@ -189,6 +195,7 @@ class ContactsResource(SyncAPIResource):
         body_assigned_to_email_2: str | Omit = omit,
         body_company_name_1: str | Omit = omit,
         body_company_name_2: str | Omit = omit,
+        custom_variables: Dict[str, str] | Omit = omit,
         body_first_name_1: str | Omit = omit,
         body_first_name_2: str | Omit = omit,
         body_last_name_1: str | Omit = omit,
@@ -214,6 +221,8 @@ class ContactsResource(SyncAPIResource):
           body_company_name_1: Company name (preferred)
 
           body_company_name_2: Deprecated, use company_name
+
+          custom_variables: Custom key-value pairs. Merged with existing variables (not replaced).
 
           body_first_name_1: Contact's first name (preferred)
 
@@ -245,6 +254,7 @@ class ContactsResource(SyncAPIResource):
                     "body_assigned_to_email_2": body_assigned_to_email_2,
                     "body_company_name_1": body_company_name_1,
                     "body_company_name_2": body_company_name_2,
+                    "custom_variables": custom_variables,
                     "body_first_name_1": body_first_name_1,
                     "body_first_name_2": body_first_name_2,
                     "body_last_name_1": body_last_name_1,
@@ -440,6 +450,7 @@ class AsyncContactsResource(AsyncAPIResource):
         number: str,
         body_assigned_to_email_1: str | Omit = omit,
         body_assigned_to_email_2: str | Omit = omit,
+        custom_variables: Dict[str, str] | Omit = omit,
         body_first_name_1: str | Omit = omit,
         body_first_name_2: str | Omit = omit,
         body_last_name_1: str | Omit = omit,
@@ -466,6 +477,9 @@ class AsyncContactsResource(AsyncAPIResource):
           body_assigned_to_email_1: Email of assigned user (preferred)
 
           body_assigned_to_email_2: Email of assigned user (deprecated, use assigned_to_email)
+
+          custom_variables: Custom key-value pairs. Keys are human-readable labels; new labels are
+              auto-created.
 
           body_first_name_1: Contact's first name (preferred)
 
@@ -502,6 +516,7 @@ class AsyncContactsResource(AsyncAPIResource):
                     "number": number,
                     "body_assigned_to_email_1": body_assigned_to_email_1,
                     "body_assigned_to_email_2": body_assigned_to_email_2,
+                    "custom_variables": custom_variables,
                     "body_first_name_1": body_first_name_1,
                     "body_first_name_2": body_first_name_2,
                     "body_last_name_1": body_last_name_1,
@@ -562,6 +577,7 @@ class AsyncContactsResource(AsyncAPIResource):
         body_assigned_to_email_2: str | Omit = omit,
         body_company_name_1: str | Omit = omit,
         body_company_name_2: str | Omit = omit,
+        custom_variables: Dict[str, str] | Omit = omit,
         body_first_name_1: str | Omit = omit,
         body_first_name_2: str | Omit = omit,
         body_last_name_1: str | Omit = omit,
@@ -587,6 +603,8 @@ class AsyncContactsResource(AsyncAPIResource):
           body_company_name_1: Company name (preferred)
 
           body_company_name_2: Deprecated, use company_name
+
+          custom_variables: Custom key-value pairs. Merged with existing variables (not replaced).
 
           body_first_name_1: Contact's first name (preferred)
 
@@ -618,6 +636,7 @@ class AsyncContactsResource(AsyncAPIResource):
                     "body_assigned_to_email_2": body_assigned_to_email_2,
                     "body_company_name_1": body_company_name_1,
                     "body_company_name_2": body_company_name_2,
+                    "custom_variables": custom_variables,
                     "body_first_name_1": body_first_name_1,
                     "body_first_name_2": body_first_name_2,
                     "body_last_name_1": body_last_name_1,

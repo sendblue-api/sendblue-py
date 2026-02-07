@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 
 from .._models import BaseModel
@@ -17,6 +17,9 @@ class Contact(BaseModel):
 
     created_at: Optional[datetime] = None
     """When the contact was created"""
+
+    custom_variables: Optional[Dict[str, str]] = None
+    """Custom key-value pairs stored on the contact. Keys are human-readable labels."""
 
     first_name: Optional[str] = None
     """First name"""
