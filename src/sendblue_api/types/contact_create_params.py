@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Dict
 from typing_extensions import Required, Annotated, TypedDict
 
 from .._types import SequenceNotStr
@@ -19,6 +20,12 @@ class ContactCreateParams(TypedDict, total=False):
 
     body_assigned_to_email_2: Annotated[str, PropertyInfo(alias="assignedToEmail")]
     """Email of assigned user (deprecated, use assigned_to_email)"""
+
+    custom_variables: Dict[str, str]
+    """Custom key-value pairs.
+
+    Keys are human-readable labels; new labels are auto-created.
+    """
 
     body_first_name_1: Annotated[str, PropertyInfo(alias="first_name")]
     """Contact's first name (preferred)"""

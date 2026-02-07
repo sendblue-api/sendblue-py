@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Dict
 from typing_extensions import Annotated, TypedDict
 
 from .._types import SequenceNotStr
@@ -22,6 +23,9 @@ class ContactUpdateParams(TypedDict, total=False):
 
     body_company_name_2: Annotated[str, PropertyInfo(alias="companyName")]
     """Deprecated, use company_name"""
+
+    custom_variables: Dict[str, str]
+    """Custom key-value pairs. Merged with existing variables (not replaced)."""
 
     body_first_name_1: Annotated[str, PropertyInfo(alias="first_name")]
     """Contact's first name (preferred)"""
