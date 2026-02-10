@@ -62,4 +62,4 @@ class MessageResponse(BaseModel):
     ] = None
     """The iMessage expressive message style"""
 
-    status: Optional[Literal["QUEUED", "SENT", "DELIVERED", "READ", "ERROR"]] = None
+    status: Optional[Literal["QUEUED", "SENT", "DELIVERED", "ERROR"]] = None

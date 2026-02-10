@@ -19,7 +19,9 @@ class WebhookCreateParams(TypedDict, total=False):
     global_secret: Annotated[str, PropertyInfo(alias="globalSecret")]
     """Global secret for webhook signature verification"""
 
-    type: Literal["receive", "line_blocked", "line_assigned", "outbound"]
+    type: Literal[
+        "receive", "line_blocked", "line_assigned", "outbound", "typing_indicator", "call_log", "contact_created"
+    ]
     """Type of webhook to add"""
 
 

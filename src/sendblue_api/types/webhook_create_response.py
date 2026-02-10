@@ -11,11 +11,15 @@ from .webhook_configuration import WebhookConfiguration
 __all__ = [
     "WebhookCreateResponse",
     "Webhooks",
+    "WebhooksCallLog",
     "WebhooksLineAssigned",
     "WebhooksLineBlocked",
     "WebhooksOutbound",
     "WebhooksReceive",
+    "WebhooksTypingIndicator",
 ]
+
+WebhooksCallLog: TypeAlias = Union[str, WebhookConfiguration]
 
 WebhooksLineAssigned: TypeAlias = Union[str, WebhookConfiguration]
 
@@ -25,8 +29,16 @@ WebhooksOutbound: TypeAlias = Union[str, WebhookConfiguration]
 
 WebhooksReceive: TypeAlias = Union[str, WebhookConfiguration]
 
+WebhooksTypingIndicator: TypeAlias = Union[str, WebhookConfiguration]
+
 
 class Webhooks(BaseModel):
+    call_log: Optional[List[WebhooksCallLog]] = None
+    """Webhooks for call log events"""
+
+    contact_created: Optional[List[str]] = None
+    """Webhooks for contact created events (URL strings only)"""
+
     global_secret: Optional[str] = FieldInfo(alias="globalSecret", default=None)
     """Global secret applied to all webhooks"""
 
@@ -37,10 +49,13 @@ class Webhooks(BaseModel):
     """Webhooks for line blocked events"""
 
     outbound: Optional[List[WebhooksOutbound]] = None
-    """Webhooks for outbound message events"""
+    """Webhooks for outbound message status updates"""
 
     receive: Optional[List[WebhooksReceive]] = None
     """Webhooks for inbound message events"""
+
+    typing_indicator: Optional[List[WebhooksTypingIndicator]] = None
+    """Webhooks for typing indicator events"""
 
 
 class WebhookCreateResponse(BaseModel):

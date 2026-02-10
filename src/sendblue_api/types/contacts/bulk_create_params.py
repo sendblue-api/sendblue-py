@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Dict, Iterable
 from typing_extensions import Required, TypedDict
 
 from ..._types import SequenceNotStr
@@ -20,6 +20,12 @@ class Contact(TypedDict, total=False):
 
     company_name: str
     """Company name"""
+
+    custom_variables: Dict[str, str]
+    """Custom key-value pairs.
+
+    Keys are human-readable labels; new labels are auto-created.
+    """
 
     first_name: str
     """Contact's first name"""

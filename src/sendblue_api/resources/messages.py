@@ -98,7 +98,7 @@ class MessagesResource(SyncAPIResource):
         sendblue_number: str | Omit = omit,
         sent_at_gte: Union[str, datetime] | Omit = omit,
         sent_at_lte: Union[str, datetime] | Omit = omit,
-        service: Literal["iMessage", "SMS"] | Omit = omit,
+        service: Literal["iMessage", "SMS", "RCS"] | Omit = omit,
         status: Literal[
             "REGISTERED",
             "PENDING",
@@ -127,6 +127,22 @@ class MessagesResource(SyncAPIResource):
         Retrieve a list of messages for the authenticated account with comprehensive
         filtering capabilities. Rate limited to 100 requests per 10 seconds per account.
 
+        ## Common Use Cases
+
+        **Polling for inbound messages (no webhooks):**
+
+        ```
+        GET /api/v2/messages?is_outbound=false&sendblue_number=+16292925296&order_by=createdAt&order_direction=desc&limit=50
+        ```
+
+        Track processed message IDs to avoid duplicates.
+
+        **Get conversation with a specific contact:**
+
+        ```
+        GET /api/v2/messages?number=+15551234567&order_by=createdAt&order_direction=desc
+        ```
+
         Args:
           account_email: Filter by account email
 
@@ -138,11 +154,21 @@ class MessagesResource(SyncAPIResource):
 
           group_id: Filter by group ID
 
-          is_outbound: Filter by message direction
+          is_outbound: Filter by message direction. Use `false` to get inbound messages (messages sent
+              TO your Sendblue number).
+
+              **To get inbound messages for polling:** Use `is_outbound=false` combined with
+              `sendblue_number` or `to_number` set to your Sendblue phone number.
+
+              Note: Do NOT use `message_type=inbound` - that parameter only accepts `message`
+              or `group` values.
 
           limit: Maximum number of messages to return
 
-          message_type: Filter by message type
+          message_type: Filter by message type (1:1 vs group chat). Only accepts `message` or `group`.
+
+              **Common mistake:** This is NOT for filtering inbound vs outbound messages. Use
+              `is_outbound` parameter instead.
 
           number: Filter by any phone number (from or to)
 
@@ -402,7 +428,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         sendblue_number: str | Omit = omit,
         sent_at_gte: Union[str, datetime] | Omit = omit,
         sent_at_lte: Union[str, datetime] | Omit = omit,
-        service: Literal["iMessage", "SMS"] | Omit = omit,
+        service: Literal["iMessage", "SMS", "RCS"] | Omit = omit,
         status: Literal[
             "REGISTERED",
             "PENDING",
@@ -431,6 +457,22 @@ class AsyncMessagesResource(AsyncAPIResource):
         Retrieve a list of messages for the authenticated account with comprehensive
         filtering capabilities. Rate limited to 100 requests per 10 seconds per account.
 
+        ## Common Use Cases
+
+        **Polling for inbound messages (no webhooks):**
+
+        ```
+        GET /api/v2/messages?is_outbound=false&sendblue_number=+16292925296&order_by=createdAt&order_direction=desc&limit=50
+        ```
+
+        Track processed message IDs to avoid duplicates.
+
+        **Get conversation with a specific contact:**
+
+        ```
+        GET /api/v2/messages?number=+15551234567&order_by=createdAt&order_direction=desc
+        ```
+
         Args:
           account_email: Filter by account email
 
@@ -442,11 +484,21 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           group_id: Filter by group ID
 
-          is_outbound: Filter by message direction
+          is_outbound: Filter by message direction. Use `false` to get inbound messages (messages sent
+              TO your Sendblue number).
+
+              **To get inbound messages for polling:** Use `is_outbound=false` combined with
+              `sendblue_number` or `to_number` set to your Sendblue phone number.
+
+              Note: Do NOT use `message_type=inbound` - that parameter only accepts `message`
+              or `group` values.
 
           limit: Maximum number of messages to return
 
-          message_type: Filter by message type
+          message_type: Filter by message type (1:1 vs group chat). Only accepts `message` or `group`.
+
+              **Common mistake:** This is NOT for filtering inbound vs outbound messages. Use
+              `is_outbound` parameter instead.
 
           number: Filter by any phone number (from or to)
 
