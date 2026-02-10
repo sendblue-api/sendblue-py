@@ -1,5 +1,28 @@
 # Changelog
 
+## 1.4.0 (2026-02-10)
+
+Full Changelog: [v1.3.0...v1.4.0](https://github.com/sendblue-api/sendblue-py/compare/v1.3.0...v1.4.0)
+
+### Features
+
+* **api:** manual updates ([50f602d](https://github.com/sendblue-api/sendblue-py/commit/50f602db586f81ba42a02593511b5c2ebfa8e135))
+* **client:** add custom JSON encoder for extended type support ([a3dde1a](https://github.com/sendblue-api/sendblue-py/commit/a3dde1a7f956b720455d126e8e283e0897da3356))
+* **client:** add support for binary request streaming ([b633405](https://github.com/sendblue-api/sendblue-py/commit/b6334055780560baa92900a4b09e4e94b6e9aad4))
+
+
+### Bug Fixes
+
+* **docs:** fix mcp installation instructions for remote servers ([53251f5](https://github.com/sendblue-api/sendblue-py/commit/53251f598f9e9d384de13304b5cce74cd9696f56))
+
+
+### Chores
+
+* bump OpenAPI spec version to 1.1.0 ([7a4f23b](https://github.com/sendblue-api/sendblue-py/commit/7a4f23be6db84ff6f493353f99f40b1c79e13a7f))
+* **ci:** upgrade `actions/github-script` ([824940b](https://github.com/sendblue-api/sendblue-py/commit/824940b1e7f05a9960a181190d50a224d543ae71))
+* **internal:** bump dependencies ([ce9f013](https://github.com/sendblue-api/sendblue-py/commit/ce9f013adf41d2f8f85e389fa148c5015f92833a))
+* **internal:** update `actions/checkout` version ([f6331d0](https://github.com/sendblue-api/sendblue-py/commit/f6331d0c637a9841a4ff4857112f834827c75704))
+
 ## 1.3.0 (2026-01-08)
 
 Full Changelog: [v1.2.0...v1.3.0](https://github.com/sendblue-api/sendblue-py/compare/v1.2.0...v1.3.0)
