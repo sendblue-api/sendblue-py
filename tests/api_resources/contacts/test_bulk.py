@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestBulk:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: SendblueAPI) -> None:
         bulk = client.contacts.bulk.create(
@@ -25,7 +25,7 @@ class TestBulk:
         )
         assert_matches_type(BulkCreateResponse, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: SendblueAPI) -> None:
         response = client.contacts.bulk.with_raw_response.create(
@@ -37,7 +37,7 @@ class TestBulk:
         bulk = response.parse()
         assert_matches_type(BulkCreateResponse, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: SendblueAPI) -> None:
         with client.contacts.bulk.with_streaming_response.create(
@@ -51,7 +51,7 @@ class TestBulk:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete(self, client: SendblueAPI) -> None:
         bulk = client.contacts.bulk.delete(
@@ -59,7 +59,7 @@ class TestBulk:
         )
         assert_matches_type(BulkDeleteResponse, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: SendblueAPI) -> None:
         response = client.contacts.bulk.with_raw_response.delete(
@@ -71,7 +71,7 @@ class TestBulk:
         bulk = response.parse()
         assert_matches_type(BulkDeleteResponse, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: SendblueAPI) -> None:
         with client.contacts.bulk.with_streaming_response.delete(
@@ -91,7 +91,7 @@ class TestAsyncBulk:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncSendblueAPI) -> None:
         bulk = await async_client.contacts.bulk.create(
@@ -99,7 +99,7 @@ class TestAsyncBulk:
         )
         assert_matches_type(BulkCreateResponse, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncSendblueAPI) -> None:
         response = await async_client.contacts.bulk.with_raw_response.create(
@@ -111,7 +111,7 @@ class TestAsyncBulk:
         bulk = await response.parse()
         assert_matches_type(BulkCreateResponse, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncSendblueAPI) -> None:
         async with async_client.contacts.bulk.with_streaming_response.create(
@@ -125,7 +125,7 @@ class TestAsyncBulk:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncSendblueAPI) -> None:
         bulk = await async_client.contacts.bulk.delete(
@@ -133,7 +133,7 @@ class TestAsyncBulk:
         )
         assert_matches_type(BulkDeleteResponse, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncSendblueAPI) -> None:
         response = await async_client.contacts.bulk.with_raw_response.delete(
@@ -145,7 +145,7 @@ class TestAsyncBulk:
         bulk = await response.parse()
         assert_matches_type(BulkDeleteResponse, bulk, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncSendblueAPI) -> None:
         async with async_client.contacts.bulk.with_streaming_response.delete(

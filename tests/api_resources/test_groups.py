@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestGroups:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_modify(self, client: SendblueAPI) -> None:
         group = client.groups.modify(
@@ -27,7 +27,7 @@ class TestGroups:
         )
         assert_matches_type(GroupModifyResponse, group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_modify(self, client: SendblueAPI) -> None:
         response = client.groups.with_raw_response.modify(
@@ -41,7 +41,7 @@ class TestGroups:
         group = response.parse()
         assert_matches_type(GroupModifyResponse, group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_modify(self, client: SendblueAPI) -> None:
         with client.groups.with_streaming_response.modify(
@@ -57,7 +57,7 @@ class TestGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_send_message(self, client: SendblueAPI) -> None:
         group = client.groups.send_message(
@@ -66,7 +66,7 @@ class TestGroups:
         )
         assert_matches_type(MessageResponse, group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_send_message_with_all_params(self, client: SendblueAPI) -> None:
         group = client.groups.send_message(
@@ -78,7 +78,7 @@ class TestGroups:
         )
         assert_matches_type(MessageResponse, group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_send_message(self, client: SendblueAPI) -> None:
         response = client.groups.with_raw_response.send_message(
@@ -91,7 +91,7 @@ class TestGroups:
         group = response.parse()
         assert_matches_type(MessageResponse, group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_send_message(self, client: SendblueAPI) -> None:
         with client.groups.with_streaming_response.send_message(
@@ -112,7 +112,7 @@ class TestAsyncGroups:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_modify(self, async_client: AsyncSendblueAPI) -> None:
         group = await async_client.groups.modify(
@@ -122,7 +122,7 @@ class TestAsyncGroups:
         )
         assert_matches_type(GroupModifyResponse, group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_modify(self, async_client: AsyncSendblueAPI) -> None:
         response = await async_client.groups.with_raw_response.modify(
@@ -136,7 +136,7 @@ class TestAsyncGroups:
         group = await response.parse()
         assert_matches_type(GroupModifyResponse, group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_modify(self, async_client: AsyncSendblueAPI) -> None:
         async with async_client.groups.with_streaming_response.modify(
@@ -152,7 +152,7 @@ class TestAsyncGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_send_message(self, async_client: AsyncSendblueAPI) -> None:
         group = await async_client.groups.send_message(
@@ -161,7 +161,7 @@ class TestAsyncGroups:
         )
         assert_matches_type(MessageResponse, group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_send_message_with_all_params(self, async_client: AsyncSendblueAPI) -> None:
         group = await async_client.groups.send_message(
@@ -173,7 +173,7 @@ class TestAsyncGroups:
         )
         assert_matches_type(MessageResponse, group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_send_message(self, async_client: AsyncSendblueAPI) -> None:
         response = await async_client.groups.with_raw_response.send_message(
@@ -186,7 +186,7 @@ class TestAsyncGroups:
         group = await response.parse()
         assert_matches_type(MessageResponse, group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_send_message(self, async_client: AsyncSendblueAPI) -> None:
         async with async_client.groups.with_streaming_response.send_message(

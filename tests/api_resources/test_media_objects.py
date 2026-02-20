@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestMediaObjects:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_upload(self, client: SendblueAPI) -> None:
         media_object = client.media_objects.upload(
@@ -25,7 +25,7 @@ class TestMediaObjects:
         )
         assert_matches_type(MediaObjectUploadResponse, media_object, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_upload(self, client: SendblueAPI) -> None:
         response = client.media_objects.with_raw_response.upload(
@@ -37,7 +37,7 @@ class TestMediaObjects:
         media_object = response.parse()
         assert_matches_type(MediaObjectUploadResponse, media_object, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_upload(self, client: SendblueAPI) -> None:
         with client.media_objects.with_streaming_response.upload(
@@ -57,7 +57,7 @@ class TestAsyncMediaObjects:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_upload(self, async_client: AsyncSendblueAPI) -> None:
         media_object = await async_client.media_objects.upload(
@@ -65,7 +65,7 @@ class TestAsyncMediaObjects:
         )
         assert_matches_type(MediaObjectUploadResponse, media_object, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_upload(self, async_client: AsyncSendblueAPI) -> None:
         response = await async_client.media_objects.with_raw_response.upload(
@@ -77,7 +77,7 @@ class TestAsyncMediaObjects:
         media_object = await response.parse()
         assert_matches_type(MediaObjectUploadResponse, media_object, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_upload(self, async_client: AsyncSendblueAPI) -> None:
         async with async_client.media_objects.with_streaming_response.upload(

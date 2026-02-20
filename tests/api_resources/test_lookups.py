@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestLookups:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_lookup_number(self, client: SendblueAPI) -> None:
         lookup = client.lookups.lookup_number(
@@ -25,7 +25,7 @@ class TestLookups:
         )
         assert_matches_type(LookupLookupNumberResponse, lookup, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_lookup_number(self, client: SendblueAPI) -> None:
         response = client.lookups.with_raw_response.lookup_number(
@@ -37,7 +37,7 @@ class TestLookups:
         lookup = response.parse()
         assert_matches_type(LookupLookupNumberResponse, lookup, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_lookup_number(self, client: SendblueAPI) -> None:
         with client.lookups.with_streaming_response.lookup_number(
@@ -57,7 +57,7 @@ class TestAsyncLookups:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_lookup_number(self, async_client: AsyncSendblueAPI) -> None:
         lookup = await async_client.lookups.lookup_number(
@@ -65,7 +65,7 @@ class TestAsyncLookups:
         )
         assert_matches_type(LookupLookupNumberResponse, lookup, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_lookup_number(self, async_client: AsyncSendblueAPI) -> None:
         response = await async_client.lookups.with_raw_response.lookup_number(
@@ -77,7 +77,7 @@ class TestAsyncLookups:
         lookup = await response.parse()
         assert_matches_type(LookupLookupNumberResponse, lookup, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_lookup_number(self, async_client: AsyncSendblueAPI) -> None:
         async with async_client.lookups.with_streaming_response.lookup_number(
