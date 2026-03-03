@@ -25,6 +25,8 @@ __all__ = ["GroupsResource", "AsyncGroupsResource"]
 
 
 class GroupsResource(SyncAPIResource):
+    """Operations for group messaging (beta)"""
+
     @cached_property
     def with_raw_response(self) -> GroupsResourceWithRawResponse:
         """
@@ -150,6 +152,8 @@ class GroupsResource(SyncAPIResource):
 
 
 class AsyncGroupsResource(AsyncAPIResource):
+    """Operations for group messaging (beta)"""
+
     @cached_property
     def with_raw_response(self) -> AsyncGroupsResourceWithRawResponse:
         """
