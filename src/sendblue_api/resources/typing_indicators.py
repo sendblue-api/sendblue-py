@@ -22,6 +22,8 @@ __all__ = ["TypingIndicatorsResource", "AsyncTypingIndicatorsResource"]
 
 
 class TypingIndicatorsResource(SyncAPIResource):
+    """Operations for sending and managing messages"""
+
     @cached_property
     def with_raw_response(self) -> TypingIndicatorsResourceWithRawResponse:
         """
@@ -89,6 +91,8 @@ class TypingIndicatorsResource(SyncAPIResource):
 
 
 class AsyncTypingIndicatorsResource(AsyncAPIResource):
+    """Operations for sending and managing messages"""
+
     @cached_property
     def with_raw_response(self) -> AsyncTypingIndicatorsResourceWithRawResponse:
         """

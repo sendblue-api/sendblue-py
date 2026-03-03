@@ -39,8 +39,11 @@ __all__ = ["ContactsResource", "AsyncContactsResource"]
 
 
 class ContactsResource(SyncAPIResource):
+    """Operations for managing contacts"""
+
     @cached_property
     def bulk(self) -> BulkResource:
+        """Operations for managing contacts"""
         return BulkResource(self._client)
 
     @cached_property
@@ -421,8 +424,11 @@ class ContactsResource(SyncAPIResource):
 
 
 class AsyncContactsResource(AsyncAPIResource):
+    """Operations for managing contacts"""
+
     @cached_property
     def bulk(self) -> AsyncBulkResource:
+        """Operations for managing contacts"""
         return AsyncBulkResource(self._client)
 
     @cached_property
@@ -830,6 +836,7 @@ class ContactsResourceWithRawResponse:
 
     @cached_property
     def bulk(self) -> BulkResourceWithRawResponse:
+        """Operations for managing contacts"""
         return BulkResourceWithRawResponse(self._contacts.bulk)
 
 
@@ -861,6 +868,7 @@ class AsyncContactsResourceWithRawResponse:
 
     @cached_property
     def bulk(self) -> AsyncBulkResourceWithRawResponse:
+        """Operations for managing contacts"""
         return AsyncBulkResourceWithRawResponse(self._contacts.bulk)
 
 
@@ -892,6 +900,7 @@ class ContactsResourceWithStreamingResponse:
 
     @cached_property
     def bulk(self) -> BulkResourceWithStreamingResponse:
+        """Operations for managing contacts"""
         return BulkResourceWithStreamingResponse(self._contacts.bulk)
 
 
@@ -923,4 +932,5 @@ class AsyncContactsResourceWithStreamingResponse:
 
     @cached_property
     def bulk(self) -> AsyncBulkResourceWithStreamingResponse:
+        """Operations for managing contacts"""
         return AsyncBulkResourceWithStreamingResponse(self._contacts.bulk)
