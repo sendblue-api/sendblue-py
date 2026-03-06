@@ -22,6 +22,8 @@ __all__ = ["MediaObjectsResource", "AsyncMediaObjectsResource"]
 
 
 class MediaObjectsResource(SyncAPIResource):
+    """Operations for uploading and managing media files"""
+
     @cached_property
     def with_raw_response(self) -> MediaObjectsResourceWithRawResponse:
         """
@@ -77,6 +79,8 @@ class MediaObjectsResource(SyncAPIResource):
 
 
 class AsyncMediaObjectsResource(AsyncAPIResource):
+    """Operations for uploading and managing media files"""
+
     @cached_property
     def with_raw_response(self) -> AsyncMediaObjectsResourceWithRawResponse:
         """

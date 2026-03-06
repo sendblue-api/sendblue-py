@@ -121,42 +121,49 @@ class SendblueAPI(SyncAPIClient):
 
     @cached_property
     def messages(self) -> MessagesResource:
+        """Operations for sending and managing messages"""
         from .resources.messages import MessagesResource
 
         return MessagesResource(self)
 
     @cached_property
     def groups(self) -> GroupsResource:
+        """Operations for group messaging (beta)"""
         from .resources.groups import GroupsResource
 
         return GroupsResource(self)
 
     @cached_property
     def media_objects(self) -> MediaObjectsResource:
+        """Operations for uploading and managing media files"""
         from .resources.media_objects import MediaObjectsResource
 
         return MediaObjectsResource(self)
 
     @cached_property
     def lookups(self) -> LookupsResource:
+        """Operations for looking up service availability for phone numbers"""
         from .resources.lookups import LookupsResource
 
         return LookupsResource(self)
 
     @cached_property
     def typing_indicators(self) -> TypingIndicatorsResource:
+        """Operations for sending and managing messages"""
         from .resources.typing_indicators import TypingIndicatorsResource
 
         return TypingIndicatorsResource(self)
 
     @cached_property
     def contacts(self) -> ContactsResource:
+        """Operations for managing contacts"""
         from .resources.contacts import ContactsResource
 
         return ContactsResource(self)
 
     @cached_property
     def webhooks(self) -> WebhooksResource:
+        """Operations for managing webhook subscriptions"""
         from .resources.webhooks import WebhooksResource
 
         return WebhooksResource(self)
@@ -354,42 +361,49 @@ class AsyncSendblueAPI(AsyncAPIClient):
 
     @cached_property
     def messages(self) -> AsyncMessagesResource:
+        """Operations for sending and managing messages"""
         from .resources.messages import AsyncMessagesResource
 
         return AsyncMessagesResource(self)
 
     @cached_property
     def groups(self) -> AsyncGroupsResource:
+        """Operations for group messaging (beta)"""
         from .resources.groups import AsyncGroupsResource
 
         return AsyncGroupsResource(self)
 
     @cached_property
     def media_objects(self) -> AsyncMediaObjectsResource:
+        """Operations for uploading and managing media files"""
         from .resources.media_objects import AsyncMediaObjectsResource
 
         return AsyncMediaObjectsResource(self)
 
     @cached_property
     def lookups(self) -> AsyncLookupsResource:
+        """Operations for looking up service availability for phone numbers"""
         from .resources.lookups import AsyncLookupsResource
 
         return AsyncLookupsResource(self)
 
     @cached_property
     def typing_indicators(self) -> AsyncTypingIndicatorsResource:
+        """Operations for sending and managing messages"""
         from .resources.typing_indicators import AsyncTypingIndicatorsResource
 
         return AsyncTypingIndicatorsResource(self)
 
     @cached_property
     def contacts(self) -> AsyncContactsResource:
+        """Operations for managing contacts"""
         from .resources.contacts import AsyncContactsResource
 
         return AsyncContactsResource(self)
 
     @cached_property
     def webhooks(self) -> AsyncWebhooksResource:
+        """Operations for managing webhook subscriptions"""
         from .resources.webhooks import AsyncWebhooksResource
 
         return AsyncWebhooksResource(self)
@@ -526,42 +540,49 @@ class SendblueAPIWithRawResponse:
 
     @cached_property
     def messages(self) -> messages.MessagesResourceWithRawResponse:
+        """Operations for sending and managing messages"""
         from .resources.messages import MessagesResourceWithRawResponse
 
         return MessagesResourceWithRawResponse(self._client.messages)
 
     @cached_property
     def groups(self) -> groups.GroupsResourceWithRawResponse:
+        """Operations for group messaging (beta)"""
         from .resources.groups import GroupsResourceWithRawResponse
 
         return GroupsResourceWithRawResponse(self._client.groups)
 
     @cached_property
     def media_objects(self) -> media_objects.MediaObjectsResourceWithRawResponse:
+        """Operations for uploading and managing media files"""
         from .resources.media_objects import MediaObjectsResourceWithRawResponse
 
         return MediaObjectsResourceWithRawResponse(self._client.media_objects)
 
     @cached_property
     def lookups(self) -> lookups.LookupsResourceWithRawResponse:
+        """Operations for looking up service availability for phone numbers"""
         from .resources.lookups import LookupsResourceWithRawResponse
 
         return LookupsResourceWithRawResponse(self._client.lookups)
 
     @cached_property
     def typing_indicators(self) -> typing_indicators.TypingIndicatorsResourceWithRawResponse:
+        """Operations for sending and managing messages"""
         from .resources.typing_indicators import TypingIndicatorsResourceWithRawResponse
 
         return TypingIndicatorsResourceWithRawResponse(self._client.typing_indicators)
 
     @cached_property
     def contacts(self) -> contacts.ContactsResourceWithRawResponse:
+        """Operations for managing contacts"""
         from .resources.contacts import ContactsResourceWithRawResponse
 
         return ContactsResourceWithRawResponse(self._client.contacts)
 
     @cached_property
     def webhooks(self) -> webhooks.WebhooksResourceWithRawResponse:
+        """Operations for managing webhook subscriptions"""
         from .resources.webhooks import WebhooksResourceWithRawResponse
 
         return WebhooksResourceWithRawResponse(self._client.webhooks)
@@ -575,42 +596,49 @@ class AsyncSendblueAPIWithRawResponse:
 
     @cached_property
     def messages(self) -> messages.AsyncMessagesResourceWithRawResponse:
+        """Operations for sending and managing messages"""
         from .resources.messages import AsyncMessagesResourceWithRawResponse
 
         return AsyncMessagesResourceWithRawResponse(self._client.messages)
 
     @cached_property
     def groups(self) -> groups.AsyncGroupsResourceWithRawResponse:
+        """Operations for group messaging (beta)"""
         from .resources.groups import AsyncGroupsResourceWithRawResponse
 
         return AsyncGroupsResourceWithRawResponse(self._client.groups)
 
     @cached_property
     def media_objects(self) -> media_objects.AsyncMediaObjectsResourceWithRawResponse:
+        """Operations for uploading and managing media files"""
         from .resources.media_objects import AsyncMediaObjectsResourceWithRawResponse
 
         return AsyncMediaObjectsResourceWithRawResponse(self._client.media_objects)
 
     @cached_property
     def lookups(self) -> lookups.AsyncLookupsResourceWithRawResponse:
+        """Operations for looking up service availability for phone numbers"""
         from .resources.lookups import AsyncLookupsResourceWithRawResponse
 
         return AsyncLookupsResourceWithRawResponse(self._client.lookups)
 
     @cached_property
     def typing_indicators(self) -> typing_indicators.AsyncTypingIndicatorsResourceWithRawResponse:
+        """Operations for sending and managing messages"""
         from .resources.typing_indicators import AsyncTypingIndicatorsResourceWithRawResponse
 
         return AsyncTypingIndicatorsResourceWithRawResponse(self._client.typing_indicators)
 
     @cached_property
     def contacts(self) -> contacts.AsyncContactsResourceWithRawResponse:
+        """Operations for managing contacts"""
         from .resources.contacts import AsyncContactsResourceWithRawResponse
 
         return AsyncContactsResourceWithRawResponse(self._client.contacts)
 
     @cached_property
     def webhooks(self) -> webhooks.AsyncWebhooksResourceWithRawResponse:
+        """Operations for managing webhook subscriptions"""
         from .resources.webhooks import AsyncWebhooksResourceWithRawResponse
 
         return AsyncWebhooksResourceWithRawResponse(self._client.webhooks)
@@ -624,42 +652,49 @@ class SendblueAPIWithStreamedResponse:
 
     @cached_property
     def messages(self) -> messages.MessagesResourceWithStreamingResponse:
+        """Operations for sending and managing messages"""
         from .resources.messages import MessagesResourceWithStreamingResponse
 
         return MessagesResourceWithStreamingResponse(self._client.messages)
 
     @cached_property
     def groups(self) -> groups.GroupsResourceWithStreamingResponse:
+        """Operations for group messaging (beta)"""
         from .resources.groups import GroupsResourceWithStreamingResponse
 
         return GroupsResourceWithStreamingResponse(self._client.groups)
 
     @cached_property
     def media_objects(self) -> media_objects.MediaObjectsResourceWithStreamingResponse:
+        """Operations for uploading and managing media files"""
         from .resources.media_objects import MediaObjectsResourceWithStreamingResponse
 
         return MediaObjectsResourceWithStreamingResponse(self._client.media_objects)
 
     @cached_property
     def lookups(self) -> lookups.LookupsResourceWithStreamingResponse:
+        """Operations for looking up service availability for phone numbers"""
         from .resources.lookups import LookupsResourceWithStreamingResponse
 
         return LookupsResourceWithStreamingResponse(self._client.lookups)
 
     @cached_property
     def typing_indicators(self) -> typing_indicators.TypingIndicatorsResourceWithStreamingResponse:
+        """Operations for sending and managing messages"""
         from .resources.typing_indicators import TypingIndicatorsResourceWithStreamingResponse
 
         return TypingIndicatorsResourceWithStreamingResponse(self._client.typing_indicators)
 
     @cached_property
     def contacts(self) -> contacts.ContactsResourceWithStreamingResponse:
+        """Operations for managing contacts"""
         from .resources.contacts import ContactsResourceWithStreamingResponse
 
         return ContactsResourceWithStreamingResponse(self._client.contacts)
 
     @cached_property
     def webhooks(self) -> webhooks.WebhooksResourceWithStreamingResponse:
+        """Operations for managing webhook subscriptions"""
         from .resources.webhooks import WebhooksResourceWithStreamingResponse
 
         return WebhooksResourceWithStreamingResponse(self._client.webhooks)
@@ -673,42 +708,49 @@ class AsyncSendblueAPIWithStreamedResponse:
 
     @cached_property
     def messages(self) -> messages.AsyncMessagesResourceWithStreamingResponse:
+        """Operations for sending and managing messages"""
         from .resources.messages import AsyncMessagesResourceWithStreamingResponse
 
         return AsyncMessagesResourceWithStreamingResponse(self._client.messages)
 
     @cached_property
     def groups(self) -> groups.AsyncGroupsResourceWithStreamingResponse:
+        """Operations for group messaging (beta)"""
         from .resources.groups import AsyncGroupsResourceWithStreamingResponse
 
         return AsyncGroupsResourceWithStreamingResponse(self._client.groups)
 
     @cached_property
     def media_objects(self) -> media_objects.AsyncMediaObjectsResourceWithStreamingResponse:
+        """Operations for uploading and managing media files"""
         from .resources.media_objects import AsyncMediaObjectsResourceWithStreamingResponse
 
         return AsyncMediaObjectsResourceWithStreamingResponse(self._client.media_objects)
 
     @cached_property
     def lookups(self) -> lookups.AsyncLookupsResourceWithStreamingResponse:
+        """Operations for looking up service availability for phone numbers"""
         from .resources.lookups import AsyncLookupsResourceWithStreamingResponse
 
         return AsyncLookupsResourceWithStreamingResponse(self._client.lookups)
 
     @cached_property
     def typing_indicators(self) -> typing_indicators.AsyncTypingIndicatorsResourceWithStreamingResponse:
+        """Operations for sending and managing messages"""
         from .resources.typing_indicators import AsyncTypingIndicatorsResourceWithStreamingResponse
 
         return AsyncTypingIndicatorsResourceWithStreamingResponse(self._client.typing_indicators)
 
     @cached_property
     def contacts(self) -> contacts.AsyncContactsResourceWithStreamingResponse:
+        """Operations for managing contacts"""
         from .resources.contacts import AsyncContactsResourceWithStreamingResponse
 
         return AsyncContactsResourceWithStreamingResponse(self._client.contacts)
 
     @cached_property
     def webhooks(self) -> webhooks.AsyncWebhooksResourceWithStreamingResponse:
+        """Operations for managing webhook subscriptions"""
         from .resources.webhooks import AsyncWebhooksResourceWithStreamingResponse
 
         return AsyncWebhooksResourceWithStreamingResponse(self._client.webhooks)

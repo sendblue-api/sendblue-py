@@ -22,7 +22,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestMessages:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: SendblueAPI) -> None:
         message = client.messages.retrieve(
@@ -30,7 +30,7 @@ class TestMessages:
         )
         assert_matches_type(MessageRetrieveResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: SendblueAPI) -> None:
         response = client.messages.with_raw_response.retrieve(
@@ -42,7 +42,7 @@ class TestMessages:
         message = response.parse()
         assert_matches_type(MessageRetrieveResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: SendblueAPI) -> None:
         with client.messages.with_streaming_response.retrieve(
@@ -56,7 +56,7 @@ class TestMessages:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: SendblueAPI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `message_id` but received ''"):
@@ -64,13 +64,13 @@ class TestMessages:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: SendblueAPI) -> None:
         message = client.messages.list()
         assert_matches_type(MessageListResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: SendblueAPI) -> None:
         message = client.messages.list(
@@ -98,7 +98,7 @@ class TestMessages:
         )
         assert_matches_type(MessageListResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: SendblueAPI) -> None:
         response = client.messages.with_raw_response.list()
@@ -108,7 +108,7 @@ class TestMessages:
         message = response.parse()
         assert_matches_type(MessageListResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: SendblueAPI) -> None:
         with client.messages.with_streaming_response.list() as response:
@@ -120,7 +120,7 @@ class TestMessages:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_status(self, client: SendblueAPI) -> None:
         message = client.messages.get_status(
@@ -128,7 +128,7 @@ class TestMessages:
         )
         assert_matches_type(MessageResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_get_status(self, client: SendblueAPI) -> None:
         response = client.messages.with_raw_response.get_status(
@@ -140,7 +140,7 @@ class TestMessages:
         message = response.parse()
         assert_matches_type(MessageResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_get_status(self, client: SendblueAPI) -> None:
         with client.messages.with_streaming_response.get_status(
@@ -154,7 +154,7 @@ class TestMessages:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_send(self, client: SendblueAPI) -> None:
         message = client.messages.send(
@@ -164,7 +164,7 @@ class TestMessages:
         )
         assert_matches_type(MessageResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_send_with_all_params(self, client: SendblueAPI) -> None:
         message = client.messages.send(
@@ -177,7 +177,7 @@ class TestMessages:
         )
         assert_matches_type(MessageResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_send(self, client: SendblueAPI) -> None:
         response = client.messages.with_raw_response.send(
@@ -191,7 +191,7 @@ class TestMessages:
         message = response.parse()
         assert_matches_type(MessageResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_send(self, client: SendblueAPI) -> None:
         with client.messages.with_streaming_response.send(
@@ -213,7 +213,7 @@ class TestAsyncMessages:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncSendblueAPI) -> None:
         message = await async_client.messages.retrieve(
@@ -221,7 +221,7 @@ class TestAsyncMessages:
         )
         assert_matches_type(MessageRetrieveResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncSendblueAPI) -> None:
         response = await async_client.messages.with_raw_response.retrieve(
@@ -233,7 +233,7 @@ class TestAsyncMessages:
         message = await response.parse()
         assert_matches_type(MessageRetrieveResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncSendblueAPI) -> None:
         async with async_client.messages.with_streaming_response.retrieve(
@@ -247,7 +247,7 @@ class TestAsyncMessages:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncSendblueAPI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `message_id` but received ''"):
@@ -255,13 +255,13 @@ class TestAsyncMessages:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncSendblueAPI) -> None:
         message = await async_client.messages.list()
         assert_matches_type(MessageListResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncSendblueAPI) -> None:
         message = await async_client.messages.list(
@@ -289,7 +289,7 @@ class TestAsyncMessages:
         )
         assert_matches_type(MessageListResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncSendblueAPI) -> None:
         response = await async_client.messages.with_raw_response.list()
@@ -299,7 +299,7 @@ class TestAsyncMessages:
         message = await response.parse()
         assert_matches_type(MessageListResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncSendblueAPI) -> None:
         async with async_client.messages.with_streaming_response.list() as response:
@@ -311,7 +311,7 @@ class TestAsyncMessages:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_status(self, async_client: AsyncSendblueAPI) -> None:
         message = await async_client.messages.get_status(
@@ -319,7 +319,7 @@ class TestAsyncMessages:
         )
         assert_matches_type(MessageResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_get_status(self, async_client: AsyncSendblueAPI) -> None:
         response = await async_client.messages.with_raw_response.get_status(
@@ -331,7 +331,7 @@ class TestAsyncMessages:
         message = await response.parse()
         assert_matches_type(MessageResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_get_status(self, async_client: AsyncSendblueAPI) -> None:
         async with async_client.messages.with_streaming_response.get_status(
@@ -345,7 +345,7 @@ class TestAsyncMessages:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_send(self, async_client: AsyncSendblueAPI) -> None:
         message = await async_client.messages.send(
@@ -355,7 +355,7 @@ class TestAsyncMessages:
         )
         assert_matches_type(MessageResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_send_with_all_params(self, async_client: AsyncSendblueAPI) -> None:
         message = await async_client.messages.send(
@@ -368,7 +368,7 @@ class TestAsyncMessages:
         )
         assert_matches_type(MessageResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_send(self, async_client: AsyncSendblueAPI) -> None:
         response = await async_client.messages.with_raw_response.send(
@@ -382,7 +382,7 @@ class TestAsyncMessages:
         message = await response.parse()
         assert_matches_type(MessageResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_send(self, async_client: AsyncSendblueAPI) -> None:
         async with async_client.messages.with_streaming_response.send(

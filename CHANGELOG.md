@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.4.1 (2026-03-04)
+
+Full Changelog: [v1.4.0...v1.4.1](https://github.com/sendblue-api/sendblue-py/compare/v1.4.0...v1.4.1)
+
+### Chores
+
+* format all `api.md` files ([a85e819](https://github.com/sendblue-api/sendblue-py/commit/a85e8192bbce1b66a2fa00b46efc75c42278bb5d))
+* **internal:** add request options to SSE classes ([705f282](https://github.com/sendblue-api/sendblue-py/commit/705f282f4584256a03fe1e86ff86c3bfcf0c4688))
+* **internal:** codegen related update ([13fc39c](https://github.com/sendblue-api/sendblue-py/commit/13fc39c8d9d881d3d042b117267b3898edc1d310))
+* **internal:** fix lint error on Python 3.14 ([e22252c](https://github.com/sendblue-api/sendblue-py/commit/e22252c0faa9e6fac1203c61fe74899ed4cdf612))
+* **internal:** make `test_proxy_environment_variables` more resilient ([80098f7](https://github.com/sendblue-api/sendblue-py/commit/80098f74ea9e34c465d41ccf95b475cc842892b7))
+* **internal:** make `test_proxy_environment_variables` more resilient to env ([79e01d5](https://github.com/sendblue-api/sendblue-py/commit/79e01d5d3f38295f9dd64d29755261ebbcf4f6ef))
+* **internal:** remove mock server code ([e022fc9](https://github.com/sendblue-api/sendblue-py/commit/e022fc9e77cb713d921bffcd3d94d6d9698c9313))
+* update mock server docs ([2052bf4](https://github.com/sendblue-api/sendblue-py/commit/2052bf4ee8c17ab70ac5b15ece3b348ecafdf5ab))
+
 ## 1.4.0 (2026-02-10)
 
 Full Changelog: [v1.3.0...v1.4.0](https://github.com/sendblue-api/sendblue-py/compare/v1.3.0...v1.4.0)

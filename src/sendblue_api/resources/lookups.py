@@ -22,6 +22,8 @@ __all__ = ["LookupsResource", "AsyncLookupsResource"]
 
 
 class LookupsResource(SyncAPIResource):
+    """Operations for looking up service availability for phone numbers"""
+
     @cached_property
     def with_raw_response(self) -> LookupsResourceWithRawResponse:
         """
@@ -82,6 +84,8 @@ class LookupsResource(SyncAPIResource):
 
 
 class AsyncLookupsResource(AsyncAPIResource):
+    """Operations for looking up service availability for phone numbers"""
+
     @cached_property
     def with_raw_response(self) -> AsyncLookupsResourceWithRawResponse:
         """
