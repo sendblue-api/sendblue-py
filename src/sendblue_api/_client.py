@@ -31,12 +31,22 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import groups, lookups, contacts, messages, webhooks, media_objects, typing_indicators
+    from .resources import (
+        groups,
+        lookups,
+        contacts,
+        messages,
+        webhooks,
+        media_objects,
+        send_carousel,
+        typing_indicators,
+    )
     from .resources.groups import GroupsResource, AsyncGroupsResource
     from .resources.lookups import LookupsResource, AsyncLookupsResource
     from .resources.messages import MessagesResource, AsyncMessagesResource
     from .resources.webhooks import WebhooksResource, AsyncWebhooksResource
     from .resources.media_objects import MediaObjectsResource, AsyncMediaObjectsResource
+    from .resources.send_carousel import SendCarouselResource, AsyncSendCarouselResource
     from .resources.contacts.contacts import ContactsResource, AsyncContactsResource
     from .resources.typing_indicators import TypingIndicatorsResource, AsyncTypingIndicatorsResource
 
@@ -167,6 +177,13 @@ class SendblueAPI(SyncAPIClient):
         from .resources.webhooks import WebhooksResource
 
         return WebhooksResource(self)
+
+    @cached_property
+    def send_carousel(self) -> SendCarouselResource:
+        """Operations for sending and managing messages"""
+        from .resources.send_carousel import SendCarouselResource
+
+        return SendCarouselResource(self)
 
     @cached_property
     def with_raw_response(self) -> SendblueAPIWithRawResponse:
@@ -409,6 +426,13 @@ class AsyncSendblueAPI(AsyncAPIClient):
         return AsyncWebhooksResource(self)
 
     @cached_property
+    def send_carousel(self) -> AsyncSendCarouselResource:
+        """Operations for sending and managing messages"""
+        from .resources.send_carousel import AsyncSendCarouselResource
+
+        return AsyncSendCarouselResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncSendblueAPIWithRawResponse:
         return AsyncSendblueAPIWithRawResponse(self)
 
@@ -587,6 +611,13 @@ class SendblueAPIWithRawResponse:
 
         return WebhooksResourceWithRawResponse(self._client.webhooks)
 
+    @cached_property
+    def send_carousel(self) -> send_carousel.SendCarouselResourceWithRawResponse:
+        """Operations for sending and managing messages"""
+        from .resources.send_carousel import SendCarouselResourceWithRawResponse
+
+        return SendCarouselResourceWithRawResponse(self._client.send_carousel)
+
 
 class AsyncSendblueAPIWithRawResponse:
     _client: AsyncSendblueAPI
@@ -642,6 +673,13 @@ class AsyncSendblueAPIWithRawResponse:
         from .resources.webhooks import AsyncWebhooksResourceWithRawResponse
 
         return AsyncWebhooksResourceWithRawResponse(self._client.webhooks)
+
+    @cached_property
+    def send_carousel(self) -> send_carousel.AsyncSendCarouselResourceWithRawResponse:
+        """Operations for sending and managing messages"""
+        from .resources.send_carousel import AsyncSendCarouselResourceWithRawResponse
+
+        return AsyncSendCarouselResourceWithRawResponse(self._client.send_carousel)
 
 
 class SendblueAPIWithStreamedResponse:
@@ -699,6 +737,13 @@ class SendblueAPIWithStreamedResponse:
 
         return WebhooksResourceWithStreamingResponse(self._client.webhooks)
 
+    @cached_property
+    def send_carousel(self) -> send_carousel.SendCarouselResourceWithStreamingResponse:
+        """Operations for sending and managing messages"""
+        from .resources.send_carousel import SendCarouselResourceWithStreamingResponse
+
+        return SendCarouselResourceWithStreamingResponse(self._client.send_carousel)
+
 
 class AsyncSendblueAPIWithStreamedResponse:
     _client: AsyncSendblueAPI
@@ -754,6 +799,13 @@ class AsyncSendblueAPIWithStreamedResponse:
         from .resources.webhooks import AsyncWebhooksResourceWithStreamingResponse
 
         return AsyncWebhooksResourceWithStreamingResponse(self._client.webhooks)
+
+    @cached_property
+    def send_carousel(self) -> send_carousel.AsyncSendCarouselResourceWithStreamingResponse:
+        """Operations for sending and managing messages"""
+        from .resources.send_carousel import AsyncSendCarouselResourceWithStreamingResponse
+
+        return AsyncSendCarouselResourceWithStreamingResponse(self._client.send_carousel)
 
 
 Client = SendblueAPI
