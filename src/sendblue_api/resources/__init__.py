@@ -48,6 +48,14 @@ from .media_objects import (
     MediaObjectsResourceWithStreamingResponse,
     AsyncMediaObjectsResourceWithStreamingResponse,
 )
+from .send_carousel import (
+    SendCarouselResource,
+    AsyncSendCarouselResource,
+    SendCarouselResourceWithRawResponse,
+    AsyncSendCarouselResourceWithRawResponse,
+    SendCarouselResourceWithStreamingResponse,
+    AsyncSendCarouselResourceWithStreamingResponse,
+)
 from .typing_indicators import (
     TypingIndicatorsResource,
     AsyncTypingIndicatorsResource,
@@ -100,4 +108,10 @@ __all__ = [
     "AsyncWebhooksResourceWithRawResponse",
     "WebhooksResourceWithStreamingResponse",
     "AsyncWebhooksResourceWithStreamingResponse",
+    "SendCarouselResource",
+    "AsyncSendCarouselResource",
+    "SendCarouselResourceWithRawResponse",
+    "AsyncSendCarouselResourceWithRawResponse",
+    "SendCarouselResourceWithStreamingResponse",
+    "AsyncSendCarouselResourceWithStreamingResponse",
 ]

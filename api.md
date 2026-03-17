@@ -127,3 +127,15 @@ Methods:
 - <code title="put /api/account/webhooks">client.webhooks.<a href="./src/sendblue_api/resources/webhooks.py">update</a>(\*\*<a href="src/sendblue_api/types/webhook_update_params.py">params</a>) -> <a href="./src/sendblue_api/types/webhook_update_response.py">WebhookUpdateResponse</a></code>
 - <code title="get /api/account/webhooks">client.webhooks.<a href="./src/sendblue_api/resources/webhooks.py">list</a>() -> <a href="./src/sendblue_api/types/webhook_list_response.py">WebhookListResponse</a></code>
 - <code title="delete /api/account/webhooks">client.webhooks.<a href="./src/sendblue_api/resources/webhooks.py">delete</a>(\*\*<a href="src/sendblue_api/types/webhook_delete_params.py">params</a>) -> <a href="./src/sendblue_api/types/webhook_delete_response.py">WebhookDeleteResponse</a></code>
+
+# SendCarousel
+
+Types:
+
+```python
+from sendblue_api.types import SendCarouselSendResponse
+```
+
+Methods:
+
+- <code title="post /api/send-carousel">client.send_carousel.<a href="./src/sendblue_api/resources/send_carousel.py">send</a>(\*\*<a href="src/sendblue_api/types/send_carousel_send_params.py">params</a>) -> <a href="./src/sendblue_api/types/send_carousel_send_response.py">SendCarouselSendResponse</a></code>
