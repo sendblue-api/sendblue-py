@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.3 (2026-03-17)
+
+Full Changelog: [v1.4.2...v1.4.3](https://github.com/sendblue-api/sendblue-py/compare/v1.4.2...v1.4.3)
+
+### Bug Fixes
+
+* **deps:** bump minimum typing-extensions version ([9b188d9](https://github.com/sendblue-api/sendblue-py/commit/9b188d97d558eca00ddd1b3dccdac78484594232))
+
 ## 1.4.2 (2026-03-17)
 
 Full Changelog: [v1.4.1...v1.4.2](https://github.com/sendblue-api/sendblue-py/compare/v1.4.1...v1.4.2)
