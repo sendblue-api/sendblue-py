@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.4.2 (2026-03-17)
+
+Full Changelog: [v1.4.1...v1.4.2](https://github.com/sendblue-api/sendblue-py/compare/v1.4.1...v1.4.2)
+
+### Bug Fixes
+
+* **pydantic:** do not pass `by_alias` unless set ([a12943b](https://github.com/sendblue-api/sendblue-py/commit/a12943b58b9d4ebcff0ac603fd2552b78984c8e7))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([48170d0](https://github.com/sendblue-api/sendblue-py/commit/48170d03f7505638f8178b55be33dfe138f19fd6))
+
 ## 1.4.1 (2026-03-04)
 
 Full Changelog: [v1.4.0...v1.4.1](https://github.com/sendblue-api/sendblue-py/compare/v1.4.0...v1.4.1)
