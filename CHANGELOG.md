@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.5.0 (2026-03-17)
+
+Full Changelog: [v1.4.3...v1.5.0](https://github.com/sendblue-api/sendblue-py/compare/v1.4.3...v1.5.0)
+
+### Features
+
+* Update openapi.yaml ([05e178c](https://github.com/sendblue-api/sendblue-py/commit/05e178c02683941958c49d258408f57ce1d34e26))
+
+
+### Chores
+
+* **internal:** tweak CI branches ([52800cd](https://github.com/sendblue-api/sendblue-py/commit/52800cdf7dba7185c1e80643affe816a55114583))
+
 ## 1.4.3 (2026-03-17)
 
 Full Changelog: [v1.4.2...v1.4.3](https://github.com/sendblue-api/sendblue-py/compare/v1.4.2...v1.4.3)
