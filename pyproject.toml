@@ -1,6 +1,6 @@
 [project]
 name = "sendblue"
-version = "1.4.2"
+version = "1.4.3"
 description = "The official Python library for the sendblue-api API"
 dynamic = ["readme"]
 license = "Apache-2.0"
