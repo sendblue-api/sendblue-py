@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.1 (2026-03-20)
+
+Full Changelog: [v1.5.0...v1.5.1](https://github.com/sendblue-api/sendblue-py/compare/v1.5.0...v1.5.1)
+
+### Bug Fixes
+
+* sanitize endpoint path params ([bb72392](https://github.com/sendblue-api/sendblue-py/commit/bb72392d131679d50db43c23f8562fe8958da130))
+
 ## 1.5.0 (2026-03-17)
 
 Full Changelog: [v1.4.3...v1.5.0](https://github.com/sendblue-api/sendblue-py/compare/v1.4.3...v1.5.0)
