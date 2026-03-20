@@ -17,7 +17,7 @@ from .bulk import (
 )
 from ...types import contact_list_params, contact_create_params, contact_update_params, contact_verify_params
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -183,7 +183,7 @@ class ContactsResource(SyncAPIResource):
         if not phone_number:
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         return self._get(
-            f"/api/v2/contacts/{phone_number}",
+            path_template("/api/v2/contacts/{phone_number}", phone_number=phone_number),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -250,7 +250,7 @@ class ContactsResource(SyncAPIResource):
         if not phone_number:
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         return self._put(
-            f"/api/v2/contacts/{phone_number}",
+            path_template("/api/v2/contacts/{phone_number}", phone_number=phone_number),
             body=maybe_transform(
                 {
                     "body_assigned_to_email_1": body_assigned_to_email_1,
@@ -362,7 +362,7 @@ class ContactsResource(SyncAPIResource):
         if not phone_number:
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         return self._delete(
-            f"/api/v2/contacts/{phone_number}",
+            path_template("/api/v2/contacts/{phone_number}", phone_number=phone_number),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -568,7 +568,7 @@ class AsyncContactsResource(AsyncAPIResource):
         if not phone_number:
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         return await self._get(
-            f"/api/v2/contacts/{phone_number}",
+            path_template("/api/v2/contacts/{phone_number}", phone_number=phone_number),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -635,7 +635,7 @@ class AsyncContactsResource(AsyncAPIResource):
         if not phone_number:
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         return await self._put(
-            f"/api/v2/contacts/{phone_number}",
+            path_template("/api/v2/contacts/{phone_number}", phone_number=phone_number),
             body=await async_maybe_transform(
                 {
                     "body_assigned_to_email_1": body_assigned_to_email_1,
@@ -747,7 +747,7 @@ class AsyncContactsResource(AsyncAPIResource):
         if not phone_number:
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         return await self._delete(
-            f"/api/v2/contacts/{phone_number}",
+            path_template("/api/v2/contacts/{phone_number}", phone_number=phone_number),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
