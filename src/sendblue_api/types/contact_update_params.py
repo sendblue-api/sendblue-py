@@ -39,6 +39,15 @@ class ContactUpdateParams(TypedDict, total=False):
     body_last_name_2: Annotated[str, PropertyInfo(alias="lastName")]
     """Deprecated, use last_name"""
 
+    body_opt_out_1: Annotated[bool, PropertyInfo(alias="opt_out")]
+    """
+    Whether the contact has opted out of SMS (updates the same recipient record used
+    for inbound keyword opt-outs)
+    """
+
+    body_opt_out_2: Annotated[bool, PropertyInfo(alias="optOut")]
+    """Deprecated, use opt_out"""
+
     body_sendblue_number_1: Annotated[str, PropertyInfo(alias="sendblue_number")]
     """Associated Sendblue phone number (preferred)"""
 

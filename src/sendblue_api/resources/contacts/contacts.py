@@ -210,6 +210,8 @@ class ContactsResource(SyncAPIResource):
         body_first_name_2: str | Omit = omit,
         body_last_name_1: str | Omit = omit,
         body_last_name_2: str | Omit = omit,
+        body_opt_out_1: bool | Omit = omit,
+        body_opt_out_2: bool | Omit = omit,
         body_sendblue_number_1: str | Omit = omit,
         body_sendblue_number_2: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
@@ -220,8 +222,10 @@ class ContactsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactUpdateResponse:
-        """
-        Update an existing contact
+        """Update an existing contact.
+
+        You may set SMS opt-out with `opt_out` (boolean); it
+        updates the same recipient record used for inbound keyword opt-outs.
 
         Args:
           body_assigned_to_email_1: Email of assigned user (preferred)
@@ -241,6 +245,11 @@ class ContactsResource(SyncAPIResource):
           body_last_name_1: Contact's last name (preferred)
 
           body_last_name_2: Deprecated, use last_name
+
+          body_opt_out_1: Whether the contact has opted out of SMS (updates the same recipient record used
+              for inbound keyword opt-outs)
+
+          body_opt_out_2: Deprecated, use opt_out
 
           body_sendblue_number_1: Associated Sendblue phone number (preferred)
 
@@ -269,6 +278,8 @@ class ContactsResource(SyncAPIResource):
                     "body_first_name_2": body_first_name_2,
                     "body_last_name_1": body_last_name_1,
                     "body_last_name_2": body_last_name_2,
+                    "body_opt_out_1": body_opt_out_1,
+                    "body_opt_out_2": body_opt_out_2,
                     "body_sendblue_number_1": body_sendblue_number_1,
                     "body_sendblue_number_2": body_sendblue_number_2,
                     "tags": tags,
@@ -642,6 +653,8 @@ class AsyncContactsResource(AsyncAPIResource):
         body_first_name_2: str | Omit = omit,
         body_last_name_1: str | Omit = omit,
         body_last_name_2: str | Omit = omit,
+        body_opt_out_1: bool | Omit = omit,
+        body_opt_out_2: bool | Omit = omit,
         body_sendblue_number_1: str | Omit = omit,
         body_sendblue_number_2: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
@@ -652,8 +665,10 @@ class AsyncContactsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactUpdateResponse:
-        """
-        Update an existing contact
+        """Update an existing contact.
+
+        You may set SMS opt-out with `opt_out` (boolean); it
+        updates the same recipient record used for inbound keyword opt-outs.
 
         Args:
           body_assigned_to_email_1: Email of assigned user (preferred)
@@ -673,6 +688,11 @@ class AsyncContactsResource(AsyncAPIResource):
           body_last_name_1: Contact's last name (preferred)
 
           body_last_name_2: Deprecated, use last_name
+
+          body_opt_out_1: Whether the contact has opted out of SMS (updates the same recipient record used
+              for inbound keyword opt-outs)
+
+          body_opt_out_2: Deprecated, use opt_out
 
           body_sendblue_number_1: Associated Sendblue phone number (preferred)
 
@@ -701,6 +721,8 @@ class AsyncContactsResource(AsyncAPIResource):
                     "body_first_name_2": body_first_name_2,
                     "body_last_name_1": body_last_name_1,
                     "body_last_name_2": body_last_name_2,
+                    "body_opt_out_1": body_opt_out_1,
+                    "body_opt_out_2": body_opt_out_2,
                     "body_sendblue_number_1": body_sendblue_number_1,
                     "body_sendblue_number_2": body_sendblue_number_2,
                     "tags": tags,

@@ -27,6 +27,9 @@ class Contact(BaseModel):
     last_name: Optional[str] = None
     """Last name"""
 
+    opt_out: Optional[bool] = None
+    """Whether the contact has opted out of SMS (from recipient opt-out state)"""
+
     phone: Optional[str] = None
     """Phone number in E.164 format"""
 
