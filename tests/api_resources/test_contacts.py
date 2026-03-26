@@ -14,6 +14,7 @@ from sendblue_api.types import (
     ContactCountResponse,
     ContactCreateResponse,
     ContactDeleteResponse,
+    ContactOptOutResponse,
     ContactUpdateResponse,
     ContactVerifyResponse,
     ContactRetrieveResponse,
@@ -292,6 +293,49 @@ class TestContacts:
 
             contact = response.parse()
             assert_matches_type(ContactCountResponse, contact, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_opt_out(self, client: SendblueAPI) -> None:
+        contact = client.contacts.opt_out(
+            number="+14155551234",
+        )
+        assert_matches_type(ContactOptOutResponse, contact, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_opt_out_with_all_params(self, client: SendblueAPI) -> None:
+        contact = client.contacts.opt_out(
+            number="+14155551234",
+            opted_out=True,
+        )
+        assert_matches_type(ContactOptOutResponse, contact, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_opt_out(self, client: SendblueAPI) -> None:
+        response = client.contacts.with_raw_response.opt_out(
+            number="+14155551234",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        contact = response.parse()
+        assert_matches_type(ContactOptOutResponse, contact, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_opt_out(self, client: SendblueAPI) -> None:
+        with client.contacts.with_streaming_response.opt_out(
+            number="+14155551234",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            contact = response.parse()
+            assert_matches_type(ContactOptOutResponse, contact, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -602,6 +646,49 @@ class TestAsyncContacts:
 
             contact = await response.parse()
             assert_matches_type(ContactCountResponse, contact, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_opt_out(self, async_client: AsyncSendblueAPI) -> None:
+        contact = await async_client.contacts.opt_out(
+            number="+14155551234",
+        )
+        assert_matches_type(ContactOptOutResponse, contact, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_opt_out_with_all_params(self, async_client: AsyncSendblueAPI) -> None:
+        contact = await async_client.contacts.opt_out(
+            number="+14155551234",
+            opted_out=True,
+        )
+        assert_matches_type(ContactOptOutResponse, contact, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_opt_out(self, async_client: AsyncSendblueAPI) -> None:
+        response = await async_client.contacts.with_raw_response.opt_out(
+            number="+14155551234",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        contact = await response.parse()
+        assert_matches_type(ContactOptOutResponse, contact, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_opt_out(self, async_client: AsyncSendblueAPI) -> None:
+        async with async_client.contacts.with_streaming_response.opt_out(
+            number="+14155551234",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            contact = await response.parse()
+            assert_matches_type(ContactOptOutResponse, contact, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

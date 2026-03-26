@@ -20,6 +20,7 @@ from .webhook_delete_params import WebhookDeleteParams as WebhookDeleteParams
 from .webhook_list_response import WebhookListResponse as WebhookListResponse
 from .webhook_update_params import WebhookUpdateParams as WebhookUpdateParams
 from .contact_count_response import ContactCountResponse as ContactCountResponse
+from .contact_opt_out_params import ContactOptOutParams as ContactOptOutParams
 from .contact_create_response import ContactCreateResponse as ContactCreateResponse
 from .contact_delete_response import ContactDeleteResponse as ContactDeleteResponse
 from .contact_update_response import ContactUpdateResponse as ContactUpdateResponse
@@ -27,6 +28,7 @@ from .contact_verify_response import ContactVerifyResponse as ContactVerifyRespo
 from .webhook_create_response import WebhookCreateResponse as WebhookCreateResponse
 from .webhook_delete_response import WebhookDeleteResponse as WebhookDeleteResponse
 from .webhook_update_response import WebhookUpdateResponse as WebhookUpdateResponse
+from .contact_opt_out_response import ContactOptOutResponse as ContactOptOutResponse
 from .contact_retrieve_response import ContactRetrieveResponse as ContactRetrieveResponse
 from .group_send_message_params import GroupSendMessageParams as GroupSendMessageParams
 from .message_get_status_params import MessageGetStatusParams as MessageGetStatusParams
