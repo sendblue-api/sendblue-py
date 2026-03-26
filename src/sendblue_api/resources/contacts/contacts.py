@@ -15,7 +15,13 @@ from .bulk import (
     BulkResourceWithStreamingResponse,
     AsyncBulkResourceWithStreamingResponse,
 )
-from ...types import contact_list_params, contact_create_params, contact_update_params, contact_verify_params
+from ...types import (
+    contact_list_params,
+    contact_create_params,
+    contact_update_params,
+    contact_verify_params,
+    contact_opt_out_params,
+)
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
@@ -33,6 +39,7 @@ from ...types.contact_create_response import ContactCreateResponse
 from ...types.contact_delete_response import ContactDeleteResponse
 from ...types.contact_update_response import ContactUpdateResponse
 from ...types.contact_verify_response import ContactVerifyResponse
+from ...types.contact_opt_out_response import ContactOptOutResponse
 from ...types.contact_retrieve_response import ContactRetrieveResponse
 
 __all__ = ["ContactsResource", "AsyncContactsResource"]
@@ -386,6 +393,53 @@ class ContactsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ContactCountResponse,
+        )
+
+    def opt_out(
+        self,
+        *,
+        number: str,
+        opted_out: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ContactOptOutResponse:
+        """Opt a contact out (or back in) from receiving messages.
+
+        When a recipient is
+        opted out, outbound messages to that number will be blocked.
+
+        Pass `opted_out: false` to opt a contact back in.
+
+        Args:
+          number: Phone number in E.164 format
+
+          opted_out: Set to false to opt the contact back in (defaults to true)
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/api/v2/contacts/opt-out",
+            body=maybe_transform(
+                {
+                    "number": number,
+                    "opted_out": opted_out,
+                },
+                contact_opt_out_params.ContactOptOutParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ContactOptOutResponse,
         )
 
     def verify(
@@ -773,6 +827,53 @@ class AsyncContactsResource(AsyncAPIResource):
             cast_to=ContactCountResponse,
         )
 
+    async def opt_out(
+        self,
+        *,
+        number: str,
+        opted_out: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ContactOptOutResponse:
+        """Opt a contact out (or back in) from receiving messages.
+
+        When a recipient is
+        opted out, outbound messages to that number will be blocked.
+
+        Pass `opted_out: false` to opt a contact back in.
+
+        Args:
+          number: Phone number in E.164 format
+
+          opted_out: Set to false to opt the contact back in (defaults to true)
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/api/v2/contacts/opt-out",
+            body=await async_maybe_transform(
+                {
+                    "number": number,
+                    "opted_out": opted_out,
+                },
+                contact_opt_out_params.ContactOptOutParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ContactOptOutResponse,
+        )
+
     async def verify(
         self,
         *,
@@ -830,6 +931,9 @@ class ContactsResourceWithRawResponse:
         self.count = to_raw_response_wrapper(
             contacts.count,
         )
+        self.opt_out = to_raw_response_wrapper(
+            contacts.opt_out,
+        )
         self.verify = to_raw_response_wrapper(
             contacts.verify,
         )
@@ -861,6 +965,9 @@ class AsyncContactsResourceWithRawResponse:
         )
         self.count = async_to_raw_response_wrapper(
             contacts.count,
+        )
+        self.opt_out = async_to_raw_response_wrapper(
+            contacts.opt_out,
         )
         self.verify = async_to_raw_response_wrapper(
             contacts.verify,
@@ -894,6 +1001,9 @@ class ContactsResourceWithStreamingResponse:
         self.count = to_streamed_response_wrapper(
             contacts.count,
         )
+        self.opt_out = to_streamed_response_wrapper(
+            contacts.opt_out,
+        )
         self.verify = to_streamed_response_wrapper(
             contacts.verify,
         )
@@ -925,6 +1035,9 @@ class AsyncContactsResourceWithStreamingResponse:
         )
         self.count = async_to_streamed_response_wrapper(
             contacts.count,
+        )
+        self.opt_out = async_to_streamed_response_wrapper(
+            contacts.opt_out,
         )
         self.verify = async_to_streamed_response_wrapper(
             contacts.verify,
