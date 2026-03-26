@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.7.0 (2026-03-26)
+
+Full Changelog: [v1.6.0...v1.7.0](https://github.com/sendblue-api/sendblue-py/compare/v1.6.0...v1.7.0)
+
+### Features
+
+* Enhance contact update functionality to support SMS opt-out feature ([b3119d0](https://github.com/sendblue-api/sendblue-py/commit/b3119d0588309220f3dc94441e4c906b43828e7f))
+
 ## 1.6.0 (2026-03-26)
 
 Full Changelog: [v1.5.1...v1.6.0](https://github.com/sendblue-api/sendblue-py/compare/v1.5.1...v1.6.0)
