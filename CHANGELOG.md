@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.6.0 (2026-03-26)
+
+Full Changelog: [v1.5.1...v1.6.0](https://github.com/sendblue-api/sendblue-py/compare/v1.5.1...v1.6.0)
+
+### Features
+
+* add contacts opt-out endpoint ([6aa64a0](https://github.com/sendblue-api/sendblue-py/commit/6aa64a0c6c16d80dee9a767bab4ad6d792706c1b))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([798d4d3](https://github.com/sendblue-api/sendblue-py/commit/798d4d3c5e0bebf27ea432f31f7684f609be413c))
+* **internal:** update gitignore ([6ba84b5](https://github.com/sendblue-api/sendblue-py/commit/6ba84b5514e71ddf3d70bac60fb66107e8d993df))
+
 ## 1.5.1 (2026-03-20)
 
 Full Changelog: [v1.5.0...v1.5.1](https://github.com/sendblue-api/sendblue-py/compare/v1.5.0...v1.5.1)
