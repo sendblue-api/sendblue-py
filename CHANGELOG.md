@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.8.0 (2026-03-27)
+
+Full Changelog: [v1.7.0...v1.8.0](https://github.com/sendblue-api/sendblue-py/compare/v1.7.0...v1.8.0)
+
+### Features
+
+* **internal:** implement indices array format for query and form serialization ([2bec318](https://github.com/sendblue-api/sendblue-py/commit/2bec3185827f07e77f01285d4c9a3e4b0f29bc3e))
+
 ## 1.7.0 (2026-03-26)
 
 Full Changelog: [v1.6.0...v1.7.0](https://github.com/sendblue-api/sendblue-py/compare/v1.6.0...v1.7.0)
