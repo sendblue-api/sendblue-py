@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.8.1 (2026-04-08)
+
+Full Changelog: [v1.8.0...v1.8.1](https://github.com/sendblue-api/sendblue-py/compare/v1.8.0...v1.8.1)
+
+### Bug Fixes
+
+* **client:** preserve hardcoded query params when merging with user params ([1d99eb1](https://github.com/sendblue-api/sendblue-py/commit/1d99eb167621b6a18ce321d5257e99c14de03fa8))
+
 ## 1.8.0 (2026-03-27)
 
 Full Changelog: [v1.7.0...v1.8.0](https://github.com/sendblue-api/sendblue-py/compare/v1.7.0...v1.8.0)
