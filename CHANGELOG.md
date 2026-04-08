@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.9.0 (2026-04-08)
+
+Full Changelog: [v1.8.1...v1.9.0](https://github.com/sendblue-api/sendblue-py/compare/v1.8.1...v1.9.0)
+
+### Features
+
+* TOTP authenticator API for agent identity toolkit ([87e1b51](https://github.com/sendblue-api/sendblue-py/commit/87e1b519f2efa64da6587e2eba2961fe8863dab9))
+
 ## 1.8.1 (2026-04-08)
 
 Full Changelog: [v1.8.0...v1.8.1](https://github.com/sendblue-api/sendblue-py/compare/v1.8.0...v1.8.1)
