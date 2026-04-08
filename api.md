@@ -141,3 +141,35 @@ from sendblue_api.types import SendCarouselSendResponse
 Methods:
 
 - <code title="post /api/send-carousel">client.send_carousel.<a href="./src/sendblue_api/resources/send_carousel.py">send</a>(\*\*<a href="src/sendblue_api/types/send_carousel_send_params.py">params</a>) -> <a href="./src/sendblue_api/types/send_carousel_send_response.py">SendCarouselSendResponse</a></code>
+
+# V2
+
+## Totp
+
+Types:
+
+```python
+from sendblue_api.types.v2 import TotpGetCodeResponse
+```
+
+Methods:
+
+- <code title="get /api/v2/totp/code/{secret_id}">client.v2.totp.<a href="./src/sendblue_api/resources/v2/totp/totp.py">get_code</a>(secret_id) -> <a href="./src/sendblue_api/types/v2/totp_get_code_response.py">TotpGetCodeResponse</a></code>
+
+### Secrets
+
+Types:
+
+```python
+from sendblue_api.types.v2.totp import (
+    SecretCreateResponse,
+    SecretListResponse,
+    SecretDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /api/v2/totp/secrets">client.v2.totp.secrets.<a href="./src/sendblue_api/resources/v2/totp/secrets.py">create</a>(\*\*<a href="src/sendblue_api/types/v2/totp/secret_create_params.py">params</a>) -> <a href="./src/sendblue_api/types/v2/totp/secret_create_response.py">SecretCreateResponse</a></code>
+- <code title="get /api/v2/totp/secrets">client.v2.totp.secrets.<a href="./src/sendblue_api/resources/v2/totp/secrets.py">list</a>() -> <a href="./src/sendblue_api/types/v2/totp/secret_list_response.py">SecretListResponse</a></code>
+- <code title="delete /api/v2/totp/secrets/{secret_id}">client.v2.totp.secrets.<a href="./src/sendblue_api/resources/v2/totp/secrets.py">delete</a>(secret_id) -> <a href="./src/sendblue_api/types/v2/totp/secret_delete_response.py">SecretDeleteResponse</a></code>
