@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.9.1 (2026-04-11)
+
+Full Changelog: [v1.9.0...v1.9.1](https://github.com/sendblue-api/sendblue-py/compare/v1.9.0...v1.9.1)
+
+### Bug Fixes
+
+* ensure file data are only sent as 1 parameter ([ff24831](https://github.com/sendblue-api/sendblue-py/commit/ff248317421d475938735f1539b3409cdd989f6c))
+
 ## 1.9.0 (2026-04-08)
 
 Full Changelog: [v1.8.1...v1.9.0](https://github.com/sendblue-api/sendblue-py/compare/v1.8.1...v1.9.0)
