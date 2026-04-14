@@ -33,6 +33,7 @@ from ._base_client import (
 if TYPE_CHECKING:
     from .resources import (
         v2,
+        lines,
         groups,
         lookups,
         contacts,
@@ -47,6 +48,7 @@ if TYPE_CHECKING:
     from .resources.lookups import LookupsResource, AsyncLookupsResource
     from .resources.messages import MessagesResource, AsyncMessagesResource
     from .resources.webhooks import WebhooksResource, AsyncWebhooksResource
+    from .resources.lines.lines import LinesResource, AsyncLinesResource
     from .resources.media_objects import MediaObjectsResource, AsyncMediaObjectsResource
     from .resources.send_carousel import SendCarouselResource, AsyncSendCarouselResource
     from .resources.contacts.contacts import ContactsResource, AsyncContactsResource
@@ -192,6 +194,12 @@ class SendblueAPI(SyncAPIClient):
         from .resources.v2 import V2Resource
 
         return V2Resource(self)
+
+    @cached_property
+    def lines(self) -> LinesResource:
+        from .resources.lines import LinesResource
+
+        return LinesResource(self)
 
     @cached_property
     def with_raw_response(self) -> SendblueAPIWithRawResponse:
@@ -447,6 +455,12 @@ class AsyncSendblueAPI(AsyncAPIClient):
         return AsyncV2Resource(self)
 
     @cached_property
+    def lines(self) -> AsyncLinesResource:
+        from .resources.lines import AsyncLinesResource
+
+        return AsyncLinesResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncSendblueAPIWithRawResponse:
         return AsyncSendblueAPIWithRawResponse(self)
 
@@ -638,6 +652,12 @@ class SendblueAPIWithRawResponse:
 
         return V2ResourceWithRawResponse(self._client.v2)
 
+    @cached_property
+    def lines(self) -> lines.LinesResourceWithRawResponse:
+        from .resources.lines import LinesResourceWithRawResponse
+
+        return LinesResourceWithRawResponse(self._client.lines)
+
 
 class AsyncSendblueAPIWithRawResponse:
     _client: AsyncSendblueAPI
@@ -706,6 +726,12 @@ class AsyncSendblueAPIWithRawResponse:
         from .resources.v2 import AsyncV2ResourceWithRawResponse
 
         return AsyncV2ResourceWithRawResponse(self._client.v2)
+
+    @cached_property
+    def lines(self) -> lines.AsyncLinesResourceWithRawResponse:
+        from .resources.lines import AsyncLinesResourceWithRawResponse
+
+        return AsyncLinesResourceWithRawResponse(self._client.lines)
 
 
 class SendblueAPIWithStreamedResponse:
@@ -776,6 +802,12 @@ class SendblueAPIWithStreamedResponse:
 
         return V2ResourceWithStreamingResponse(self._client.v2)
 
+    @cached_property
+    def lines(self) -> lines.LinesResourceWithStreamingResponse:
+        from .resources.lines import LinesResourceWithStreamingResponse
+
+        return LinesResourceWithStreamingResponse(self._client.lines)
+
 
 class AsyncSendblueAPIWithStreamedResponse:
     _client: AsyncSendblueAPI
@@ -844,6 +876,12 @@ class AsyncSendblueAPIWithStreamedResponse:
         from .resources.v2 import AsyncV2ResourceWithStreamingResponse
 
         return AsyncV2ResourceWithStreamingResponse(self._client.v2)
+
+    @cached_property
+    def lines(self) -> lines.AsyncLinesResourceWithStreamingResponse:
+        from .resources.lines import AsyncLinesResourceWithStreamingResponse
+
+        return AsyncLinesResourceWithStreamingResponse(self._client.lines)
 
 
 Client = SendblueAPI
