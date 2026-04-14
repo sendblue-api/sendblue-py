@@ -8,6 +8,14 @@ from .v2 import (
     V2ResourceWithStreamingResponse,
     AsyncV2ResourceWithStreamingResponse,
 )
+from .lines import (
+    LinesResource,
+    AsyncLinesResource,
+    LinesResourceWithRawResponse,
+    AsyncLinesResourceWithRawResponse,
+    LinesResourceWithStreamingResponse,
+    AsyncLinesResourceWithStreamingResponse,
+)
 from .groups import (
     GroupsResource,
     AsyncGroupsResource,
@@ -128,4 +136,10 @@ __all__ = [
     "AsyncV2ResourceWithRawResponse",
     "V2ResourceWithStreamingResponse",
     "AsyncV2ResourceWithStreamingResponse",
+    "LinesResource",
+    "AsyncLinesResource",
+    "LinesResourceWithRawResponse",
+    "AsyncLinesResourceWithRawResponse",
+    "LinesResourceWithStreamingResponse",
+    "AsyncLinesResourceWithStreamingResponse",
 ]
