@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.10.0 (2026-04-14)
+
+Full Changelog: [v1.9.1...v1.10.0](https://github.com/sendblue-api/sendblue-py/compare/v1.9.1...v1.10.0)
+
+### Features
+
+* add per-line call forwarding API ([44f6c43](https://github.com/sendblue-api/sendblue-py/commit/44f6c435a316aa4edaa6dee896ac6cfd27e9655e))
+
 ## 1.9.1 (2026-04-11)
 
 Full Changelog: [v1.9.0...v1.9.1](https://github.com/sendblue-api/sendblue-py/compare/v1.9.0...v1.9.1)
