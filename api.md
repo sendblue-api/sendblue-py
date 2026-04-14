@@ -173,3 +173,23 @@ Methods:
 - <code title="post /api/v2/totp/secrets">client.v2.totp.secrets.<a href="./src/sendblue_api/resources/v2/totp/secrets.py">create</a>(\*\*<a href="src/sendblue_api/types/v2/totp/secret_create_params.py">params</a>) -> <a href="./src/sendblue_api/types/v2/totp/secret_create_response.py">SecretCreateResponse</a></code>
 - <code title="get /api/v2/totp/secrets">client.v2.totp.secrets.<a href="./src/sendblue_api/resources/v2/totp/secrets.py">list</a>() -> <a href="./src/sendblue_api/types/v2/totp/secret_list_response.py">SecretListResponse</a></code>
 - <code title="delete /api/v2/totp/secrets/{secret_id}">client.v2.totp.secrets.<a href="./src/sendblue_api/resources/v2/totp/secrets.py">delete</a>(secret_id) -> <a href="./src/sendblue_api/types/v2/totp/secret_delete_response.py">SecretDeleteResponse</a></code>
+
+# Lines
+
+## CallForwarding
+
+Types:
+
+```python
+from sendblue_api.types.lines import (
+    CallForwardingRetrieveResponse,
+    CallForwardingUpdateResponse,
+    CallForwardingDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="get /api/lines/{sendblue_number}/call-forwarding">client.lines.call_forwarding.<a href="./src/sendblue_api/resources/lines/call_forwarding.py">retrieve</a>(sendblue_number) -> <a href="./src/sendblue_api/types/lines/call_forwarding_retrieve_response.py">CallForwardingRetrieveResponse</a></code>
+- <code title="put /api/lines/{sendblue_number}/call-forwarding">client.lines.call_forwarding.<a href="./src/sendblue_api/resources/lines/call_forwarding.py">update</a>(sendblue_number, \*\*<a href="src/sendblue_api/types/lines/call_forwarding_update_params.py">params</a>) -> <a href="./src/sendblue_api/types/lines/call_forwarding_update_response.py">CallForwardingUpdateResponse</a></code>
+- <code title="delete /api/lines/{sendblue_number}/call-forwarding">client.lines.call_forwarding.<a href="./src/sendblue_api/resources/lines/call_forwarding.py">delete</a>(sendblue_number) -> <a href="./src/sendblue_api/types/lines/call_forwarding_delete_response.py">CallForwardingDeleteResponse</a></code>
