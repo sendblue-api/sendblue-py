@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.10.1 (2026-04-18)
+
+Full Changelog: [v1.10.0...v1.10.1](https://github.com/sendblue-api/sendblue-py/compare/v1.10.0...v1.10.1)
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([28a5d40](https://github.com/sendblue-api/sendblue-py/commit/28a5d4056cf47e2cb4a0d0473bc49914878205f4))
+
 ## 1.10.0 (2026-04-14)
 
 Full Changelog: [v1.9.1...v1.10.0](https://github.com/sendblue-api/sendblue-py/compare/v1.9.1...v1.10.0)
