@@ -1,5 +1,28 @@
 # Changelog
 
+## 1.11.0 (2026-04-28)
+
+Full Changelog: [v1.10.0...v1.11.0](https://github.com/sendblue-api/sendblue-py/compare/v1.10.0...v1.11.0)
+
+### Features
+
+* support setting headers via env ([22a4395](https://github.com/sendblue-api/sendblue-py/commit/22a43955cad1fa85250bba17b8a903069b67d75e))
+
+
+### Bug Fixes
+
+* use correct field name format for multipart file arrays ([63b2742](https://github.com/sendblue-api/sendblue-py/commit/63b274297d207e966590a999ee0dd0a73a754dba))
+
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([28a5d40](https://github.com/sendblue-api/sendblue-py/commit/28a5d4056cf47e2cb4a0d0473bc49914878205f4))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([f45cecd](https://github.com/sendblue-api/sendblue-py/commit/f45cecd49e6540983275d74d2b1aaadf3ca065b1))
+
 ## 1.10.0 (2026-04-14)
 
 Full Changelog: [v1.9.1...v1.10.0](https://github.com/sendblue-api/sendblue-py/compare/v1.9.1...v1.10.0)
