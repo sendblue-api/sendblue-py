@@ -314,9 +314,9 @@ class ContactsResource(SyncAPIResource):
         Args:
           cid: Filter by contact ID
 
-          limit: Maximum number of contacts to return
+          limit: Maximum number of contacts to return. Defaults to 100, capped at 1000.
 
-          offset: Number of contacts to skip
+          offset: Number of contacts to skip. Capped at 10000.
 
           order_by: Field to sort by
 
@@ -757,9 +757,9 @@ class AsyncContactsResource(AsyncAPIResource):
         Args:
           cid: Filter by contact ID
 
-          limit: Maximum number of contacts to return
+          limit: Maximum number of contacts to return. Defaults to 100, capped at 1000.
 
-          offset: Number of contacts to skip
+          offset: Number of contacts to skip. Capped at 10000.
 
           order_by: Field to sort by
 

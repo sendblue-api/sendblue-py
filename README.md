@@ -47,7 +47,7 @@ message_response = client.messages.send(
     from_number="REPLACE_ME",
     number="REPLACE_ME",
 )
-print(message_response.account_email)
+print(message_response.seat_id)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -76,7 +76,7 @@ async def main() -> None:
         from_number="REPLACE_ME",
         number="REPLACE_ME",
     )
-    print(message_response.account_email)
+    print(message_response.seat_id)
 
 
 asyncio.run(main())
@@ -117,7 +117,7 @@ async def main() -> None:
             from_number="REPLACE_ME",
             number="REPLACE_ME",
         )
-        print(message_response.account_email)
+        print(message_response.seat_id)
 
 
 asyncio.run(main())
@@ -290,7 +290,7 @@ response = client.messages.with_raw_response.send(
 print(response.headers.get('X-My-Header'))
 
 message = response.parse()  # get the object that `messages.send()` would have returned
-print(message.account_email)
+print(message.seat_id)
 ```
 
 These methods return an [`APIResponse`](https://github.com/sendblue-api/sendblue-py/tree/main/src/sendblue_api/_response.py) object.

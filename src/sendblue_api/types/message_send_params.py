@@ -24,6 +24,15 @@ class MessageSendParams(TypedDict, total=False):
     media_url: str
     """URL of media file to send (images, videos, etc.)"""
 
+    seat_id: str
+    """Optional.
+
+    Identifies the seat (user) sending the message so the message is attributed to a
+    specific rep. Accepts either the seat UUID or the Firebase Auth subject. When
+    provided, `sender_email` is auto-populated on the message record and webhook
+    payloads. Returns 400 if the seat is not found.
+    """
+
     send_style: Literal[
         "celebration",
         "shooting_star",

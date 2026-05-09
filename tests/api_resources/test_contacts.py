@@ -198,7 +198,7 @@ class TestContacts:
     def test_method_list_with_all_params(self, client: SendblueAPI) -> None:
         contact = client.contacts.list(
             cid="cid",
-            limit=0,
+            limit=1,
             offset=0,
             order_by="order_by",
             order_direction="asc",
@@ -553,7 +553,7 @@ class TestAsyncContacts:
     async def test_method_list_with_all_params(self, async_client: AsyncSendblueAPI) -> None:
         contact = await async_client.contacts.list(
             cid="cid",
-            limit=0,
+            limit=1,
             offset=0,
             order_by="order_by",
             order_direction="asc",

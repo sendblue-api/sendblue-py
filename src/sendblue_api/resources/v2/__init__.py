@@ -16,6 +16,14 @@ from .totp import (
     TotpResourceWithStreamingResponse,
     AsyncTotpResourceWithStreamingResponse,
 )
+from .seats import (
+    SeatsResource,
+    AsyncSeatsResource,
+    SeatsResourceWithRawResponse,
+    AsyncSeatsResourceWithRawResponse,
+    SeatsResourceWithStreamingResponse,
+    AsyncSeatsResourceWithStreamingResponse,
+)
 
 __all__ = [
     "TotpResource",
@@ -24,6 +32,12 @@ __all__ = [
     "AsyncTotpResourceWithRawResponse",
     "TotpResourceWithStreamingResponse",
     "AsyncTotpResourceWithStreamingResponse",
+    "SeatsResource",
+    "AsyncSeatsResource",
+    "SeatsResourceWithRawResponse",
+    "AsyncSeatsResourceWithRawResponse",
+    "SeatsResourceWithStreamingResponse",
+    "AsyncSeatsResourceWithStreamingResponse",
     "V2Resource",
     "AsyncV2Resource",
     "V2ResourceWithRawResponse",

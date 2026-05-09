@@ -172,6 +172,7 @@ class TestMessages:
             from_number="+19998887777",
             number="+19998887777",
             media_url="https://example.com/image.jpg",
+            seat_id="550e8400-e29b-41d4-a716-446655440000",
             send_style="celebration",
             status_callback="https://example.com/webhook",
         )
@@ -363,6 +364,7 @@ class TestAsyncMessages:
             from_number="+19998887777",
             number="+19998887777",
             media_url="https://example.com/image.jpg",
+            seat_id="550e8400-e29b-41d4-a716-446655440000",
             send_style="celebration",
             status_callback="https://example.com/webhook",
         )

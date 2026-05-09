@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .seats import (
+    SeatsResource,
+    AsyncSeatsResource,
+    SeatsResourceWithRawResponse,
+    AsyncSeatsResourceWithRawResponse,
+    SeatsResourceWithStreamingResponse,
+    AsyncSeatsResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
 from .totp.totp import (
     TotpResource,
@@ -21,6 +29,13 @@ class V2Resource(SyncAPIResource):
     def totp(self) -> TotpResource:
         """Store and retrieve TOTP codes for agent 2FA (authenticator app replacement)"""
         return TotpResource(self._client)
+
+    @cached_property
+    def seats(self) -> SeatsResource:
+        """
+        Operations for retrieving seats (users) on the account, used for attribution via `seat_id`
+        """
+        return SeatsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> V2ResourceWithRawResponse:
@@ -47,6 +62,13 @@ class AsyncV2Resource(AsyncAPIResource):
     def totp(self) -> AsyncTotpResource:
         """Store and retrieve TOTP codes for agent 2FA (authenticator app replacement)"""
         return AsyncTotpResource(self._client)
+
+    @cached_property
+    def seats(self) -> AsyncSeatsResource:
+        """
+        Operations for retrieving seats (users) on the account, used for attribution via `seat_id`
+        """
+        return AsyncSeatsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncV2ResourceWithRawResponse:
@@ -77,6 +99,13 @@ class V2ResourceWithRawResponse:
         """Store and retrieve TOTP codes for agent 2FA (authenticator app replacement)"""
         return TotpResourceWithRawResponse(self._v2.totp)
 
+    @cached_property
+    def seats(self) -> SeatsResourceWithRawResponse:
+        """
+        Operations for retrieving seats (users) on the account, used for attribution via `seat_id`
+        """
+        return SeatsResourceWithRawResponse(self._v2.seats)
+
 
 class AsyncV2ResourceWithRawResponse:
     def __init__(self, v2: AsyncV2Resource) -> None:
@@ -86,6 +115,13 @@ class AsyncV2ResourceWithRawResponse:
     def totp(self) -> AsyncTotpResourceWithRawResponse:
         """Store and retrieve TOTP codes for agent 2FA (authenticator app replacement)"""
         return AsyncTotpResourceWithRawResponse(self._v2.totp)
+
+    @cached_property
+    def seats(self) -> AsyncSeatsResourceWithRawResponse:
+        """
+        Operations for retrieving seats (users) on the account, used for attribution via `seat_id`
+        """
+        return AsyncSeatsResourceWithRawResponse(self._v2.seats)
 
 
 class V2ResourceWithStreamingResponse:
@@ -97,6 +133,13 @@ class V2ResourceWithStreamingResponse:
         """Store and retrieve TOTP codes for agent 2FA (authenticator app replacement)"""
         return TotpResourceWithStreamingResponse(self._v2.totp)
 
+    @cached_property
+    def seats(self) -> SeatsResourceWithStreamingResponse:
+        """
+        Operations for retrieving seats (users) on the account, used for attribution via `seat_id`
+        """
+        return SeatsResourceWithStreamingResponse(self._v2.seats)
+
 
 class AsyncV2ResourceWithStreamingResponse:
     def __init__(self, v2: AsyncV2Resource) -> None:
@@ -106,3 +149,10 @@ class AsyncV2ResourceWithStreamingResponse:
     def totp(self) -> AsyncTotpResourceWithStreamingResponse:
         """Store and retrieve TOTP codes for agent 2FA (authenticator app replacement)"""
         return AsyncTotpResourceWithStreamingResponse(self._v2.totp)
+
+    @cached_property
+    def seats(self) -> AsyncSeatsResourceWithStreamingResponse:
+        """
+        Operations for retrieving seats (users) on the account, used for attribution via `seat_id`
+        """
+        return AsyncSeatsResourceWithStreamingResponse(self._v2.seats)
