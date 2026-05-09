@@ -68,6 +68,13 @@ class Data(BaseModel):
     plan: Optional[str] = None
     """Account plan used for this message"""
 
+    seat_id: Optional[str] = None
+    """UUID of the seat that sent the message.
+
+    Present when `seat_id` was provided on send, or for dashboard-originated group
+    messages.
+    """
+
     send_style: Optional[
         Literal[
             "celebration",
@@ -89,6 +96,13 @@ class Data(BaseModel):
 
     sendblue_number: Optional[str] = None
     """Sendblue phone number used"""
+
+    sender_email: Optional[str] = None
+    """Email of the seat (user) that sent the message.
+
+    Auto-populated when a `seat_id` is provided on send. `null` for messages sent
+    without a `seat_id`.
+    """
 
     service: Optional[Literal["iMessage", "SMS", "RCS"]] = None
     """The messaging service used"""

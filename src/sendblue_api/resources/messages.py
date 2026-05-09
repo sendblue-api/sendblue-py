@@ -289,6 +289,7 @@ class MessagesResource(SyncAPIResource):
         from_number: str,
         number: str,
         media_url: str | Omit = omit,
+        seat_id: str | Omit = omit,
         send_style: Literal[
             "celebration",
             "shooting_star",
@@ -327,6 +328,11 @@ class MessagesResource(SyncAPIResource):
 
           media_url: URL of media file to send (images, videos, etc.)
 
+          seat_id: Optional. Identifies the seat (user) sending the message so the message is
+              attributed to a specific rep. Accepts either the seat UUID or the Firebase Auth
+              subject. When provided, `sender_email` is auto-populated on the message record
+              and webhook payloads. Returns 400 if the seat is not found.
+
           send_style: The iMessage expressive message style
 
           status_callback: Webhook URL for message status updates
@@ -347,6 +353,7 @@ class MessagesResource(SyncAPIResource):
                     "from_number": from_number,
                     "number": number,
                     "media_url": media_url,
+                    "seat_id": seat_id,
                     "send_style": send_style,
                     "status_callback": status_callback,
                 },
@@ -621,6 +628,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         from_number: str,
         number: str,
         media_url: str | Omit = omit,
+        seat_id: str | Omit = omit,
         send_style: Literal[
             "celebration",
             "shooting_star",
@@ -659,6 +667,11 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           media_url: URL of media file to send (images, videos, etc.)
 
+          seat_id: Optional. Identifies the seat (user) sending the message so the message is
+              attributed to a specific rep. Accepts either the seat UUID or the Firebase Auth
+              subject. When provided, `sender_email` is auto-populated on the message record
+              and webhook payloads. Returns 400 if the seat is not found.
+
           send_style: The iMessage expressive message style
 
           status_callback: Webhook URL for message status updates
@@ -679,6 +692,7 @@ class AsyncMessagesResource(AsyncAPIResource):
                     "from_number": from_number,
                     "number": number,
                     "media_url": media_url,
+                    "seat_id": seat_id,
                     "send_style": send_style,
                     "status_callback": status_callback,
                 },

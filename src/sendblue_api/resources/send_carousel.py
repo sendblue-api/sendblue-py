@@ -52,6 +52,7 @@ class SendCarouselResource(SyncAPIResource):
         media_urls: SequenceNotStr[str],
         number: str,
         metadata: object | Omit = omit,
+        seat_id: str | Omit = omit,
         send_style: Literal[
             "celebration",
             "shooting_star",
@@ -91,6 +92,11 @@ class SendCarouselResource(SyncAPIResource):
 
           metadata: Additional metadata to attach to the message
 
+          seat_id: Optional. Identifies the seat (user) sending the carousel so it is attributed to
+              a specific rep. Accepts either the seat UUID or the Firebase Auth subject. When
+              provided, `sender_email` is auto-populated on the message record and webhook
+              payloads. Returns 400 if the seat is not found.
+
           send_style: The iMessage expressive message style
 
           status_callback: Webhook URL for message status updates
@@ -111,6 +117,7 @@ class SendCarouselResource(SyncAPIResource):
                     "media_urls": media_urls,
                     "number": number,
                     "metadata": metadata,
+                    "seat_id": seat_id,
                     "send_style": send_style,
                     "status_callback": status_callback,
                 },
@@ -152,6 +159,7 @@ class AsyncSendCarouselResource(AsyncAPIResource):
         media_urls: SequenceNotStr[str],
         number: str,
         metadata: object | Omit = omit,
+        seat_id: str | Omit = omit,
         send_style: Literal[
             "celebration",
             "shooting_star",
@@ -191,6 +199,11 @@ class AsyncSendCarouselResource(AsyncAPIResource):
 
           metadata: Additional metadata to attach to the message
 
+          seat_id: Optional. Identifies the seat (user) sending the carousel so it is attributed to
+              a specific rep. Accepts either the seat UUID or the Firebase Auth subject. When
+              provided, `sender_email` is auto-populated on the message record and webhook
+              payloads. Returns 400 if the seat is not found.
+
           send_style: The iMessage expressive message style
 
           status_callback: Webhook URL for message status updates
@@ -211,6 +224,7 @@ class AsyncSendCarouselResource(AsyncAPIResource):
                     "media_urls": media_urls,
                     "number": number,
                     "metadata": metadata,
+                    "seat_id": seat_id,
                     "send_style": send_style,
                     "status_callback": status_callback,
                 },

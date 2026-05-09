@@ -75,6 +75,7 @@ class TestGroups:
             group_id="group_123456",
             media_url="https://example.com/image.jpg",
             numbers=["+19998887777", "+18887776666"],
+            seat_id="550e8400-e29b-41d4-a716-446655440000",
         )
         assert_matches_type(MessageResponse, group, path=["response"])
 
@@ -170,6 +171,7 @@ class TestAsyncGroups:
             group_id="group_123456",
             media_url="https://example.com/image.jpg",
             numbers=["+19998887777", "+18887776666"],
+            seat_id="550e8400-e29b-41d4-a716-446655440000",
         )
         assert_matches_type(MessageResponse, group, path=["response"])
 

@@ -174,6 +174,20 @@ Methods:
 - <code title="get /api/v2/totp/secrets">client.v2.totp.secrets.<a href="./src/sendblue_api/resources/v2/totp/secrets.py">list</a>() -> <a href="./src/sendblue_api/types/v2/totp/secret_list_response.py">SecretListResponse</a></code>
 - <code title="delete /api/v2/totp/secrets/{secret_id}">client.v2.totp.secrets.<a href="./src/sendblue_api/resources/v2/totp/secrets.py">delete</a>(secret_id) -> <a href="./src/sendblue_api/types/v2/totp/secret_delete_response.py">SecretDeleteResponse</a></code>
 
+## Seats
+
+Types:
+
+```python
+from sendblue_api.types.v2 import SeatRetrieveResponse, SeatListResponse, SeatCountResponse
+```
+
+Methods:
+
+- <code title="get /api/v2/seats/{seat_id}">client.v2.seats.<a href="./src/sendblue_api/resources/v2/seats.py">retrieve</a>(seat_id) -> <a href="./src/sendblue_api/types/v2/seat_retrieve_response.py">SeatRetrieveResponse</a></code>
+- <code title="get /api/v2/seats">client.v2.seats.<a href="./src/sendblue_api/resources/v2/seats.py">list</a>(\*\*<a href="src/sendblue_api/types/v2/seat_list_params.py">params</a>) -> <a href="./src/sendblue_api/types/v2/seat_list_response.py">SeatListResponse</a></code>
+- <code title="get /api/v2/seats/count">client.v2.seats.<a href="./src/sendblue_api/resources/v2/seats.py">count</a>(\*\*<a href="src/sendblue_api/types/v2/seat_count_params.py">params</a>) -> <a href="./src/sendblue_api/types/v2/seat_count_response.py">SeatCountResponse</a></code>
+
 # Lines
 
 ## CallForwarding

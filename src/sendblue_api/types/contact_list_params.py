@@ -12,10 +12,10 @@ class ContactListParams(TypedDict, total=False):
     """Filter by contact ID"""
 
     limit: int
-    """Maximum number of contacts to return"""
+    """Maximum number of contacts to return. Defaults to 100, capped at 1000."""
 
     offset: int
-    """Number of contacts to skip"""
+    """Number of contacts to skip. Capped at 10000."""
 
     order_by: str
     """Field to sort by"""

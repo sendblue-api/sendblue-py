@@ -101,6 +101,7 @@ class GroupsResource(SyncAPIResource):
         group_id: str | Omit = omit,
         media_url: str | Omit = omit,
         numbers: SequenceNotStr[str] | Omit = omit,
+        seat_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -124,6 +125,11 @@ class GroupsResource(SyncAPIResource):
 
           numbers: Array of recipient phone numbers in E.164 format
 
+          seat_id: Optional. Identifies the seat (user) sending the group message so it is
+              attributed to a specific rep. Accepts either the seat UUID or the Firebase Auth
+              subject. When provided, `sender_email` is auto-populated on the message record
+              and webhook payloads. Returns 400 if the seat is not found.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -141,6 +147,7 @@ class GroupsResource(SyncAPIResource):
                     "group_id": group_id,
                     "media_url": media_url,
                     "numbers": numbers,
+                    "seat_id": seat_id,
                 },
                 group_send_message_params.GroupSendMessageParams,
             ),
@@ -228,6 +235,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         group_id: str | Omit = omit,
         media_url: str | Omit = omit,
         numbers: SequenceNotStr[str] | Omit = omit,
+        seat_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -251,6 +259,11 @@ class AsyncGroupsResource(AsyncAPIResource):
 
           numbers: Array of recipient phone numbers in E.164 format
 
+          seat_id: Optional. Identifies the seat (user) sending the group message so it is
+              attributed to a specific rep. Accepts either the seat UUID or the Firebase Auth
+              subject. When provided, `sender_email` is auto-populated on the message record
+              and webhook payloads. Returns 400 if the seat is not found.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -268,6 +281,7 @@ class AsyncGroupsResource(AsyncAPIResource):
                     "group_id": group_id,
                     "media_url": media_url,
                     "numbers": numbers,
+                    "seat_id": seat_id,
                 },
                 group_send_message_params.GroupSendMessageParams,
             ),

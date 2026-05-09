@@ -43,6 +43,13 @@ class MessageResponse(BaseModel):
     number: Optional[str] = None
     """Recipient phone number"""
 
+    seat_id: Optional[str] = None
+    """UUID of the seat that sent the message.
+
+    Present when `seat_id` was provided on send, or for dashboard-originated group
+    messages.
+    """
+
     send_style: Optional[
         Literal[
             "celebration",
@@ -61,5 +68,12 @@ class MessageResponse(BaseModel):
         ]
     ] = None
     """The iMessage expressive message style"""
+
+    sender_email: Optional[str] = None
+    """Email of the seat (user) that sent the message.
+
+    Auto-populated when a `seat_id` is provided on send. `null` for messages sent
+    without a `seat_id`.
+    """
 
     status: Optional[Literal["QUEUED", "SENT", "DELIVERED", "ERROR"]] = None
