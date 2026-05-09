@@ -43,6 +43,7 @@ class TestSendCarousel:
             ],
             number="+19998887777",
             metadata={},
+            seat_id="550e8400-e29b-41d4-a716-446655440000",
             send_style="celebration",
             status_callback="https://example.com/webhook",
         )
@@ -118,6 +119,7 @@ class TestAsyncSendCarousel:
             ],
             number="+19998887777",
             metadata={},
+            seat_id="550e8400-e29b-41d4-a716-446655440000",
             send_style="celebration",
             status_callback="https://example.com/webhook",
         )
