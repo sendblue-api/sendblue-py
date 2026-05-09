@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.11.2 (2026-05-09)
+
+Full Changelog: [v1.11.1...v1.11.2](https://github.com/sendblue-api/sendblue-py/compare/v1.11.1...v1.11.2)
+
+### Bug Fixes
+
+* **client:** add missing f-string prefix in file type error message ([002aaa1](https://github.com/sendblue-api/sendblue-py/commit/002aaa1208beaeb904a27748ad48d50eaf5c07bb))
+
 ## 1.11.1 (2026-05-09)
 
 Full Changelog: [v1.11.0...v1.11.1](https://github.com/sendblue-api/sendblue-py/compare/v1.11.0...v1.11.1)
