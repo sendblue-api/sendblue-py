@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.11.1 (2026-05-09)
+
+Full Changelog: [v1.11.0...v1.11.1](https://github.com/sendblue-api/sendblue-py/compare/v1.11.0...v1.11.1)
+
+### Bug Fixes
+
+* harden /accounts/messages + cap unbounded findMany calls (hotfix) ([f1b7e30](https://github.com/sendblue-api/sendblue-py/commit/f1b7e30ebf94f1c5c95c7f6e478c6faafb829dc5))
+
+
+### Chores
+
+* **internal:** reformat pyproject.toml ([a7ee2d1](https://github.com/sendblue-api/sendblue-py/commit/a7ee2d1394fe715909453d434249cda42bbfe2f0))
+
 ## 1.11.0 (2026-04-28)
 
 Full Changelog: [v1.10.0...v1.11.0](https://github.com/sendblue-api/sendblue-py/compare/v1.10.0...v1.11.0)
