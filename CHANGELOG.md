@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.12.0 (2026-05-12)
+
+Full Changelog: [v1.11.2...v1.12.0](https://github.com/sendblue-api/sendblue-py/compare/v1.11.2...v1.12.0)
+
+### Features
+
+* **internal/types:** support eagerly validating pydantic iterators ([3ecdb02](https://github.com/sendblue-api/sendblue-py/commit/3ecdb02899dc02a7859c3b1507274822bd84fa57))
+
 ## 1.11.2 (2026-05-09)
 
 Full Changelog: [v1.11.1...v1.11.2](https://github.com/sendblue-api/sendblue-py/compare/v1.11.1...v1.11.2)
