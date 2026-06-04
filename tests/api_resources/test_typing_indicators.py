@@ -28,6 +28,17 @@ class TestTypingIndicators:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_send_with_all_params(self, client: SendblueAPI) -> None:
+        typing_indicator = client.typing_indicators.send(
+            from_number="+16292925296",
+            number="+19998887777",
+            max_duration_ms=120000,
+            state="start",
+        )
+        assert_matches_type(TypingIndicatorSendResponse, typing_indicator, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_raw_response_send(self, client: SendblueAPI) -> None:
         response = client.typing_indicators.with_raw_response.send(
             from_number="+16292925296",
@@ -66,6 +77,17 @@ class TestAsyncTypingIndicators:
         typing_indicator = await async_client.typing_indicators.send(
             from_number="+16292925296",
             number="+19998887777",
+        )
+        assert_matches_type(TypingIndicatorSendResponse, typing_indicator, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_send_with_all_params(self, async_client: AsyncSendblueAPI) -> None:
+        typing_indicator = await async_client.typing_indicators.send(
+            from_number="+16292925296",
+            number="+19998887777",
+            max_duration_ms=120000,
+            state="start",
         )
         assert_matches_type(TypingIndicatorSendResponse, typing_indicator, path=["response"])
 
