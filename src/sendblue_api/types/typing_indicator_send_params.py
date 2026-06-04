@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["TypingIndicatorSendParams"]
 
@@ -16,3 +16,9 @@ class TypingIndicatorSendParams(TypedDict, total=False):
 
     number: Required[str]
     """The number you want to send a typing indicator to (E.164 format)"""
+
+    max_duration_ms: int
+    """Optional maximum duration for a start indicator, in milliseconds."""
+
+    state: Literal["start", "stop"]
+    """Optional typing state. Defaults to a start indicator when omitted."""

@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
 from ..types import typing_indicator_send_params
-from .._types import Body, Query, Headers, NotGiven, not_given
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -48,6 +50,8 @@ class TypingIndicatorsResource(SyncAPIResource):
         *,
         from_number: str,
         number: str,
+        max_duration_ms: int | Omit = omit,
+        state: Literal["start", "stop"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -66,6 +70,10 @@ class TypingIndicatorsResource(SyncAPIResource):
 
           number: The number you want to send a typing indicator to (E.164 format)
 
+          max_duration_ms: Optional maximum duration for a start indicator, in milliseconds.
+
+          state: Optional typing state. Defaults to a start indicator when omitted.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -80,6 +88,8 @@ class TypingIndicatorsResource(SyncAPIResource):
                 {
                     "from_number": from_number,
                     "number": number,
+                    "max_duration_ms": max_duration_ms,
+                    "state": state,
                 },
                 typing_indicator_send_params.TypingIndicatorSendParams,
             ),
@@ -117,6 +127,8 @@ class AsyncTypingIndicatorsResource(AsyncAPIResource):
         *,
         from_number: str,
         number: str,
+        max_duration_ms: int | Omit = omit,
+        state: Literal["start", "stop"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -135,6 +147,10 @@ class AsyncTypingIndicatorsResource(AsyncAPIResource):
 
           number: The number you want to send a typing indicator to (E.164 format)
 
+          max_duration_ms: Optional maximum duration for a start indicator, in milliseconds.
+
+          state: Optional typing state. Defaults to a start indicator when omitted.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -149,6 +165,8 @@ class AsyncTypingIndicatorsResource(AsyncAPIResource):
                 {
                     "from_number": from_number,
                     "number": number,
+                    "max_duration_ms": max_duration_ms,
+                    "state": state,
                 },
                 typing_indicator_send_params.TypingIndicatorSendParams,
             ),
