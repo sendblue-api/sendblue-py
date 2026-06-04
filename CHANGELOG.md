@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.13.0 (2026-06-04)
+
+Full Changelog: [v1.12.0...v1.13.0](https://github.com/sendblue-api/sendblue-py/compare/v1.12.0...v1.13.0)
+
+### Features
+
+* Typing v2: hybrid send (start/stop + max_duration_ms) + inbound typing_indicator webhook ([0c8607a](https://github.com/sendblue-api/sendblue-py/commit/0c8607afff835b57d90cc49ece9a5c6cd80b46f2))
+
 ## 1.12.0 (2026-05-12)
 
 Full Changelog: [v1.11.2...v1.12.0](https://github.com/sendblue-api/sendblue-py/compare/v1.11.2...v1.12.0)
