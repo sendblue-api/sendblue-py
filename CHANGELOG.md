@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.14.0 (2026-06-30)
+
+Full Changelog: [v1.13.0...v1.14.0](https://github.com/sendblue-api/sendblue-py/compare/v1.13.0...v1.14.0)
+
+### Features
+
+* **grayrunner:** RD-265 add location-request API and inbound location webhook ([6770edb](https://github.com/sendblue-api/sendblue-py/commit/6770edb6a1f40beeb1c315a9e884394b376fc168))
+
+
+### Chores
+
+* sync repo ([08756e6](https://github.com/sendblue-api/sendblue-py/commit/08756e6843c8d30655d99b414d4c6163e53875db))
+
 ## 1.13.0 (2026-06-04)
 
 Full Changelog: [v1.12.0...v1.13.0](https://github.com/sendblue-api/sendblue-py/compare/v1.12.0...v1.13.0)
