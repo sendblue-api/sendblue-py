@@ -45,6 +45,7 @@ if TYPE_CHECKING:
         webhooks,
         media_objects,
         send_carousel,
+        request_location,
         typing_indicators,
     )
     from .resources.v2.v2 import V2Resource, AsyncV2Resource
@@ -55,6 +56,7 @@ if TYPE_CHECKING:
     from .resources.lines.lines import LinesResource, AsyncLinesResource
     from .resources.media_objects import MediaObjectsResource, AsyncMediaObjectsResource
     from .resources.send_carousel import SendCarouselResource, AsyncSendCarouselResource
+    from .resources.request_location import RequestLocationResource, AsyncRequestLocationResource
     from .resources.contacts.contacts import ContactsResource, AsyncContactsResource
     from .resources.typing_indicators import TypingIndicatorsResource, AsyncTypingIndicatorsResource
 
@@ -213,6 +215,13 @@ class SendblueAPI(SyncAPIClient):
         from .resources.lines import LinesResource
 
         return LinesResource(self)
+
+    @cached_property
+    def request_location(self) -> RequestLocationResource:
+        """Operations for sending and managing messages"""
+        from .resources.request_location import RequestLocationResource
+
+        return RequestLocationResource(self)
 
     @cached_property
     def with_raw_response(self) -> SendblueAPIWithRawResponse:
@@ -483,6 +492,13 @@ class AsyncSendblueAPI(AsyncAPIClient):
         return AsyncLinesResource(self)
 
     @cached_property
+    def request_location(self) -> AsyncRequestLocationResource:
+        """Operations for sending and managing messages"""
+        from .resources.request_location import AsyncRequestLocationResource
+
+        return AsyncRequestLocationResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncSendblueAPIWithRawResponse:
         return AsyncSendblueAPIWithRawResponse(self)
 
@@ -680,6 +696,13 @@ class SendblueAPIWithRawResponse:
 
         return LinesResourceWithRawResponse(self._client.lines)
 
+    @cached_property
+    def request_location(self) -> request_location.RequestLocationResourceWithRawResponse:
+        """Operations for sending and managing messages"""
+        from .resources.request_location import RequestLocationResourceWithRawResponse
+
+        return RequestLocationResourceWithRawResponse(self._client.request_location)
+
 
 class AsyncSendblueAPIWithRawResponse:
     _client: AsyncSendblueAPI
@@ -754,6 +777,13 @@ class AsyncSendblueAPIWithRawResponse:
         from .resources.lines import AsyncLinesResourceWithRawResponse
 
         return AsyncLinesResourceWithRawResponse(self._client.lines)
+
+    @cached_property
+    def request_location(self) -> request_location.AsyncRequestLocationResourceWithRawResponse:
+        """Operations for sending and managing messages"""
+        from .resources.request_location import AsyncRequestLocationResourceWithRawResponse
+
+        return AsyncRequestLocationResourceWithRawResponse(self._client.request_location)
 
 
 class SendblueAPIWithStreamedResponse:
@@ -830,6 +860,13 @@ class SendblueAPIWithStreamedResponse:
 
         return LinesResourceWithStreamingResponse(self._client.lines)
 
+    @cached_property
+    def request_location(self) -> request_location.RequestLocationResourceWithStreamingResponse:
+        """Operations for sending and managing messages"""
+        from .resources.request_location import RequestLocationResourceWithStreamingResponse
+
+        return RequestLocationResourceWithStreamingResponse(self._client.request_location)
+
 
 class AsyncSendblueAPIWithStreamedResponse:
     _client: AsyncSendblueAPI
@@ -904,6 +941,13 @@ class AsyncSendblueAPIWithStreamedResponse:
         from .resources.lines import AsyncLinesResourceWithStreamingResponse
 
         return AsyncLinesResourceWithStreamingResponse(self._client.lines)
+
+    @cached_property
+    def request_location(self) -> request_location.AsyncRequestLocationResourceWithStreamingResponse:
+        """Operations for sending and managing messages"""
+        from .resources.request_location import AsyncRequestLocationResourceWithStreamingResponse
+
+        return AsyncRequestLocationResourceWithStreamingResponse(self._client.request_location)
 
 
 Client = SendblueAPI
