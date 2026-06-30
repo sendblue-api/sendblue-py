@@ -72,6 +72,14 @@ from .send_carousel import (
     SendCarouselResourceWithStreamingResponse,
     AsyncSendCarouselResourceWithStreamingResponse,
 )
+from .request_location import (
+    RequestLocationResource,
+    AsyncRequestLocationResource,
+    RequestLocationResourceWithRawResponse,
+    AsyncRequestLocationResourceWithRawResponse,
+    RequestLocationResourceWithStreamingResponse,
+    AsyncRequestLocationResourceWithStreamingResponse,
+)
 from .typing_indicators import (
     TypingIndicatorsResource,
     AsyncTypingIndicatorsResource,
@@ -142,4 +150,10 @@ __all__ = [
     "AsyncLinesResourceWithRawResponse",
     "LinesResourceWithStreamingResponse",
     "AsyncLinesResourceWithStreamingResponse",
+    "RequestLocationResource",
+    "AsyncRequestLocationResource",
+    "RequestLocationResourceWithRawResponse",
+    "AsyncRequestLocationResourceWithRawResponse",
+    "RequestLocationResourceWithStreamingResponse",
+    "AsyncRequestLocationResourceWithStreamingResponse",
 ]

@@ -6,7 +6,26 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["MessageResponse"]
+__all__ = ["MessageResponse", "Location"]
+
+
+class Location(BaseModel):
+    """Decoded Find My location share coordinates."""
+
+    latitude: float
+
+    longitude: float
+
+    accuracy: Optional[float] = None
+    """Horizontal accuracy in meters"""
+
+    altitude: Optional[float] = None
+    """Altitude in meters"""
+
+    duration: Optional[str] = None
+    """Share duration selected by the recipient"""
+
+    timestamp: Optional[datetime] = None
 
 
 class MessageResponse(BaseModel):
@@ -34,11 +53,16 @@ class MessageResponse(BaseModel):
     is_outbound: Optional[bool] = None
     """Whether this is an outbound message"""
 
+    location: Optional[Location] = None
+    """Decoded Find My location share coordinates."""
+
     media_url: Optional[str] = None
     """URL of attached media"""
 
     message_handle: Optional[str] = None
     """Unique identifier for tracking the message"""
+
+    message_type: Optional[Literal["message", "group", "location"]] = None
 
     number: Optional[str] = None
     """Recipient phone number"""

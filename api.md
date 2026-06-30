@@ -207,3 +207,15 @@ Methods:
 - <code title="get /api/lines/{sendblue_number}/call-forwarding">client.lines.call_forwarding.<a href="./src/sendblue_api/resources/lines/call_forwarding.py">retrieve</a>(sendblue_number) -> <a href="./src/sendblue_api/types/lines/call_forwarding_retrieve_response.py">CallForwardingRetrieveResponse</a></code>
 - <code title="put /api/lines/{sendblue_number}/call-forwarding">client.lines.call_forwarding.<a href="./src/sendblue_api/resources/lines/call_forwarding.py">update</a>(sendblue_number, \*\*<a href="src/sendblue_api/types/lines/call_forwarding_update_params.py">params</a>) -> <a href="./src/sendblue_api/types/lines/call_forwarding_update_response.py">CallForwardingUpdateResponse</a></code>
 - <code title="delete /api/lines/{sendblue_number}/call-forwarding">client.lines.call_forwarding.<a href="./src/sendblue_api/resources/lines/call_forwarding.py">delete</a>(sendblue_number) -> <a href="./src/sendblue_api/types/lines/call_forwarding_delete_response.py">CallForwardingDeleteResponse</a></code>
+
+# RequestLocation
+
+Types:
+
+```python
+from sendblue_api.types import RequestLocationCreateResponse
+```
+
+Methods:
+
+- <code title="post /api/request-location">client.request_location.<a href="./src/sendblue_api/resources/request_location.py">create</a>(\*\*<a href="src/sendblue_api/types/request_location_create_params.py">params</a>) -> <a href="./src/sendblue_api/types/request_location_create_response.py">RequestLocationCreateResponse</a></code>
