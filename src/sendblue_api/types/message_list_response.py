@@ -8,7 +8,26 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["MessageListResponse", "Data", "Pagination"]
+__all__ = ["MessageListResponse", "Data", "DataLocation", "Pagination"]
+
+
+class DataLocation(BaseModel):
+    """Decoded Find My location share coordinates."""
+
+    latitude: float
+
+    longitude: float
+
+    accuracy: Optional[float] = None
+    """Horizontal accuracy in meters"""
+
+    altitude: Optional[float] = None
+    """Altitude in meters"""
+
+    duration: Optional[str] = None
+    """Share duration selected by the recipient"""
+
+    timestamp: Optional[datetime] = None
 
 
 class Data(BaseModel):
@@ -48,13 +67,16 @@ class Data(BaseModel):
     is_outbound: Optional[bool] = None
     """Whether this is an outbound message"""
 
+    location: Optional[DataLocation] = None
+    """Decoded Find My location share coordinates."""
+
     media_url: Optional[str] = None
     """URL of attached media"""
 
     message_handle: Optional[str] = None
     """Unique message identifier"""
 
-    message_type: Optional[Literal["message", "group"]] = None
+    message_type: Optional[Literal["message", "group", "location"]] = None
 
     number: Optional[str] = None
     """Primary phone number (to_number for outbound, from_number for inbound)"""
