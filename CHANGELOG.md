@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.15.0 (2026-07-08)
+
+Full Changelog: [v1.14.0...v1.15.0](https://github.com/sendblue-api/sendblue-py/compare/v1.14.0...v1.15.0)
+
+### Features
+
+* **location:** RD-275 add current location endpoints ([53b7c7a](https://github.com/sendblue-api/sendblue-py/commit/53b7c7adce31bb06704470629fe8cf73ddf6682a))
+
 ## 1.14.0 (2026-06-30)
 
 Full Changelog: [v1.13.0...v1.14.0](https://github.com/sendblue-api/sendblue-py/compare/v1.13.0...v1.14.0)
