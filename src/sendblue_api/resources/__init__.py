@@ -40,6 +40,14 @@ from .contacts import (
     ContactsResourceWithStreamingResponse,
     AsyncContactsResourceWithStreamingResponse,
 )
+from .location import (
+    LocationResource,
+    AsyncLocationResource,
+    LocationResourceWithRawResponse,
+    AsyncLocationResourceWithRawResponse,
+    LocationResourceWithStreamingResponse,
+    AsyncLocationResourceWithStreamingResponse,
+)
 from .messages import (
     MessagesResource,
     AsyncMessagesResource,
@@ -156,4 +164,10 @@ __all__ = [
     "AsyncRequestLocationResourceWithRawResponse",
     "RequestLocationResourceWithStreamingResponse",
     "AsyncRequestLocationResourceWithStreamingResponse",
+    "LocationResource",
+    "AsyncLocationResource",
+    "LocationResourceWithRawResponse",
+    "AsyncLocationResourceWithRawResponse",
+    "LocationResourceWithStreamingResponse",
+    "AsyncLocationResourceWithStreamingResponse",
 ]
