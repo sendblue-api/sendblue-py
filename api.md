@@ -219,3 +219,16 @@ from sendblue_api.types import RequestLocationCreateResponse
 Methods:
 
 - <code title="post /api/request-location">client.request_location.<a href="./src/sendblue_api/resources/request_location.py">create</a>(\*\*<a href="src/sendblue_api/types/request_location_create_params.py">params</a>) -> <a href="./src/sendblue_api/types/request_location_create_response.py">RequestLocationCreateResponse</a></code>
+
+# Location
+
+Types:
+
+```python
+from sendblue_api.types import LocationRetrieveResponse, LocationListResponse
+```
+
+Methods:
+
+- <code title="get /api/location/{number}">client.location.<a href="./src/sendblue_api/resources/location.py">retrieve</a>(number, \*\*<a href="src/sendblue_api/types/location_retrieve_params.py">params</a>) -> <a href="./src/sendblue_api/types/location_retrieve_response.py">LocationRetrieveResponse</a></code>
+- <code title="get /api/location">client.location.<a href="./src/sendblue_api/resources/location.py">list</a>(\*\*<a href="src/sendblue_api/types/location_list_params.py">params</a>) -> <a href="./src/sendblue_api/types/location_list_response.py">LocationListResponse</a></code>

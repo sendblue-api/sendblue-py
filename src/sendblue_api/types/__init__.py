@@ -8,6 +8,7 @@ from .contact_list_params import ContactListParams as ContactListParams
 from .group_modify_params import GroupModifyParams as GroupModifyParams
 from .message_list_params import MessageListParams as MessageListParams
 from .message_send_params import MessageSendParams as MessageSendParams
+from .location_list_params import LocationListParams as LocationListParams
 from .contact_create_params import ContactCreateParams as ContactCreateParams
 from .contact_list_response import ContactListResponse as ContactListResponse
 from .contact_update_params import ContactUpdateParams as ContactUpdateParams
@@ -21,6 +22,7 @@ from .webhook_list_response import WebhookListResponse as WebhookListResponse
 from .webhook_update_params import WebhookUpdateParams as WebhookUpdateParams
 from .contact_count_response import ContactCountResponse as ContactCountResponse
 from .contact_opt_out_params import ContactOptOutParams as ContactOptOutParams
+from .location_list_response import LocationListResponse as LocationListResponse
 from .contact_create_response import ContactCreateResponse as ContactCreateResponse
 from .contact_delete_response import ContactDeleteResponse as ContactDeleteResponse
 from .contact_update_response import ContactUpdateResponse as ContactUpdateResponse
@@ -29,11 +31,13 @@ from .webhook_create_response import WebhookCreateResponse as WebhookCreateRespo
 from .webhook_delete_response import WebhookDeleteResponse as WebhookDeleteResponse
 from .webhook_update_response import WebhookUpdateResponse as WebhookUpdateResponse
 from .contact_opt_out_response import ContactOptOutResponse as ContactOptOutResponse
+from .location_retrieve_params import LocationRetrieveParams as LocationRetrieveParams
 from .contact_retrieve_response import ContactRetrieveResponse as ContactRetrieveResponse
 from .group_send_message_params import GroupSendMessageParams as GroupSendMessageParams
 from .message_get_status_params import MessageGetStatusParams as MessageGetStatusParams
 from .message_retrieve_response import MessageRetrieveResponse as MessageRetrieveResponse
 from .send_carousel_send_params import SendCarouselSendParams as SendCarouselSendParams
+from .location_retrieve_response import LocationRetrieveResponse as LocationRetrieveResponse
 from .media_object_upload_params import MediaObjectUploadParams as MediaObjectUploadParams
 from .lookup_lookup_number_params import LookupLookupNumberParams as LookupLookupNumberParams
 from .send_carousel_send_response import SendCarouselSendResponse as SendCarouselSendResponse
