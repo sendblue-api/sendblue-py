@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.16.0 (2026-07-15)
+
+Full Changelog: [v1.15.0...v1.16.0](https://github.com/sendblue-api/sendblue-py/compare/v1.15.0...v1.16.0)
+
+### Features
+
+* PLAT-5183: relaunch contact-created webhooks ([a449148](https://github.com/sendblue-api/sendblue-py/commit/a4491482c70a9a5b7a2cb7beb06780e24284f724))
+
 ## 1.15.0 (2026-07-08)
 
 Full Changelog: [v1.14.0...v1.15.0](https://github.com/sendblue-api/sendblue-py/compare/v1.14.0...v1.15.0)
