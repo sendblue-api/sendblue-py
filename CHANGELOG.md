@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.17.0 (2026-07-18)
+
+Full Changelog: [v1.16.0...v1.17.0](https://github.com/sendblue-api/sendblue-py/compare/v1.16.0...v1.17.0)
+
+### Features
+
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([01cbfbc](https://github.com/sendblue-api/sendblue-py/commit/01cbfbc446b9e36ed4985f0f0047d9f0b524694f))
+
 ## 1.16.0 (2026-07-15)
 
 Full Changelog: [v1.15.0...v1.16.0](https://github.com/sendblue-api/sendblue-py/compare/v1.15.0...v1.16.0)
