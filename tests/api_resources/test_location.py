@@ -100,6 +100,51 @@ class TestLocation:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_watch(self, client: SendblueAPI) -> None:
+        location_stream = client.location.watch(
+            number="+19998887777",
+            from_number="+18887776666",
+        )
+        location_stream.response.close()
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_watch(self, client: SendblueAPI) -> None:
+        response = client.location.with_raw_response.watch(
+            number="+19998887777",
+            from_number="+18887776666",
+        )
+
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        stream = response.parse()
+        stream.close()
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_watch(self, client: SendblueAPI) -> None:
+        with client.location.with_streaming_response.watch(
+            number="+19998887777",
+            from_number="+18887776666",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            stream = response.parse()
+            stream.close()
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_watch(self, client: SendblueAPI) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `number` but received ''"):
+            client.location.with_raw_response.watch(
+                number="",
+                from_number="+18887776666",
+            )
+
 
 class TestAsyncLocation:
     parametrize = pytest.mark.parametrize(
@@ -185,3 +230,48 @@ class TestAsyncLocation:
             assert_matches_type(LocationListResponse, location, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_watch(self, async_client: AsyncSendblueAPI) -> None:
+        location_stream = await async_client.location.watch(
+            number="+19998887777",
+            from_number="+18887776666",
+        )
+        await location_stream.response.aclose()
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_watch(self, async_client: AsyncSendblueAPI) -> None:
+        response = await async_client.location.with_raw_response.watch(
+            number="+19998887777",
+            from_number="+18887776666",
+        )
+
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        stream = await response.parse()
+        await stream.close()
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_watch(self, async_client: AsyncSendblueAPI) -> None:
+        async with async_client.location.with_streaming_response.watch(
+            number="+19998887777",
+            from_number="+18887776666",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            stream = await response.parse()
+            await stream.close()
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_watch(self, async_client: AsyncSendblueAPI) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `number` but received ''"):
+            await async_client.location.with_raw_response.watch(
+                number="",
+                from_number="+18887776666",
+            )
