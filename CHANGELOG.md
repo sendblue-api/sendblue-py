@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.18.0 (2026-07-20)
+
+Full Changelog: [v1.17.0...v1.18.0](https://github.com/sendblue-api/sendblue-py/compare/v1.17.0...v1.18.0)
+
+### Features
+
+* **location:** RD-276 stream live location updates ([a356eca](https://github.com/sendblue-api/sendblue-py/commit/a356eca724f0a2edf57bccc1c39f8804cda14344))
+
 ## 1.17.0 (2026-07-18)
 
 Full Changelog: [v1.16.0...v1.17.0](https://github.com/sendblue-api/sendblue-py/compare/v1.16.0...v1.17.0)
