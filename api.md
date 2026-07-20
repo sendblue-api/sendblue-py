@@ -225,10 +225,11 @@ Methods:
 Types:
 
 ```python
-from sendblue_api.types import LocationRetrieveResponse, LocationListResponse
+from sendblue_api.types import LocationRetrieveResponse, LocationListResponse, LocationWatchResponse
 ```
 
 Methods:
 
 - <code title="get /api/location/{number}">client.location.<a href="./src/sendblue_api/resources/location.py">retrieve</a>(number, \*\*<a href="src/sendblue_api/types/location_retrieve_params.py">params</a>) -> <a href="./src/sendblue_api/types/location_retrieve_response.py">LocationRetrieveResponse</a></code>
 - <code title="get /api/location">client.location.<a href="./src/sendblue_api/resources/location.py">list</a>(\*\*<a href="src/sendblue_api/types/location_list_params.py">params</a>) -> <a href="./src/sendblue_api/types/location_list_response.py">LocationListResponse</a></code>
+- <code title="get /api/location/{number}/watch">client.location.<a href="./src/sendblue_api/resources/location.py">watch</a>(number, \*\*<a href="src/sendblue_api/types/location_watch_params.py">params</a>) -> <a href="./src/sendblue_api/types/location_watch_response.py">LocationWatchResponse</a></code>
