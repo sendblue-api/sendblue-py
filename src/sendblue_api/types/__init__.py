@@ -14,6 +14,7 @@ from .contact_list_response import ContactListResponse as ContactListResponse
 from .contact_update_params import ContactUpdateParams as ContactUpdateParams
 from .contact_verify_params import ContactVerifyParams as ContactVerifyParams
 from .group_modify_response import GroupModifyResponse as GroupModifyResponse
+from .location_watch_params import LocationWatchParams as LocationWatchParams
 from .message_list_response import MessageListResponse as MessageListResponse
 from .webhook_configuration import WebhookConfiguration as WebhookConfiguration
 from .webhook_create_params import WebhookCreateParams as WebhookCreateParams
@@ -27,6 +28,7 @@ from .contact_create_response import ContactCreateResponse as ContactCreateRespo
 from .contact_delete_response import ContactDeleteResponse as ContactDeleteResponse
 from .contact_update_response import ContactUpdateResponse as ContactUpdateResponse
 from .contact_verify_response import ContactVerifyResponse as ContactVerifyResponse
+from .location_watch_response import LocationWatchResponse as LocationWatchResponse
 from .webhook_create_response import WebhookCreateResponse as WebhookCreateResponse
 from .webhook_delete_response import WebhookDeleteResponse as WebhookDeleteResponse
 from .webhook_update_response import WebhookUpdateResponse as WebhookUpdateResponse
