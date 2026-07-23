@@ -10,6 +10,14 @@ from .seats import (
     SeatsResourceWithStreamingResponse,
     AsyncSeatsResourceWithStreamingResponse,
 )
+from .groups import (
+    GroupsResource,
+    AsyncGroupsResource,
+    GroupsResourceWithRawResponse,
+    AsyncGroupsResourceWithRawResponse,
+    GroupsResourceWithStreamingResponse,
+    AsyncGroupsResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
 from .totp.totp import (
     TotpResource,
@@ -36,6 +44,11 @@ class V2Resource(SyncAPIResource):
         Operations for retrieving seats (users) on the account, used for attribution via `seat_id`
         """
         return SeatsResource(self._client)
+
+    @cached_property
+    def groups(self) -> GroupsResource:
+        """Operations for group messaging (beta)"""
+        return GroupsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> V2ResourceWithRawResponse:
@@ -69,6 +82,11 @@ class AsyncV2Resource(AsyncAPIResource):
         Operations for retrieving seats (users) on the account, used for attribution via `seat_id`
         """
         return AsyncSeatsResource(self._client)
+
+    @cached_property
+    def groups(self) -> AsyncGroupsResource:
+        """Operations for group messaging (beta)"""
+        return AsyncGroupsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncV2ResourceWithRawResponse:
@@ -106,6 +124,11 @@ class V2ResourceWithRawResponse:
         """
         return SeatsResourceWithRawResponse(self._v2.seats)
 
+    @cached_property
+    def groups(self) -> GroupsResourceWithRawResponse:
+        """Operations for group messaging (beta)"""
+        return GroupsResourceWithRawResponse(self._v2.groups)
+
 
 class AsyncV2ResourceWithRawResponse:
     def __init__(self, v2: AsyncV2Resource) -> None:
@@ -122,6 +145,11 @@ class AsyncV2ResourceWithRawResponse:
         Operations for retrieving seats (users) on the account, used for attribution via `seat_id`
         """
         return AsyncSeatsResourceWithRawResponse(self._v2.seats)
+
+    @cached_property
+    def groups(self) -> AsyncGroupsResourceWithRawResponse:
+        """Operations for group messaging (beta)"""
+        return AsyncGroupsResourceWithRawResponse(self._v2.groups)
 
 
 class V2ResourceWithStreamingResponse:
@@ -140,6 +168,11 @@ class V2ResourceWithStreamingResponse:
         """
         return SeatsResourceWithStreamingResponse(self._v2.seats)
 
+    @cached_property
+    def groups(self) -> GroupsResourceWithStreamingResponse:
+        """Operations for group messaging (beta)"""
+        return GroupsResourceWithStreamingResponse(self._v2.groups)
+
 
 class AsyncV2ResourceWithStreamingResponse:
     def __init__(self, v2: AsyncV2Resource) -> None:
@@ -156,3 +189,8 @@ class AsyncV2ResourceWithStreamingResponse:
         Operations for retrieving seats (users) on the account, used for attribution via `seat_id`
         """
         return AsyncSeatsResourceWithStreamingResponse(self._v2.seats)
+
+    @cached_property
+    def groups(self) -> AsyncGroupsResourceWithStreamingResponse:
+        """Operations for group messaging (beta)"""
+        return AsyncGroupsResourceWithStreamingResponse(self._v2.groups)

@@ -188,6 +188,18 @@ Methods:
 - <code title="get /api/v2/seats">client.v2.seats.<a href="./src/sendblue_api/resources/v2/seats.py">list</a>(\*\*<a href="src/sendblue_api/types/v2/seat_list_params.py">params</a>) -> <a href="./src/sendblue_api/types/v2/seat_list_response.py">SeatListResponse</a></code>
 - <code title="get /api/v2/seats/count">client.v2.seats.<a href="./src/sendblue_api/resources/v2/seats.py">count</a>(\*\*<a href="src/sendblue_api/types/v2/seat_count_params.py">params</a>) -> <a href="./src/sendblue_api/types/v2/seat_count_response.py">SeatCountResponse</a></code>
 
+## Groups
+
+Types:
+
+```python
+from sendblue_api.types.v2 import GroupRetrieveResponse
+```
+
+Methods:
+
+- <code title="get /api/v2/groups/{group_id}">client.v2.groups.<a href="./src/sendblue_api/resources/v2/groups.py">retrieve</a>(group_id) -> <a href="./src/sendblue_api/types/v2/group_retrieve_response.py">GroupRetrieveResponse</a></code>
+
 # Lines
 
 ## CallForwarding
