@@ -8,3 +8,4 @@ from .seat_list_response import SeatListResponse as SeatListResponse
 from .seat_count_response import SeatCountResponse as SeatCountResponse
 from .seat_retrieve_response import SeatRetrieveResponse as SeatRetrieveResponse
 from .totp_get_code_response import TotpGetCodeResponse as TotpGetCodeResponse
+from .group_retrieve_response import GroupRetrieveResponse as GroupRetrieveResponse
