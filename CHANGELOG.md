@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.18.1 (2026-07-23)
+
+Full Changelog: [v1.18.0...v1.18.1](https://github.com/sendblue-api/sendblue-py/compare/v1.18.0...v1.18.1)
+
+### Bug Fixes
+
+* **grayrunner:** expose group participants in public api ([723a61a](https://github.com/sendblue-api/sendblue-py/commit/723a61a8dbc1f30c1d66a9b17290d591135c43f4))
+
 ## 1.18.0 (2026-07-20)
 
 Full Changelog: [v1.17.0...v1.18.0](https://github.com/sendblue-api/sendblue-py/compare/v1.17.0...v1.18.0)
