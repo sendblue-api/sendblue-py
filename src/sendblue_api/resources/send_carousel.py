@@ -52,6 +52,7 @@ class SendCarouselResource(SyncAPIResource):
         media_urls: SequenceNotStr[str],
         number: str,
         metadata: object | Omit = omit,
+        reply_to: send_carousel_send_params.ReplyTo | Omit = omit,
         seat_id: str | Omit = omit,
         send_style: Literal[
             "celebration",
@@ -92,6 +93,9 @@ class SendCarouselResource(SyncAPIResource):
 
           metadata: Additional metadata to attach to the message
 
+          reply_to: Immediate parent of an iMessage inline reply. The target must belong to the same
+              account, conversation, and sending line.
+
           seat_id: Optional. Identifies the seat (user) sending the carousel so it is attributed to
               a specific rep. Accepts either the seat UUID or the Firebase Auth subject. When
               provided, `sender_email` is auto-populated on the message record and webhook
@@ -117,6 +121,7 @@ class SendCarouselResource(SyncAPIResource):
                     "media_urls": media_urls,
                     "number": number,
                     "metadata": metadata,
+                    "reply_to": reply_to,
                     "seat_id": seat_id,
                     "send_style": send_style,
                     "status_callback": status_callback,
@@ -159,6 +164,7 @@ class AsyncSendCarouselResource(AsyncAPIResource):
         media_urls: SequenceNotStr[str],
         number: str,
         metadata: object | Omit = omit,
+        reply_to: send_carousel_send_params.ReplyTo | Omit = omit,
         seat_id: str | Omit = omit,
         send_style: Literal[
             "celebration",
@@ -199,6 +205,9 @@ class AsyncSendCarouselResource(AsyncAPIResource):
 
           metadata: Additional metadata to attach to the message
 
+          reply_to: Immediate parent of an iMessage inline reply. The target must belong to the same
+              account, conversation, and sending line.
+
           seat_id: Optional. Identifies the seat (user) sending the carousel so it is attributed to
               a specific rep. Accepts either the seat UUID or the Firebase Auth subject. When
               provided, `sender_email` is auto-populated on the message record and webhook
@@ -224,6 +233,7 @@ class AsyncSendCarouselResource(AsyncAPIResource):
                     "media_urls": media_urls,
                     "number": number,
                     "metadata": metadata,
+                    "reply_to": reply_to,
                     "seat_id": seat_id,
                     "send_style": send_style,
                     "status_callback": status_callback,

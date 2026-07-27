@@ -289,6 +289,7 @@ class MessagesResource(SyncAPIResource):
         from_number: str,
         number: str,
         media_url: str | Omit = omit,
+        reply_to: message_send_params.ReplyTo | Omit = omit,
         seat_id: str | Omit = omit,
         send_style: Literal[
             "celebration",
@@ -328,6 +329,9 @@ class MessagesResource(SyncAPIResource):
 
           media_url: URL of media file to send (images, videos, etc.)
 
+          reply_to: Immediate parent of an iMessage inline reply. The target must belong to the same
+              account, conversation, and sending line.
+
           seat_id: Optional. Identifies the seat (user) sending the message so the message is
               attributed to a specific rep. Accepts either the seat UUID or the Firebase Auth
               subject. When provided, `sender_email` is auto-populated on the message record
@@ -353,6 +357,7 @@ class MessagesResource(SyncAPIResource):
                     "from_number": from_number,
                     "number": number,
                     "media_url": media_url,
+                    "reply_to": reply_to,
                     "seat_id": seat_id,
                     "send_style": send_style,
                     "status_callback": status_callback,
@@ -628,6 +633,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         from_number: str,
         number: str,
         media_url: str | Omit = omit,
+        reply_to: message_send_params.ReplyTo | Omit = omit,
         seat_id: str | Omit = omit,
         send_style: Literal[
             "celebration",
@@ -667,6 +673,9 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           media_url: URL of media file to send (images, videos, etc.)
 
+          reply_to: Immediate parent of an iMessage inline reply. The target must belong to the same
+              account, conversation, and sending line.
+
           seat_id: Optional. Identifies the seat (user) sending the message so the message is
               attributed to a specific rep. Accepts either the seat UUID or the Firebase Auth
               subject. When provided, `sender_email` is auto-populated on the message record
@@ -692,6 +701,7 @@ class AsyncMessagesResource(AsyncAPIResource):
                     "from_number": from_number,
                     "number": number,
                     "media_url": media_url,
+                    "reply_to": reply_to,
                     "seat_id": seat_id,
                     "send_style": send_style,
                     "status_callback": status_callback,

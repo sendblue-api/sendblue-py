@@ -24,14 +24,6 @@ from .seats import (
     SeatsResourceWithStreamingResponse,
     AsyncSeatsResourceWithStreamingResponse,
 )
-from .groups import (
-    GroupsResource,
-    AsyncGroupsResource,
-    GroupsResourceWithRawResponse,
-    AsyncGroupsResourceWithRawResponse,
-    GroupsResourceWithStreamingResponse,
-    AsyncGroupsResourceWithStreamingResponse,
-)
 
 __all__ = [
     "TotpResource",
@@ -46,12 +38,6 @@ __all__ = [
     "AsyncSeatsResourceWithRawResponse",
     "SeatsResourceWithStreamingResponse",
     "AsyncSeatsResourceWithStreamingResponse",
-    "GroupsResource",
-    "AsyncGroupsResource",
-    "GroupsResourceWithRawResponse",
-    "AsyncGroupsResourceWithRawResponse",
-    "GroupsResourceWithStreamingResponse",
-    "AsyncGroupsResourceWithStreamingResponse",
     "V2Resource",
     "AsyncV2Resource",
     "V2ResourceWithRawResponse",

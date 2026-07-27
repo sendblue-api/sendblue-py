@@ -50,3 +50,6 @@ from .lookup_lookup_number_response import LookupLookupNumberResponse as LookupL
 from .request_location_create_params import RequestLocationCreateParams as RequestLocationCreateParams
 from .typing_indicator_send_response import TypingIndicatorSendResponse as TypingIndicatorSendResponse
 from .request_location_create_response import RequestLocationCreateResponse as RequestLocationCreateResponse
+from .v2_retrieve_group_membership_response import (
+    V2RetrieveGroupMembershipResponse as V2RetrieveGroupMembershipResponse,
+)
