@@ -6,7 +6,38 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["SendCarouselSendResponse"]
+__all__ = ["SendCarouselSendResponse", "ReplyTo", "ThreadOriginator"]
+
+
+class ReplyTo(BaseModel):
+    """Immediate parent of an iMessage inline reply.
+
+    The target must belong to the same
+    account, conversation, and sending line.
+    """
+
+    message_handle: str
+    """Public handle of the immediate parent message"""
+
+    part_index: Optional[int] = None
+    """Advanced override for a known part of a multipart target.
+
+    Omit this in normal reply requests and never guess it; requests default to 0.
+    When replying to an attachment represented by its own webhook, use that
+    webhook's `message_handle` and omit `part_index` so Sendblue can use the stored
+    authoritative part. Responses omit it when no authoritative immediate-parent
+    part is available.
+    """
+
+
+class ThreadOriginator(BaseModel):
+    """Message that originated an iMessage inline-reply thread."""
+
+    message_handle: str
+    """Public handle of the thread's root message"""
+
+    part: Optional[str] = None
+    """Opaque Apple thread-originator part descriptor"""
 
 
 class SendCarouselSendResponse(BaseModel):
@@ -29,4 +60,13 @@ class SendCarouselSendResponse(BaseModel):
     number: Optional[str] = None
     """Recipient phone number"""
 
+    reply_to: Optional[ReplyTo] = None
+    """Immediate parent of an iMessage inline reply.
+
+    The target must belong to the same account, conversation, and sending line.
+    """
+
     status: Optional[str] = None
+
+    thread_originator: Optional[ThreadOriginator] = None
+    """Message that originated an iMessage inline-reply thread."""

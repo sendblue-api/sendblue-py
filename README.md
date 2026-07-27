@@ -141,10 +141,13 @@ from sendblue_api import SendblueAPI
 
 client = SendblueAPI()
 
-webhook = client.webhooks.update(
-    webhooks={},
+message_response = client.messages.send(
+    content="Hello, World!",
+    from_number="+19998887777",
+    number="+19998887777",
+    reply_to={"message_handle": "msg_parent123"},
 )
-print(webhook.webhooks)
+print(message_response.reply_to)
 ```
 
 ## Handling errors

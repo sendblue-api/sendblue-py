@@ -8,7 +8,7 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["MessageListResponse", "Data", "DataLocation", "Pagination"]
+__all__ = ["MessageListResponse", "Data", "DataLocation", "DataReplyTo", "DataThreadOriginator", "Pagination"]
 
 
 class DataLocation(BaseModel):
@@ -28,6 +28,37 @@ class DataLocation(BaseModel):
     """Share duration selected by the recipient"""
 
     timestamp: Optional[datetime] = None
+
+
+class DataReplyTo(BaseModel):
+    """Immediate parent of an iMessage inline reply.
+
+    The target must belong to the same
+    account, conversation, and sending line.
+    """
+
+    message_handle: str
+    """Public handle of the immediate parent message"""
+
+    part_index: Optional[int] = None
+    """Advanced override for a known part of a multipart target.
+
+    Omit this in normal reply requests and never guess it; requests default to 0.
+    When replying to an attachment represented by its own webhook, use that
+    webhook's `message_handle` and omit `part_index` so Sendblue can use the stored
+    authoritative part. Responses omit it when no authoritative immediate-parent
+    part is available.
+    """
+
+
+class DataThreadOriginator(BaseModel):
+    """Message that originated an iMessage inline-reply thread."""
+
+    message_handle: str
+    """Public handle of the thread's root message"""
+
+    part: Optional[str] = None
+    """Opaque Apple thread-originator part descriptor"""
 
 
 class Data(BaseModel):
@@ -90,6 +121,12 @@ class Data(BaseModel):
     plan: Optional[str] = None
     """Account plan used for this message"""
 
+    reply_to: Optional[DataReplyTo] = None
+    """Immediate parent of an iMessage inline reply.
+
+    The target must belong to the same account, conversation, and sending line.
+    """
+
     seat_id: Optional[str] = None
     """UUID of the seat that sent the message.
 
@@ -143,6 +180,9 @@ class Data(BaseModel):
             "SUCCESS",
         ]
     ] = None
+
+    thread_originator: Optional[DataThreadOriginator] = None
+    """Message that originated an iMessage inline-reply thread."""
 
     to_number: Optional[str] = None
     """Recipient phone number"""

@@ -4,9 +4,9 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ..._models import BaseModel
+from .._models import BaseModel
 
-__all__ = ["GroupRetrieveResponse", "Data", "DataParticipant"]
+__all__ = ["V2RetrieveGroupMembershipResponse", "Data", "DataParticipant"]
 
 
 class DataParticipant(BaseModel):
@@ -64,7 +64,7 @@ class Data(BaseModel):
     """Worker-local iMessage group identifier when known"""
 
 
-class GroupRetrieveResponse(BaseModel):
+class V2RetrieveGroupMembershipResponse(BaseModel):
     data: Optional[Data] = None
 
     status: Optional[str] = None

@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["MessageResponse", "Location"]
+__all__ = ["MessageResponse", "Location", "ReplyTo", "ThreadOriginator"]
 
 
 class Location(BaseModel):
@@ -26,6 +26,37 @@ class Location(BaseModel):
     """Share duration selected by the recipient"""
 
     timestamp: Optional[datetime] = None
+
+
+class ReplyTo(BaseModel):
+    """Immediate parent of an iMessage inline reply.
+
+    The target must belong to the same
+    account, conversation, and sending line.
+    """
+
+    message_handle: str
+    """Public handle of the immediate parent message"""
+
+    part_index: Optional[int] = None
+    """Advanced override for a known part of a multipart target.
+
+    Omit this in normal reply requests and never guess it; requests default to 0.
+    When replying to an attachment represented by its own webhook, use that
+    webhook's `message_handle` and omit `part_index` so Sendblue can use the stored
+    authoritative part. Responses omit it when no authoritative immediate-parent
+    part is available.
+    """
+
+
+class ThreadOriginator(BaseModel):
+    """Message that originated an iMessage inline-reply thread."""
+
+    message_handle: str
+    """Public handle of the thread's root message"""
+
+    part: Optional[str] = None
+    """Opaque Apple thread-originator part descriptor"""
 
 
 class MessageResponse(BaseModel):
@@ -67,6 +98,12 @@ class MessageResponse(BaseModel):
     number: Optional[str] = None
     """Recipient phone number"""
 
+    reply_to: Optional[ReplyTo] = None
+    """Immediate parent of an iMessage inline reply.
+
+    The target must belong to the same account, conversation, and sending line.
+    """
+
     seat_id: Optional[str] = None
     """UUID of the seat that sent the message.
 
@@ -101,3 +138,6 @@ class MessageResponse(BaseModel):
     """
 
     status: Optional[Literal["QUEUED", "SENT", "DELIVERED", "ERROR"]] = None
+
+    thread_originator: Optional[ThreadOriginator] = None
+    """Message that originated an iMessage inline-reply thread."""
