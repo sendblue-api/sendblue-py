@@ -144,6 +144,16 @@ Methods:
 
 # V2
 
+Types:
+
+```python
+from sendblue_api.types import V2RetrieveGroupMembershipResponse
+```
+
+Methods:
+
+- <code title="get /api/v2/groups/{group_id}">client.v2.<a href="./src/sendblue_api/resources/v2/v2.py">retrieve_group_membership</a>(group_id) -> <a href="./src/sendblue_api/types/v2_retrieve_group_membership_response.py">V2RetrieveGroupMembershipResponse</a></code>
+
 ## Totp
 
 Types:
@@ -187,18 +197,6 @@ Methods:
 - <code title="get /api/v2/seats/{seat_id}">client.v2.seats.<a href="./src/sendblue_api/resources/v2/seats.py">retrieve</a>(seat_id) -> <a href="./src/sendblue_api/types/v2/seat_retrieve_response.py">SeatRetrieveResponse</a></code>
 - <code title="get /api/v2/seats">client.v2.seats.<a href="./src/sendblue_api/resources/v2/seats.py">list</a>(\*\*<a href="src/sendblue_api/types/v2/seat_list_params.py">params</a>) -> <a href="./src/sendblue_api/types/v2/seat_list_response.py">SeatListResponse</a></code>
 - <code title="get /api/v2/seats/count">client.v2.seats.<a href="./src/sendblue_api/resources/v2/seats.py">count</a>(\*\*<a href="src/sendblue_api/types/v2/seat_count_params.py">params</a>) -> <a href="./src/sendblue_api/types/v2/seat_count_response.py">SeatCountResponse</a></code>
-
-## Groups
-
-Types:
-
-```python
-from sendblue_api.types.v2 import GroupRetrieveResponse
-```
-
-Methods:
-
-- <code title="get /api/v2/groups/{group_id}">client.v2.groups.<a href="./src/sendblue_api/resources/v2/groups.py">retrieve</a>(group_id) -> <a href="./src/sendblue_api/types/v2/group_retrieve_response.py">GroupRetrieveResponse</a></code>
 
 # Lines
 
