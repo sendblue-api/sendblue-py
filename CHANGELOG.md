@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.19.0 (2026-07-27)
+
+Full Changelog: [v1.18.1...v1.19.0](https://github.com/sendblue-api/sendblue-py/compare/v1.18.1...v1.19.0)
+
+### Features
+
+* Support iMessage inline replies in grayrunner ([7bed367](https://github.com/sendblue-api/sendblue-py/commit/7bed367dd51a0b2647fc430d36b96bfd8a0211ce))
+
 ## 1.18.1 (2026-07-23)
 
 Full Changelog: [v1.18.0...v1.18.1](https://github.com/sendblue-api/sendblue-py/compare/v1.18.0...v1.18.1)
