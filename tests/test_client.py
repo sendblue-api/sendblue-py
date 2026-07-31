@@ -966,9 +966,7 @@ class TestSendblueAPI:
         respx_mock.post("/api/send-message").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            client.messages.with_streaming_response.send(
-                content="Hello, World!", from_number="+19998887777", number="+19998887777"
-            ).__enter__()
+            client.messages.with_streaming_response.send(from_number="+19998887777", number="+19998887777").__enter__()
 
         assert _get_open_connections(client) == 0
 
@@ -978,9 +976,7 @@ class TestSendblueAPI:
         respx_mock.post("/api/send-message").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            client.messages.with_streaming_response.send(
-                content="Hello, World!", from_number="+19998887777", number="+19998887777"
-            ).__enter__()
+            client.messages.with_streaming_response.send(from_number="+19998887777", number="+19998887777").__enter__()
         assert _get_open_connections(client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -1009,9 +1005,7 @@ class TestSendblueAPI:
 
         respx_mock.post("/api/send-message").mock(side_effect=retry_handler)
 
-        response = client.messages.with_raw_response.send(
-            content="Hello, World!", from_number="+19998887777", number="+19998887777"
-        )
+        response = client.messages.with_raw_response.send(from_number="+19998887777", number="+19998887777")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -1036,10 +1030,7 @@ class TestSendblueAPI:
         respx_mock.post("/api/send-message").mock(side_effect=retry_handler)
 
         response = client.messages.with_raw_response.send(
-            content="Hello, World!",
-            from_number="+19998887777",
-            number="+19998887777",
-            extra_headers={"x-stainless-retry-count": Omit()},
+            from_number="+19998887777", number="+19998887777", extra_headers={"x-stainless-retry-count": Omit()}
         )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
@@ -1064,10 +1055,7 @@ class TestSendblueAPI:
         respx_mock.post("/api/send-message").mock(side_effect=retry_handler)
 
         response = client.messages.with_raw_response.send(
-            content="Hello, World!",
-            from_number="+19998887777",
-            number="+19998887777",
-            extra_headers={"x-stainless-retry-count": "42"},
+            from_number="+19998887777", number="+19998887777", extra_headers={"x-stainless-retry-count": "42"}
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
@@ -1994,7 +1982,7 @@ class TestAsyncSendblueAPI:
 
         with pytest.raises(APITimeoutError):
             await async_client.messages.with_streaming_response.send(
-                content="Hello, World!", from_number="+19998887777", number="+19998887777"
+                from_number="+19998887777", number="+19998887777"
             ).__aenter__()
 
         assert _get_open_connections(async_client) == 0
@@ -2008,7 +1996,7 @@ class TestAsyncSendblueAPI:
 
         with pytest.raises(APIStatusError):
             await async_client.messages.with_streaming_response.send(
-                content="Hello, World!", from_number="+19998887777", number="+19998887777"
+                from_number="+19998887777", number="+19998887777"
             ).__aenter__()
         assert _get_open_connections(async_client) == 0
 
@@ -2038,9 +2026,7 @@ class TestAsyncSendblueAPI:
 
         respx_mock.post("/api/send-message").mock(side_effect=retry_handler)
 
-        response = await client.messages.with_raw_response.send(
-            content="Hello, World!", from_number="+19998887777", number="+19998887777"
-        )
+        response = await client.messages.with_raw_response.send(from_number="+19998887777", number="+19998887777")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -2065,10 +2051,7 @@ class TestAsyncSendblueAPI:
         respx_mock.post("/api/send-message").mock(side_effect=retry_handler)
 
         response = await client.messages.with_raw_response.send(
-            content="Hello, World!",
-            from_number="+19998887777",
-            number="+19998887777",
-            extra_headers={"x-stainless-retry-count": Omit()},
+            from_number="+19998887777", number="+19998887777", extra_headers={"x-stainless-retry-count": Omit()}
         )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
@@ -2093,10 +2076,7 @@ class TestAsyncSendblueAPI:
         respx_mock.post("/api/send-message").mock(side_effect=retry_handler)
 
         response = await client.messages.with_raw_response.send(
-            content="Hello, World!",
-            from_number="+19998887777",
-            number="+19998887777",
-            extra_headers={"x-stainless-retry-count": "42"},
+            from_number="+19998887777", number="+19998887777", extra_headers={"x-stainless-retry-count": "42"}
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"

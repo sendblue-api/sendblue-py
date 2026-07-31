@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import message_list_params, message_send_params, message_get_status_params
+from ..types import message_list_params, message_send_params, message_get_status_params, message_update_app_card_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -285,9 +285,10 @@ class MessagesResource(SyncAPIResource):
     def send(
         self,
         *,
-        content: str,
         from_number: str,
         number: str,
+        app_card: message_send_params.AppCard | Omit = omit,
+        content: str | Omit = omit,
         media_url: str | Omit = omit,
         reply_to: message_send_params.ReplyTo | Omit = omit,
         seat_id: str | Omit = omit,
@@ -316,21 +317,29 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageResponse:
         """
-        Send an iMessage, SMS, or MMS to a single recipient
+        Send an iMessage, SMS, MMS, or Sendblue App Card to a single recipient
 
         Args:
-          content: Message text content
-
           from_number: **REQUIRED** - The phone number to send from. Must be one of your registered
               Sendblue phone numbers in E.164 format. Without this parameter, the message will
               fail to send.
 
           number: Recipient phone number in E.164 format
 
+          app_card: A Sendblue App Card rendered with Apple's Messages framework. App Cards require
+              a V2 Mac line and an iMessage-capable recipient; they never fall back to SMS.
+              The URL is delivered to the identified Messages extension when the recipient
+              taps the card. An initial App Card may include `reply_to` to create an inline
+              reply. Later state changes use the update endpoint, which sends a new Apple
+              message in the same App Card session. The feature is unavailable on the free
+              plan.
+
+          content: Message text content. Optional when `media_url` or `app_card` is provided.
+
           media_url: URL of media file to send (images, videos, etc.)
 
-          reply_to: Immediate parent of an iMessage inline reply. The target must belong to the same
-              account, conversation, and sending line.
+          reply_to: Optional inline-reply target. This may be combined with `app_card`; the
+              resulting App Card is sent as an inline reply to the target.
 
           seat_id: Optional. Identifies the seat (user) sending the message so the message is
               attributed to a specific rep. Accepts either the seat UUID or the Firebase Auth
@@ -353,9 +362,10 @@ class MessagesResource(SyncAPIResource):
             "/api/send-message",
             body=maybe_transform(
                 {
-                    "content": content,
                     "from_number": from_number,
                     "number": number,
+                    "app_card": app_card,
+                    "content": content,
                     "media_url": media_url,
                     "reply_to": reply_to,
                     "seat_id": seat_id,
@@ -363,6 +373,82 @@ class MessagesResource(SyncAPIResource):
                     "status_callback": status_callback,
                 },
                 message_send_params.MessageSendParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=MessageResponse,
+        )
+
+    def update_app_card(
+        self,
+        message_handle: str,
+        *,
+        fallback_text: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        interactive: bool | Omit = omit,
+        layout: message_update_app_card_params.Layout | Omit = omit,
+        send_style: Literal[
+            "celebration",
+            "shooting_star",
+            "fireworks",
+            "lasers",
+            "love",
+            "confetti",
+            "balloons",
+            "spotlight",
+            "echo",
+            "invisible",
+            "gentle",
+            "loud",
+            "slam",
+        ]
+        | Omit = omit,
+        url: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> MessageResponse:
+        """
+        Continues an existing App Card by sending a new Apple message in the same
+        iMessage session, from the same sender line and inline-reply context. The
+        continuation receives its own message handle and delivery/read status updates.
+
+        Args:
+          fallback_text: Replacement fallback text for notifications and non-rendering surfaces.
+
+          idempotency_key: Reusing this key for the same App Card target returns the original update
+              instead of sending again.
+
+          layout: Visible card fields mirroring Apple's MSMessageTemplateLayout.
+
+          send_style: The iMessage expressive message style for this update.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not message_handle:
+            raise ValueError(f"Expected a non-empty value for `message_handle` but received {message_handle!r}")
+        return self._post(
+            path_template("/api/messages/{message_handle}/update-app-card", message_handle=message_handle),
+            body=maybe_transform(
+                {
+                    "fallback_text": fallback_text,
+                    "idempotency_key": idempotency_key,
+                    "interactive": interactive,
+                    "layout": layout,
+                    "send_style": send_style,
+                    "url": url,
+                },
+                message_update_app_card_params.MessageUpdateAppCardParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -629,9 +715,10 @@ class AsyncMessagesResource(AsyncAPIResource):
     async def send(
         self,
         *,
-        content: str,
         from_number: str,
         number: str,
+        app_card: message_send_params.AppCard | Omit = omit,
+        content: str | Omit = omit,
         media_url: str | Omit = omit,
         reply_to: message_send_params.ReplyTo | Omit = omit,
         seat_id: str | Omit = omit,
@@ -660,21 +747,29 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageResponse:
         """
-        Send an iMessage, SMS, or MMS to a single recipient
+        Send an iMessage, SMS, MMS, or Sendblue App Card to a single recipient
 
         Args:
-          content: Message text content
-
           from_number: **REQUIRED** - The phone number to send from. Must be one of your registered
               Sendblue phone numbers in E.164 format. Without this parameter, the message will
               fail to send.
 
           number: Recipient phone number in E.164 format
 
+          app_card: A Sendblue App Card rendered with Apple's Messages framework. App Cards require
+              a V2 Mac line and an iMessage-capable recipient; they never fall back to SMS.
+              The URL is delivered to the identified Messages extension when the recipient
+              taps the card. An initial App Card may include `reply_to` to create an inline
+              reply. Later state changes use the update endpoint, which sends a new Apple
+              message in the same App Card session. The feature is unavailable on the free
+              plan.
+
+          content: Message text content. Optional when `media_url` or `app_card` is provided.
+
           media_url: URL of media file to send (images, videos, etc.)
 
-          reply_to: Immediate parent of an iMessage inline reply. The target must belong to the same
-              account, conversation, and sending line.
+          reply_to: Optional inline-reply target. This may be combined with `app_card`; the
+              resulting App Card is sent as an inline reply to the target.
 
           seat_id: Optional. Identifies the seat (user) sending the message so the message is
               attributed to a specific rep. Accepts either the seat UUID or the Firebase Auth
@@ -697,9 +792,10 @@ class AsyncMessagesResource(AsyncAPIResource):
             "/api/send-message",
             body=await async_maybe_transform(
                 {
-                    "content": content,
                     "from_number": from_number,
                     "number": number,
+                    "app_card": app_card,
+                    "content": content,
                     "media_url": media_url,
                     "reply_to": reply_to,
                     "seat_id": seat_id,
@@ -707,6 +803,82 @@ class AsyncMessagesResource(AsyncAPIResource):
                     "status_callback": status_callback,
                 },
                 message_send_params.MessageSendParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=MessageResponse,
+        )
+
+    async def update_app_card(
+        self,
+        message_handle: str,
+        *,
+        fallback_text: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        interactive: bool | Omit = omit,
+        layout: message_update_app_card_params.Layout | Omit = omit,
+        send_style: Literal[
+            "celebration",
+            "shooting_star",
+            "fireworks",
+            "lasers",
+            "love",
+            "confetti",
+            "balloons",
+            "spotlight",
+            "echo",
+            "invisible",
+            "gentle",
+            "loud",
+            "slam",
+        ]
+        | Omit = omit,
+        url: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> MessageResponse:
+        """
+        Continues an existing App Card by sending a new Apple message in the same
+        iMessage session, from the same sender line and inline-reply context. The
+        continuation receives its own message handle and delivery/read status updates.
+
+        Args:
+          fallback_text: Replacement fallback text for notifications and non-rendering surfaces.
+
+          idempotency_key: Reusing this key for the same App Card target returns the original update
+              instead of sending again.
+
+          layout: Visible card fields mirroring Apple's MSMessageTemplateLayout.
+
+          send_style: The iMessage expressive message style for this update.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not message_handle:
+            raise ValueError(f"Expected a non-empty value for `message_handle` but received {message_handle!r}")
+        return await self._post(
+            path_template("/api/messages/{message_handle}/update-app-card", message_handle=message_handle),
+            body=await async_maybe_transform(
+                {
+                    "fallback_text": fallback_text,
+                    "idempotency_key": idempotency_key,
+                    "interactive": interactive,
+                    "layout": layout,
+                    "send_style": send_style,
+                    "url": url,
+                },
+                message_update_app_card_params.MessageUpdateAppCardParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -731,6 +903,9 @@ class MessagesResourceWithRawResponse:
         self.send = to_raw_response_wrapper(
             messages.send,
         )
+        self.update_app_card = to_raw_response_wrapper(
+            messages.update_app_card,
+        )
 
 
 class AsyncMessagesResourceWithRawResponse:
@@ -748,6 +923,9 @@ class AsyncMessagesResourceWithRawResponse:
         )
         self.send = async_to_raw_response_wrapper(
             messages.send,
+        )
+        self.update_app_card = async_to_raw_response_wrapper(
+            messages.update_app_card,
         )
 
 
@@ -767,6 +945,9 @@ class MessagesResourceWithStreamingResponse:
         self.send = to_streamed_response_wrapper(
             messages.send,
         )
+        self.update_app_card = to_streamed_response_wrapper(
+            messages.update_app_card,
+        )
 
 
 class AsyncMessagesResourceWithStreamingResponse:
@@ -784,4 +965,7 @@ class AsyncMessagesResourceWithStreamingResponse:
         )
         self.send = async_to_streamed_response_wrapper(
             messages.send,
+        )
+        self.update_app_card = async_to_streamed_response_wrapper(
+            messages.update_app_card,
         )

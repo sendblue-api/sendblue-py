@@ -208,7 +208,6 @@ class SendblueAPI(SyncAPIClient):
 
     @cached_property
     def v2(self) -> V2Resource:
-        """Operations for group messaging (beta)"""
         from .resources.v2 import V2Resource
 
         return V2Resource(self)
@@ -491,7 +490,6 @@ class AsyncSendblueAPI(AsyncAPIClient):
 
     @cached_property
     def v2(self) -> AsyncV2Resource:
-        """Operations for group messaging (beta)"""
         from .resources.v2 import AsyncV2Resource
 
         return AsyncV2Resource(self)
@@ -704,7 +702,6 @@ class SendblueAPIWithRawResponse:
 
     @cached_property
     def v2(self) -> v2.V2ResourceWithRawResponse:
-        """Operations for group messaging (beta)"""
         from .resources.v2 import V2ResourceWithRawResponse
 
         return V2ResourceWithRawResponse(self._client.v2)
@@ -794,7 +791,6 @@ class AsyncSendblueAPIWithRawResponse:
 
     @cached_property
     def v2(self) -> v2.AsyncV2ResourceWithRawResponse:
-        """Operations for group messaging (beta)"""
         from .resources.v2 import AsyncV2ResourceWithRawResponse
 
         return AsyncV2ResourceWithRawResponse(self._client.v2)
@@ -884,7 +880,6 @@ class SendblueAPIWithStreamedResponse:
 
     @cached_property
     def v2(self) -> v2.V2ResourceWithStreamingResponse:
-        """Operations for group messaging (beta)"""
         from .resources.v2 import V2ResourceWithStreamingResponse
 
         return V2ResourceWithStreamingResponse(self._client.v2)
@@ -974,7 +969,6 @@ class AsyncSendblueAPIWithStreamedResponse:
 
     @cached_property
     def v2(self) -> v2.AsyncV2ResourceWithStreamingResponse:
-        """Operations for group messaging (beta)"""
         from .resources.v2 import AsyncV2ResourceWithStreamingResponse
 
         return AsyncV2ResourceWithStreamingResponse(self._client.v2)
