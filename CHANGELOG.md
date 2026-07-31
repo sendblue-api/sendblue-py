@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.20.0 (2026-07-31)
+
+Full Changelog: [v1.19.0...v1.20.0](https://github.com/sendblue-api/sendblue-py/compare/v1.19.0...v1.20.0)
+
+### Features
+
+* **grayrunner:** expose App Cards ([bb61e85](https://github.com/sendblue-api/sendblue-py/commit/bb61e853ebb5fc24f28b5dafec0b09b14e5baa9b))
+
 ## 1.19.0 (2026-07-27)
 
 Full Changelog: [v1.18.1...v1.19.0](https://github.com/sendblue-api/sendblue-py/compare/v1.18.1...v1.19.0)
