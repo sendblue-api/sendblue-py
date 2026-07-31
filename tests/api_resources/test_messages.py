@@ -158,7 +158,6 @@ class TestMessages:
     @parametrize
     def test_method_send(self, client: SendblueAPI) -> None:
         message = client.messages.send(
-            content="Hello, World!",
             from_number="+19998887777",
             number="+19998887777",
         )
@@ -168,9 +167,29 @@ class TestMessages:
     @parametrize
     def test_method_send_with_all_params(self, client: SendblueAPI) -> None:
         message = client.messages.send(
-            content="Hello, World!",
             from_number="+19998887777",
             number="+19998887777",
+            app_card={
+                "app_name": "My App",
+                "extension_bundle_id": "com.example.myapp.MessagesExtension",
+                "layout": {
+                    "caption": "Check this out",
+                    "image_subtitle": "imageSubtitle",
+                    "image_title": "imageTitle",
+                    "image_url": "https://example.com",
+                    "subcaption": "Tap to open",
+                    "summary": "summary",
+                    "trailing_caption": "trailingCaption",
+                    "trailing_subcaption": "trailingSubcaption",
+                },
+                "team_id": "ABCDE12345",
+                "url": "https://example.com/deep-link",
+                "app_store_id": 1234567890,
+                "fallback_text": "fallbackText",
+                "interactive": True,
+                "session_identifier": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            },
+            content="Hello, World!",
             media_url="https://example.com/image.jpg",
             reply_to={
                 "message_handle": "msg_parent123",
@@ -186,7 +205,6 @@ class TestMessages:
     @parametrize
     def test_raw_response_send(self, client: SendblueAPI) -> None:
         response = client.messages.with_raw_response.send(
-            content="Hello, World!",
             from_number="+19998887777",
             number="+19998887777",
         )
@@ -200,7 +218,6 @@ class TestMessages:
     @parametrize
     def test_streaming_response_send(self, client: SendblueAPI) -> None:
         with client.messages.with_streaming_response.send(
-            content="Hello, World!",
             from_number="+19998887777",
             number="+19998887777",
         ) as response:
@@ -211,6 +228,71 @@ class TestMessages:
             assert_matches_type(MessageResponse, message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_update_app_card(self, client: SendblueAPI) -> None:
+        message = client.messages.update_app_card(
+            message_handle="message_handle",
+        )
+        assert_matches_type(MessageResponse, message, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_update_app_card_with_all_params(self, client: SendblueAPI) -> None:
+        message = client.messages.update_app_card(
+            message_handle="message_handle",
+            fallback_text="fallback_text",
+            idempotency_key="x",
+            interactive=True,
+            layout={
+                "caption": "Check this out",
+                "image_subtitle": "imageSubtitle",
+                "image_title": "imageTitle",
+                "image_url": "https://example.com",
+                "subcaption": "Tap to open",
+                "summary": "summary",
+                "trailing_caption": "trailingCaption",
+                "trailing_subcaption": "trailingSubcaption",
+            },
+            send_style="celebration",
+            url="https://example.com",
+        )
+        assert_matches_type(MessageResponse, message, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_update_app_card(self, client: SendblueAPI) -> None:
+        response = client.messages.with_raw_response.update_app_card(
+            message_handle="message_handle",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        message = response.parse()
+        assert_matches_type(MessageResponse, message, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_update_app_card(self, client: SendblueAPI) -> None:
+        with client.messages.with_streaming_response.update_app_card(
+            message_handle="message_handle",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            message = response.parse()
+            assert_matches_type(MessageResponse, message, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_update_app_card(self, client: SendblueAPI) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `message_handle` but received ''"):
+            client.messages.with_raw_response.update_app_card(
+                message_handle="",
+            )
 
 
 class TestAsyncMessages:
@@ -354,7 +436,6 @@ class TestAsyncMessages:
     @parametrize
     async def test_method_send(self, async_client: AsyncSendblueAPI) -> None:
         message = await async_client.messages.send(
-            content="Hello, World!",
             from_number="+19998887777",
             number="+19998887777",
         )
@@ -364,9 +445,29 @@ class TestAsyncMessages:
     @parametrize
     async def test_method_send_with_all_params(self, async_client: AsyncSendblueAPI) -> None:
         message = await async_client.messages.send(
-            content="Hello, World!",
             from_number="+19998887777",
             number="+19998887777",
+            app_card={
+                "app_name": "My App",
+                "extension_bundle_id": "com.example.myapp.MessagesExtension",
+                "layout": {
+                    "caption": "Check this out",
+                    "image_subtitle": "imageSubtitle",
+                    "image_title": "imageTitle",
+                    "image_url": "https://example.com",
+                    "subcaption": "Tap to open",
+                    "summary": "summary",
+                    "trailing_caption": "trailingCaption",
+                    "trailing_subcaption": "trailingSubcaption",
+                },
+                "team_id": "ABCDE12345",
+                "url": "https://example.com/deep-link",
+                "app_store_id": 1234567890,
+                "fallback_text": "fallbackText",
+                "interactive": True,
+                "session_identifier": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            },
+            content="Hello, World!",
             media_url="https://example.com/image.jpg",
             reply_to={
                 "message_handle": "msg_parent123",
@@ -382,7 +483,6 @@ class TestAsyncMessages:
     @parametrize
     async def test_raw_response_send(self, async_client: AsyncSendblueAPI) -> None:
         response = await async_client.messages.with_raw_response.send(
-            content="Hello, World!",
             from_number="+19998887777",
             number="+19998887777",
         )
@@ -396,7 +496,6 @@ class TestAsyncMessages:
     @parametrize
     async def test_streaming_response_send(self, async_client: AsyncSendblueAPI) -> None:
         async with async_client.messages.with_streaming_response.send(
-            content="Hello, World!",
             from_number="+19998887777",
             number="+19998887777",
         ) as response:
@@ -407,3 +506,68 @@ class TestAsyncMessages:
             assert_matches_type(MessageResponse, message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_update_app_card(self, async_client: AsyncSendblueAPI) -> None:
+        message = await async_client.messages.update_app_card(
+            message_handle="message_handle",
+        )
+        assert_matches_type(MessageResponse, message, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_update_app_card_with_all_params(self, async_client: AsyncSendblueAPI) -> None:
+        message = await async_client.messages.update_app_card(
+            message_handle="message_handle",
+            fallback_text="fallback_text",
+            idempotency_key="x",
+            interactive=True,
+            layout={
+                "caption": "Check this out",
+                "image_subtitle": "imageSubtitle",
+                "image_title": "imageTitle",
+                "image_url": "https://example.com",
+                "subcaption": "Tap to open",
+                "summary": "summary",
+                "trailing_caption": "trailingCaption",
+                "trailing_subcaption": "trailingSubcaption",
+            },
+            send_style="celebration",
+            url="https://example.com",
+        )
+        assert_matches_type(MessageResponse, message, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_update_app_card(self, async_client: AsyncSendblueAPI) -> None:
+        response = await async_client.messages.with_raw_response.update_app_card(
+            message_handle="message_handle",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        message = await response.parse()
+        assert_matches_type(MessageResponse, message, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_update_app_card(self, async_client: AsyncSendblueAPI) -> None:
+        async with async_client.messages.with_streaming_response.update_app_card(
+            message_handle="message_handle",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            message = await response.parse()
+            assert_matches_type(MessageResponse, message, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_update_app_card(self, async_client: AsyncSendblueAPI) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `message_handle` but received ''"):
+            await async_client.messages.with_raw_response.update_app_card(
+                message_handle="",
+            )
