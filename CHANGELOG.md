@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.21.0 (2026-08-12)
+
+Full Changelog: [v1.20.0...v1.21.0](https://github.com/sendblue-api/sendblue-py/compare/v1.20.0...v1.21.0)
+
+### Features
+
+* **grayrunner:** add Vercel Eve provisioning ([96bd8a7](https://github.com/sendblue-api/sendblue-py/commit/96bd8a7de376c9432abed804baee0ee0dbed4d41))
+
+
+### Bug Fixes
+
+* **security:** remove PolinRider payload artifacts ([#35](https://github.com/sendblue-api/sendblue-py/issues/35)) ([2eb890f](https://github.com/sendblue-api/sendblue-py/commit/2eb890fbec3027e1eaa02f4bd8523a3c0385bebb))
+
 ## 1.20.0 (2026-07-31)
 
 Full Changelog: [v1.19.0...v1.20.0](https://github.com/sendblue-api/sendblue-py/compare/v1.19.0...v1.20.0)
