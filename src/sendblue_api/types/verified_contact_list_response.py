@@ -10,24 +10,22 @@ __all__ = ["VerifiedContactListResponse", "Data", "DataContact", "DataLine"]
 
 
 class DataContact(BaseModel):
-    id: int
-    """Internal WorkerRoute identifier."""
-
     created_at: datetime
 
     phone_number: str
-    """Contact phone number in E.164 format."""
+    """Contact phone number in E.164 format"""
 
     updated_at: datetime
 
     verification_status: Literal["pending", "verified"]
 
     verified: bool
+    """Whether this contact has completed verification by messaging the shared line"""
 
 
 class DataLine(BaseModel):
     phone_number: Optional[str] = None
-    """Assigned Sendblue line in E.164 format."""
+    """Shared Sendblue line the contact must message to complete verification"""
 
     type: Literal["shared"]
 

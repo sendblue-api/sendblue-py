@@ -9,4 +9,4 @@ __all__ = ["VerifiedContactCreateParams"]
 
 class VerifiedContactCreateParams(TypedDict, total=False):
     phone_number: Required[str]
-    """Contact phone number in E.164 format"""
+    """Contact phone number. E.164 is recommended; US local numbers are accepted."""
