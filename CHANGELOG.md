@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.21.1 (2026-08-12)
+
+Full Changelog: [v1.21.0...v1.21.1](https://github.com/sendblue-api/sendblue-py/compare/v1.21.0...v1.21.1)
+
+### Bug Fixes
+
+* **grayrunner:** harden Vercel Eve provisioning ([1322d83](https://github.com/sendblue-api/sendblue-py/commit/1322d83b12732ef94fd861f6804145d72afe0ed5))
+
 ## 1.21.0 (2026-08-12)
 
 Full Changelog: [v1.20.0...v1.21.0](https://github.com/sendblue-api/sendblue-py/compare/v1.20.0...v1.21.0)
