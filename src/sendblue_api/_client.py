@@ -236,7 +236,7 @@ class SendblueAPI(SyncAPIClient):
 
     @cached_property
     def verified_contacts(self) -> VerifiedContactsResource:
-        """Operations for managing verified contacts on shared iMessage lines"""
+        """Operations for managing verified-contact access to shared iMessage lines"""
         from .resources.verified_contacts import VerifiedContactsResource
 
         return VerifiedContactsResource(self)
@@ -525,7 +525,7 @@ class AsyncSendblueAPI(AsyncAPIClient):
 
     @cached_property
     def verified_contacts(self) -> AsyncVerifiedContactsResource:
-        """Operations for managing verified contacts on shared iMessage lines"""
+        """Operations for managing verified-contact access to shared iMessage lines"""
         from .resources.verified_contacts import AsyncVerifiedContactsResource
 
         return AsyncVerifiedContactsResource(self)
@@ -744,7 +744,7 @@ class SendblueAPIWithRawResponse:
 
     @cached_property
     def verified_contacts(self) -> verified_contacts.VerifiedContactsResourceWithRawResponse:
-        """Operations for managing verified contacts on shared iMessage lines"""
+        """Operations for managing verified-contact access to shared iMessage lines"""
         from .resources.verified_contacts import VerifiedContactsResourceWithRawResponse
 
         return VerifiedContactsResourceWithRawResponse(self._client.verified_contacts)
@@ -840,7 +840,7 @@ class AsyncSendblueAPIWithRawResponse:
 
     @cached_property
     def verified_contacts(self) -> verified_contacts.AsyncVerifiedContactsResourceWithRawResponse:
-        """Operations for managing verified contacts on shared iMessage lines"""
+        """Operations for managing verified-contact access to shared iMessage lines"""
         from .resources.verified_contacts import AsyncVerifiedContactsResourceWithRawResponse
 
         return AsyncVerifiedContactsResourceWithRawResponse(self._client.verified_contacts)
@@ -936,7 +936,7 @@ class SendblueAPIWithStreamedResponse:
 
     @cached_property
     def verified_contacts(self) -> verified_contacts.VerifiedContactsResourceWithStreamingResponse:
-        """Operations for managing verified contacts on shared iMessage lines"""
+        """Operations for managing verified-contact access to shared iMessage lines"""
         from .resources.verified_contacts import VerifiedContactsResourceWithStreamingResponse
 
         return VerifiedContactsResourceWithStreamingResponse(self._client.verified_contacts)
@@ -1032,7 +1032,7 @@ class AsyncSendblueAPIWithStreamedResponse:
 
     @cached_property
     def verified_contacts(self) -> verified_contacts.AsyncVerifiedContactsResourceWithStreamingResponse:
-        """Operations for managing verified contacts on shared iMessage lines"""
+        """Operations for managing verified-contact access to shared iMessage lines"""
         from .resources.verified_contacts import AsyncVerifiedContactsResourceWithStreamingResponse
 
         return AsyncVerifiedContactsResourceWithStreamingResponse(self._client.verified_contacts)

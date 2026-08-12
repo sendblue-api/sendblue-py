@@ -24,7 +24,7 @@ __all__ = ["VerifiedContactsResource", "AsyncVerifiedContactsResource"]
 
 
 class VerifiedContactsResource(SyncAPIResource):
-    """Operations for managing verified contacts on shared iMessage lines"""
+    """Operations for managing verified-contact access to shared iMessage lines"""
 
     @cached_property
     def with_raw_response(self) -> VerifiedContactsResourceWithRawResponse:
@@ -57,12 +57,12 @@ class VerifiedContactsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifiedContactCreateResponse:
         """
-        Creates or returns a pending verified-contact route for the authenticated
-        account's shared iMessage line. The recipient must send any iMessage or SMS to
-        the returned line phone number to complete verification.
+        Creates or returns a verified-contact route for the authenticated account's
+        shared iMessage line. Pending contacts become verified after the recipient sends
+        an inbound iMessage or SMS to the returned line phone number.
 
         Args:
-          phone_number: Contact phone number in E.164 format
+          phone_number: Contact phone number. E.164 is recommended; US local numbers are accepted.
 
           extra_headers: Send extra headers
 
@@ -128,7 +128,7 @@ class VerifiedContactsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifiedContactListResponse:
         """
-        Lists the contacts attached to the authenticated account's shared iMessage line.
+        Lists contacts attached to the authenticated account's shared iMessage line.
         Contacts start as `pending`; they become `verified` after the recipient sends an
         inbound iMessage or SMS to the shared line.
         """
@@ -142,7 +142,7 @@ class VerifiedContactsResource(SyncAPIResource):
 
 
 class AsyncVerifiedContactsResource(AsyncAPIResource):
-    """Operations for managing verified contacts on shared iMessage lines"""
+    """Operations for managing verified-contact access to shared iMessage lines"""
 
     @cached_property
     def with_raw_response(self) -> AsyncVerifiedContactsResourceWithRawResponse:
@@ -175,12 +175,12 @@ class AsyncVerifiedContactsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifiedContactCreateResponse:
         """
-        Creates or returns a pending verified-contact route for the authenticated
-        account's shared iMessage line. The recipient must send any iMessage or SMS to
-        the returned line phone number to complete verification.
+        Creates or returns a verified-contact route for the authenticated account's
+        shared iMessage line. Pending contacts become verified after the recipient sends
+        an inbound iMessage or SMS to the returned line phone number.
 
         Args:
-          phone_number: Contact phone number in E.164 format
+          phone_number: Contact phone number. E.164 is recommended; US local numbers are accepted.
 
           extra_headers: Send extra headers
 
@@ -246,7 +246,7 @@ class AsyncVerifiedContactsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifiedContactListResponse:
         """
-        Lists the contacts attached to the authenticated account's shared iMessage line.
+        Lists contacts attached to the authenticated account's shared iMessage line.
         Contacts start as `pending`; they become `verified` after the recipient sends an
         inbound iMessage or SMS to the shared line.
         """
