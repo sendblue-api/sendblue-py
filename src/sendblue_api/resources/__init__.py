@@ -96,6 +96,14 @@ from .typing_indicators import (
     TypingIndicatorsResourceWithStreamingResponse,
     AsyncTypingIndicatorsResourceWithStreamingResponse,
 )
+from .verified_contacts import (
+    VerifiedContactsResource,
+    AsyncVerifiedContactsResource,
+    VerifiedContactsResourceWithRawResponse,
+    AsyncVerifiedContactsResourceWithRawResponse,
+    VerifiedContactsResourceWithStreamingResponse,
+    AsyncVerifiedContactsResourceWithStreamingResponse,
+)
 
 __all__ = [
     "MessagesResource",
@@ -170,4 +178,10 @@ __all__ = [
     "AsyncLocationResourceWithRawResponse",
     "LocationResourceWithStreamingResponse",
     "AsyncLocationResourceWithStreamingResponse",
+    "VerifiedContactsResource",
+    "AsyncVerifiedContactsResource",
+    "VerifiedContactsResourceWithRawResponse",
+    "AsyncVerifiedContactsResourceWithRawResponse",
+    "VerifiedContactsResourceWithStreamingResponse",
+    "AsyncVerifiedContactsResourceWithStreamingResponse",
 ]

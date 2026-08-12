@@ -48,6 +48,7 @@ if TYPE_CHECKING:
         send_carousel,
         request_location,
         typing_indicators,
+        verified_contacts,
     )
     from .resources.v2.v2 import V2Resource, AsyncV2Resource
     from .resources.groups import GroupsResource, AsyncGroupsResource
@@ -61,6 +62,7 @@ if TYPE_CHECKING:
     from .resources.request_location import RequestLocationResource, AsyncRequestLocationResource
     from .resources.contacts.contacts import ContactsResource, AsyncContactsResource
     from .resources.typing_indicators import TypingIndicatorsResource, AsyncTypingIndicatorsResource
+    from .resources.verified_contacts import VerifiedContactsResource, AsyncVerifiedContactsResource
 
 __all__ = [
     "Timeout",
@@ -231,6 +233,13 @@ class SendblueAPI(SyncAPIClient):
         from .resources.location import LocationResource
 
         return LocationResource(self)
+
+    @cached_property
+    def verified_contacts(self) -> VerifiedContactsResource:
+        """Operations for managing verified contacts on shared iMessage lines"""
+        from .resources.verified_contacts import VerifiedContactsResource
+
+        return VerifiedContactsResource(self)
 
     @cached_property
     def with_raw_response(self) -> SendblueAPIWithRawResponse:
@@ -515,6 +524,13 @@ class AsyncSendblueAPI(AsyncAPIClient):
         return AsyncLocationResource(self)
 
     @cached_property
+    def verified_contacts(self) -> AsyncVerifiedContactsResource:
+        """Operations for managing verified contacts on shared iMessage lines"""
+        from .resources.verified_contacts import AsyncVerifiedContactsResource
+
+        return AsyncVerifiedContactsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncSendblueAPIWithRawResponse:
         return AsyncSendblueAPIWithRawResponse(self)
 
@@ -726,6 +742,13 @@ class SendblueAPIWithRawResponse:
 
         return LocationResourceWithRawResponse(self._client.location)
 
+    @cached_property
+    def verified_contacts(self) -> verified_contacts.VerifiedContactsResourceWithRawResponse:
+        """Operations for managing verified contacts on shared iMessage lines"""
+        from .resources.verified_contacts import VerifiedContactsResourceWithRawResponse
+
+        return VerifiedContactsResourceWithRawResponse(self._client.verified_contacts)
+
 
 class AsyncSendblueAPIWithRawResponse:
     _client: AsyncSendblueAPI
@@ -814,6 +837,13 @@ class AsyncSendblueAPIWithRawResponse:
         from .resources.location import AsyncLocationResourceWithRawResponse
 
         return AsyncLocationResourceWithRawResponse(self._client.location)
+
+    @cached_property
+    def verified_contacts(self) -> verified_contacts.AsyncVerifiedContactsResourceWithRawResponse:
+        """Operations for managing verified contacts on shared iMessage lines"""
+        from .resources.verified_contacts import AsyncVerifiedContactsResourceWithRawResponse
+
+        return AsyncVerifiedContactsResourceWithRawResponse(self._client.verified_contacts)
 
 
 class SendblueAPIWithStreamedResponse:
@@ -904,6 +934,13 @@ class SendblueAPIWithStreamedResponse:
 
         return LocationResourceWithStreamingResponse(self._client.location)
 
+    @cached_property
+    def verified_contacts(self) -> verified_contacts.VerifiedContactsResourceWithStreamingResponse:
+        """Operations for managing verified contacts on shared iMessage lines"""
+        from .resources.verified_contacts import VerifiedContactsResourceWithStreamingResponse
+
+        return VerifiedContactsResourceWithStreamingResponse(self._client.verified_contacts)
+
 
 class AsyncSendblueAPIWithStreamedResponse:
     _client: AsyncSendblueAPI
@@ -992,6 +1029,13 @@ class AsyncSendblueAPIWithStreamedResponse:
         from .resources.location import AsyncLocationResourceWithStreamingResponse
 
         return AsyncLocationResourceWithStreamingResponse(self._client.location)
+
+    @cached_property
+    def verified_contacts(self) -> verified_contacts.AsyncVerifiedContactsResourceWithStreamingResponse:
+        """Operations for managing verified contacts on shared iMessage lines"""
+        from .resources.verified_contacts import AsyncVerifiedContactsResourceWithStreamingResponse
+
+        return AsyncVerifiedContactsResourceWithStreamingResponse(self._client.verified_contacts)
 
 
 Client = SendblueAPI
