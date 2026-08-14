@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.22.0 (2026-08-14)
+
+Full Changelog: [v1.21.1...v1.22.0](https://github.com/sendblue-api/sendblue-py/compare/v1.21.1...v1.22.0)
+
+### Features
+
+* Add receive webhook line filters ([7394c84](https://github.com/sendblue-api/sendblue-py/commit/7394c84f6135cb3b8331bf7af5acdd1f8ad06440))
+
 ## 1.21.1 (2026-08-12)
 
 Full Changelog: [v1.21.0...v1.21.1](https://github.com/sendblue-api/sendblue-py/compare/v1.21.0...v1.21.1)
