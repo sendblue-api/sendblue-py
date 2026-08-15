@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.23.0 (2026-08-15)
+
+Full Changelog: [v1.22.0...v1.23.0](https://github.com/sendblue-api/sendblue-py/compare/v1.22.0...v1.23.0)
+
+### Features
+
+* **grayrunner:** add temporary account API tokens ([fa3c312](https://github.com/sendblue-api/sendblue-py/commit/fa3c3128bd804e7308427acc07375ee3c00e3a34))
+
 ## 1.22.0 (2026-08-14)
 
 Full Changelog: [v1.21.1...v1.22.0](https://github.com/sendblue-api/sendblue-py/compare/v1.21.1...v1.22.0)

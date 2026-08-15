@@ -37,6 +37,7 @@ from ._base_client import (
 if TYPE_CHECKING:
     from .resources import (
         v2,
+        auth,
         lines,
         groups,
         lookups,
@@ -56,6 +57,7 @@ if TYPE_CHECKING:
     from .resources.location import LocationResource, AsyncLocationResource
     from .resources.messages import MessagesResource, AsyncMessagesResource
     from .resources.webhooks import WebhooksResource, AsyncWebhooksResource
+    from .resources.auth.auth import AuthResource, AsyncAuthResource
     from .resources.lines.lines import LinesResource, AsyncLinesResource
     from .resources.media_objects import MediaObjectsResource, AsyncMediaObjectsResource
     from .resources.send_carousel import SendCarouselResource, AsyncSendCarouselResource
@@ -240,6 +242,12 @@ class SendblueAPI(SyncAPIClient):
         from .resources.verified_contacts import VerifiedContactsResource
 
         return VerifiedContactsResource(self)
+
+    @cached_property
+    def auth(self) -> AuthResource:
+        from .resources.auth import AuthResource
+
+        return AuthResource(self)
 
     @cached_property
     def with_raw_response(self) -> SendblueAPIWithRawResponse:
@@ -531,6 +539,12 @@ class AsyncSendblueAPI(AsyncAPIClient):
         return AsyncVerifiedContactsResource(self)
 
     @cached_property
+    def auth(self) -> AsyncAuthResource:
+        from .resources.auth import AsyncAuthResource
+
+        return AsyncAuthResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncSendblueAPIWithRawResponse:
         return AsyncSendblueAPIWithRawResponse(self)
 
@@ -749,6 +763,12 @@ class SendblueAPIWithRawResponse:
 
         return VerifiedContactsResourceWithRawResponse(self._client.verified_contacts)
 
+    @cached_property
+    def auth(self) -> auth.AuthResourceWithRawResponse:
+        from .resources.auth import AuthResourceWithRawResponse
+
+        return AuthResourceWithRawResponse(self._client.auth)
+
 
 class AsyncSendblueAPIWithRawResponse:
     _client: AsyncSendblueAPI
@@ -844,6 +864,12 @@ class AsyncSendblueAPIWithRawResponse:
         from .resources.verified_contacts import AsyncVerifiedContactsResourceWithRawResponse
 
         return AsyncVerifiedContactsResourceWithRawResponse(self._client.verified_contacts)
+
+    @cached_property
+    def auth(self) -> auth.AsyncAuthResourceWithRawResponse:
+        from .resources.auth import AsyncAuthResourceWithRawResponse
+
+        return AsyncAuthResourceWithRawResponse(self._client.auth)
 
 
 class SendblueAPIWithStreamedResponse:
@@ -941,6 +967,12 @@ class SendblueAPIWithStreamedResponse:
 
         return VerifiedContactsResourceWithStreamingResponse(self._client.verified_contacts)
 
+    @cached_property
+    def auth(self) -> auth.AuthResourceWithStreamingResponse:
+        from .resources.auth import AuthResourceWithStreamingResponse
+
+        return AuthResourceWithStreamingResponse(self._client.auth)
+
 
 class AsyncSendblueAPIWithStreamedResponse:
     _client: AsyncSendblueAPI
@@ -1036,6 +1068,12 @@ class AsyncSendblueAPIWithStreamedResponse:
         from .resources.verified_contacts import AsyncVerifiedContactsResourceWithStreamingResponse
 
         return AsyncVerifiedContactsResourceWithStreamingResponse(self._client.verified_contacts)
+
+    @cached_property
+    def auth(self) -> auth.AsyncAuthResourceWithStreamingResponse:
+        from .resources.auth import AsyncAuthResourceWithStreamingResponse
+
+        return AsyncAuthResourceWithStreamingResponse(self._client.auth)
 
 
 Client = SendblueAPI
