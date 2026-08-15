@@ -8,6 +8,14 @@ from .v2 import (
     V2ResourceWithStreamingResponse,
     AsyncV2ResourceWithStreamingResponse,
 )
+from .auth import (
+    AuthResource,
+    AsyncAuthResource,
+    AuthResourceWithRawResponse,
+    AsyncAuthResourceWithRawResponse,
+    AuthResourceWithStreamingResponse,
+    AsyncAuthResourceWithStreamingResponse,
+)
 from .lines import (
     LinesResource,
     AsyncLinesResource,
@@ -184,4 +192,10 @@ __all__ = [
     "AsyncVerifiedContactsResourceWithRawResponse",
     "VerifiedContactsResourceWithStreamingResponse",
     "AsyncVerifiedContactsResourceWithStreamingResponse",
+    "AuthResource",
+    "AsyncAuthResource",
+    "AuthResourceWithRawResponse",
+    "AsyncAuthResourceWithRawResponse",
+    "AuthResourceWithStreamingResponse",
+    "AsyncAuthResourceWithStreamingResponse",
 ]

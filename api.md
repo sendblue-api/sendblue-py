@@ -264,3 +264,18 @@ Methods:
 - <code title="post /v3/verified-contacts">client.verified_contacts.<a href="./src/sendblue_api/resources/verified_contacts.py">create</a>(\*\*<a href="src/sendblue_api/types/verified_contact_create_params.py">params</a>) -> <a href="./src/sendblue_api/types/verified_contact_create_response.py">VerifiedContactCreateResponse</a></code>
 - <code title="get /v3/verified-contacts/{phone_number}">client.verified_contacts.<a href="./src/sendblue_api/resources/verified_contacts.py">retrieve</a>(phone_number) -> <a href="./src/sendblue_api/types/verified_contact_retrieve_response.py">VerifiedContactRetrieveResponse</a></code>
 - <code title="get /v3/verified-contacts">client.verified_contacts.<a href="./src/sendblue_api/resources/verified_contacts.py">list</a>() -> <a href="./src/sendblue_api/types/verified_contact_list_response.py">VerifiedContactListResponse</a></code>
+
+# Auth
+
+## Tokens
+
+Types:
+
+```python
+from sendblue_api.types.auth import TokenCreateResponse
+```
+
+Methods:
+
+- <code title="post /v3/auth/tokens">client.auth.tokens.<a href="./src/sendblue_api/resources/auth/tokens.py">create</a>(\*\*<a href="src/sendblue_api/types/auth/token_create_params.py">params</a>) -> <a href="./src/sendblue_api/types/auth/token_create_response.py">TokenCreateResponse</a></code>
+- <code title="delete /v3/auth/tokens/{token_id}">client.auth.tokens.<a href="./src/sendblue_api/resources/auth/tokens.py">revoke</a>(token_id) -> None</code>

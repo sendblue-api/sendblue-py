@@ -68,6 +68,11 @@ class WebhooksResource(SyncAPIResource):
 
         Webhooks are appended to existing ones.
 
+        With a line-scoped temporary bearer token, only receive webhooks can be added.
+        String webhook URLs are automatically scoped to the token's phone numbers;
+        webhook objects must use `sendblue_numbers` within the token's allowed phone
+        numbers.
+
         Args:
           webhooks: Array of webhook URLs or webhook objects
 
@@ -142,7 +147,12 @@ class WebhooksResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WebhookListResponse:
-        """Get all webhooks configured for the authenticated account"""
+        """
+        Get webhooks configured for the authenticated account.
+
+        With a line-scoped temporary bearer token, this returns receive webhooks for the
+        token's phone numbers.
+        """
         return self._get(
             "/api/account/webhooks",
             options=make_request_options(
@@ -167,7 +177,10 @@ class WebhooksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WebhookDeleteResponse:
         """
-        Delete specific webhooks from the account
+        Delete specific webhooks from the account.
+
+        With a line-scoped temporary bearer token, this can only remove receive webhooks
+        for the token's phone numbers.
 
         Args:
           webhooks: Array of webhook URLs to delete
@@ -239,6 +252,11 @@ class AsyncWebhooksResource(AsyncAPIResource):
         """Add new webhooks to the account.
 
         Webhooks are appended to existing ones.
+
+        With a line-scoped temporary bearer token, only receive webhooks can be added.
+        String webhook URLs are automatically scoped to the token's phone numbers;
+        webhook objects must use `sendblue_numbers` within the token's allowed phone
+        numbers.
 
         Args:
           webhooks: Array of webhook URLs or webhook objects
@@ -314,7 +332,12 @@ class AsyncWebhooksResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WebhookListResponse:
-        """Get all webhooks configured for the authenticated account"""
+        """
+        Get webhooks configured for the authenticated account.
+
+        With a line-scoped temporary bearer token, this returns receive webhooks for the
+        token's phone numbers.
+        """
         return await self._get(
             "/api/account/webhooks",
             options=make_request_options(
@@ -339,7 +362,10 @@ class AsyncWebhooksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WebhookDeleteResponse:
         """
-        Delete specific webhooks from the account
+        Delete specific webhooks from the account.
+
+        With a line-scoped temporary bearer token, this can only remove receive webhooks
+        for the token's phone numbers.
 
         Args:
           webhooks: Array of webhook URLs to delete
