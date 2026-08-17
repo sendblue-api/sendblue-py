@@ -2,7 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing import Union
+from datetime import datetime
+from typing_extensions import Literal, Annotated, TypedDict
+
+from .._utils import PropertyInfo
 
 __all__ = ["ContactListParams"]
 
@@ -10,6 +14,9 @@ __all__ = ["ContactListParams"]
 class ContactListParams(TypedDict, total=False):
     cid: str
     """Filter by contact ID"""
+
+    created_at_gte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Filter contacts created at or after this ISO 8601 timestamp (event recovery)"""
 
     limit: int
     """Maximum number of contacts to return. Defaults to 100, capped at 1000."""
