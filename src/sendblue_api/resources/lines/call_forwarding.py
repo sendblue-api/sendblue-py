@@ -24,6 +24,8 @@ __all__ = ["CallForwardingResource", "AsyncCallForwardingResource"]
 
 
 class CallForwardingResource(SyncAPIResource):
+    """Sendblue line configuration and health state"""
+
     @cached_property
     def with_raw_response(self) -> CallForwardingResourceWithRawResponse:
         """
@@ -167,6 +169,8 @@ class CallForwardingResource(SyncAPIResource):
 
 
 class AsyncCallForwardingResource(AsyncAPIResource):
+    """Sendblue line configuration and health state"""
+
     @cached_property
     def with_raw_response(self) -> AsyncCallForwardingResourceWithRawResponse:
         """

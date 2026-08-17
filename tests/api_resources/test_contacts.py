@@ -19,6 +19,7 @@ from sendblue_api.types import (
     ContactVerifyResponse,
     ContactRetrieveResponse,
 )
+from sendblue_api._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -198,6 +199,7 @@ class TestContacts:
     def test_method_list_with_all_params(self, client: SendblueAPI) -> None:
         contact = client.contacts.list(
             cid="cid",
+            created_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
             limit=1,
             offset=0,
             order_by="order_by",
@@ -553,6 +555,7 @@ class TestAsyncContacts:
     async def test_method_list_with_all_params(self, async_client: AsyncSendblueAPI) -> None:
         contact = await async_client.contacts.list(
             cid="cid",
+            created_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
             limit=1,
             offset=0,
             order_by="order_by",

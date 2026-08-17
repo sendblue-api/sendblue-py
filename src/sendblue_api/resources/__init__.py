@@ -24,6 +24,14 @@ from .lines import (
     LinesResourceWithStreamingResponse,
     AsyncLinesResourceWithStreamingResponse,
 )
+from .events import (
+    EventsResource,
+    AsyncEventsResource,
+    EventsResourceWithRawResponse,
+    AsyncEventsResourceWithRawResponse,
+    EventsResourceWithStreamingResponse,
+    AsyncEventsResourceWithStreamingResponse,
+)
 from .groups import (
     GroupsResource,
     AsyncGroupsResource,
@@ -31,6 +39,14 @@ from .groups import (
     AsyncGroupsResourceWithRawResponse,
     GroupsResourceWithStreamingResponse,
     AsyncGroupsResourceWithStreamingResponse,
+)
+from .verify import (
+    VerifyResource,
+    AsyncVerifyResource,
+    VerifyResourceWithRawResponse,
+    AsyncVerifyResourceWithRawResponse,
+    VerifyResourceWithStreamingResponse,
+    AsyncVerifyResourceWithStreamingResponse,
 )
 from .lookups import (
     LookupsResource,
@@ -198,4 +214,16 @@ __all__ = [
     "AsyncAuthResourceWithRawResponse",
     "AuthResourceWithStreamingResponse",
     "AsyncAuthResourceWithStreamingResponse",
+    "EventsResource",
+    "AsyncEventsResource",
+    "EventsResourceWithRawResponse",
+    "AsyncEventsResourceWithRawResponse",
+    "EventsResourceWithStreamingResponse",
+    "AsyncEventsResourceWithStreamingResponse",
+    "VerifyResource",
+    "AsyncVerifyResource",
+    "VerifyResourceWithRawResponse",
+    "AsyncVerifyResourceWithRawResponse",
+    "VerifyResourceWithStreamingResponse",
+    "AsyncVerifyResourceWithStreamingResponse",
 ]
