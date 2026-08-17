@@ -203,6 +203,16 @@ Methods:
 
 # Lines
 
+Types:
+
+```python
+from sendblue_api.types import LineState, LineGetStateResponse
+```
+
+Methods:
+
+- <code title="get /api/v2/lines/state">client.lines.<a href="./src/sendblue_api/resources/lines/lines.py">get_state</a>() -> <a href="./src/sendblue_api/types/line_get_state_response.py">LineGetStateResponse</a></code>
+
 ## CallForwarding
 
 Types:
@@ -279,3 +289,29 @@ Methods:
 
 - <code title="post /v3/auth/tokens">client.auth.tokens.<a href="./src/sendblue_api/resources/auth/tokens.py">create</a>(\*\*<a href="src/sendblue_api/types/auth/token_create_params.py">params</a>) -> <a href="./src/sendblue_api/types/auth/token_create_response.py">TokenCreateResponse</a></code>
 - <code title="delete /v3/auth/tokens/{token_id}">client.auth.tokens.<a href="./src/sendblue_api/resources/auth/tokens.py">revoke</a>(token_id) -> None</code>
+
+# Events
+
+Types:
+
+```python
+from sendblue_api.types import AccountEvent
+```
+
+Methods:
+
+- <code title="get /api/v2/events">client.events.<a href="./src/sendblue_api/resources/events.py">stream</a>(\*\*<a href="src/sendblue_api/types/event_stream_params.py">params</a>) -> <a href="./src/sendblue_api/types/account_event.py">AccountEvent</a></code>
+
+# Verify
+
+## Verifications
+
+Types:
+
+```python
+from sendblue_api.types.verify import VerificationState, VerificationListResponse
+```
+
+Methods:
+
+- <code title="get /api/v2/verify/verifications">client.verify.verifications.<a href="./src/sendblue_api/resources/verify/verifications.py">list</a>(\*\*<a href="src/sendblue_api/types/verify/verification_list_params.py">params</a>) -> <a href="./src/sendblue_api/types/verify/verification_list_response.py">VerificationListResponse</a></code>

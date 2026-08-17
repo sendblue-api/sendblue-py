@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.24.0 (2026-08-17)
+
+Full Changelog: [v1.23.0...v1.24.0](https://github.com/sendblue-api/sendblue-py/compare/v1.23.0...v1.24.0)
+
+### Features
+
+* **grayrunner:** add authenticated account event stream ([b6f7b1b](https://github.com/sendblue-api/sendblue-py/commit/b6f7b1bc0da29a6e3f0d93b160ac26fd444c7b3f))
+
 ## 1.23.0 (2026-08-15)
 
 Full Changelog: [v1.22.0...v1.23.0](https://github.com/sendblue-api/sendblue-py/compare/v1.22.0...v1.23.0)

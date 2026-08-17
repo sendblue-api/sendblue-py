@@ -39,7 +39,9 @@ if TYPE_CHECKING:
         v2,
         auth,
         lines,
+        events,
         groups,
+        verify,
         lookups,
         contacts,
         location,
@@ -52,6 +54,7 @@ if TYPE_CHECKING:
         verified_contacts,
     )
     from .resources.v2.v2 import V2Resource, AsyncV2Resource
+    from .resources.events import EventsResource, AsyncEventsResource
     from .resources.groups import GroupsResource, AsyncGroupsResource
     from .resources.lookups import LookupsResource, AsyncLookupsResource
     from .resources.location import LocationResource, AsyncLocationResource
@@ -61,6 +64,7 @@ if TYPE_CHECKING:
     from .resources.lines.lines import LinesResource, AsyncLinesResource
     from .resources.media_objects import MediaObjectsResource, AsyncMediaObjectsResource
     from .resources.send_carousel import SendCarouselResource, AsyncSendCarouselResource
+    from .resources.verify.verify import VerifyResource, AsyncVerifyResource
     from .resources.request_location import RequestLocationResource, AsyncRequestLocationResource
     from .resources.contacts.contacts import ContactsResource, AsyncContactsResource
     from .resources.typing_indicators import TypingIndicatorsResource, AsyncTypingIndicatorsResource
@@ -218,6 +222,7 @@ class SendblueAPI(SyncAPIClient):
 
     @cached_property
     def lines(self) -> LinesResource:
+        """Sendblue line configuration and health state"""
         from .resources.lines import LinesResource
 
         return LinesResource(self)
@@ -248,6 +253,19 @@ class SendblueAPI(SyncAPIClient):
         from .resources.auth import AuthResource
 
         return AuthResource(self)
+
+    @cached_property
+    def events(self) -> EventsResource:
+        """Authenticated live account events and recovery contracts"""
+        from .resources.events import EventsResource
+
+        return EventsResource(self)
+
+    @cached_property
+    def verify(self) -> VerifyResource:
+        from .resources.verify import VerifyResource
+
+        return VerifyResource(self)
 
     @cached_property
     def with_raw_response(self) -> SendblueAPIWithRawResponse:
@@ -513,6 +531,7 @@ class AsyncSendblueAPI(AsyncAPIClient):
 
     @cached_property
     def lines(self) -> AsyncLinesResource:
+        """Sendblue line configuration and health state"""
         from .resources.lines import AsyncLinesResource
 
         return AsyncLinesResource(self)
@@ -543,6 +562,19 @@ class AsyncSendblueAPI(AsyncAPIClient):
         from .resources.auth import AsyncAuthResource
 
         return AsyncAuthResource(self)
+
+    @cached_property
+    def events(self) -> AsyncEventsResource:
+        """Authenticated live account events and recovery contracts"""
+        from .resources.events import AsyncEventsResource
+
+        return AsyncEventsResource(self)
+
+    @cached_property
+    def verify(self) -> AsyncVerifyResource:
+        from .resources.verify import AsyncVerifyResource
+
+        return AsyncVerifyResource(self)
 
     @cached_property
     def with_raw_response(self) -> AsyncSendblueAPIWithRawResponse:
@@ -738,6 +770,7 @@ class SendblueAPIWithRawResponse:
 
     @cached_property
     def lines(self) -> lines.LinesResourceWithRawResponse:
+        """Sendblue line configuration and health state"""
         from .resources.lines import LinesResourceWithRawResponse
 
         return LinesResourceWithRawResponse(self._client.lines)
@@ -768,6 +801,19 @@ class SendblueAPIWithRawResponse:
         from .resources.auth import AuthResourceWithRawResponse
 
         return AuthResourceWithRawResponse(self._client.auth)
+
+    @cached_property
+    def events(self) -> events.EventsResourceWithRawResponse:
+        """Authenticated live account events and recovery contracts"""
+        from .resources.events import EventsResourceWithRawResponse
+
+        return EventsResourceWithRawResponse(self._client.events)
+
+    @cached_property
+    def verify(self) -> verify.VerifyResourceWithRawResponse:
+        from .resources.verify import VerifyResourceWithRawResponse
+
+        return VerifyResourceWithRawResponse(self._client.verify)
 
 
 class AsyncSendblueAPIWithRawResponse:
@@ -840,6 +886,7 @@ class AsyncSendblueAPIWithRawResponse:
 
     @cached_property
     def lines(self) -> lines.AsyncLinesResourceWithRawResponse:
+        """Sendblue line configuration and health state"""
         from .resources.lines import AsyncLinesResourceWithRawResponse
 
         return AsyncLinesResourceWithRawResponse(self._client.lines)
@@ -870,6 +917,19 @@ class AsyncSendblueAPIWithRawResponse:
         from .resources.auth import AsyncAuthResourceWithRawResponse
 
         return AsyncAuthResourceWithRawResponse(self._client.auth)
+
+    @cached_property
+    def events(self) -> events.AsyncEventsResourceWithRawResponse:
+        """Authenticated live account events and recovery contracts"""
+        from .resources.events import AsyncEventsResourceWithRawResponse
+
+        return AsyncEventsResourceWithRawResponse(self._client.events)
+
+    @cached_property
+    def verify(self) -> verify.AsyncVerifyResourceWithRawResponse:
+        from .resources.verify import AsyncVerifyResourceWithRawResponse
+
+        return AsyncVerifyResourceWithRawResponse(self._client.verify)
 
 
 class SendblueAPIWithStreamedResponse:
@@ -942,6 +1002,7 @@ class SendblueAPIWithStreamedResponse:
 
     @cached_property
     def lines(self) -> lines.LinesResourceWithStreamingResponse:
+        """Sendblue line configuration and health state"""
         from .resources.lines import LinesResourceWithStreamingResponse
 
         return LinesResourceWithStreamingResponse(self._client.lines)
@@ -972,6 +1033,19 @@ class SendblueAPIWithStreamedResponse:
         from .resources.auth import AuthResourceWithStreamingResponse
 
         return AuthResourceWithStreamingResponse(self._client.auth)
+
+    @cached_property
+    def events(self) -> events.EventsResourceWithStreamingResponse:
+        """Authenticated live account events and recovery contracts"""
+        from .resources.events import EventsResourceWithStreamingResponse
+
+        return EventsResourceWithStreamingResponse(self._client.events)
+
+    @cached_property
+    def verify(self) -> verify.VerifyResourceWithStreamingResponse:
+        from .resources.verify import VerifyResourceWithStreamingResponse
+
+        return VerifyResourceWithStreamingResponse(self._client.verify)
 
 
 class AsyncSendblueAPIWithStreamedResponse:
@@ -1044,6 +1118,7 @@ class AsyncSendblueAPIWithStreamedResponse:
 
     @cached_property
     def lines(self) -> lines.AsyncLinesResourceWithStreamingResponse:
+        """Sendblue line configuration and health state"""
         from .resources.lines import AsyncLinesResourceWithStreamingResponse
 
         return AsyncLinesResourceWithStreamingResponse(self._client.lines)
@@ -1074,6 +1149,19 @@ class AsyncSendblueAPIWithStreamedResponse:
         from .resources.auth import AsyncAuthResourceWithStreamingResponse
 
         return AsyncAuthResourceWithStreamingResponse(self._client.auth)
+
+    @cached_property
+    def events(self) -> events.AsyncEventsResourceWithStreamingResponse:
+        """Authenticated live account events and recovery contracts"""
+        from .resources.events import AsyncEventsResourceWithStreamingResponse
+
+        return AsyncEventsResourceWithStreamingResponse(self._client.events)
+
+    @cached_property
+    def verify(self) -> verify.AsyncVerifyResourceWithStreamingResponse:
+        from .resources.verify import AsyncVerifyResourceWithStreamingResponse
+
+        return AsyncVerifyResourceWithStreamingResponse(self._client.verify)
 
 
 Client = SendblueAPI

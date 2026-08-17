@@ -15,6 +15,9 @@ class Contact(BaseModel):
     company_name: Optional[str] = None
     """Company name"""
 
+    contact_id: Optional[str] = None
+    """Immutable contact identity (included by list responses for event recovery)"""
+
     created_at: Optional[datetime] = None
     """When the contact was created"""
 

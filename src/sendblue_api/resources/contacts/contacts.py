@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Union
+from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
@@ -296,6 +297,7 @@ class ContactsResource(SyncAPIResource):
         self,
         *,
         cid: str | Omit = omit,
+        created_at_gte: Union[str, datetime] | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
         order_by: str | Omit = omit,
@@ -313,6 +315,8 @@ class ContactsResource(SyncAPIResource):
 
         Args:
           cid: Filter by contact ID
+
+          created_at_gte: Filter contacts created at or after this ISO 8601 timestamp (event recovery)
 
           limit: Maximum number of contacts to return. Defaults to 100, capped at 1000.
 
@@ -342,6 +346,7 @@ class ContactsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "cid": cid,
+                        "created_at_gte": created_at_gte,
                         "limit": limit,
                         "offset": offset,
                         "order_by": order_by,
@@ -739,6 +744,7 @@ class AsyncContactsResource(AsyncAPIResource):
         self,
         *,
         cid: str | Omit = omit,
+        created_at_gte: Union[str, datetime] | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
         order_by: str | Omit = omit,
@@ -756,6 +762,8 @@ class AsyncContactsResource(AsyncAPIResource):
 
         Args:
           cid: Filter by contact ID
+
+          created_at_gte: Filter contacts created at or after this ISO 8601 timestamp (event recovery)
 
           limit: Maximum number of contacts to return. Defaults to 100, capped at 1000.
 
@@ -785,6 +793,7 @@ class AsyncContactsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "cid": cid,
+                        "created_at_gte": created_at_gte,
                         "limit": limit,
                         "offset": offset,
                         "order_by": order_by,
