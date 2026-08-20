@@ -2,11 +2,6 @@
 
 from __future__ import annotations
 
-from .delivery_target import DeliveryTarget as DeliveryTarget
-from .verification_state import VerificationState as VerificationState
-from .hosted_verification import HostedVerification as HostedVerification
-from .verification_list_params import VerificationListParams as VerificationListParams
 from .verification_create_params import VerificationCreateParams as VerificationCreateParams
-from .verification_list_response import VerificationListResponse as VerificationListResponse
 from .verification_create_response import VerificationCreateResponse as VerificationCreateResponse
 from .verification_retrieve_response import VerificationRetrieveResponse as VerificationRetrieveResponse

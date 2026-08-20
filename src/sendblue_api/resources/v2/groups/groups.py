@@ -4,24 +4,36 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import path_template
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._utils import path_template
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
-from ...types.v2.group_retrieve_response import GroupRetrieveResponse
+from .verify.verify import (
+    VerifyResource,
+    AsyncVerifyResource,
+    VerifyResourceWithRawResponse,
+    AsyncVerifyResourceWithRawResponse,
+    VerifyResourceWithStreamingResponse,
+    AsyncVerifyResourceWithStreamingResponse,
+)
+from ...._base_client import make_request_options
+from ....types.v2.group_retrieve_response import GroupRetrieveResponse
 
 __all__ = ["GroupsResource", "AsyncGroupsResource"]
 
 
 class GroupsResource(SyncAPIResource):
     """Operations for group messaging (beta)"""
+
+    @cached_property
+    def verify(self) -> VerifyResource:
+        return VerifyResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> GroupsResourceWithRawResponse:
@@ -82,6 +94,10 @@ class GroupsResource(SyncAPIResource):
 
 class AsyncGroupsResource(AsyncAPIResource):
     """Operations for group messaging (beta)"""
+
+    @cached_property
+    def verify(self) -> AsyncVerifyResource:
+        return AsyncVerifyResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncGroupsResourceWithRawResponse:
@@ -148,6 +164,10 @@ class GroupsResourceWithRawResponse:
             groups.retrieve,
         )
 
+    @cached_property
+    def verify(self) -> VerifyResourceWithRawResponse:
+        return VerifyResourceWithRawResponse(self._groups.verify)
+
 
 class AsyncGroupsResourceWithRawResponse:
     def __init__(self, groups: AsyncGroupsResource) -> None:
@@ -156,6 +176,10 @@ class AsyncGroupsResourceWithRawResponse:
         self.retrieve = async_to_raw_response_wrapper(
             groups.retrieve,
         )
+
+    @cached_property
+    def verify(self) -> AsyncVerifyResourceWithRawResponse:
+        return AsyncVerifyResourceWithRawResponse(self._groups.verify)
 
 
 class GroupsResourceWithStreamingResponse:
@@ -166,6 +190,10 @@ class GroupsResourceWithStreamingResponse:
             groups.retrieve,
         )
 
+    @cached_property
+    def verify(self) -> VerifyResourceWithStreamingResponse:
+        return VerifyResourceWithStreamingResponse(self._groups.verify)
+
 
 class AsyncGroupsResourceWithStreamingResponse:
     def __init__(self, groups: AsyncGroupsResource) -> None:
@@ -174,3 +202,7 @@ class AsyncGroupsResourceWithStreamingResponse:
         self.retrieve = async_to_streamed_response_wrapper(
             groups.retrieve,
         )
+
+    @cached_property
+    def verify(self) -> AsyncVerifyResourceWithStreamingResponse:
+        return AsyncVerifyResourceWithStreamingResponse(self._groups.verify)
