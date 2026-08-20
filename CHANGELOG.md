@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.25.0 (2026-08-20)
+
+Full Changelog: [v1.24.0...v1.25.0](https://github.com/sendblue-api/sendblue-py/compare/v1.24.0...v1.25.0)
+
+### Features
+
+* **verify:** add hosted verification component ([b2dfa64](https://github.com/sendblue-api/sendblue-py/commit/b2dfa64588897ca07175eb6259d097b7cdbe5407))
+
 ## 1.24.0 (2026-08-17)
 
 Full Changelog: [v1.23.0...v1.24.0](https://github.com/sendblue-api/sendblue-py/compare/v1.23.0...v1.24.0)

@@ -2,26 +2,22 @@
 
 from __future__ import annotations
 
-from typing import Union
-from datetime import datetime
-
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ......_types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ......_utils import path_template, maybe_transform, async_maybe_transform
+from ......_compat import cached_property
+from ......_resource import SyncAPIResource, AsyncAPIResource
+from ......_response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
-from ...types.verify import verification_list_params, verification_create_params
-from ...types.verify.verification_list_response import VerificationListResponse
-from ...types.verify.verification_create_response import VerificationCreateResponse
-from ...types.verify.verification_retrieve_response import VerificationRetrieveResponse
+from ......_base_client import make_request_options
+from ......types.v2.groups.verify.services import verification_create_params
+from ......types.v2.groups.verify.services.verification_create_response import VerificationCreateResponse
+from ......types.v2.groups.verify.services.verification_retrieve_response import VerificationRetrieveResponse
 
 __all__ = ["VerificationsResource", "AsyncVerificationsResource"]
 
@@ -152,51 +148,6 @@ class VerificationsResource(SyncAPIResource):
             cast_to=VerificationRetrieveResponse,
         )
 
-    def list(
-        self,
-        *,
-        limit: int | Omit = omit,
-        offset: int | Omit = omit,
-        updated_at_gte: Union[str, datetime] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VerificationListResponse:
-        """
-        Account-scoped verification state used to recover terminal Verify events after
-        an SSE gap.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get(
-            "/api/v2/verify/verifications",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "limit": limit,
-                        "offset": offset,
-                        "updated_at_gte": updated_at_gte,
-                    },
-                    verification_list_params.VerificationListParams,
-                ),
-            ),
-            cast_to=VerificationListResponse,
-        )
-
 
 class AsyncVerificationsResource(AsyncAPIResource):
     """Sendblue Verify issuance and recovery state"""
@@ -324,51 +275,6 @@ class AsyncVerificationsResource(AsyncAPIResource):
             cast_to=VerificationRetrieveResponse,
         )
 
-    async def list(
-        self,
-        *,
-        limit: int | Omit = omit,
-        offset: int | Omit = omit,
-        updated_at_gte: Union[str, datetime] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VerificationListResponse:
-        """
-        Account-scoped verification state used to recover terminal Verify events after
-        an SSE gap.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            "/api/v2/verify/verifications",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "limit": limit,
-                        "offset": offset,
-                        "updated_at_gte": updated_at_gte,
-                    },
-                    verification_list_params.VerificationListParams,
-                ),
-            ),
-            cast_to=VerificationListResponse,
-        )
-
 
 class VerificationsResourceWithRawResponse:
     def __init__(self, verifications: VerificationsResource) -> None:
@@ -379,9 +285,6 @@ class VerificationsResourceWithRawResponse:
         )
         self.retrieve = to_raw_response_wrapper(
             verifications.retrieve,
-        )
-        self.list = to_raw_response_wrapper(
-            verifications.list,
         )
 
 
@@ -395,9 +298,6 @@ class AsyncVerificationsResourceWithRawResponse:
         self.retrieve = async_to_raw_response_wrapper(
             verifications.retrieve,
         )
-        self.list = async_to_raw_response_wrapper(
-            verifications.list,
-        )
 
 
 class VerificationsResourceWithStreamingResponse:
@@ -410,9 +310,6 @@ class VerificationsResourceWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             verifications.retrieve,
         )
-        self.list = to_streamed_response_wrapper(
-            verifications.list,
-        )
 
 
 class AsyncVerificationsResourceWithStreamingResponse:
@@ -424,7 +321,4 @@ class AsyncVerificationsResourceWithStreamingResponse:
         )
         self.retrieve = async_to_streamed_response_wrapper(
             verifications.retrieve,
-        )
-        self.list = async_to_streamed_response_wrapper(
-            verifications.list,
         )
