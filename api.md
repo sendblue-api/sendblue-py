@@ -199,7 +199,27 @@ from sendblue_api.types.v2 import GroupRetrieveResponse
 
 Methods:
 
-- <code title="get /api/v2/groups/{group_id}">client.v2.groups.<a href="./src/sendblue_api/resources/v2/groups.py">retrieve</a>(group_id) -> <a href="./src/sendblue_api/types/v2/group_retrieve_response.py">GroupRetrieveResponse</a></code>
+- <code title="get /api/v2/groups/{group_id}">client.v2.groups.<a href="./src/sendblue_api/resources/v2/groups/groups.py">retrieve</a>(group_id) -> <a href="./src/sendblue_api/types/v2/group_retrieve_response.py">GroupRetrieveResponse</a></code>
+
+### Verify
+
+#### Services
+
+##### Verifications
+
+Types:
+
+```python
+from sendblue_api.types.v2.groups.verify.services import (
+    VerificationCreateResponse,
+    VerificationRetrieveResponse,
+)
+```
+
+Methods:
+
+- <code title="post /api/v2/verify/services/{service_sid}/verifications">client.v2.groups.verify.services.verifications.<a href="./src/sendblue_api/resources/v2/groups/verify/services/verifications.py">create</a>(service_sid, \*\*<a href="src/sendblue_api/types/v2/groups/verify/services/verification_create_params.py">params</a>) -> <a href="./src/sendblue_api/types/v2/groups/verify/services/verification_create_response.py">VerificationCreateResponse</a></code>
+- <code title="get /api/v2/verify/services/{service_sid}/verifications/{verification_sid}">client.v2.groups.verify.services.verifications.<a href="./src/sendblue_api/resources/v2/groups/verify/services/verifications.py">retrieve</a>(verification_sid, \*, service_sid) -> <a href="./src/sendblue_api/types/v2/groups/verify/services/verification_retrieve_response.py">VerificationRetrieveResponse</a></code>
 
 # Lines
 
@@ -309,9 +329,18 @@ Methods:
 Types:
 
 ```python
-from sendblue_api.types.verify import VerificationState, VerificationListResponse
+from sendblue_api.types.verify import (
+    VerificationState,
+    DeliveryTarget,
+    HostedVerification,
+    VerificationCreateResponse,
+    VerificationRetrieveResponse,
+    VerificationListResponse,
+)
 ```
 
 Methods:
 
+- <code title="post /api/v2/verify/services/{service_sid}/verifications">client.verify.verifications.<a href="./src/sendblue_api/resources/verify/verifications.py">create</a>(service_sid, \*\*<a href="src/sendblue_api/types/verify/verification_create_params.py">params</a>) -> <a href="./src/sendblue_api/types/verify/verification_create_response.py">VerificationCreateResponse</a></code>
+- <code title="get /api/v2/verify/services/{service_sid}/verifications/{verification_sid}">client.verify.verifications.<a href="./src/sendblue_api/resources/verify/verifications.py">retrieve</a>(verification_sid, \*, service_sid) -> <a href="./src/sendblue_api/types/verify/verification_retrieve_response.py">VerificationRetrieveResponse</a></code>
 - <code title="get /api/v2/verify/verifications">client.verify.verifications.<a href="./src/sendblue_api/resources/verify/verifications.py">list</a>(\*\*<a href="src/sendblue_api/types/verify/verification_list_params.py">params</a>) -> <a href="./src/sendblue_api/types/verify/verification_list_response.py">VerificationListResponse</a></code>
