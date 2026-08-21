@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.26.0 (2026-08-21)
+
+Full Changelog: [v1.25.0...v1.26.0](https://github.com/sendblue-api/sendblue-py/compare/v1.25.0...v1.26.0)
+
+### Features
+
+* **groups:** RD-456 truthful group member add/remove on v1 and v2 ([d2c36ce](https://github.com/sendblue-api/sendblue-py/commit/d2c36ce7b623d59c1aa675d70460ff3804a4bb26))
+
 ## 1.25.0 (2026-08-20)
 
 Full Changelog: [v1.24.0...v1.25.0](https://github.com/sendblue-api/sendblue-py/compare/v1.24.0...v1.25.0)

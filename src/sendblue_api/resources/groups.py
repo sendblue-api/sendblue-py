@@ -50,8 +50,9 @@ class GroupsResource(SyncAPIResource):
         self,
         *,
         group_id: str,
-        modify_type: Literal["add_recipient"],
+        modify_type: Literal["add_recipient", "remove_recipient"],
         number: str,
+        from_number: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -60,14 +61,27 @@ class GroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GroupModifyResponse:
         """
-        Add or manage participants in a group chat (beta feature)
+        Add an external participant to, or remove one from, an existing iMessage group
+        chat (beta feature). Success is reported only after the change is verified on
+        the device: the group's persisted membership changed and Sendblue's participant
+        state matches it. Removal requires the group to have at least four total members
+        before the operation and does not require the group's creator. Only iMessage
+        groups are supported.
 
         Args:
           group_id: Group identifier
 
           modify_type: Type of modification to perform
 
-          number: Phone number to add/modify in E.164 format
+          number: External participant to add or remove, in E.164 format (or an iMessage email
+              address). Company-owned lines cannot be added or removed.
+
+          from_number: The Sendblue line to act from. It must belong to the account and already be a
+              participant of the group. Free API accounts must provide it. Other accounts may
+              omit it only when exactly one account line participates in the group. With no
+              participating account line the request fails with `line_not_registered`; with
+              multiple lines it fails with `ambiguous_sending_line`. No change is attempted in
+              either case.
 
           extra_headers: Send extra headers
 
@@ -84,6 +98,7 @@ class GroupsResource(SyncAPIResource):
                     "group_id": group_id,
                     "modify_type": modify_type,
                     "number": number,
+                    "from_number": from_number,
                 },
                 group_modify_params.GroupModifyParams,
             ),
@@ -189,8 +204,9 @@ class AsyncGroupsResource(AsyncAPIResource):
         self,
         *,
         group_id: str,
-        modify_type: Literal["add_recipient"],
+        modify_type: Literal["add_recipient", "remove_recipient"],
         number: str,
+        from_number: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -199,14 +215,27 @@ class AsyncGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GroupModifyResponse:
         """
-        Add or manage participants in a group chat (beta feature)
+        Add an external participant to, or remove one from, an existing iMessage group
+        chat (beta feature). Success is reported only after the change is verified on
+        the device: the group's persisted membership changed and Sendblue's participant
+        state matches it. Removal requires the group to have at least four total members
+        before the operation and does not require the group's creator. Only iMessage
+        groups are supported.
 
         Args:
           group_id: Group identifier
 
           modify_type: Type of modification to perform
 
-          number: Phone number to add/modify in E.164 format
+          number: External participant to add or remove, in E.164 format (or an iMessage email
+              address). Company-owned lines cannot be added or removed.
+
+          from_number: The Sendblue line to act from. It must belong to the account and already be a
+              participant of the group. Free API accounts must provide it. Other accounts may
+              omit it only when exactly one account line participates in the group. With no
+              participating account line the request fails with `line_not_registered`; with
+              multiple lines it fails with `ambiguous_sending_line`. No change is attempted in
+              either case.
 
           extra_headers: Send extra headers
 
@@ -223,6 +252,7 @@ class AsyncGroupsResource(AsyncAPIResource):
                     "group_id": group_id,
                     "modify_type": modify_type,
                     "number": number,
+                    "from_number": from_number,
                 },
                 group_modify_params.GroupModifyParams,
             ),
