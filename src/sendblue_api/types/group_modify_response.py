@@ -8,6 +8,14 @@ __all__ = ["GroupModifyResponse"]
 
 
 class GroupModifyResponse(BaseModel):
-    message: Optional[str] = None
+    error: Optional[str] = None
+
+    error_message: Optional[str] = None
+
+    group_id: Optional[str] = None
+
+    modify_type: Optional[str] = None
+
+    number: Optional[str] = None
 
     status: Optional[str] = None

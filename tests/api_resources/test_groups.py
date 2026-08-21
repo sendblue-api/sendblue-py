@@ -29,6 +29,17 @@ class TestGroups:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_modify_with_all_params(self, client: SendblueAPI) -> None:
+        group = client.groups.modify(
+            group_id="group_123456",
+            modify_type="add_recipient",
+            number="+19998887777",
+            from_number="+15550001111",
+        )
+        assert_matches_type(GroupModifyResponse, group, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_raw_response_modify(self, client: SendblueAPI) -> None:
         response = client.groups.with_raw_response.modify(
             group_id="group_123456",
@@ -124,6 +135,17 @@ class TestAsyncGroups:
             group_id="group_123456",
             modify_type="add_recipient",
             number="+19998887777",
+        )
+        assert_matches_type(GroupModifyResponse, group, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_modify_with_all_params(self, async_client: AsyncSendblueAPI) -> None:
+        group = await async_client.groups.modify(
+            group_id="group_123456",
+            modify_type="add_recipient",
+            number="+19998887777",
+            from_number="+15550001111",
         )
         assert_matches_type(GroupModifyResponse, group, path=["response"])
 
