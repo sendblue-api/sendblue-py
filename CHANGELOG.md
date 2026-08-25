@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.27.0 (2026-08-25)
+
+Full Changelog: [v1.26.0...v1.27.0](https://github.com/sendblue-api/sendblue-py/compare/v1.26.0...v1.27.0)
+
+### Features
+
+* **contact-sharing:** explicit sharing and terminal webhooks ([58a8b41](https://github.com/sendblue-api/sendblue-py/commit/58a8b41a2b36c4e8c4b8f774c29527e55a12baf0))
+
 ## 1.26.0 (2026-08-21)
 
 Full Changelog: [v1.25.0...v1.26.0](https://github.com/sendblue-api/sendblue-py/compare/v1.25.0...v1.26.0)
