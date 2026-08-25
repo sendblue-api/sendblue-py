@@ -14,6 +14,8 @@ __all__ = [
     "Webhooks",
     "WebhooksCallLog",
     "WebhooksContactCreated",
+    "WebhooksContactProfile",
+    "WebhooksInboundCall",
     "WebhooksLineAssigned",
     "WebhooksLineBlocked",
     "WebhooksOutbound",
@@ -29,6 +31,10 @@ class WebhookUpdateParams(TypedDict, total=False):
 WebhooksCallLog: TypeAlias = Union[str, WebhookConfigurationParam]
 
 WebhooksContactCreated: TypeAlias = Union[str, WebhookConfigurationParam]
+
+WebhooksContactProfile: TypeAlias = Union[str, WebhookConfigurationParam]
+
+WebhooksInboundCall: TypeAlias = Union[str, WebhookConfigurationParam]
 
 WebhooksLineAssigned: TypeAlias = Union[str, WebhookConfigurationParam]
 
@@ -48,8 +54,14 @@ class Webhooks(TypedDict, total=False):
     contact_created: SequenceNotStr[WebhooksContactCreated]
     """Webhooks for contact created events"""
 
+    contact_profile: SequenceNotStr[WebhooksContactProfile]
+    """Webhooks for durable contact-profile publication completion and failure events"""
+
     global_secret: Annotated[str, PropertyInfo(alias="globalSecret")]
     """Global secret applied to all webhooks"""
+
+    inbound_call: SequenceNotStr[WebhooksInboundCall]
+    """Webhooks for inbound call events"""
 
     line_assigned: SequenceNotStr[WebhooksLineAssigned]
     """Webhooks for line assigned events"""

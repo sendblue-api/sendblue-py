@@ -81,7 +81,9 @@ class TestWebhooks:
             webhooks={
                 "call_log": ["https://example.com"],
                 "contact_created": ["https://example.com"],
+                "contact_profile": ["https://example.com"],
                 "global_secret": "whsec_global123",
+                "inbound_call": ["https://example.com"],
                 "line_assigned": ["https://example.com"],
                 "line_blocked": ["https://example.com"],
                 "outbound": ["https://example.com"],
@@ -253,7 +255,9 @@ class TestAsyncWebhooks:
             webhooks={
                 "call_log": ["https://example.com"],
                 "contact_created": ["https://example.com"],
+                "contact_profile": ["https://example.com"],
                 "global_secret": "whsec_global123",
+                "inbound_call": ["https://example.com"],
                 "line_assigned": ["https://example.com"],
                 "line_blocked": ["https://example.com"],
                 "outbound": ["https://example.com"],
