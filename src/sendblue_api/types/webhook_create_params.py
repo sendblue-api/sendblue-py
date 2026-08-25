@@ -20,7 +20,15 @@ class WebhookCreateParams(TypedDict, total=False):
     """Global secret for webhook signature verification"""
 
     type: Literal[
-        "receive", "line_blocked", "line_assigned", "outbound", "typing_indicator", "call_log", "contact_created"
+        "receive",
+        "line_blocked",
+        "line_assigned",
+        "outbound",
+        "typing_indicator",
+        "call_log",
+        "inbound_call",
+        "contact_profile",
+        "contact_created",
     ]
     """Type of webhook to add"""
 
