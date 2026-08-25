@@ -13,6 +13,8 @@ __all__ = [
     "Webhooks",
     "WebhooksCallLog",
     "WebhooksContactCreated",
+    "WebhooksContactProfile",
+    "WebhooksInboundCall",
     "WebhooksLineAssigned",
     "WebhooksLineBlocked",
     "WebhooksOutbound",
@@ -23,6 +25,10 @@ __all__ = [
 WebhooksCallLog: TypeAlias = Union[str, WebhookConfiguration]
 
 WebhooksContactCreated: TypeAlias = Union[str, WebhookConfiguration]
+
+WebhooksContactProfile: TypeAlias = Union[str, WebhookConfiguration]
+
+WebhooksInboundCall: TypeAlias = Union[str, WebhookConfiguration]
 
 WebhooksLineAssigned: TypeAlias = Union[str, WebhookConfiguration]
 
@@ -42,8 +48,14 @@ class Webhooks(BaseModel):
     contact_created: Optional[List[WebhooksContactCreated]] = None
     """Webhooks for contact created events"""
 
+    contact_profile: Optional[List[WebhooksContactProfile]] = None
+    """Webhooks for durable contact-profile publication completion and failure events"""
+
     global_secret: Optional[str] = FieldInfo(alias="globalSecret", default=None)
     """Global secret applied to all webhooks"""
+
+    inbound_call: Optional[List[WebhooksInboundCall]] = None
+    """Webhooks for inbound call events"""
 
     line_assigned: Optional[List[WebhooksLineAssigned]] = None
     """Webhooks for line assigned events"""

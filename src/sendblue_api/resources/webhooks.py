@@ -54,7 +54,15 @@ class WebhooksResource(SyncAPIResource):
         webhooks: SequenceNotStr[webhook_create_params.Webhook],
         global_secret: str | Omit = omit,
         type: Literal[
-            "receive", "line_blocked", "line_assigned", "outbound", "typing_indicator", "call_log", "contact_created"
+            "receive",
+            "line_blocked",
+            "line_assigned",
+            "outbound",
+            "typing_indicator",
+            "call_log",
+            "inbound_call",
+            "contact_profile",
+            "contact_created",
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -166,7 +174,15 @@ class WebhooksResource(SyncAPIResource):
         *,
         webhooks: SequenceNotStr[str],
         type: Literal[
-            "receive", "line_blocked", "line_assigned", "outbound", "typing_indicator", "call_log", "contact_created"
+            "receive",
+            "line_blocked",
+            "line_assigned",
+            "outbound",
+            "typing_indicator",
+            "call_log",
+            "inbound_call",
+            "contact_profile",
+            "contact_created",
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -239,7 +255,15 @@ class AsyncWebhooksResource(AsyncAPIResource):
         webhooks: SequenceNotStr[webhook_create_params.Webhook],
         global_secret: str | Omit = omit,
         type: Literal[
-            "receive", "line_blocked", "line_assigned", "outbound", "typing_indicator", "call_log", "contact_created"
+            "receive",
+            "line_blocked",
+            "line_assigned",
+            "outbound",
+            "typing_indicator",
+            "call_log",
+            "inbound_call",
+            "contact_profile",
+            "contact_created",
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -351,7 +375,15 @@ class AsyncWebhooksResource(AsyncAPIResource):
         *,
         webhooks: SequenceNotStr[str],
         type: Literal[
-            "receive", "line_blocked", "line_assigned", "outbound", "typing_indicator", "call_log", "contact_created"
+            "receive",
+            "line_blocked",
+            "line_assigned",
+            "outbound",
+            "typing_indicator",
+            "call_log",
+            "inbound_call",
+            "contact_profile",
+            "contact_created",
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

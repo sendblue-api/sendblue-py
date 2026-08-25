@@ -14,6 +14,14 @@ class WebhookDeleteParams(TypedDict, total=False):
     """Array of webhook URLs to delete"""
 
     type: Literal[
-        "receive", "line_blocked", "line_assigned", "outbound", "typing_indicator", "call_log", "contact_created"
+        "receive",
+        "line_blocked",
+        "line_assigned",
+        "outbound",
+        "typing_indicator",
+        "call_log",
+        "inbound_call",
+        "contact_profile",
+        "contact_created",
     ]
     """Type of webhook to delete from"""
