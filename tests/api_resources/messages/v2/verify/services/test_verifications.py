@@ -9,7 +9,7 @@ import pytest
 
 from tests.utils import assert_matches_type
 from sendblue_api import SendblueAPI, AsyncSendblueAPI
-from sendblue_api.types.v2.groups.verify.services import (
+from sendblue_api.types.messages.v2.verify.services import (
     VerificationCreateResponse,
     VerificationRetrieveResponse,
 )
@@ -23,7 +23,7 @@ class TestVerifications:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: SendblueAPI) -> None:
-        verification = client.v2.groups.verify.services.verifications.create(
+        verification = client.messages.v2.verify.services.verifications.create(
             service_sid="SVE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
             to="+14155551212",
         )
@@ -32,7 +32,7 @@ class TestVerifications:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: SendblueAPI) -> None:
-        verification = client.v2.groups.verify.services.verifications.create(
+        verification = client.messages.v2.verify.services.verifications.create(
             service_sid="SVE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
             to="+14155551212",
             hosted={
@@ -47,7 +47,7 @@ class TestVerifications:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: SendblueAPI) -> None:
-        response = client.v2.groups.verify.services.verifications.with_raw_response.create(
+        response = client.messages.v2.verify.services.verifications.with_raw_response.create(
             service_sid="SVE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
             to="+14155551212",
         )
@@ -60,7 +60,7 @@ class TestVerifications:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: SendblueAPI) -> None:
-        with client.v2.groups.verify.services.verifications.with_streaming_response.create(
+        with client.messages.v2.verify.services.verifications.with_streaming_response.create(
             service_sid="SVE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
             to="+14155551212",
         ) as response:
@@ -76,7 +76,7 @@ class TestVerifications:
     @parametrize
     def test_path_params_create(self, client: SendblueAPI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `service_sid` but received ''"):
-            client.v2.groups.verify.services.verifications.with_raw_response.create(
+            client.messages.v2.verify.services.verifications.with_raw_response.create(
                 service_sid="",
                 to="+14155551212",
             )
@@ -84,7 +84,7 @@ class TestVerifications:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: SendblueAPI) -> None:
-        verification = client.v2.groups.verify.services.verifications.retrieve(
+        verification = client.messages.v2.verify.services.verifications.retrieve(
             verification_sid="VRE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
             service_sid="SVE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
         )
@@ -93,7 +93,7 @@ class TestVerifications:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: SendblueAPI) -> None:
-        response = client.v2.groups.verify.services.verifications.with_raw_response.retrieve(
+        response = client.messages.v2.verify.services.verifications.with_raw_response.retrieve(
             verification_sid="VRE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
             service_sid="SVE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
         )
@@ -106,7 +106,7 @@ class TestVerifications:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: SendblueAPI) -> None:
-        with client.v2.groups.verify.services.verifications.with_streaming_response.retrieve(
+        with client.messages.v2.verify.services.verifications.with_streaming_response.retrieve(
             verification_sid="VRE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
             service_sid="SVE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
         ) as response:
@@ -122,13 +122,13 @@ class TestVerifications:
     @parametrize
     def test_path_params_retrieve(self, client: SendblueAPI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `service_sid` but received ''"):
-            client.v2.groups.verify.services.verifications.with_raw_response.retrieve(
+            client.messages.v2.verify.services.verifications.with_raw_response.retrieve(
                 verification_sid="VRE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
                 service_sid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `verification_sid` but received ''"):
-            client.v2.groups.verify.services.verifications.with_raw_response.retrieve(
+            client.messages.v2.verify.services.verifications.with_raw_response.retrieve(
                 verification_sid="",
                 service_sid="SVE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
             )
@@ -142,7 +142,7 @@ class TestAsyncVerifications:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncSendblueAPI) -> None:
-        verification = await async_client.v2.groups.verify.services.verifications.create(
+        verification = await async_client.messages.v2.verify.services.verifications.create(
             service_sid="SVE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
             to="+14155551212",
         )
@@ -151,7 +151,7 @@ class TestAsyncVerifications:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncSendblueAPI) -> None:
-        verification = await async_client.v2.groups.verify.services.verifications.create(
+        verification = await async_client.messages.v2.verify.services.verifications.create(
             service_sid="SVE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
             to="+14155551212",
             hosted={
@@ -166,7 +166,7 @@ class TestAsyncVerifications:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncSendblueAPI) -> None:
-        response = await async_client.v2.groups.verify.services.verifications.with_raw_response.create(
+        response = await async_client.messages.v2.verify.services.verifications.with_raw_response.create(
             service_sid="SVE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
             to="+14155551212",
         )
@@ -179,7 +179,7 @@ class TestAsyncVerifications:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncSendblueAPI) -> None:
-        async with async_client.v2.groups.verify.services.verifications.with_streaming_response.create(
+        async with async_client.messages.v2.verify.services.verifications.with_streaming_response.create(
             service_sid="SVE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
             to="+14155551212",
         ) as response:
@@ -195,7 +195,7 @@ class TestAsyncVerifications:
     @parametrize
     async def test_path_params_create(self, async_client: AsyncSendblueAPI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `service_sid` but received ''"):
-            await async_client.v2.groups.verify.services.verifications.with_raw_response.create(
+            await async_client.messages.v2.verify.services.verifications.with_raw_response.create(
                 service_sid="",
                 to="+14155551212",
             )
@@ -203,7 +203,7 @@ class TestAsyncVerifications:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncSendblueAPI) -> None:
-        verification = await async_client.v2.groups.verify.services.verifications.retrieve(
+        verification = await async_client.messages.v2.verify.services.verifications.retrieve(
             verification_sid="VRE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
             service_sid="SVE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
         )
@@ -212,7 +212,7 @@ class TestAsyncVerifications:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncSendblueAPI) -> None:
-        response = await async_client.v2.groups.verify.services.verifications.with_raw_response.retrieve(
+        response = await async_client.messages.v2.verify.services.verifications.with_raw_response.retrieve(
             verification_sid="VRE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
             service_sid="SVE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
         )
@@ -225,7 +225,7 @@ class TestAsyncVerifications:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncSendblueAPI) -> None:
-        async with async_client.v2.groups.verify.services.verifications.with_streaming_response.retrieve(
+        async with async_client.messages.v2.verify.services.verifications.with_streaming_response.retrieve(
             verification_sid="VRE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
             service_sid="SVE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
         ) as response:
@@ -241,13 +241,13 @@ class TestAsyncVerifications:
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncSendblueAPI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `service_sid` but received ''"):
-            await async_client.v2.groups.verify.services.verifications.with_raw_response.retrieve(
+            await async_client.messages.v2.verify.services.verifications.with_raw_response.retrieve(
                 verification_sid="VRE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
                 service_sid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `verification_sid` but received ''"):
-            await async_client.v2.groups.verify.services.verifications.with_raw_response.retrieve(
+            await async_client.messages.v2.verify.services.verifications.with_raw_response.retrieve(
                 verification_sid="",
                 service_sid="SVE1CB97d8EBbDbaAae6d9B1ca0D1cFaAD",
             )

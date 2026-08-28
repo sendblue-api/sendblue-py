@@ -10,6 +10,14 @@ from .seats import (
     SeatsResourceWithStreamingResponse,
     AsyncSeatsResourceWithStreamingResponse,
 )
+from .groups import (
+    GroupsResource,
+    AsyncGroupsResource,
+    GroupsResourceWithRawResponse,
+    AsyncGroupsResourceWithRawResponse,
+    GroupsResourceWithStreamingResponse,
+    AsyncGroupsResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
 from .totp.totp import (
     TotpResource,
@@ -20,14 +28,6 @@ from .totp.totp import (
     AsyncTotpResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .groups.groups import (
-    GroupsResource,
-    AsyncGroupsResource,
-    GroupsResourceWithRawResponse,
-    AsyncGroupsResourceWithRawResponse,
-    GroupsResourceWithStreamingResponse,
-    AsyncGroupsResourceWithStreamingResponse,
-)
 
 __all__ = ["V2Resource", "AsyncV2Resource"]
 

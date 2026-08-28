@@ -8,27 +8,39 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import message_list_params, message_send_params, message_get_status_params, message_update_app_card_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from .v2.v2 import (
+    V2Resource,
+    AsyncV2Resource,
+    V2ResourceWithRawResponse,
+    AsyncV2ResourceWithRawResponse,
+    V2ResourceWithStreamingResponse,
+    AsyncV2ResourceWithStreamingResponse,
+)
+from ...types import message_list_params, message_send_params, message_get_status_params, message_update_app_card_params
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._utils import path_template, maybe_transform, async_maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.message_response import MessageResponse
-from ..types.message_list_response import MessageListResponse
-from ..types.message_retrieve_response import MessageRetrieveResponse
+from ..._base_client import make_request_options
+from ...types.message_response import MessageResponse
+from ...types.message_list_response import MessageListResponse
+from ...types.message_retrieve_response import MessageRetrieveResponse
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
 
 
 class MessagesResource(SyncAPIResource):
     """Operations for sending and managing messages"""
+
+    @cached_property
+    def v2(self) -> V2Resource:
+        return V2Resource(self._client)
 
     @cached_property
     def with_raw_response(self) -> MessagesResourceWithRawResponse:
@@ -459,6 +471,10 @@ class MessagesResource(SyncAPIResource):
 
 class AsyncMessagesResource(AsyncAPIResource):
     """Operations for sending and managing messages"""
+
+    @cached_property
+    def v2(self) -> AsyncV2Resource:
+        return AsyncV2Resource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncMessagesResourceWithRawResponse:
@@ -907,6 +923,10 @@ class MessagesResourceWithRawResponse:
             messages.update_app_card,
         )
 
+    @cached_property
+    def v2(self) -> V2ResourceWithRawResponse:
+        return V2ResourceWithRawResponse(self._messages.v2)
+
 
 class AsyncMessagesResourceWithRawResponse:
     def __init__(self, messages: AsyncMessagesResource) -> None:
@@ -927,6 +947,10 @@ class AsyncMessagesResourceWithRawResponse:
         self.update_app_card = async_to_raw_response_wrapper(
             messages.update_app_card,
         )
+
+    @cached_property
+    def v2(self) -> AsyncV2ResourceWithRawResponse:
+        return AsyncV2ResourceWithRawResponse(self._messages.v2)
 
 
 class MessagesResourceWithStreamingResponse:
@@ -949,6 +973,10 @@ class MessagesResourceWithStreamingResponse:
             messages.update_app_card,
         )
 
+    @cached_property
+    def v2(self) -> V2ResourceWithStreamingResponse:
+        return V2ResourceWithStreamingResponse(self._messages.v2)
+
 
 class AsyncMessagesResourceWithStreamingResponse:
     def __init__(self, messages: AsyncMessagesResource) -> None:
@@ -969,3 +997,7 @@ class AsyncMessagesResourceWithStreamingResponse:
         self.update_app_card = async_to_streamed_response_wrapper(
             messages.update_app_card,
         )
+
+    @cached_property
+    def v2(self) -> AsyncV2ResourceWithStreamingResponse:
+        return AsyncV2ResourceWithStreamingResponse(self._messages.v2)

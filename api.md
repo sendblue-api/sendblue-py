@@ -13,11 +13,33 @@ from sendblue_api.types import (
 
 Methods:
 
-- <code title="get /api/v2/messages/{message_id}">client.messages.<a href="./src/sendblue_api/resources/messages.py">retrieve</a>(message_id) -> <a href="./src/sendblue_api/types/message_retrieve_response.py">MessageRetrieveResponse</a></code>
-- <code title="get /api/v2/messages">client.messages.<a href="./src/sendblue_api/resources/messages.py">list</a>(\*\*<a href="src/sendblue_api/types/message_list_params.py">params</a>) -> <a href="./src/sendblue_api/types/message_list_response.py">MessageListResponse</a></code>
-- <code title="get /api/status">client.messages.<a href="./src/sendblue_api/resources/messages.py">get_status</a>(\*\*<a href="src/sendblue_api/types/message_get_status_params.py">params</a>) -> <a href="./src/sendblue_api/types/message_response.py">MessageResponse</a></code>
-- <code title="post /api/send-message">client.messages.<a href="./src/sendblue_api/resources/messages.py">send</a>(\*\*<a href="src/sendblue_api/types/message_send_params.py">params</a>) -> <a href="./src/sendblue_api/types/message_response.py">MessageResponse</a></code>
-- <code title="post /api/messages/{message_handle}/update-app-card">client.messages.<a href="./src/sendblue_api/resources/messages.py">update_app_card</a>(message_handle, \*\*<a href="src/sendblue_api/types/message_update_app_card_params.py">params</a>) -> <a href="./src/sendblue_api/types/message_response.py">MessageResponse</a></code>
+- <code title="get /api/v2/messages/{message_id}">client.messages.<a href="./src/sendblue_api/resources/messages/messages.py">retrieve</a>(message_id) -> <a href="./src/sendblue_api/types/message_retrieve_response.py">MessageRetrieveResponse</a></code>
+- <code title="get /api/v2/messages">client.messages.<a href="./src/sendblue_api/resources/messages/messages.py">list</a>(\*\*<a href="src/sendblue_api/types/message_list_params.py">params</a>) -> <a href="./src/sendblue_api/types/message_list_response.py">MessageListResponse</a></code>
+- <code title="get /api/status">client.messages.<a href="./src/sendblue_api/resources/messages/messages.py">get_status</a>(\*\*<a href="src/sendblue_api/types/message_get_status_params.py">params</a>) -> <a href="./src/sendblue_api/types/message_response.py">MessageResponse</a></code>
+- <code title="post /api/send-message">client.messages.<a href="./src/sendblue_api/resources/messages/messages.py">send</a>(\*\*<a href="src/sendblue_api/types/message_send_params.py">params</a>) -> <a href="./src/sendblue_api/types/message_response.py">MessageResponse</a></code>
+- <code title="post /api/messages/{message_handle}/update-app-card">client.messages.<a href="./src/sendblue_api/resources/messages/messages.py">update_app_card</a>(message_handle, \*\*<a href="src/sendblue_api/types/message_update_app_card_params.py">params</a>) -> <a href="./src/sendblue_api/types/message_response.py">MessageResponse</a></code>
+
+## V2
+
+### Verify
+
+#### Services
+
+##### Verifications
+
+Types:
+
+```python
+from sendblue_api.types.messages.v2.verify.services import (
+    VerificationCreateResponse,
+    VerificationRetrieveResponse,
+)
+```
+
+Methods:
+
+- <code title="post /api/v2/verify/services/{service_sid}/verifications">client.messages.v2.verify.services.verifications.<a href="./src/sendblue_api/resources/messages/v2/verify/services/verifications.py">create</a>(service_sid, \*\*<a href="src/sendblue_api/types/messages/v2/verify/services/verification_create_params.py">params</a>) -> <a href="./src/sendblue_api/types/messages/v2/verify/services/verification_create_response.py">VerificationCreateResponse</a></code>
+- <code title="get /api/v2/verify/services/{service_sid}/verifications/{verification_sid}">client.messages.v2.verify.services.verifications.<a href="./src/sendblue_api/resources/messages/v2/verify/services/verifications.py">retrieve</a>(verification_sid, \*, service_sid) -> <a href="./src/sendblue_api/types/messages/v2/verify/services/verification_retrieve_response.py">VerificationRetrieveResponse</a></code>
 
 # Groups
 
@@ -194,32 +216,13 @@ Methods:
 Types:
 
 ```python
-from sendblue_api.types.v2 import GroupRetrieveResponse
+from sendblue_api.types.v2 import GroupRetrieveResponse, GroupRenameResponse
 ```
 
 Methods:
 
-- <code title="get /api/v2/groups/{group_id}">client.v2.groups.<a href="./src/sendblue_api/resources/v2/groups/groups.py">retrieve</a>(group_id) -> <a href="./src/sendblue_api/types/v2/group_retrieve_response.py">GroupRetrieveResponse</a></code>
-
-### Verify
-
-#### Services
-
-##### Verifications
-
-Types:
-
-```python
-from sendblue_api.types.v2.groups.verify.services import (
-    VerificationCreateResponse,
-    VerificationRetrieveResponse,
-)
-```
-
-Methods:
-
-- <code title="post /api/v2/verify/services/{service_sid}/verifications">client.v2.groups.verify.services.verifications.<a href="./src/sendblue_api/resources/v2/groups/verify/services/verifications.py">create</a>(service_sid, \*\*<a href="src/sendblue_api/types/v2/groups/verify/services/verification_create_params.py">params</a>) -> <a href="./src/sendblue_api/types/v2/groups/verify/services/verification_create_response.py">VerificationCreateResponse</a></code>
-- <code title="get /api/v2/verify/services/{service_sid}/verifications/{verification_sid}">client.v2.groups.verify.services.verifications.<a href="./src/sendblue_api/resources/v2/groups/verify/services/verifications.py">retrieve</a>(verification_sid, \*, service_sid) -> <a href="./src/sendblue_api/types/v2/groups/verify/services/verification_retrieve_response.py">VerificationRetrieveResponse</a></code>
+- <code title="get /api/v2/groups/{group_id}">client.v2.groups.<a href="./src/sendblue_api/resources/v2/groups.py">retrieve</a>(group_id) -> <a href="./src/sendblue_api/types/v2/group_retrieve_response.py">GroupRetrieveResponse</a></code>
+- <code title="post /api/v2/groups/{group_id}/name">client.v2.groups.<a href="./src/sendblue_api/resources/v2/groups.py">rename</a>(group_id, \*\*<a href="src/sendblue_api/types/v2/group_rename_params.py">params</a>) -> <a href="./src/sendblue_api/types/v2/group_rename_response.py">GroupRenameResponse</a></code>
 
 # Lines
 

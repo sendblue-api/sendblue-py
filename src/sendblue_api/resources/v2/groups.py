@@ -2,38 +2,30 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 import httpx
 
-from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import path_template
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._utils import path_template, maybe_transform, async_maybe_transform
+from ..._compat import cached_property
+from ...types.v2 import group_rename_params
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .verify.verify import (
-    VerifyResource,
-    AsyncVerifyResource,
-    VerifyResourceWithRawResponse,
-    AsyncVerifyResourceWithRawResponse,
-    VerifyResourceWithStreamingResponse,
-    AsyncVerifyResourceWithStreamingResponse,
-)
-from ...._base_client import make_request_options
-from ....types.v2.group_retrieve_response import GroupRetrieveResponse
+from ..._base_client import make_request_options
+from ...types.v2.group_rename_response import GroupRenameResponse
+from ...types.v2.group_retrieve_response import GroupRetrieveResponse
 
 __all__ = ["GroupsResource", "AsyncGroupsResource"]
 
 
 class GroupsResource(SyncAPIResource):
     """Operations for group messaging (beta)"""
-
-    @cached_property
-    def verify(self) -> VerifyResource:
-        return VerifyResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> GroupsResourceWithRawResponse:
@@ -91,13 +83,52 @@ class GroupsResource(SyncAPIResource):
             cast_to=GroupRetrieveResponse,
         )
 
+    def rename(
+        self,
+        group_id: str,
+        *,
+        name: Optional[str],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GroupRenameResponse:
+        """
+        Changes the Apple-visible name of an existing iMessage group and waits for the
+        Sendblue line to verify the resulting state. Pass `null` or an empty string to
+        clear the name. The verified value is persisted as the group's `group_name`.
+
+        The group must already have an iMessage chat, and the Sendblue line serving it
+        must be online and support group name changes. Failed requests are not replayed
+        automatically; retrying the same desired state is safe.
+
+        Args:
+          name: New group name, or null/empty string to clear it
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not group_id:
+            raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
+        return self._post(
+            path_template("/api/v2/groups/{group_id}/name", group_id=group_id),
+            body=maybe_transform({"name": name}, group_rename_params.GroupRenameParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=GroupRenameResponse,
+        )
+
 
 class AsyncGroupsResource(AsyncAPIResource):
     """Operations for group messaging (beta)"""
-
-    @cached_property
-    def verify(self) -> AsyncVerifyResource:
-        return AsyncVerifyResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncGroupsResourceWithRawResponse:
@@ -155,6 +186,49 @@ class AsyncGroupsResource(AsyncAPIResource):
             cast_to=GroupRetrieveResponse,
         )
 
+    async def rename(
+        self,
+        group_id: str,
+        *,
+        name: Optional[str],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GroupRenameResponse:
+        """
+        Changes the Apple-visible name of an existing iMessage group and waits for the
+        Sendblue line to verify the resulting state. Pass `null` or an empty string to
+        clear the name. The verified value is persisted as the group's `group_name`.
+
+        The group must already have an iMessage chat, and the Sendblue line serving it
+        must be online and support group name changes. Failed requests are not replayed
+        automatically; retrying the same desired state is safe.
+
+        Args:
+          name: New group name, or null/empty string to clear it
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not group_id:
+            raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
+        return await self._post(
+            path_template("/api/v2/groups/{group_id}/name", group_id=group_id),
+            body=await async_maybe_transform({"name": name}, group_rename_params.GroupRenameParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=GroupRenameResponse,
+        )
+
 
 class GroupsResourceWithRawResponse:
     def __init__(self, groups: GroupsResource) -> None:
@@ -163,10 +237,9 @@ class GroupsResourceWithRawResponse:
         self.retrieve = to_raw_response_wrapper(
             groups.retrieve,
         )
-
-    @cached_property
-    def verify(self) -> VerifyResourceWithRawResponse:
-        return VerifyResourceWithRawResponse(self._groups.verify)
+        self.rename = to_raw_response_wrapper(
+            groups.rename,
+        )
 
 
 class AsyncGroupsResourceWithRawResponse:
@@ -176,10 +249,9 @@ class AsyncGroupsResourceWithRawResponse:
         self.retrieve = async_to_raw_response_wrapper(
             groups.retrieve,
         )
-
-    @cached_property
-    def verify(self) -> AsyncVerifyResourceWithRawResponse:
-        return AsyncVerifyResourceWithRawResponse(self._groups.verify)
+        self.rename = async_to_raw_response_wrapper(
+            groups.rename,
+        )
 
 
 class GroupsResourceWithStreamingResponse:
@@ -189,10 +261,9 @@ class GroupsResourceWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             groups.retrieve,
         )
-
-    @cached_property
-    def verify(self) -> VerifyResourceWithStreamingResponse:
-        return VerifyResourceWithStreamingResponse(self._groups.verify)
+        self.rename = to_streamed_response_wrapper(
+            groups.rename,
+        )
 
 
 class AsyncGroupsResourceWithStreamingResponse:
@@ -202,7 +273,6 @@ class AsyncGroupsResourceWithStreamingResponse:
         self.retrieve = async_to_streamed_response_wrapper(
             groups.retrieve,
         )
-
-    @cached_property
-    def verify(self) -> AsyncVerifyResourceWithStreamingResponse:
-        return AsyncVerifyResourceWithStreamingResponse(self._groups.verify)
+        self.rename = async_to_streamed_response_wrapper(
+            groups.rename,
+        )
