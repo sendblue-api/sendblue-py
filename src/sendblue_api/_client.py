@@ -58,7 +58,6 @@ if TYPE_CHECKING:
     from .resources.groups import GroupsResource, AsyncGroupsResource
     from .resources.lookups import LookupsResource, AsyncLookupsResource
     from .resources.location import LocationResource, AsyncLocationResource
-    from .resources.messages import MessagesResource, AsyncMessagesResource
     from .resources.webhooks import WebhooksResource, AsyncWebhooksResource
     from .resources.auth.auth import AuthResource, AsyncAuthResource
     from .resources.lines.lines import LinesResource, AsyncLinesResource
@@ -67,6 +66,7 @@ if TYPE_CHECKING:
     from .resources.verify.verify import VerifyResource, AsyncVerifyResource
     from .resources.request_location import RequestLocationResource, AsyncRequestLocationResource
     from .resources.contacts.contacts import ContactsResource, AsyncContactsResource
+    from .resources.messages.messages import MessagesResource, AsyncMessagesResource
     from .resources.typing_indicators import TypingIndicatorsResource, AsyncTypingIndicatorsResource
     from .resources.verified_contacts import VerifiedContactsResource, AsyncVerifiedContactsResource
 
