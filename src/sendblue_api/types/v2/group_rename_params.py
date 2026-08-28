@@ -9,5 +9,8 @@ __all__ = ["GroupRenameParams"]
 
 
 class GroupRenameParams(TypedDict, total=False):
-    name: Required[Optional[str]]
-    """New group name, or null/empty string to clear it"""
+    group_name: Required[Optional[str]]
+    """
+    New group name; whitespace-only values are rejected, while null or an empty
+    string clears it
+    """

@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.28.1 (2026-08-28)
+
+Full Changelog: [v1.28.0...v1.28.1](https://github.com/sendblue-api/sendblue-py/compare/v1.28.0...v1.28.1)
+
+### Bug Fixes
+
+* **groups:** RD-451 remove redundant service field ([80a4783](https://github.com/sendblue-api/sendblue-py/commit/80a478337ccafc4187ea2d3ea96d9837034d02b3))
+
 ## 1.28.0 (2026-08-28)
 
 Full Changelog: [v1.27.0...v1.28.0](https://github.com/sendblue-api/sendblue-py/compare/v1.27.0...v1.28.0)
