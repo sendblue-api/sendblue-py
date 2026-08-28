@@ -13,8 +13,6 @@ class Data(BaseModel):
     group_name: str
     """Device-verified name; empty when cleared"""
 
-    service: Literal["iMessage"]
-
 
 class GroupRenameResponse(BaseModel):
     data: Data
