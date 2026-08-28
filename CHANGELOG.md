@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.28.0 (2026-08-28)
+
+Full Changelog: [v1.27.0...v1.28.0](https://github.com/sendblue-api/sendblue-py/compare/v1.27.0...v1.28.0)
+
+### Features
+
+* **grayrunner:** RD-451 manage imessage group names ([8063373](https://github.com/sendblue-api/sendblue-py/commit/806337382960b56155ea496922116cff8df283db))
+
 ## 1.27.0 (2026-08-25)
 
 Full Changelog: [v1.26.0...v1.27.0](https://github.com/sendblue-api/sendblue-py/compare/v1.26.0...v1.27.0)

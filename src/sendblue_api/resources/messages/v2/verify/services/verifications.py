@@ -15,9 +15,9 @@ from ......_response import (
     async_to_streamed_response_wrapper,
 )
 from ......_base_client import make_request_options
-from ......types.v2.groups.verify.services import verification_create_params
-from ......types.v2.groups.verify.services.verification_create_response import VerificationCreateResponse
-from ......types.v2.groups.verify.services.verification_retrieve_response import VerificationRetrieveResponse
+from ......types.messages.v2.verify.services import verification_create_params
+from ......types.messages.v2.verify.services.verification_create_response import VerificationCreateResponse
+from ......types.messages.v2.verify.services.verification_retrieve_response import VerificationRetrieveResponse
 
 __all__ = ["VerificationsResource", "AsyncVerificationsResource"]
 
