@@ -87,7 +87,7 @@ class GroupsResource(SyncAPIResource):
         self,
         group_id: str,
         *,
-        name: Optional[str],
+        group_name: Optional[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -105,7 +105,8 @@ class GroupsResource(SyncAPIResource):
         automatically; retrying the same desired state is safe.
 
         Args:
-          name: New group name, or null/empty string to clear it
+          group_name: New group name; whitespace-only values are rejected, while null or an empty
+              string clears it
 
           extra_headers: Send extra headers
 
@@ -119,7 +120,7 @@ class GroupsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return self._post(
             path_template("/api/v2/groups/{group_id}/name", group_id=group_id),
-            body=maybe_transform({"name": name}, group_rename_params.GroupRenameParams),
+            body=maybe_transform({"group_name": group_name}, group_rename_params.GroupRenameParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -190,7 +191,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         self,
         group_id: str,
         *,
-        name: Optional[str],
+        group_name: Optional[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -208,7 +209,8 @@ class AsyncGroupsResource(AsyncAPIResource):
         automatically; retrying the same desired state is safe.
 
         Args:
-          name: New group name, or null/empty string to clear it
+          group_name: New group name; whitespace-only values are rejected, while null or an empty
+              string clears it
 
           extra_headers: Send extra headers
 
@@ -222,7 +224,7 @@ class AsyncGroupsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return await self._post(
             path_template("/api/v2/groups/{group_id}/name", group_id=group_id),
-            body=await async_maybe_transform({"name": name}, group_rename_params.GroupRenameParams),
+            body=await async_maybe_transform({"group_name": group_name}, group_rename_params.GroupRenameParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
