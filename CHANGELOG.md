@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.28.2 (2026-08-31)
+
+Full Changelog: [v1.28.1...v1.28.2](https://github.com/sendblue-api/sendblue-py/compare/v1.28.1...v1.28.2)
+
 ## 1.28.1 (2026-08-28)
 
 Full Changelog: [v1.28.0...v1.28.1](https://github.com/sendblue-api/sendblue-py/compare/v1.28.0...v1.28.1)
