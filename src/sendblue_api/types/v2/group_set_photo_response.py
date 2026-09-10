@@ -4,8 +4,9 @@ from typing import Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from ..group_photo import GroupPhoto
 
-__all__ = ["GroupRenameResponse", "Data"]
+__all__ = ["GroupSetPhotoResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -14,11 +15,11 @@ class Data(BaseModel):
 
     group_id: str
 
-    group_name: str
-    """Device-verified name; empty when cleared"""
+    group_photo: Optional[GroupPhoto] = None
+    """Device-verified current photo; null after a verified clear"""
 
 
-class GroupRenameResponse(BaseModel):
+class GroupSetPhotoResponse(BaseModel):
     data: Data
 
     status: Literal["OK"]

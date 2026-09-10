@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from .contact import Contact as Contact
 from .line_state import LineState as LineState
+from .group_photo import GroupPhoto as GroupPhoto
 from .account_event import AccountEvent as AccountEvent
 from .message_response import MessageResponse as MessageResponse
 from .contact_list_params import ContactListParams as ContactListParams

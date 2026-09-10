@@ -5,14 +5,15 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Required, TypedDict
 
-__all__ = ["GroupRenameParams"]
+__all__ = ["GroupSetPhotoParams"]
 
 
-class GroupRenameParams(TypedDict, total=False):
-    group_name: Required[Optional[str]]
+class GroupSetPhotoParams(TypedDict, total=False):
+    photo_url: Required[Optional[str]]
     """
-    New group name; whitespace-only values are rejected, while null or an empty
-    string clears it
+    Direct, publicly resolvable https URL of the image to set (JPEG, PNG, or GIF, at
+    most 5 MB and 25 million aggregate decoded pixels; redirects are not followed);
+    null clears the group photo
     """
 
     from_number: Optional[str]
