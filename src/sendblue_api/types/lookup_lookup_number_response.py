@@ -10,7 +10,7 @@ __all__ = ["LookupLookupNumberResponse"]
 
 class LookupLookupNumberResponse(BaseModel):
     number: Optional[str] = None
-    """The number you evaluated in E.164 format"""
+    """The normalized phone number or email address evaluated"""
 
     service: Optional[Literal["iMessage", "SMS"]] = None
-    """The service the number supports"""
+    """Whether iMessage support was detected"""
