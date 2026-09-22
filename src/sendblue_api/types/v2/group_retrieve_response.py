@@ -5,6 +5,7 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from ..group_photo import GroupPhoto
 
 __all__ = ["GroupRetrieveResponse", "Data", "DataParticipant"]
 
@@ -44,6 +45,12 @@ class Data(BaseModel):
     group_id: Optional[str] = None
 
     group_name: Optional[str] = None
+
+    group_photo: Optional[GroupPhoto] = None
+    """
+    Device-verified current group photo metadata; null when the group has no
+    verified photo
+    """
 
     latest_comm_at: Optional[datetime] = None
 

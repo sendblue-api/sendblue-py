@@ -9,4 +9,4 @@ __all__ = ["LookupLookupNumberParams"]
 
 class LookupLookupNumberParams(TypedDict, total=False):
     number: Required[str]
-    """The number you want to evaluate in E.164 format"""
+    """The phone number in E.164 format or email address to evaluate"""

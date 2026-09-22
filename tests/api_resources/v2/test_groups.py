@@ -9,7 +9,11 @@ import pytest
 
 from tests.utils import assert_matches_type
 from sendblue_api import SendblueAPI, AsyncSendblueAPI
-from sendblue_api.types.v2 import GroupRenameResponse, GroupRetrieveResponse
+from sendblue_api.types.v2 import (
+    GroupRenameResponse,
+    GroupRetrieveResponse,
+    GroupSetPhotoResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -70,6 +74,16 @@ class TestGroups:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_rename_with_all_params(self, client: SendblueAPI) -> None:
+        group = client.v2.groups.rename(
+            group_id="sb_group_608acc54-d0d7-4b41-8092-9ff6e1e70455",
+            group_name="Project Falcon",
+            from_number="+15551234567",
+        )
+        assert_matches_type(GroupRenameResponse, group, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_raw_response_rename(self, client: SendblueAPI) -> None:
         response = client.v2.groups.with_raw_response.rename(
             group_id="sb_group_608acc54-d0d7-4b41-8092-9ff6e1e70455",
@@ -103,6 +117,62 @@ class TestGroups:
             client.v2.groups.with_raw_response.rename(
                 group_id="",
                 group_name="Project Falcon",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_set_photo(self, client: SendblueAPI) -> None:
+        group = client.v2.groups.set_photo(
+            group_id="sb_group_608acc54-d0d7-4b41-8092-9ff6e1e70455",
+            photo_url="https://example.com/team-photo.png",
+        )
+        assert_matches_type(GroupSetPhotoResponse, group, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_set_photo_with_all_params(self, client: SendblueAPI) -> None:
+        group = client.v2.groups.set_photo(
+            group_id="sb_group_608acc54-d0d7-4b41-8092-9ff6e1e70455",
+            photo_url="https://example.com/team-photo.png",
+            from_number="+15551234567",
+        )
+        assert_matches_type(GroupSetPhotoResponse, group, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_set_photo(self, client: SendblueAPI) -> None:
+        response = client.v2.groups.with_raw_response.set_photo(
+            group_id="sb_group_608acc54-d0d7-4b41-8092-9ff6e1e70455",
+            photo_url="https://example.com/team-photo.png",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        group = response.parse()
+        assert_matches_type(GroupSetPhotoResponse, group, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_set_photo(self, client: SendblueAPI) -> None:
+        with client.v2.groups.with_streaming_response.set_photo(
+            group_id="sb_group_608acc54-d0d7-4b41-8092-9ff6e1e70455",
+            photo_url="https://example.com/team-photo.png",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            group = response.parse()
+            assert_matches_type(GroupSetPhotoResponse, group, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_set_photo(self, client: SendblueAPI) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
+            client.v2.groups.with_raw_response.set_photo(
+                group_id="",
+                photo_url="https://example.com/team-photo.png",
             )
 
 
@@ -164,6 +234,16 @@ class TestAsyncGroups:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    async def test_method_rename_with_all_params(self, async_client: AsyncSendblueAPI) -> None:
+        group = await async_client.v2.groups.rename(
+            group_id="sb_group_608acc54-d0d7-4b41-8092-9ff6e1e70455",
+            group_name="Project Falcon",
+            from_number="+15551234567",
+        )
+        assert_matches_type(GroupRenameResponse, group, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     async def test_raw_response_rename(self, async_client: AsyncSendblueAPI) -> None:
         response = await async_client.v2.groups.with_raw_response.rename(
             group_id="sb_group_608acc54-d0d7-4b41-8092-9ff6e1e70455",
@@ -197,4 +277,60 @@ class TestAsyncGroups:
             await async_client.v2.groups.with_raw_response.rename(
                 group_id="",
                 group_name="Project Falcon",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_set_photo(self, async_client: AsyncSendblueAPI) -> None:
+        group = await async_client.v2.groups.set_photo(
+            group_id="sb_group_608acc54-d0d7-4b41-8092-9ff6e1e70455",
+            photo_url="https://example.com/team-photo.png",
+        )
+        assert_matches_type(GroupSetPhotoResponse, group, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_set_photo_with_all_params(self, async_client: AsyncSendblueAPI) -> None:
+        group = await async_client.v2.groups.set_photo(
+            group_id="sb_group_608acc54-d0d7-4b41-8092-9ff6e1e70455",
+            photo_url="https://example.com/team-photo.png",
+            from_number="+15551234567",
+        )
+        assert_matches_type(GroupSetPhotoResponse, group, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_set_photo(self, async_client: AsyncSendblueAPI) -> None:
+        response = await async_client.v2.groups.with_raw_response.set_photo(
+            group_id="sb_group_608acc54-d0d7-4b41-8092-9ff6e1e70455",
+            photo_url="https://example.com/team-photo.png",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        group = await response.parse()
+        assert_matches_type(GroupSetPhotoResponse, group, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_set_photo(self, async_client: AsyncSendblueAPI) -> None:
+        async with async_client.v2.groups.with_streaming_response.set_photo(
+            group_id="sb_group_608acc54-d0d7-4b41-8092-9ff6e1e70455",
+            photo_url="https://example.com/team-photo.png",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            group = await response.parse()
+            assert_matches_type(GroupSetPhotoResponse, group, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_set_photo(self, async_client: AsyncSendblueAPI) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
+            await async_client.v2.groups.with_raw_response.set_photo(
+                group_id="",
+                photo_url="https://example.com/team-photo.png",
             )

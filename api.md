@@ -46,7 +46,7 @@ Methods:
 Types:
 
 ```python
-from sendblue_api.types import GroupModifyResponse
+from sendblue_api.types import GroupPhoto, GroupModifyResponse
 ```
 
 Methods:
@@ -216,13 +216,14 @@ Methods:
 Types:
 
 ```python
-from sendblue_api.types.v2 import GroupRetrieveResponse, GroupRenameResponse
+from sendblue_api.types.v2 import GroupRetrieveResponse, GroupRenameResponse, GroupSetPhotoResponse
 ```
 
 Methods:
 
 - <code title="get /api/v2/groups/{group_id}">client.v2.groups.<a href="./src/sendblue_api/resources/v2/groups.py">retrieve</a>(group_id) -> <a href="./src/sendblue_api/types/v2/group_retrieve_response.py">GroupRetrieveResponse</a></code>
 - <code title="post /api/v2/groups/{group_id}/name">client.v2.groups.<a href="./src/sendblue_api/resources/v2/groups.py">rename</a>(group_id, \*\*<a href="src/sendblue_api/types/v2/group_rename_params.py">params</a>) -> <a href="./src/sendblue_api/types/v2/group_rename_response.py">GroupRenameResponse</a></code>
+- <code title="post /api/v2/groups/{group_id}/photo">client.v2.groups.<a href="./src/sendblue_api/resources/v2/groups.py">set_photo</a>(group_id, \*\*<a href="src/sendblue_api/types/v2/group_set_photo_params.py">params</a>) -> <a href="./src/sendblue_api/types/v2/group_set_photo_response.py">GroupSetPhotoResponse</a></code>
 
 # Lines
 

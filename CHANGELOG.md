@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.29.0 (2026-09-22)
+
+Full Changelog: [v1.28.1...v1.29.0](https://github.com/sendblue-api/sendblue-py/compare/v1.28.1...v1.29.0)
+
+### Features
+
+* **grayrunner:** RD-454 verified group photo set/clear and retrieval ([b24db54](https://github.com/sendblue-api/sendblue-py/commit/b24db541ce8a35951786636f26d592a6801df4e3))
+
+
+### Bug Fixes
+
+* **lookup:** RD-528 prevent cached email false negatives ([8666824](https://github.com/sendblue-api/sendblue-py/commit/8666824fc79e47f0173b78f73488343bf547d1f7))
+
 ## 1.28.1 (2026-08-28)
 
 Full Changelog: [v1.28.0...v1.28.1](https://github.com/sendblue-api/sendblue-py/compare/v1.28.0...v1.28.1)
