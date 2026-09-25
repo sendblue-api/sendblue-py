@@ -108,8 +108,13 @@ $ ./scripts/format
 
 ## Publishing and releases
 
-Changes made to this repository via the automated release PR pipeline should publish to PyPI automatically. If
-the changes aren't made through the automated pipeline, you may want to make releases manually.
+Releases are driven by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/) on `main` (`feat:` bumps the minor version, `fix:` bumps the patch version).
+
+1. Every push to `main` runs the `Release Please` workflow (`.github/workflows/release-please.yml`), which opens or updates a `release: X.Y.Z` PR with the version bump and the `CHANGELOG.md` entry.
+2. Merging that PR tags the commit (`vX.Y.Z`) and creates the GitHub release.
+3. The same workflow then dispatches `Publish PyPI` on the new tag, which builds and uploads the package.
+
+If the automated pipeline fails, you may want to make releases manually.
 
 ### Publish with a GitHub workflow
 

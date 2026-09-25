@@ -1,0 +1,43 @@
+# Opens and updates the `release: X.Y.Z` PR from Conventional Commits on main.
+# When that PR is merged, it tags the commit and creates the GitHub release.
+# A release created with GITHUB_TOKEN does not fire `release: published`, so the
+# publish job dispatches publish-pypi.yml on the new tag instead.
+name: Release Please
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+
+jobs:
+  release-please:
+    name: release-please
+    runs-on: ubuntu-latest
+    if: github.repository == 'sendblue-api/sendblue-py'
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+
+    steps:
+      - uses: googleapis/release-please-action@5c625bfb5d1ff62eadeeb3772007f7f66fdcf071 # v4.4.1
+        id: release
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  publish:
+    name: dispatch publish-pypi
+    needs: release-please
+    if: needs.release-please.outputs.release_created == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run publish-pypi.yml on the release tag
+        run: gh workflow run publish-pypi.yml --repo "$GITHUB_REPOSITORY" --ref "$TAG_NAME"
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG_NAME: ${{ needs.release-please.outputs.tag_name }}
