@@ -34,13 +34,14 @@ $ pip install -r requirements-dev.lock
 
 ## Modifying/Adding code
 
-Most of the SDK is generated code. Modifications to code will be persisted between generations, but may
-result in merge conflicts between manual patches and changes from the generator. The generator will never
-modify the contents of the `src/sendblue_api/lib/` and `examples/` directories.
+This SDK was originally generated from the Sendblue OpenAPI spec and is now maintained by hand. When the API
+changes, update the models in `src/sendblue_api/types/`, both the sync and async methods in
+`src/sendblue_api/resources/`, `api.md` and the tests in `tests/api_resources/` together, following the style of
+the existing code. Hand-written helpers belong in `src/sendblue_api/lib/`.
 
 ## Adding and running examples
 
-All files in the `examples/` directory are not modified by the generator and can be freely edited or added to.
+All files in the `examples/` directory can be freely edited or added to.
 
 ```py
 # add an example to examples/<your-example>.py
