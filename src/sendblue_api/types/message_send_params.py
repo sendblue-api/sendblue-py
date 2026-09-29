@@ -37,6 +37,12 @@ class MessageSendParams(TypedDict, total=False):
     media_url: str
     """URL of media file to send (images, videos, etc.)"""
 
+    pre_reply_override: bool
+    """
+    Let one otherwise-blocked message through to a contact who has not replied yet,
+    once per contact per line per day. Must be the boolean `true`.
+    """
+
     reply_to: ReplyTo
     """Optional inline-reply target.
 

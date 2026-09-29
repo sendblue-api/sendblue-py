@@ -187,6 +187,13 @@ class MessageResponse(BaseModel):
     error_code: Optional[int] = None
     """Numeric error code if message failed"""
 
+    error_key: Optional[str] = None
+    """Stable identifier of the rule that declined the message, e.g.
+
+    `PRE_REPLY_LIMIT_REACHED` or `OPTED_OUT`. Branch on this field. `null` when the
+    message was not declined by a rule.
+    """
+
     error_message: Optional[str] = None
     """Error message if message failed"""
 
