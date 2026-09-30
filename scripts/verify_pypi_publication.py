@@ -19,7 +19,12 @@ from urllib.error import URLError, HTTPError
 from urllib.parse import quote
 from urllib.request import Request, urlopen
 
-import tomllib
+if sys.version_info >= (3, 11):
+    import tomllib
+else:
+    # The library's Python 3.9 lint environment already locks tomli. The
+    # publication workflow uses Python 3.13 and its standard-library parser.
+    import tomli as tomllib
 
 
 class RegistryError(RuntimeError):
