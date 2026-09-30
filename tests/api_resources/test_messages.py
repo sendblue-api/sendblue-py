@@ -191,6 +191,7 @@ class TestMessages:
             },
             content="Hello, World!",
             media_url="https://example.com/image.jpg",
+            pre_reply_override=True,
             reply_to={
                 "message_handle": "msg_parent123",
                 "part_index": 0,
@@ -469,6 +470,7 @@ class TestAsyncMessages:
             },
             content="Hello, World!",
             media_url="https://example.com/image.jpg",
+            pre_reply_override=True,
             reply_to={
                 "message_handle": "msg_parent123",
                 "part_index": 0,
