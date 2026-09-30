@@ -302,6 +302,7 @@ class MessagesResource(SyncAPIResource):
         app_card: message_send_params.AppCard | Omit = omit,
         content: str | Omit = omit,
         media_url: str | Omit = omit,
+        pre_reply_override: bool | Omit = omit,
         reply_to: message_send_params.ReplyTo | Omit = omit,
         seat_id: str | Omit = omit,
         send_style: Literal[
@@ -350,6 +351,9 @@ class MessagesResource(SyncAPIResource):
 
           media_url: URL of media file to send (images, videos, etc.)
 
+          pre_reply_override: Let one otherwise-blocked message through to a contact who has not replied yet,
+              once per contact per line per day. Must be the boolean `true`.
+
           reply_to: Optional inline-reply target. This may be combined with `app_card`; the
               resulting App Card is sent as an inline reply to the target.
 
@@ -379,6 +383,7 @@ class MessagesResource(SyncAPIResource):
                     "app_card": app_card,
                     "content": content,
                     "media_url": media_url,
+                    "pre_reply_override": pre_reply_override,
                     "reply_to": reply_to,
                     "seat_id": seat_id,
                     "send_style": send_style,
@@ -736,6 +741,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         app_card: message_send_params.AppCard | Omit = omit,
         content: str | Omit = omit,
         media_url: str | Omit = omit,
+        pre_reply_override: bool | Omit = omit,
         reply_to: message_send_params.ReplyTo | Omit = omit,
         seat_id: str | Omit = omit,
         send_style: Literal[
@@ -784,6 +790,9 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           media_url: URL of media file to send (images, videos, etc.)
 
+          pre_reply_override: Let one otherwise-blocked message through to a contact who has not replied yet,
+              once per contact per line per day. Must be the boolean `true`.
+
           reply_to: Optional inline-reply target. This may be combined with `app_card`; the
               resulting App Card is sent as an inline reply to the target.
 
@@ -813,6 +822,7 @@ class AsyncMessagesResource(AsyncAPIResource):
                     "app_card": app_card,
                     "content": content,
                     "media_url": media_url,
+                    "pre_reply_override": pre_reply_override,
                     "reply_to": reply_to,
                     "seat_id": seat_id,
                     "send_style": send_style,
