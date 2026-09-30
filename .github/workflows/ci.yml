@@ -37,6 +37,13 @@ jobs:
       - name: Run lints
         run: ./scripts/lint
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Test publication recovery
+        run: python3 -m unittest scripts.test_verify_pypi_publication
+
   build:
     if: (github.event_name == 'push' || github.event.pull_request.head.repo.fork) && (github.event_name != 'push' || github.event.head_commit.message != 'codegen metadata')
     timeout-minutes: 10

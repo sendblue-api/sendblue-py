@@ -145,6 +145,12 @@ filterwarnings = [
 typeCheckingMode = "strict"
 pythonVersion = "3.9"
 
+# Release tooling runs on Python 3.13; the installed library keeps its 3.9 floor.
+executionEnvironments = [
+    { root = "scripts", pythonVersion = "3.13", extraPaths = ["."] },
+    { root = ".", pythonVersion = "3.9" },
+]
+
 exclude = [
     "_dev",
     ".venv",
