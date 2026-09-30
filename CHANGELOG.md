@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.30.0](https://github.com/sendblue-api/sendblue-py/compare/v1.29.0...v1.30.0) (2026-09-30)
+
+
+### Features
+
+* add error_key and pre_reply_override (sendblue-api/sb-api-v2[#1950](https://github.com/sendblue-api/sendblue-py/issues/1950)) ([250d8eb](https://github.com/sendblue-api/sendblue-py/commit/250d8ebf101def775e4f3002a6e98e169626fb8a))
+
 ## 1.29.0 (2026-09-22)
 
 Full Changelog: [v1.28.1...v1.29.0](https://github.com/sendblue-api/sendblue-py/compare/v1.28.1...v1.29.0)
