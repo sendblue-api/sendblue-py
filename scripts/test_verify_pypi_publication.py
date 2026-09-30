@@ -3,17 +3,22 @@
 from __future__ import annotations
 
 import io
+import sys
 import json
 import hashlib
 import tempfile
 import unittest
-from typing import Any
+from typing import TYPE_CHECKING, Any
 from pathlib import Path
 from contextlib import ExitStack, redirect_stderr, redirect_stdout
 from urllib.error import URLError, HTTPError
 from email.message import Message
 from unittest.mock import Mock, patch
-from typing_extensions import override
+
+if TYPE_CHECKING or sys.version_info < (3, 12):
+    from typing_extensions import override
+else:
+    from typing import override
 
 from scripts import verify_pypi_publication as publication
 
