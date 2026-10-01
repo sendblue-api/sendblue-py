@@ -1,31 +1,58 @@
-# This workflow is triggered when a GitHub release is created.
-# It can also be run manually to re-publish to PyPI in case it failed for some reason.
-# You can run this workflow by navigating to https://www.github.com/sendblue-api/sendblue-py/actions/workflows/publish-pypi.yml
 name: Publish PyPI
 on:
-  workflow_dispatch:
-
   release:
     types: [published]
-
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing release tag to verify or recover
+        type: string
+        required: true
+concurrency:
+  group: publish-pypi-${{ github.event.release.tag_name || inputs.tag }}
+  cancel-in-progress: false
+  queue: max
+permissions:
+  contents: read
 jobs:
   publish:
-    name: publish
     runs-on: ubuntu-latest
-
+    timeout-minutes: 30
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-
-      - name: Install Rye
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name || inputs.tag }}
+          persist-credentials: false
+      - name: Verify tag checkout
+        env:
+          TAG: ${{ github.event.release.tag_name || inputs.tag }}
         run: |
-          curl -sSf https://rye.astral.sh/get | bash
-          echo "$HOME/.rye/shims" >> $GITHUB_PATH
+          test -n "$TAG"
+          git check-ref-format "refs/tags/$TAG"
+          test "$(git rev-parse HEAD)" = "$(git rev-parse "refs/tags/$TAG^{commit}")"
+      - name: Install Rye
         env:
           RYE_VERSION: '0.44.0'
           RYE_INSTALL_OPTION: '--yes'
-
-      - name: Publish to PyPI
         run: |
-          bash ./bin/publish-pypi
+          curl -sSf https://rye.astral.sh/get | bash
+          echo "$HOME/.rye/shims" >> "$GITHUB_PATH"
+      # Publisher verification needs tomllib, independent of the SDK Python floor.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Publish or verify exact distribution files
         env:
           PYPI_TOKEN: ${{ secrets.SENDBLUE_API_PYPI_TOKEN || secrets.PYPI_TOKEN }}
+        run: bash bin/publish-pypi
+      - uses: actions/create-github-app-token@v3
+        id: docs
+        with:
+          app-id: ${{ vars.STLC_APP_ID }}
+          private-key: ${{ secrets.STLC_APP_PRIVATE_KEY }}
+          owner: sendblue-api
+          repositories: sendblue-api-docs
+      - name: Refresh docs after verified publication
+        env:
+          GH_TOKEN: ${{ steps.docs.outputs.token }}
+        run: gh workflow run deploy.yml --repo sendblue-api/sendblue-api-docs --ref main
