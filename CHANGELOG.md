@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.30.1](https://github.com/sendblue-api/sendblue-py/compare/v1.30.0...v1.30.1) (2026-10-01)
+
+
+### Bug Fixes
+
+* **ci:** typecheck publisher with Python 3.9 ([a35210b](https://github.com/sendblue-api/sendblue-py/commit/a35210bc819c665837247d96168e589823383600))
+* **ci:** use stdlib typing in standalone publication tests ([8649529](https://github.com/sendblue-api/sendblue-py/commit/864952903694f349e95d3db4440911e3a67375c1))
+* regenerate clients from source b434f6f8f474 ([0150b83](https://github.com/sendblue-api/sendblue-py/commit/0150b8355db706da029bcd3ed41c322b139bfc0f))
+
 ## [1.30.0](https://github.com/sendblue-api/sendblue-py/compare/v1.29.0...v1.30.0) (2026-09-30)
 
 
