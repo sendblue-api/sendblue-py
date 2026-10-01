@@ -364,7 +364,7 @@ class MessagesResource(SyncAPIResource):
 
           send_style: The iMessage expressive message style
 
-          status_callback: Webhook URL for message status updates (test)
+          status_callback: Webhook URL for message status updates
 
           extra_headers: Send extra headers
 
@@ -803,7 +803,7 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           send_style: The iMessage expressive message style
 
-          status_callback: Webhook URL for message status updates (test)
+          status_callback: Webhook URL for message status updates
 
           extra_headers: Send extra headers
 
