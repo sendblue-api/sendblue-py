@@ -103,7 +103,7 @@ class SendCarouselResource(SyncAPIResource):
 
           send_style: The iMessage expressive message style
 
-          status_callback: Webhook URL for message status updates
+          status_callback: Webhook URL that receives message status updates
 
           extra_headers: Send extra headers
 
@@ -215,7 +215,7 @@ class AsyncSendCarouselResource(AsyncAPIResource):
 
           send_style: The iMessage expressive message style
 
-          status_callback: Webhook URL for message status updates
+          status_callback: Webhook URL that receives message status updates
 
           extra_headers: Send extra headers
 
