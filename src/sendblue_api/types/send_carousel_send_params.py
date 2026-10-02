@@ -55,7 +55,7 @@ class SendCarouselSendParams(TypedDict, total=False):
     """The iMessage expressive message style"""
 
     status_callback: str
-    """Webhook URL for message status updates"""
+    """Webhook URL that receives message status updates"""
 
 
 class ReplyTo(TypedDict, total=False):
