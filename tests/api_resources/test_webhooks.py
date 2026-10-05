@@ -79,6 +79,7 @@ class TestWebhooks:
     def test_method_update_with_all_params(self, client: SendblueAPI) -> None:
         webhook = client.webhooks.update(
             webhooks={
+                "call_completed": ["https://example.com"],
                 "call_log": ["https://example.com"],
                 "contact_created": ["https://example.com"],
                 "contact_profile": ["https://example.com"],
@@ -253,6 +254,7 @@ class TestAsyncWebhooks:
     async def test_method_update_with_all_params(self, async_client: AsyncSendblueAPI) -> None:
         webhook = await async_client.webhooks.update(
             webhooks={
+                "call_completed": ["https://example.com"],
                 "call_log": ["https://example.com"],
                 "contact_created": ["https://example.com"],
                 "contact_profile": ["https://example.com"],
