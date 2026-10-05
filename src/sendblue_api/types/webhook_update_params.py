@@ -12,6 +12,7 @@ from .webhook_configuration_param import WebhookConfigurationParam
 __all__ = [
     "WebhookUpdateParams",
     "Webhooks",
+    "WebhooksCallCompleted",
     "WebhooksCallLog",
     "WebhooksContactCreated",
     "WebhooksContactProfile",
@@ -27,6 +28,8 @@ __all__ = [
 class WebhookUpdateParams(TypedDict, total=False):
     webhooks: Required[Webhooks]
 
+
+WebhooksCallCompleted: TypeAlias = Union[str, WebhookConfigurationParam]
 
 WebhooksCallLog: TypeAlias = Union[str, WebhookConfigurationParam]
 
@@ -48,6 +51,12 @@ WebhooksTypingIndicator: TypeAlias = Union[str, WebhookConfigurationParam]
 
 
 class Webhooks(TypedDict, total=False):
+    call_completed: SequenceNotStr[WebhooksCallCompleted]
+    """
+    Webhooks fired once per call when its recording and transcript are final
+    (deduplicate on call_id)
+    """
+
     call_log: SequenceNotStr[WebhooksCallLog]
     """Webhooks for call log events"""
 

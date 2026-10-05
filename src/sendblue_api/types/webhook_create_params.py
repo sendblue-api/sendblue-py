@@ -26,6 +26,7 @@ class WebhookCreateParams(TypedDict, total=False):
         "outbound",
         "typing_indicator",
         "call_log",
+        "call_completed",
         "inbound_call",
         "contact_profile",
         "contact_created",
