@@ -230,11 +230,26 @@ Methods:
 Types:
 
 ```python
-from sendblue_api.types import LineState, LineGetStateResponse
+from sendblue_api.types import (
+    LineContactStatusResponse,
+    LineUsageDailyWindow,
+    LineUsageResponse,
+    LineUsageSnapshot,
+    LineUsageWindow,
+    LineContactStatusResponse,
+    LineUsageResponse,
+    LineUsageSnapshot,
+    LineUsageWindow,
+    LineUsageDailyWindow,
+    LineState,
+    LineGetStateResponse,
+)
 ```
 
 Methods:
 
+- <code title="get /api/v2/lines/contact-status">client.lines.<a href="./src/sendblue_api/resources/lines/lines.py">get_contact_status</a>(\*\*<a href="src/sendblue_api/types/line_get_contact_status_params.py">params</a>) -> <a href="./src/sendblue_api/types/line_contact_status_response.py">LineContactStatusResponse</a></code>
+- <code title="get /api/v2/lines/usage">client.lines.<a href="./src/sendblue_api/resources/lines/lines.py">get_usage</a>() -> <a href="./src/sendblue_api/types/line_usage_response.py">LineUsageResponse</a></code>
 - <code title="get /api/v2/lines/state">client.lines.<a href="./src/sendblue_api/resources/lines/lines.py">get_state</a>() -> <a href="./src/sendblue_api/types/line_get_state_response.py">LineGetStateResponse</a></code>
 
 ## CallForwarding

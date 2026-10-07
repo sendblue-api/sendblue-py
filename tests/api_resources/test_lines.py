@@ -9,13 +9,82 @@ import pytest
 
 from tests.utils import assert_matches_type
 from sendblue_api import SendblueAPI, AsyncSendblueAPI
-from sendblue_api.types import LineGetStateResponse
+from sendblue_api.types import (
+    LineUsageResponse,
+    LineGetStateResponse,
+    LineContactStatusResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
 class TestLines:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_get_contact_status(self, client: SendblueAPI) -> None:
+        line = client.lines.get_contact_status(
+            number="number",
+            sendblue_number="sendblue_number",
+        )
+        assert_matches_type(LineContactStatusResponse, line, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_get_contact_status(self, client: SendblueAPI) -> None:
+        response = client.lines.with_raw_response.get_contact_status(
+            number="number",
+            sendblue_number="sendblue_number",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        line = response.parse()
+        assert_matches_type(LineContactStatusResponse, line, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_get_contact_status(self, client: SendblueAPI) -> None:
+        with client.lines.with_streaming_response.get_contact_status(
+            number="number",
+            sendblue_number="sendblue_number",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line = response.parse()
+            assert_matches_type(LineContactStatusResponse, line, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_get_usage(self, client: SendblueAPI) -> None:
+        line = client.lines.get_usage()
+        assert_matches_type(LineUsageResponse, line, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_get_usage(self, client: SendblueAPI) -> None:
+        response = client.lines.with_raw_response.get_usage()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        line = response.parse()
+        assert_matches_type(LineUsageResponse, line, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_get_usage(self, client: SendblueAPI) -> None:
+        with client.lines.with_streaming_response.get_usage() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line = response.parse()
+            assert_matches_type(LineUsageResponse, line, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -50,6 +119,71 @@ class TestAsyncLines:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_get_contact_status(self, async_client: AsyncSendblueAPI) -> None:
+        line = await async_client.lines.get_contact_status(
+            number="number",
+            sendblue_number="sendblue_number",
+        )
+        assert_matches_type(LineContactStatusResponse, line, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_get_contact_status(self, async_client: AsyncSendblueAPI) -> None:
+        response = await async_client.lines.with_raw_response.get_contact_status(
+            number="number",
+            sendblue_number="sendblue_number",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        line = await response.parse()
+        assert_matches_type(LineContactStatusResponse, line, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_get_contact_status(self, async_client: AsyncSendblueAPI) -> None:
+        async with async_client.lines.with_streaming_response.get_contact_status(
+            number="number",
+            sendblue_number="sendblue_number",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line = await response.parse()
+            assert_matches_type(LineContactStatusResponse, line, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_get_usage(self, async_client: AsyncSendblueAPI) -> None:
+        line = await async_client.lines.get_usage()
+        assert_matches_type(LineUsageResponse, line, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_get_usage(self, async_client: AsyncSendblueAPI) -> None:
+        response = await async_client.lines.with_raw_response.get_usage()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        line = await response.parse()
+        assert_matches_type(LineUsageResponse, line, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_get_usage(self, async_client: AsyncSendblueAPI) -> None:
+        async with async_client.lines.with_streaming_response.get_usage() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line = await response.parse()
+            assert_matches_type(LineUsageResponse, line, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
