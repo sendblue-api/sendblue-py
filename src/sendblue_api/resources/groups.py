@@ -66,7 +66,10 @@ class GroupsResource(SyncAPIResource):
         the device: the group's persisted membership changed and Sendblue's participant
         state matches it. Removal requires the group to have at least four total members
         before the operation and does not require the group's creator. Only iMessage
-        groups are supported.
+        groups are supported. An account may also add a different active dedicated
+        Sendblue line assigned to that same account. That addition requires an explicit
+        from_number; company-owned line removal and self-target operations remain
+        unsupported.
 
         Args:
           group_id: Group identifier
@@ -74,14 +77,18 @@ class GroupsResource(SyncAPIResource):
           modify_type: Type of modification to perform
 
           number: External participant to add or remove, in E.164 format (or an iMessage email
-              address). Company-owned lines cannot be added or removed.
+              address). An account may also add a different active dedicated Sendblue line
+              currently assigned to that same account, with explicit from_number.
+              Company-owned line removal, shared lines, and adding the acting line itself are
+              not supported.
 
           from_number: The Sendblue line to act from. It must belong to the account and already be a
-              participant of the group. Free API accounts must provide it. Other accounts may
-              omit it only when exactly one account line participates in the group. With no
-              participating account line the request fails with `line_not_registered`; with
-              multiple lines it fails with `ambiguous_sending_line`. No change is attempted in
-              either case.
+              participant of the group. Free API accounts must provide it. It is also required
+              for every account-owned line addition. For external-participant changes, other
+              accounts may omit it only when exactly one account line participates in the
+              group. With no participating account line the request fails with
+              `line_not_registered`; with multiple lines it fails with
+              `ambiguous_sending_line`. No change is attempted in either case.
 
           extra_headers: Send extra headers
 
@@ -220,7 +227,10 @@ class AsyncGroupsResource(AsyncAPIResource):
         the device: the group's persisted membership changed and Sendblue's participant
         state matches it. Removal requires the group to have at least four total members
         before the operation and does not require the group's creator. Only iMessage
-        groups are supported.
+        groups are supported. An account may also add a different active dedicated
+        Sendblue line assigned to that same account. That addition requires an explicit
+        from_number; company-owned line removal and self-target operations remain
+        unsupported.
 
         Args:
           group_id: Group identifier
@@ -228,14 +238,18 @@ class AsyncGroupsResource(AsyncAPIResource):
           modify_type: Type of modification to perform
 
           number: External participant to add or remove, in E.164 format (or an iMessage email
-              address). Company-owned lines cannot be added or removed.
+              address). An account may also add a different active dedicated Sendblue line
+              currently assigned to that same account, with explicit from_number.
+              Company-owned line removal, shared lines, and adding the acting line itself are
+              not supported.
 
           from_number: The Sendblue line to act from. It must belong to the account and already be a
-              participant of the group. Free API accounts must provide it. Other accounts may
-              omit it only when exactly one account line participates in the group. With no
-              participating account line the request fails with `line_not_registered`; with
-              multiple lines it fails with `ambiguous_sending_line`. No change is attempted in
-              either case.
+              participant of the group. Free API accounts must provide it. It is also required
+              for every account-owned line addition. For external-participant changes, other
+              accounts may omit it only when exactly one account line participates in the
+              group. With no participating account line the request fails with
+              `line_not_registered`; with multiple lines it fails with
+              `ambiguous_sending_line`. No change is attempted in either case.
 
           extra_headers: Send extra headers
 
