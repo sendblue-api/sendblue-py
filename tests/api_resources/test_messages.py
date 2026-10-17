@@ -158,7 +158,6 @@ class TestMessages:
     @parametrize
     def test_method_send(self, client: SendblueAPI) -> None:
         message = client.messages.send(
-            from_number="+19998887777",
             number="+19998887777",
         )
         assert_matches_type(MessageResponse, message, path=["response"])
@@ -167,7 +166,6 @@ class TestMessages:
     @parametrize
     def test_method_send_with_all_params(self, client: SendblueAPI) -> None:
         message = client.messages.send(
-            from_number="+19998887777",
             number="+19998887777",
             app_card={
                 "app_name": "My App",
@@ -190,6 +188,7 @@ class TestMessages:
                 "session_identifier": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             },
             content="Hello, World!",
+            from_number="+19998887777",
             media_url="https://example.com/image.jpg",
             pre_reply_override=True,
             reply_to={
@@ -206,7 +205,6 @@ class TestMessages:
     @parametrize
     def test_raw_response_send(self, client: SendblueAPI) -> None:
         response = client.messages.with_raw_response.send(
-            from_number="+19998887777",
             number="+19998887777",
         )
 
@@ -219,7 +217,6 @@ class TestMessages:
     @parametrize
     def test_streaming_response_send(self, client: SendblueAPI) -> None:
         with client.messages.with_streaming_response.send(
-            from_number="+19998887777",
             number="+19998887777",
         ) as response:
             assert not response.is_closed
@@ -437,7 +434,6 @@ class TestAsyncMessages:
     @parametrize
     async def test_method_send(self, async_client: AsyncSendblueAPI) -> None:
         message = await async_client.messages.send(
-            from_number="+19998887777",
             number="+19998887777",
         )
         assert_matches_type(MessageResponse, message, path=["response"])
@@ -446,7 +442,6 @@ class TestAsyncMessages:
     @parametrize
     async def test_method_send_with_all_params(self, async_client: AsyncSendblueAPI) -> None:
         message = await async_client.messages.send(
-            from_number="+19998887777",
             number="+19998887777",
             app_card={
                 "app_name": "My App",
@@ -469,6 +464,7 @@ class TestAsyncMessages:
                 "session_identifier": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             },
             content="Hello, World!",
+            from_number="+19998887777",
             media_url="https://example.com/image.jpg",
             pre_reply_override=True,
             reply_to={
@@ -485,7 +481,6 @@ class TestAsyncMessages:
     @parametrize
     async def test_raw_response_send(self, async_client: AsyncSendblueAPI) -> None:
         response = await async_client.messages.with_raw_response.send(
-            from_number="+19998887777",
             number="+19998887777",
         )
 
@@ -498,7 +493,6 @@ class TestAsyncMessages:
     @parametrize
     async def test_streaming_response_send(self, async_client: AsyncSendblueAPI) -> None:
         async with async_client.messages.with_streaming_response.send(
-            from_number="+19998887777",
             number="+19998887777",
         ) as response:
             assert not response.is_closed

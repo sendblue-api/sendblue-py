@@ -10,13 +10,6 @@ __all__ = ["MessageSendParams", "AppCard", "AppCardLayout", "ReplyTo"]
 
 
 class MessageSendParams(TypedDict, total=False):
-    from_number: Required[str]
-    """**REQUIRED** - The phone number to send from.
-
-    Must be one of your registered Sendblue phone numbers in E.164 format. Without
-    this parameter, the message will fail to send.
-    """
-
     number: Required[str]
     """Recipient phone number in E.164 format"""
 
@@ -33,6 +26,15 @@ class MessageSendParams(TypedDict, total=False):
 
     content: str
     """Message text content. Optional when `media_url` or `app_card` is provided."""
+
+    from_number: str
+    """
+    Your registered Sendblue phone number in E.164 format. Optional on dedicated and
+    enterprise ordinary direct sends; automatic capacity-aware selection requires
+    account enablement. Required on free shared-line plans. Provide a sender for App
+    Cards and inline replies; those requests do not use automatic capacity-aware
+    selection.
+    """
 
     media_url: str
     """URL of media file to send (images, videos, etc.)"""
