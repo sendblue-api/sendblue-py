@@ -297,10 +297,10 @@ class MessagesResource(SyncAPIResource):
     def send(
         self,
         *,
-        from_number: str,
         number: str,
         app_card: message_send_params.AppCard | Omit = omit,
         content: str | Omit = omit,
+        from_number: str | Omit = omit,
         media_url: str | Omit = omit,
         pre_reply_override: bool | Omit = omit,
         reply_to: message_send_params.ReplyTo | Omit = omit,
@@ -329,14 +329,27 @@ class MessagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageResponse:
-        """
-        Send an iMessage, SMS, MMS, or Sendblue App Card to a single recipient
+        """Send an iMessage, SMS, MMS, or Sendblue App Card to a single recipient.
+
+        For
+        enabled dedicated and enterprise accounts, omit from_number on ordinary direct
+        sends to preserve an eligible known-contact line or choose an account-owned
+        online line with effective hourly and daily new-contact capacity. An account
+        admin enables Automatic API line selection in the dashboard API settings
+        (Settings > API keys in the Beta Dashboard, or Settings > API Settings in the
+        legacy dashboard). Both dashboards control the same account-wide setting, which
+        defaults off; other accounts keep their existing omitted-sender routing. An
+        eligible saved conversation line stays selected during temporary outages while
+        the contact is still known on that line. Expired offline routes are excluded.
+        Retained replacement lines can only continue contacts known on that same line.
+        Explicit senders remain authoritative. Other sending rules still apply. The
+        accepted response identifies the selected line in from_number and
+        sendblue_number. If all eligible lines reach a new-contact cap, the response is
+        HTTP 400 with status ERROR, body error_code 429, and error_key
+        LINE_HOURLY_LIMIT_REACHED or LINE_DAILY_LIMIT_REACHED. HTTP 429 is reserved for
+        request-rate limiting.
 
         Args:
-          from_number: **REQUIRED** - The phone number to send from. Must be one of your registered
-              Sendblue phone numbers in E.164 format. Without this parameter, the message will
-              fail to send.
-
           number: Recipient phone number in E.164 format
 
           app_card: A Sendblue App Card rendered with Apple's Messages framework. App Cards require
@@ -348,6 +361,12 @@ class MessagesResource(SyncAPIResource):
               plan.
 
           content: Message text content. Optional when `media_url` or `app_card` is provided.
+
+          from_number: Your registered Sendblue phone number in E.164 format. Optional on dedicated and
+              enterprise ordinary direct sends; automatic capacity-aware selection requires
+              account enablement. Required on free shared-line plans. Provide a sender for App
+              Cards and inline replies; those requests do not use automatic capacity-aware
+              selection.
 
           media_url: URL of media file to send (images, videos, etc.)
 
@@ -378,10 +397,10 @@ class MessagesResource(SyncAPIResource):
             "/api/send-message",
             body=maybe_transform(
                 {
-                    "from_number": from_number,
                     "number": number,
                     "app_card": app_card,
                     "content": content,
+                    "from_number": from_number,
                     "media_url": media_url,
                     "pre_reply_override": pre_reply_override,
                     "reply_to": reply_to,
@@ -736,10 +755,10 @@ class AsyncMessagesResource(AsyncAPIResource):
     async def send(
         self,
         *,
-        from_number: str,
         number: str,
         app_card: message_send_params.AppCard | Omit = omit,
         content: str | Omit = omit,
+        from_number: str | Omit = omit,
         media_url: str | Omit = omit,
         pre_reply_override: bool | Omit = omit,
         reply_to: message_send_params.ReplyTo | Omit = omit,
@@ -768,14 +787,27 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageResponse:
-        """
-        Send an iMessage, SMS, MMS, or Sendblue App Card to a single recipient
+        """Send an iMessage, SMS, MMS, or Sendblue App Card to a single recipient.
+
+        For
+        enabled dedicated and enterprise accounts, omit from_number on ordinary direct
+        sends to preserve an eligible known-contact line or choose an account-owned
+        online line with effective hourly and daily new-contact capacity. An account
+        admin enables Automatic API line selection in the dashboard API settings
+        (Settings > API keys in the Beta Dashboard, or Settings > API Settings in the
+        legacy dashboard). Both dashboards control the same account-wide setting, which
+        defaults off; other accounts keep their existing omitted-sender routing. An
+        eligible saved conversation line stays selected during temporary outages while
+        the contact is still known on that line. Expired offline routes are excluded.
+        Retained replacement lines can only continue contacts known on that same line.
+        Explicit senders remain authoritative. Other sending rules still apply. The
+        accepted response identifies the selected line in from_number and
+        sendblue_number. If all eligible lines reach a new-contact cap, the response is
+        HTTP 400 with status ERROR, body error_code 429, and error_key
+        LINE_HOURLY_LIMIT_REACHED or LINE_DAILY_LIMIT_REACHED. HTTP 429 is reserved for
+        request-rate limiting.
 
         Args:
-          from_number: **REQUIRED** - The phone number to send from. Must be one of your registered
-              Sendblue phone numbers in E.164 format. Without this parameter, the message will
-              fail to send.
-
           number: Recipient phone number in E.164 format
 
           app_card: A Sendblue App Card rendered with Apple's Messages framework. App Cards require
@@ -787,6 +819,12 @@ class AsyncMessagesResource(AsyncAPIResource):
               plan.
 
           content: Message text content. Optional when `media_url` or `app_card` is provided.
+
+          from_number: Your registered Sendblue phone number in E.164 format. Optional on dedicated and
+              enterprise ordinary direct sends; automatic capacity-aware selection requires
+              account enablement. Required on free shared-line plans. Provide a sender for App
+              Cards and inline replies; those requests do not use automatic capacity-aware
+              selection.
 
           media_url: URL of media file to send (images, videos, etc.)
 
@@ -817,10 +855,10 @@ class AsyncMessagesResource(AsyncAPIResource):
             "/api/send-message",
             body=await async_maybe_transform(
                 {
-                    "from_number": from_number,
                     "number": number,
                     "app_card": app_card,
                     "content": content,
+                    "from_number": from_number,
                     "media_url": media_url,
                     "pre_reply_override": pre_reply_override,
                     "reply_to": reply_to,
