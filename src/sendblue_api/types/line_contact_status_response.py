@@ -1,12 +1,45 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["LineContactStatusResponse"]
+__all__ = ["LineContactStatusResponse", "Pacing", "PacingWarning"]
+
+
+class PacingWarning(BaseModel):
+    """Optional advice for subsequent non-active one-to-one iMessage sends.
+
+    Never a retry instruction or an admission decision.
+    """
+
+    expires_at: datetime
+
+    reasons: List[Literal["warm_hourly", "cold_hourly", "line_hourly", "line_burst", "new_contacts_daily"]]
+
+    version: Literal[1]
+
+    new_contacts_remaining: Optional[Literal[0]] = None
+
+    new_contacts_reset_at: Optional[datetime] = None
+
+    suggested_delay_ms: Optional[int] = None
+
+
+class Pacing(BaseModel):
+    activity: Literal["active", "warm", "cold", "unknown"]
+
+    service: Literal["iMessage"]
+
+    version: Literal[1]
+
+    warning: Optional[PacingWarning] = None
+    """Optional advice for subsequent non-active one-to-one iMessage sends.
+
+    Never a retry instruction or an admission decision.
+    """
 
 
 class LineContactStatusResponse(BaseModel):
@@ -39,3 +72,5 @@ class LineContactStatusResponse(BaseModel):
     """Sendblue phone number in E.164 format."""
 
     status: Literal["OK"]
+
+    pacing: Optional[Pacing] = None
