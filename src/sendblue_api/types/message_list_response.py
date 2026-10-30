@@ -105,6 +105,13 @@ class Data(BaseModel):
     is_outbound: Optional[bool] = None
     """Whether this is an outbound message"""
 
+    is_reaction: Optional[bool] = None
+    """
+    Present as true only for positively identified inbound reaction additions or
+    removals on supported V2 lines. The handle identifies the reaction event and
+    cannot be an inline-reply target. Absence does not establish replyability.
+    """
+
     location: Optional[DataLocation] = None
     """Decoded Find My location share coordinates."""
 
