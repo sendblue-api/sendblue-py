@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
+from typing import List, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 from .._types import SequenceNotStr
 
-__all__ = ["SendCarouselSendParams", "ReplyTo"]
+__all__ = ["SendCarouselSendParams", "ReplyTo", "TextFormatting"]
 
 
 class SendCarouselSendParams(TypedDict, total=False):
@@ -18,6 +19,9 @@ class SendCarouselSendParams(TypedDict, total=False):
 
     number: Required[str]
     """Recipient phone number in E.164 format"""
+
+    content: str
+    """Optional caption; formatting ranges index this exact text."""
 
     metadata: object
     """Additional metadata to attach to the message"""
@@ -57,6 +61,17 @@ class SendCarouselSendParams(TypedDict, total=False):
     status_callback: str
     """Webhook URL that receives message status updates"""
 
+    text_formatting: Iterable[TextFormatting]
+    """
+    Optional additive native text styles indexed in UTF-16 code units of the exact
+    submitted content. Empty array retains the ordinary plain-text path. Ranges
+    cannot split surrogate pairs. Requires an updated V2 Mac worker/native helper,
+    macOS 15+ and an existing native iMessage path. Other transports, older
+    workers/hosts and AppleScript paths remain plain text; routing and fallback
+    policy do not change. Cannot be combined with app_card. Recipient rendering
+    requires compatible Apple Messages.
+    """
+
 
 class ReplyTo(TypedDict, total=False):
     """Immediate parent of an iMessage inline reply.
@@ -77,3 +92,11 @@ class ReplyTo(TypedDict, total=False):
     authoritative part. Responses omit it when no authoritative immediate-parent
     part is available.
     """
+
+
+class TextFormatting(TypedDict, total=False):
+    length: Required[int]
+
+    start: Required[int]
+
+    styles: Required[List[Literal["bold", "italic", "underline", "strikethrough"]]]

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -51,6 +52,7 @@ class SendCarouselResource(SyncAPIResource):
         from_number: str,
         media_urls: SequenceNotStr[str],
         number: str,
+        content: str | Omit = omit,
         metadata: object | Omit = omit,
         reply_to: send_carousel_send_params.ReplyTo | Omit = omit,
         seat_id: str | Omit = omit,
@@ -71,6 +73,7 @@ class SendCarouselResource(SyncAPIResource):
         ]
         | Omit = omit,
         status_callback: str | Omit = omit,
+        text_formatting: Iterable[send_carousel_send_params.TextFormatting] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -91,6 +94,8 @@ class SendCarouselResource(SyncAPIResource):
 
           number: Recipient phone number in E.164 format
 
+          content: Optional caption; formatting ranges index this exact text.
+
           metadata: Additional metadata to attach to the message
 
           reply_to: Immediate parent of an iMessage inline reply. The target must belong to the same
@@ -104,6 +109,14 @@ class SendCarouselResource(SyncAPIResource):
           send_style: The iMessage expressive message style
 
           status_callback: Webhook URL that receives message status updates
+
+          text_formatting: Optional additive native text styles indexed in UTF-16 code units of the exact
+              submitted content. Empty array retains the ordinary plain-text path. Ranges
+              cannot split surrogate pairs. Requires an updated V2 Mac worker/native helper,
+              macOS 15+ and an existing native iMessage path. Other transports, older
+              workers/hosts and AppleScript paths remain plain text; routing and fallback
+              policy do not change. Cannot be combined with app_card. Recipient rendering
+              requires compatible Apple Messages.
 
           extra_headers: Send extra headers
 
@@ -120,11 +133,13 @@ class SendCarouselResource(SyncAPIResource):
                     "from_number": from_number,
                     "media_urls": media_urls,
                     "number": number,
+                    "content": content,
                     "metadata": metadata,
                     "reply_to": reply_to,
                     "seat_id": seat_id,
                     "send_style": send_style,
                     "status_callback": status_callback,
+                    "text_formatting": text_formatting,
                 },
                 send_carousel_send_params.SendCarouselSendParams,
             ),
@@ -163,6 +178,7 @@ class AsyncSendCarouselResource(AsyncAPIResource):
         from_number: str,
         media_urls: SequenceNotStr[str],
         number: str,
+        content: str | Omit = omit,
         metadata: object | Omit = omit,
         reply_to: send_carousel_send_params.ReplyTo | Omit = omit,
         seat_id: str | Omit = omit,
@@ -183,6 +199,7 @@ class AsyncSendCarouselResource(AsyncAPIResource):
         ]
         | Omit = omit,
         status_callback: str | Omit = omit,
+        text_formatting: Iterable[send_carousel_send_params.TextFormatting] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -203,6 +220,8 @@ class AsyncSendCarouselResource(AsyncAPIResource):
 
           number: Recipient phone number in E.164 format
 
+          content: Optional caption; formatting ranges index this exact text.
+
           metadata: Additional metadata to attach to the message
 
           reply_to: Immediate parent of an iMessage inline reply. The target must belong to the same
@@ -216,6 +235,14 @@ class AsyncSendCarouselResource(AsyncAPIResource):
           send_style: The iMessage expressive message style
 
           status_callback: Webhook URL that receives message status updates
+
+          text_formatting: Optional additive native text styles indexed in UTF-16 code units of the exact
+              submitted content. Empty array retains the ordinary plain-text path. Ranges
+              cannot split surrogate pairs. Requires an updated V2 Mac worker/native helper,
+              macOS 15+ and an existing native iMessage path. Other transports, older
+              workers/hosts and AppleScript paths remain plain text; routing and fallback
+              policy do not change. Cannot be combined with app_card. Recipient rendering
+              requires compatible Apple Messages.
 
           extra_headers: Send extra headers
 
@@ -232,11 +259,13 @@ class AsyncSendCarouselResource(AsyncAPIResource):
                     "from_number": from_number,
                     "media_urls": media_urls,
                     "number": number,
+                    "content": content,
                     "metadata": metadata,
                     "reply_to": reply_to,
                     "seat_id": seat_id,
                     "send_style": send_style,
                     "status_callback": status_callback,
+                    "text_formatting": text_formatting,
                 },
                 send_carousel_send_params.SendCarouselSendParams,
             ),

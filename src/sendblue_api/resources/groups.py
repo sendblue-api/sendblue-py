@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -125,6 +126,7 @@ class GroupsResource(SyncAPIResource):
         numbers: SequenceNotStr[str] | Omit = omit,
         reply_to: group_send_message_params.ReplyTo | Omit = omit,
         seat_id: str | Omit = omit,
+        text_formatting: Iterable[group_send_message_params.TextFormatting] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -156,6 +158,14 @@ class GroupsResource(SyncAPIResource):
               subject. When provided, `sender_email` is auto-populated on the message record
               and webhook payloads. Returns 400 if the seat is not found.
 
+          text_formatting: Optional additive native text styles indexed in UTF-16 code units of the exact
+              submitted content. Empty array retains the ordinary plain-text path. Ranges
+              cannot split surrogate pairs. Requires an updated V2 Mac worker/native helper,
+              macOS 15+ and an existing native iMessage path. Other transports, older
+              workers/hosts and AppleScript paths remain plain text; routing and fallback
+              policy do not change. Cannot be combined with app_card. Recipient rendering
+              requires compatible Apple Messages.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -175,6 +185,7 @@ class GroupsResource(SyncAPIResource):
                     "numbers": numbers,
                     "reply_to": reply_to,
                     "seat_id": seat_id,
+                    "text_formatting": text_formatting,
                 },
                 group_send_message_params.GroupSendMessageParams,
             ),
@@ -286,6 +297,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         numbers: SequenceNotStr[str] | Omit = omit,
         reply_to: group_send_message_params.ReplyTo | Omit = omit,
         seat_id: str | Omit = omit,
+        text_formatting: Iterable[group_send_message_params.TextFormatting] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -317,6 +329,14 @@ class AsyncGroupsResource(AsyncAPIResource):
               subject. When provided, `sender_email` is auto-populated on the message record
               and webhook payloads. Returns 400 if the seat is not found.
 
+          text_formatting: Optional additive native text styles indexed in UTF-16 code units of the exact
+              submitted content. Empty array retains the ordinary plain-text path. Ranges
+              cannot split surrogate pairs. Requires an updated V2 Mac worker/native helper,
+              macOS 15+ and an existing native iMessage path. Other transports, older
+              workers/hosts and AppleScript paths remain plain text; routing and fallback
+              policy do not change. Cannot be combined with app_card. Recipient rendering
+              requires compatible Apple Messages.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -336,6 +356,7 @@ class AsyncGroupsResource(AsyncAPIResource):
                     "numbers": numbers,
                     "reply_to": reply_to,
                     "seat_id": seat_id,
+                    "text_formatting": text_formatting,
                 },
                 group_send_message_params.GroupSendMessageParams,
             ),

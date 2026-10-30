@@ -42,6 +42,7 @@ class TestSendCarousel:
                 "https://example.com/image3.jpg",
             ],
             number="+19998887777",
+            content="content",
             metadata={},
             reply_to={
                 "message_handle": "msg_parent123",
@@ -50,6 +51,13 @@ class TestSendCarousel:
             seat_id="550e8400-e29b-41d4-a716-446655440000",
             send_style="celebration",
             status_callback="https://example.com/webhook",
+            text_formatting=[
+                {
+                    "length": 1,
+                    "start": 0,
+                    "styles": ["bold"],
+                }
+            ],
         )
         assert_matches_type(SendCarouselSendResponse, send_carousel, path=["response"])
 
@@ -122,6 +130,7 @@ class TestAsyncSendCarousel:
                 "https://example.com/image3.jpg",
             ],
             number="+19998887777",
+            content="content",
             metadata={},
             reply_to={
                 "message_handle": "msg_parent123",
@@ -130,6 +139,13 @@ class TestAsyncSendCarousel:
             seat_id="550e8400-e29b-41d4-a716-446655440000",
             send_style="celebration",
             status_callback="https://example.com/webhook",
+            text_formatting=[
+                {
+                    "length": 1,
+                    "start": 0,
+                    "styles": ["bold"],
+                }
+            ],
         )
         assert_matches_type(SendCarouselSendResponse, send_carousel, path=["response"])
 
