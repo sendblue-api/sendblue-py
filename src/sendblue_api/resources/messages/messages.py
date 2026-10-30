@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import Union, Iterable
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -322,6 +322,7 @@ class MessagesResource(SyncAPIResource):
         ]
         | Omit = omit,
         status_callback: str | Omit = omit,
+        text_formatting: Iterable[message_send_params.TextFormatting] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -385,6 +386,14 @@ class MessagesResource(SyncAPIResource):
 
           status_callback: Webhook URL that receives message status updates
 
+          text_formatting: Optional additive native text styles indexed in UTF-16 code units of the exact
+              submitted content. Empty array retains the ordinary plain-text path. Ranges
+              cannot split surrogate pairs. Requires an updated V2 Mac worker/native helper,
+              macOS 15+ and an existing native iMessage path. Other transports, older
+              workers/hosts and AppleScript paths remain plain text; routing and fallback
+              policy do not change. Cannot be combined with app_card. Recipient rendering
+              requires compatible Apple Messages.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -407,6 +416,7 @@ class MessagesResource(SyncAPIResource):
                     "seat_id": seat_id,
                     "send_style": send_style,
                     "status_callback": status_callback,
+                    "text_formatting": text_formatting,
                 },
                 message_send_params.MessageSendParams,
             ),
@@ -780,6 +790,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         ]
         | Omit = omit,
         status_callback: str | Omit = omit,
+        text_formatting: Iterable[message_send_params.TextFormatting] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -843,6 +854,14 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           status_callback: Webhook URL that receives message status updates
 
+          text_formatting: Optional additive native text styles indexed in UTF-16 code units of the exact
+              submitted content. Empty array retains the ordinary plain-text path. Ranges
+              cannot split surrogate pairs. Requires an updated V2 Mac worker/native helper,
+              macOS 15+ and an existing native iMessage path. Other transports, older
+              workers/hosts and AppleScript paths remain plain text; routing and fallback
+              policy do not change. Cannot be combined with app_card. Recipient rendering
+              requires compatible Apple Messages.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -865,6 +884,7 @@ class AsyncMessagesResource(AsyncAPIResource):
                     "seat_id": seat_id,
                     "send_style": send_style,
                     "status_callback": status_callback,
+                    "text_formatting": text_formatting,
                 },
                 message_send_params.MessageSendParams,
             ),
