@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.34.0](https://github.com/sendblue-api/sendblue-py/compare/v1.33.1...v1.34.0) (2026-10-30)
+
+
+### Features
+
+* regenerate clients from source a04124444d97 ([8391c4e](https://github.com/sendblue-api/sendblue-py/commit/8391c4eb9d124686511f1954e3e7594acf172a35))
+
 ## [1.33.1](https://github.com/sendblue-api/sendblue-py/compare/v1.33.0...v1.33.1) (2026-10-30)
 
 

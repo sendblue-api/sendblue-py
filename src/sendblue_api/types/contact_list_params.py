@@ -18,17 +18,29 @@ class ContactListParams(TypedDict, total=False):
     created_at_gte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Filter contacts created at or after this ISO 8601 timestamp (event recovery)"""
 
+    cursor: str
+    """Opaque next_cursor from the previous page. Also selects cursor pagination."""
+
     limit: int
-    """Maximum number of contacts to return. Defaults to 100, capped at 1000."""
+    """Maximum contacts to return.
+
+    Default 100; legacy capped at 1000, cursor mode at 100.
+    """
 
     offset: int
-    """Number of contacts to skip. Capped at 10000."""
+    """Number of contacts to skip.
 
-    order_by: str
-    """Field to sort by"""
+    Above 10000 returns 400. Cannot be combined with cursor mode.
+    """
+
+    order_by: Literal["created_at", "firstName", "lastName", "phone"]
+    """Field to sort by; cursor mode permits only created_at."""
 
     order_direction: Literal["asc", "desc"]
-    """Sort direction"""
+    """Sort direction; cursor mode permits only desc."""
+
+    pagination: Literal["cursor"]
+    """Select cursor pagination and its response envelope."""
 
     phone_number: str
     """Filter by phone number"""

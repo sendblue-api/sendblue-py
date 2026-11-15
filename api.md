@@ -103,6 +103,7 @@ from sendblue_api.types import (
     ContactListResponse,
     ContactDeleteResponse,
     ContactCountResponse,
+    ContactLookupResponse,
     ContactOptOutResponse,
     ContactVerifyResponse,
 )
@@ -116,6 +117,7 @@ Methods:
 - <code title="get /api/v2/contacts">client.contacts.<a href="./src/sendblue_api/resources/contacts/contacts.py">list</a>(\*\*<a href="src/sendblue_api/types/contact_list_params.py">params</a>) -> <a href="./src/sendblue_api/types/contact_list_response.py">ContactListResponse</a></code>
 - <code title="delete /api/v2/contacts/{phone_number}">client.contacts.<a href="./src/sendblue_api/resources/contacts/contacts.py">delete</a>(phone_number) -> <a href="./src/sendblue_api/types/contact_delete_response.py">ContactDeleteResponse</a></code>
 - <code title="get /api/v2/contacts/count">client.contacts.<a href="./src/sendblue_api/resources/contacts/contacts.py">count</a>() -> <a href="./src/sendblue_api/types/contact_count_response.py">ContactCountResponse</a></code>
+- <code title="post /api/v2/contacts/lookup">client.contacts.<a href="./src/sendblue_api/resources/contacts/contacts.py">lookup</a>(\*\*<a href="src/sendblue_api/types/contact_lookup_params.py">params</a>) -> <a href="./src/sendblue_api/types/contact_lookup_response.py">ContactLookupResponse</a></code>
 - <code title="post /api/v2/contacts/opt-out">client.contacts.<a href="./src/sendblue_api/resources/contacts/contacts.py">opt_out</a>(\*\*<a href="src/sendblue_api/types/contact_opt_out_params.py">params</a>) -> <a href="./src/sendblue_api/types/contact_opt_out_response.py">ContactOptOutResponse</a></code>
 - <code title="post /api/v2/contacts/verify">client.contacts.<a href="./src/sendblue_api/resources/contacts/contacts.py">verify</a>(\*\*<a href="src/sendblue_api/types/contact_verify_params.py">params</a>) -> <a href="./src/sendblue_api/types/contact_verify_response.py">ContactVerifyResponse</a></code>
 
