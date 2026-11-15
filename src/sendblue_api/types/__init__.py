@@ -18,6 +18,7 @@ from .message_send_params import MessageSendParams as MessageSendParams
 from .location_list_params import LocationListParams as LocationListParams
 from .contact_create_params import ContactCreateParams as ContactCreateParams
 from .contact_list_response import ContactListResponse as ContactListResponse
+from .contact_lookup_params import ContactLookupParams as ContactLookupParams
 from .contact_update_params import ContactUpdateParams as ContactUpdateParams
 from .contact_verify_params import ContactVerifyParams as ContactVerifyParams
 from .group_modify_response import GroupModifyResponse as GroupModifyResponse
@@ -33,6 +34,7 @@ from .contact_opt_out_params import ContactOptOutParams as ContactOptOutParams
 from .location_list_response import LocationListResponse as LocationListResponse
 from .contact_create_response import ContactCreateResponse as ContactCreateResponse
 from .contact_delete_response import ContactDeleteResponse as ContactDeleteResponse
+from .contact_lookup_response import ContactLookupResponse as ContactLookupResponse
 from .contact_update_response import ContactUpdateResponse as ContactUpdateResponse
 from .contact_verify_response import ContactVerifyResponse as ContactVerifyResponse
 from .line_get_state_response import LineGetStateResponse as LineGetStateResponse

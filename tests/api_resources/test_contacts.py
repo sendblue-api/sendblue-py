@@ -14,6 +14,7 @@ from sendblue_api.types import (
     ContactCountResponse,
     ContactCreateResponse,
     ContactDeleteResponse,
+    ContactLookupResponse,
     ContactOptOutResponse,
     ContactUpdateResponse,
     ContactVerifyResponse,
@@ -200,10 +201,12 @@ class TestContacts:
         contact = client.contacts.list(
             cid="cid",
             created_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            cursor="x",
             limit=1,
             offset=0,
-            order_by="order_by",
+            order_by="created_at",
             order_direction="asc",
+            pagination="cursor",
             phone_number="phone_number",
         )
         assert_matches_type(ContactListResponse, contact, path=["response"])
@@ -297,6 +300,40 @@ class TestContacts:
 
             contact = response.parse()
             assert_matches_type(ContactCountResponse, contact, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_lookup(self, client: SendblueAPI) -> None:
+        contact = client.contacts.lookup(
+            phone_numbers=["x"],
+        )
+        assert_matches_type(ContactLookupResponse, contact, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_lookup(self, client: SendblueAPI) -> None:
+        response = client.contacts.with_raw_response.lookup(
+            phone_numbers=["x"],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        contact = response.parse()
+        assert_matches_type(ContactLookupResponse, contact, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_lookup(self, client: SendblueAPI) -> None:
+        with client.contacts.with_streaming_response.lookup(
+            phone_numbers=["x"],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            contact = response.parse()
+            assert_matches_type(ContactLookupResponse, contact, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -556,10 +593,12 @@ class TestAsyncContacts:
         contact = await async_client.contacts.list(
             cid="cid",
             created_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            cursor="x",
             limit=1,
             offset=0,
-            order_by="order_by",
+            order_by="created_at",
             order_direction="asc",
+            pagination="cursor",
             phone_number="phone_number",
         )
         assert_matches_type(ContactListResponse, contact, path=["response"])
@@ -653,6 +692,40 @@ class TestAsyncContacts:
 
             contact = await response.parse()
             assert_matches_type(ContactCountResponse, contact, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_lookup(self, async_client: AsyncSendblueAPI) -> None:
+        contact = await async_client.contacts.lookup(
+            phone_numbers=["x"],
+        )
+        assert_matches_type(ContactLookupResponse, contact, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_lookup(self, async_client: AsyncSendblueAPI) -> None:
+        response = await async_client.contacts.with_raw_response.lookup(
+            phone_numbers=["x"],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        contact = await response.parse()
+        assert_matches_type(ContactLookupResponse, contact, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_lookup(self, async_client: AsyncSendblueAPI) -> None:
+        async with async_client.contacts.with_streaming_response.lookup(
+            phone_numbers=["x"],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            contact = await response.parse()
+            assert_matches_type(ContactLookupResponse, contact, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

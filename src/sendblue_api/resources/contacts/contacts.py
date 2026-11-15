@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union
+from typing import Any, Dict, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -19,6 +19,7 @@ from .bulk import (
 from ...types import (
     contact_list_params,
     contact_create_params,
+    contact_lookup_params,
     contact_update_params,
     contact_verify_params,
     contact_opt_out_params,
@@ -38,6 +39,7 @@ from ...types.contact_list_response import ContactListResponse
 from ...types.contact_count_response import ContactCountResponse
 from ...types.contact_create_response import ContactCreateResponse
 from ...types.contact_delete_response import ContactDeleteResponse
+from ...types.contact_lookup_response import ContactLookupResponse
 from ...types.contact_update_response import ContactUpdateResponse
 from ...types.contact_verify_response import ContactVerifyResponse
 from ...types.contact_opt_out_response import ContactOptOutResponse
@@ -298,10 +300,12 @@ class ContactsResource(SyncAPIResource):
         *,
         cid: str | Omit = omit,
         created_at_gte: Union[str, datetime] | Omit = omit,
+        cursor: str | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
-        order_by: str | Omit = omit,
+        order_by: Literal["created_at", "firstName", "lastName", "phone"] | Omit = omit,
         order_direction: Literal["asc", "desc"] | Omit = omit,
+        pagination: Literal["cursor"] | Omit = omit,
         phone_number: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -310,21 +314,33 @@ class ContactsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactListResponse:
-        """
-        Retrieve a list of contacts for the authenticated account
+        """Retrieve contacts with tags for the authenticated account.
+
+        Legacy offset
+        requests return an array. Use pagination=cursor to retrieve the complete list
+        beyond the offset ceiling, then follow next_cursor until null. Cursor mode sorts
+        by created_at DESC, contact_id ASC and requires the same account and filters on
+        every page. It is a live walk, not a snapshot or a tag-update feed. Cursor pages
+        and phone-batch lookup share a limit of 20 requests per 10 seconds per account.
 
         Args:
           cid: Filter by contact ID
 
           created_at_gte: Filter contacts created at or after this ISO 8601 timestamp (event recovery)
 
-          limit: Maximum number of contacts to return. Defaults to 100, capped at 1000.
+          cursor: Opaque next_cursor from the previous page. Also selects cursor pagination.
 
-          offset: Number of contacts to skip. Capped at 10000.
+          limit: Maximum contacts to return. Default 100; legacy capped at 1000, cursor mode
+              at 100.
 
-          order_by: Field to sort by
+          offset: Number of contacts to skip. Above 10000 returns 400. Cannot be combined with
+              cursor mode.
 
-          order_direction: Sort direction
+          order_by: Field to sort by; cursor mode permits only created_at.
+
+          order_direction: Sort direction; cursor mode permits only desc.
+
+          pagination: Select cursor pagination and its response envelope.
 
           phone_number: Filter by phone number
 
@@ -336,27 +352,34 @@ class ContactsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
-            "/api/v2/contacts",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "cid": cid,
-                        "created_at_gte": created_at_gte,
-                        "limit": limit,
-                        "offset": offset,
-                        "order_by": order_by,
-                        "order_direction": order_direction,
-                        "phone_number": phone_number,
-                    },
-                    contact_list_params.ContactListParams,
+        return cast(
+            ContactListResponse,
+            self._get(
+                "/api/v2/contacts",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "cid": cid,
+                            "created_at_gte": created_at_gte,
+                            "cursor": cursor,
+                            "limit": limit,
+                            "offset": offset,
+                            "order_by": order_by,
+                            "order_direction": order_direction,
+                            "pagination": pagination,
+                            "phone_number": phone_number,
+                        },
+                        contact_list_params.ContactListParams,
+                    ),
                 ),
+                cast_to=cast(
+                    Any, ContactListResponse
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=ContactListResponse,
         )
 
     def delete(
@@ -409,6 +432,42 @@ class ContactsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ContactCountResponse,
+        )
+
+    def lookup(
+        self,
+        *,
+        phone_numbers: SequenceNotStr[str],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ContactLookupResponse:
+        """
+        Send 1–100 phone numbers, bounded before normalization and deduplication.
+        Contacts follow normalized input order; tags=[] means an existing untagged
+        contact, while not_found lists normalized phones with no matching contact. A
+        failed tag read fails the request. Company scope comes from authentication.
+        Shares the cursor-page budget of 20 requests per 10 seconds per account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/api/v2/contacts/lookup",
+            body=maybe_transform({"phone_numbers": phone_numbers}, contact_lookup_params.ContactLookupParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ContactLookupResponse,
         )
 
     def opt_out(
@@ -745,10 +804,12 @@ class AsyncContactsResource(AsyncAPIResource):
         *,
         cid: str | Omit = omit,
         created_at_gte: Union[str, datetime] | Omit = omit,
+        cursor: str | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
-        order_by: str | Omit = omit,
+        order_by: Literal["created_at", "firstName", "lastName", "phone"] | Omit = omit,
         order_direction: Literal["asc", "desc"] | Omit = omit,
+        pagination: Literal["cursor"] | Omit = omit,
         phone_number: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -757,21 +818,33 @@ class AsyncContactsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactListResponse:
-        """
-        Retrieve a list of contacts for the authenticated account
+        """Retrieve contacts with tags for the authenticated account.
+
+        Legacy offset
+        requests return an array. Use pagination=cursor to retrieve the complete list
+        beyond the offset ceiling, then follow next_cursor until null. Cursor mode sorts
+        by created_at DESC, contact_id ASC and requires the same account and filters on
+        every page. It is a live walk, not a snapshot or a tag-update feed. Cursor pages
+        and phone-batch lookup share a limit of 20 requests per 10 seconds per account.
 
         Args:
           cid: Filter by contact ID
 
           created_at_gte: Filter contacts created at or after this ISO 8601 timestamp (event recovery)
 
-          limit: Maximum number of contacts to return. Defaults to 100, capped at 1000.
+          cursor: Opaque next_cursor from the previous page. Also selects cursor pagination.
 
-          offset: Number of contacts to skip. Capped at 10000.
+          limit: Maximum contacts to return. Default 100; legacy capped at 1000, cursor mode
+              at 100.
 
-          order_by: Field to sort by
+          offset: Number of contacts to skip. Above 10000 returns 400. Cannot be combined with
+              cursor mode.
 
-          order_direction: Sort direction
+          order_by: Field to sort by; cursor mode permits only created_at.
+
+          order_direction: Sort direction; cursor mode permits only desc.
+
+          pagination: Select cursor pagination and its response envelope.
 
           phone_number: Filter by phone number
 
@@ -783,27 +856,34 @@ class AsyncContactsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
-            "/api/v2/contacts",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "cid": cid,
-                        "created_at_gte": created_at_gte,
-                        "limit": limit,
-                        "offset": offset,
-                        "order_by": order_by,
-                        "order_direction": order_direction,
-                        "phone_number": phone_number,
-                    },
-                    contact_list_params.ContactListParams,
+        return cast(
+            ContactListResponse,
+            await self._get(
+                "/api/v2/contacts",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform(
+                        {
+                            "cid": cid,
+                            "created_at_gte": created_at_gte,
+                            "cursor": cursor,
+                            "limit": limit,
+                            "offset": offset,
+                            "order_by": order_by,
+                            "order_direction": order_direction,
+                            "pagination": pagination,
+                            "phone_number": phone_number,
+                        },
+                        contact_list_params.ContactListParams,
+                    ),
                 ),
+                cast_to=cast(
+                    Any, ContactListResponse
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=ContactListResponse,
         )
 
     async def delete(
@@ -856,6 +936,44 @@ class AsyncContactsResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ContactCountResponse,
+        )
+
+    async def lookup(
+        self,
+        *,
+        phone_numbers: SequenceNotStr[str],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ContactLookupResponse:
+        """
+        Send 1–100 phone numbers, bounded before normalization and deduplication.
+        Contacts follow normalized input order; tags=[] means an existing untagged
+        contact, while not_found lists normalized phones with no matching contact. A
+        failed tag read fails the request. Company scope comes from authentication.
+        Shares the cursor-page budget of 20 requests per 10 seconds per account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/api/v2/contacts/lookup",
+            body=await async_maybe_transform(
+                {"phone_numbers": phone_numbers}, contact_lookup_params.ContactLookupParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ContactLookupResponse,
         )
 
     async def opt_out(
@@ -962,6 +1080,9 @@ class ContactsResourceWithRawResponse:
         self.count = to_raw_response_wrapper(
             contacts.count,
         )
+        self.lookup = to_raw_response_wrapper(
+            contacts.lookup,
+        )
         self.opt_out = to_raw_response_wrapper(
             contacts.opt_out,
         )
@@ -996,6 +1117,9 @@ class AsyncContactsResourceWithRawResponse:
         )
         self.count = async_to_raw_response_wrapper(
             contacts.count,
+        )
+        self.lookup = async_to_raw_response_wrapper(
+            contacts.lookup,
         )
         self.opt_out = async_to_raw_response_wrapper(
             contacts.opt_out,
@@ -1032,6 +1156,9 @@ class ContactsResourceWithStreamingResponse:
         self.count = to_streamed_response_wrapper(
             contacts.count,
         )
+        self.lookup = to_streamed_response_wrapper(
+            contacts.lookup,
+        )
         self.opt_out = to_streamed_response_wrapper(
             contacts.opt_out,
         )
@@ -1066,6 +1193,9 @@ class AsyncContactsResourceWithStreamingResponse:
         )
         self.count = async_to_streamed_response_wrapper(
             contacts.count,
+        )
+        self.lookup = async_to_streamed_response_wrapper(
+            contacts.lookup,
         )
         self.opt_out = async_to_streamed_response_wrapper(
             contacts.opt_out,
