@@ -186,7 +186,9 @@ class MessagesResource(SyncAPIResource):
 
           number: Filter by any phone number (from or to)
 
-          offset: Number of messages to skip
+          offset: Number of messages to skip, at most 1,000,000; a larger value is rejected
+              with 400. To read deep history, narrow the range with `created_at_gte` /
+              `created_at_lte` instead of paging deeper.
 
           order_by: Field to order messages by
 
@@ -654,7 +656,9 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           number: Filter by any phone number (from or to)
 
-          offset: Number of messages to skip
+          offset: Number of messages to skip, at most 1,000,000; a larger value is rejected
+              with 400. To read deep history, narrow the range with `created_at_gte` /
+              `created_at_lte` instead of paging deeper.
 
           order_by: Field to order messages by
 
