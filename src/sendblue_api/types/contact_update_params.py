@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Optional
 from typing_extensions import Annotated, TypedDict
 
 from .._types import SequenceNotStr
@@ -26,6 +26,15 @@ class ContactUpdateParams(TypedDict, total=False):
 
     custom_variables: Dict[str, str]
     """Custom key-value pairs. Merged with existing variables (not replaced)."""
+
+    email: Optional[str]
+    """Contact's own email address.
+
+    For enabled accounts, send a valid address to set it or null to clear it. Omit
+    the field to preserve its value. Blank strings and unknown.com addresses are
+    invalid. If the feature is disabled or its availability cannot be checked, the
+    API ignores email and processes other fields as usual.
+    """
 
     body_first_name_1: Annotated[str, PropertyInfo(alias="first_name")]
     """Contact's first name (preferred)"""

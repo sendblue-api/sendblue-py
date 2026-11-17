@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Dict, Union, cast
+from typing import Any, Dict, Union, Optional, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -209,6 +209,7 @@ class ContactsResource(SyncAPIResource):
         body_company_name_1: str | Omit = omit,
         body_company_name_2: str | Omit = omit,
         custom_variables: Dict[str, str] | Omit = omit,
+        email: Optional[str] | Omit = omit,
         body_first_name_1: str | Omit = omit,
         body_first_name_2: str | Omit = omit,
         body_last_name_1: str | Omit = omit,
@@ -240,6 +241,12 @@ class ContactsResource(SyncAPIResource):
           body_company_name_2: Deprecated, use company_name
 
           custom_variables: Custom key-value pairs. Merged with existing variables (not replaced).
+
+          email: Contact's own email address. For enabled accounts, send a valid address to set
+              it or null to clear it. Omit the field to preserve its value. Blank strings and
+              unknown.com addresses are invalid. If the feature is disabled or its
+              availability cannot be checked, the API ignores email and processes other fields
+              as usual.
 
           body_first_name_1: Contact's first name (preferred)
 
@@ -277,6 +284,7 @@ class ContactsResource(SyncAPIResource):
                     "body_company_name_1": body_company_name_1,
                     "body_company_name_2": body_company_name_2,
                     "custom_variables": custom_variables,
+                    "email": email,
                     "body_first_name_1": body_first_name_1,
                     "body_first_name_2": body_first_name_2,
                     "body_last_name_1": body_last_name_1,
@@ -713,6 +721,7 @@ class AsyncContactsResource(AsyncAPIResource):
         body_company_name_1: str | Omit = omit,
         body_company_name_2: str | Omit = omit,
         custom_variables: Dict[str, str] | Omit = omit,
+        email: Optional[str] | Omit = omit,
         body_first_name_1: str | Omit = omit,
         body_first_name_2: str | Omit = omit,
         body_last_name_1: str | Omit = omit,
@@ -744,6 +753,12 @@ class AsyncContactsResource(AsyncAPIResource):
           body_company_name_2: Deprecated, use company_name
 
           custom_variables: Custom key-value pairs. Merged with existing variables (not replaced).
+
+          email: Contact's own email address. For enabled accounts, send a valid address to set
+              it or null to clear it. Omit the field to preserve its value. Blank strings and
+              unknown.com addresses are invalid. If the feature is disabled or its
+              availability cannot be checked, the API ignores email and processes other fields
+              as usual.
 
           body_first_name_1: Contact's first name (preferred)
 
@@ -781,6 +796,7 @@ class AsyncContactsResource(AsyncAPIResource):
                     "body_company_name_1": body_company_name_1,
                     "body_company_name_2": body_company_name_2,
                     "custom_variables": custom_variables,
+                    "email": email,
                     "body_first_name_1": body_first_name_1,
                     "body_first_name_2": body_first_name_2,
                     "body_last_name_1": body_last_name_1,
