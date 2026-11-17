@@ -53,7 +53,11 @@ class MessageListParams(TypedDict, total=False):
     """Filter by any phone number (from or to)"""
 
     offset: int
-    """Number of messages to skip"""
+    """
+    Number of messages to skip, at most 1,000,000; a larger value is rejected
+    with 400. To read deep history, narrow the range with `created_at_gte` /
+    `created_at_lte` instead of paging deeper.
+    """
 
     order_by: Literal["createdAt", "updatedAt", "sentAt"]
     """Field to order messages by"""
