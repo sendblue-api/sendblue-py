@@ -24,6 +24,12 @@ class Contact(BaseModel):
     custom_variables: Optional[Dict[str, str]] = None
     """Custom key-value pairs stored on the contact. Keys are human-readable labels."""
 
+    email: Optional[str] = None
+    """Contact's own email address, included for enabled accounts when available.
+
+    For Firestore-backed contacts, reads reflect edits after synchronization.
+    """
+
     first_name: Optional[str] = None
     """First name"""
 
