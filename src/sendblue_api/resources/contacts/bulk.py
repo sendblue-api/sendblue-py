@@ -57,8 +57,12 @@ class BulkResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BulkCreateResponse:
-        """
-        Create multiple contacts in bulk
+        """Create multiple contacts in bulk.
+
+        HTTP 200 can contain both successful contacts
+        and per-item failures. An enabled item's explicitly supplied email requires a
+        saved-value acknowledgment. A failed item may already have been created or
+        updated before acknowledgment failed; check its saved state before retrying.
 
         Args:
           extra_headers: Send extra headers
@@ -146,8 +150,12 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BulkCreateResponse:
-        """
-        Create multiple contacts in bulk
+        """Create multiple contacts in bulk.
+
+        HTTP 200 can contain both successful contacts
+        and per-item failures. An enabled item's explicitly supplied email requires a
+        saved-value acknowledgment. A failed item may already have been created or
+        updated before acknowledgment failed; check its saved state before retrying.
 
         Args:
           extra_headers: Send extra headers

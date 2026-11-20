@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable
+from typing import Dict, Iterable, Optional
 from typing_extensions import Required, TypedDict
 
 from ..._types import SequenceNotStr
@@ -25,6 +25,14 @@ class Contact(TypedDict, total=False):
     """Custom key-value pairs.
 
     Keys are human-readable labels; new labels are auto-created.
+    """
+
+    email: Optional[str]
+    """Contact's own email address.
+
+    Enabled accounts may send a valid address or null. Surrounding whitespace is
+    trimmed. Blank strings and unknown.com addresses are invalid. Disabled accounts
+    and unavailable feature checks ignore this field.
     """
 
     first_name: str

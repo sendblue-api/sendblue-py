@@ -82,6 +82,7 @@ class ContactsResource(SyncAPIResource):
         body_assigned_to_email_1: str | Omit = omit,
         body_assigned_to_email_2: str | Omit = omit,
         custom_variables: Dict[str, str] | Omit = omit,
+        email: Optional[str] | Omit = omit,
         body_first_name_1: str | Omit = omit,
         body_first_name_2: str | Omit = omit,
         body_last_name_1: str | Omit = omit,
@@ -99,8 +100,13 @@ class ContactsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactCreateResponse:
-        """
-        Create a new contact or update existing if update_if_exists is true
+        """Create a new contact or update existing if update_if_exists is true.
+
+        For enabled
+        accounts, an explicitly supplied email requires an acknowledgment of the saved
+        value. Creation or earlier updates may commit before an acknowledgment failure
+        returns 503. Check the contact before retrying; a 503 does not guarantee that
+        nothing was saved.
 
         Args:
           number: Contact's phone number in E.164 format (preferred)
@@ -111,6 +117,11 @@ class ContactsResource(SyncAPIResource):
 
           custom_variables: Custom key-value pairs. Keys are human-readable labels; new labels are
               auto-created.
+
+          email: Contact's own email address. Enabled accounts may send a valid address or null.
+              Surrounding whitespace is trimmed. With update_if_exists, null clears the saved
+              email and omission preserves it. Blank strings and unknown.com addresses are
+              invalid. Disabled accounts and unavailable feature checks ignore this field.
 
           body_first_name_1: Contact's first name (preferred)
 
@@ -148,6 +159,7 @@ class ContactsResource(SyncAPIResource):
                     "body_assigned_to_email_1": body_assigned_to_email_1,
                     "body_assigned_to_email_2": body_assigned_to_email_2,
                     "custom_variables": custom_variables,
+                    "email": email,
                     "body_first_name_1": body_first_name_1,
                     "body_first_name_2": body_first_name_2,
                     "body_last_name_1": body_last_name_1,
@@ -594,6 +606,7 @@ class AsyncContactsResource(AsyncAPIResource):
         body_assigned_to_email_1: str | Omit = omit,
         body_assigned_to_email_2: str | Omit = omit,
         custom_variables: Dict[str, str] | Omit = omit,
+        email: Optional[str] | Omit = omit,
         body_first_name_1: str | Omit = omit,
         body_first_name_2: str | Omit = omit,
         body_last_name_1: str | Omit = omit,
@@ -611,8 +624,13 @@ class AsyncContactsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactCreateResponse:
-        """
-        Create a new contact or update existing if update_if_exists is true
+        """Create a new contact or update existing if update_if_exists is true.
+
+        For enabled
+        accounts, an explicitly supplied email requires an acknowledgment of the saved
+        value. Creation or earlier updates may commit before an acknowledgment failure
+        returns 503. Check the contact before retrying; a 503 does not guarantee that
+        nothing was saved.
 
         Args:
           number: Contact's phone number in E.164 format (preferred)
@@ -623,6 +641,11 @@ class AsyncContactsResource(AsyncAPIResource):
 
           custom_variables: Custom key-value pairs. Keys are human-readable labels; new labels are
               auto-created.
+
+          email: Contact's own email address. Enabled accounts may send a valid address or null.
+              Surrounding whitespace is trimmed. With update_if_exists, null clears the saved
+              email and omission preserves it. Blank strings and unknown.com addresses are
+              invalid. Disabled accounts and unavailable feature checks ignore this field.
 
           body_first_name_1: Contact's first name (preferred)
 
@@ -660,6 +683,7 @@ class AsyncContactsResource(AsyncAPIResource):
                     "body_assigned_to_email_1": body_assigned_to_email_1,
                     "body_assigned_to_email_2": body_assigned_to_email_2,
                     "custom_variables": custom_variables,
+                    "email": email,
                     "body_first_name_1": body_first_name_1,
                     "body_first_name_2": body_first_name_2,
                     "body_last_name_1": body_last_name_1,
