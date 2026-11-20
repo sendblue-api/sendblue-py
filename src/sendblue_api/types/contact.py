@@ -25,9 +25,11 @@ class Contact(BaseModel):
     """Custom key-value pairs stored on the contact. Keys are human-readable labels."""
 
     email: Optional[str] = None
-    """Contact's own email address, included for enabled accounts when available.
-
-    For Firestore-backed contacts, reads reflect edits after synchronization.
+    """
+    Contact's saved email address, included for enabled accounts when available in
+    create, bulk-create, read, and update responses. Cleared and unavailable values
+    are omitted. For Firestore-backed contacts, subsequent reads reflect edits after
+    synchronization.
     """
 
     first_name: Optional[str] = None

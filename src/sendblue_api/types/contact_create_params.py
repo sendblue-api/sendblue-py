@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Optional
 from typing_extensions import Required, Annotated, TypedDict
 
 from .._types import SequenceNotStr
@@ -25,6 +25,15 @@ class ContactCreateParams(TypedDict, total=False):
     """Custom key-value pairs.
 
     Keys are human-readable labels; new labels are auto-created.
+    """
+
+    email: Optional[str]
+    """Contact's own email address.
+
+    Enabled accounts may send a valid address or null. Surrounding whitespace is
+    trimmed. With update_if_exists, null clears the saved email and omission
+    preserves it. Blank strings and unknown.com addresses are invalid. Disabled
+    accounts and unavailable feature checks ignore this field.
     """
 
     body_first_name_1: Annotated[str, PropertyInfo(alias="first_name")]
