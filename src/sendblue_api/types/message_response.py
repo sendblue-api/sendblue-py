@@ -263,7 +263,12 @@ class MessageResponse(BaseModel):
     without a `seat_id`.
     """
 
-    status: Optional[Literal["QUEUED", "SENT", "DELIVERED", "ERROR"]] = None
+    status: Optional[Literal["QUEUED", "SENT", "DELIVERED", "READ", "ERROR"]] = None
+    """Current message status.
+
+    GET /api/status can return READ for a read receipt; GET /api/v2/messages
+    represents a stored outbound read as RECEIVED.
+    """
 
     thread_originator: Optional[ThreadOriginator] = None
     """Message that originated an iMessage inline-reply thread."""
