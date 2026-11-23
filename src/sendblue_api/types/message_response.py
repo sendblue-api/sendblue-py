@@ -15,6 +15,7 @@ __all__ = [
     "AppCardAppCardLayout",
     "AppCardInboundAppCard",
     "Location",
+    "Processing",
     "ReplyTo",
     "ThreadOriginator",
 ]
@@ -137,6 +138,27 @@ class Location(BaseModel):
     timestamp: Optional[datetime] = None
 
 
+class Processing(BaseModel):
+    """Processing of the original logical message, separate from an individual attempt.
+
+    Unknown means authoritative lifecycle evidence is unavailable. Later native success can refine an earlier uncertain outcome.
+    """
+
+    state: Literal["processing", "succeeded", "failed", "uncertain", "unknown"]
+
+    retry_pending: Optional[bool] = None
+    """An automatic retry reservation is pending.
+
+    False alone does not establish finality or non-delivery.
+    """
+
+    revision: Optional[int] = None
+    """Monotonically increasing per message; use this to order lifecycle notifications.
+
+    Absent for unknown legacy records.
+    """
+
+
 class ReplyTo(BaseModel):
     """Immediate parent of an iMessage inline reply.
 
@@ -224,6 +246,13 @@ class MessageResponse(BaseModel):
     number: Optional[str] = None
     """Recipient phone number"""
 
+    processing: Optional[Processing] = None
+    """Processing of the original logical message, separate from an individual attempt.
+
+    Unknown means authoritative lifecycle evidence is unavailable. Later native
+    success can refine an earlier uncertain outcome.
+    """
+
     reply_to: Optional[ReplyTo] = None
     """Immediate parent of an iMessage inline reply.
 
@@ -263,7 +292,11 @@ class MessageResponse(BaseModel):
     without a `seat_id`.
     """
 
-    status: Optional[Literal["QUEUED", "SENT", "DELIVERED", "READ", "ERROR"]] = None
+    status: Optional[
+        Literal[
+            "REGISTERED", "PENDING", "DECLINED", "QUEUED", "ACCEPTED", "SENT", "DELIVERED", "READ", "ERROR", "UNKNOWN"
+        ]
+    ] = None
     """Current message status.
 
     GET /api/status can return READ for a read receipt; GET /api/v2/messages

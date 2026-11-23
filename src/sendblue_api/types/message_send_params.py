@@ -93,6 +93,8 @@ class MessageSendParams(TypedDict, total=False):
     requires compatible Apple Messages.
     """
 
+    idempotency_key: Annotated[str, PropertyInfo(alias="Idempotency-Key")]
+
 
 class AppCardLayout(TypedDict, total=False):
     """Visible card fields mirroring Apple's MSMessageTemplateLayout."""

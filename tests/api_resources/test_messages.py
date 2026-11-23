@@ -205,6 +205,7 @@ class TestMessages:
                     "styles": ["bold"],
                 }
             ],
+            idempotency_key="Idempotency-Key",
         )
         assert_matches_type(MessageResponse, message, path=["response"])
 
@@ -488,6 +489,7 @@ class TestAsyncMessages:
                     "styles": ["bold"],
                 }
             ],
+            idempotency_key="Idempotency-Key",
         )
         assert_matches_type(MessageResponse, message, path=["response"])
 

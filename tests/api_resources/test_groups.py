@@ -98,6 +98,7 @@ class TestGroups:
                     "styles": ["bold"],
                 }
             ],
+            idempotency_key="Idempotency-Key",
         )
         assert_matches_type(MessageResponse, group, path=["response"])
 
@@ -216,6 +217,7 @@ class TestAsyncGroups:
                     "styles": ["bold"],
                 }
             ],
+            idempotency_key="Idempotency-Key",
         )
         assert_matches_type(MessageResponse, group, path=["response"])
 
