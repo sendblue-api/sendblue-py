@@ -8,7 +8,15 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["MessageListResponse", "Data", "DataLocation", "DataReplyTo", "DataThreadOriginator", "Pagination"]
+__all__ = [
+    "MessageListResponse",
+    "Data",
+    "DataLocation",
+    "DataProcessing",
+    "DataReplyTo",
+    "DataThreadOriginator",
+    "Pagination",
+]
 
 
 class DataLocation(BaseModel):
@@ -28,6 +36,27 @@ class DataLocation(BaseModel):
     """Share duration selected by the recipient"""
 
     timestamp: Optional[datetime] = None
+
+
+class DataProcessing(BaseModel):
+    """Processing of the original logical message, separate from an individual attempt.
+
+    Unknown means authoritative lifecycle evidence is unavailable. Later native success can refine an earlier uncertain outcome.
+    """
+
+    state: Literal["processing", "succeeded", "failed", "uncertain", "unknown"]
+
+    retry_pending: Optional[bool] = None
+    """An automatic retry reservation is pending.
+
+    False alone does not establish finality or non-delivery.
+    """
+
+    revision: Optional[int] = None
+    """Monotonically increasing per message; use this to order lifecycle notifications.
+
+    Absent for unknown legacy records.
+    """
 
 
 class DataReplyTo(BaseModel):
@@ -134,6 +163,13 @@ class Data(BaseModel):
 
     plan: Optional[str] = None
     """Account plan used for this message"""
+
+    processing: Optional[DataProcessing] = None
+    """Processing of the original logical message, separate from an individual attempt.
+
+    Unknown means authoritative lifecycle evidence is unavailable. Later native
+    success can refine an earlier uncertain outcome.
+    """
 
     reply_to: Optional[DataReplyTo] = None
     """Immediate parent of an iMessage inline reply.

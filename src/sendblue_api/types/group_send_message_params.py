@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from typing import List, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._types import SequenceNotStr
+from .._utils import PropertyInfo
 
 __all__ = ["GroupSendMessageParams", "ReplyTo", "TextFormatting"]
 
@@ -55,6 +56,8 @@ class GroupSendMessageParams(TypedDict, total=False):
     policy do not change. Cannot be combined with app_card. Recipient rendering
     requires compatible Apple Messages.
     """
+
+    idempotency_key: Annotated[str, PropertyInfo(alias="Idempotency-Key")]
 
 
 class ReplyTo(TypedDict, total=False):

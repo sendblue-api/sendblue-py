@@ -58,6 +58,7 @@ class TestSendCarousel:
                     "styles": ["bold"],
                 }
             ],
+            idempotency_key="Idempotency-Key",
         )
         assert_matches_type(SendCarouselSendResponse, send_carousel, path=["response"])
 
@@ -146,6 +147,7 @@ class TestAsyncSendCarousel:
                     "styles": ["bold"],
                 }
             ],
+            idempotency_key="Idempotency-Key",
         )
         assert_matches_type(SendCarouselSendResponse, send_carousel, path=["response"])
 
