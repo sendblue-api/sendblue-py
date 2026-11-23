@@ -24,7 +24,7 @@ class ContactListParams(TypedDict, total=False):
     limit: int
     """Maximum contacts to return.
 
-    Default 100; legacy capped at 1000, cursor mode at 100.
+    Default 100; capped at 1000 in both legacy and cursor mode.
     """
 
     offset: int

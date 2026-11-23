@@ -342,6 +342,9 @@ class ContactsResource(SyncAPIResource):
         by created_at DESC, contact_id ASC and requires the same account and filters on
         every page. It is a live walk, not a snapshot or a tag-update feed. Cursor pages
         and phone-batch lookup share a limit of 20 requests per 10 seconds per account.
+        Cursor pages larger than 100 contacts (up to 1000) are additionally limited to
+        10 requests per 10 seconds per account; use limit=1000 for a fast complete
+        retrieval.
 
         Args:
           cid: Filter by contact ID
@@ -350,8 +353,8 @@ class ContactsResource(SyncAPIResource):
 
           cursor: Opaque next_cursor from the previous page. Also selects cursor pagination.
 
-          limit: Maximum contacts to return. Default 100; legacy capped at 1000, cursor mode
-              at 100.
+          limit: Maximum contacts to return. Default 100; capped at 1000 in both legacy and
+              cursor mode.
 
           offset: Number of contacts to skip. Above 10000 returns 400. Cannot be combined with
               cursor mode.
@@ -866,6 +869,9 @@ class AsyncContactsResource(AsyncAPIResource):
         by created_at DESC, contact_id ASC and requires the same account and filters on
         every page. It is a live walk, not a snapshot or a tag-update feed. Cursor pages
         and phone-batch lookup share a limit of 20 requests per 10 seconds per account.
+        Cursor pages larger than 100 contacts (up to 1000) are additionally limited to
+        10 requests per 10 seconds per account; use limit=1000 for a fast complete
+        retrieval.
 
         Args:
           cid: Filter by contact ID
@@ -874,8 +880,8 @@ class AsyncContactsResource(AsyncAPIResource):
 
           cursor: Opaque next_cursor from the previous page. Also selects cursor pagination.
 
-          limit: Maximum contacts to return. Default 100; legacy capped at 1000, cursor mode
-              at 100.
+          limit: Maximum contacts to return. Default 100; capped at 1000 in both legacy and
+              cursor mode.
 
           offset: Number of contacts to skip. Above 10000 returns 400. Cannot be combined with
               cursor mode.
