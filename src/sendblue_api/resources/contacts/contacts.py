@@ -416,8 +416,10 @@ class ContactsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactDeleteResponse:
-        """
-        Delete a specific contact
+        """Delete a specific contact.
+
+        If an earlier delete of the same contact did not
+        finish, repeating the request removes what is left and returns 200.
 
         Args:
           extra_headers: Send extra headers
@@ -943,8 +945,10 @@ class AsyncContactsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContactDeleteResponse:
-        """
-        Delete a specific contact
+        """Delete a specific contact.
+
+        If an earlier delete of the same contact did not
+        finish, repeating the request removes what is left and returns 200.
 
         Args:
           extra_headers: Send extra headers
